@@ -1,16 +1,22 @@
-#include "zen/gui/ZEN_ImGuiLayer.h"
-#include "zen/log/ZEN_Log.h"
 #include <include/imgui/imgui_impl_sdl3.h>
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Window.h>
+#include <zen/gui/ZEN_ImGuiLayer.h>
+#include <zen/inputs/ZEN_Input.h>
+#include <zen/log/ZEN_Log.h>
+#include <zen/time/ZEN_EngineTime.h>
 
 namespace Zen {
   Application *Application::s_instance = nullptr;
 
   Application::Application() {
+    s_instance = this;
+
+    Log::init();
     WindowProperties properties = {"Zen Window Test", 1280, 720, true, false};
-    m_eventDispatcher.registerListener(this);
-    m_window = Window::create(properties, &m_eventDispatcher);
+    m_eventsDispatcher.registerListener(this);
+    m_window = Window::create(properties);
+    m_eventsDispatcher.registerListener(m_window.get());
 
     m_vertexArray.reset(VertexArray::Create());
 
@@ -38,7 +44,9 @@ namespace Zen {
     std::string fPath = std::string(base) + "data/basic.frag";
     m_shader          = std::make_unique<Shader>(vPath.c_str(), fPath.c_str());
 
-    // m_ImGui = new ImGuiLayer();
+    ZEN_LOG_DEBUG("new ImGui");
+    m_ImGui = new ImGuiLayer;
+    pushLayer(m_ImGui);
   };
 
   Application::~Application() {
@@ -57,11 +65,15 @@ namespace Zen {
   void Application::run() {
     ZEN_LOG_INFO("Running Application...");
     while (m_isRunning) {
+      float currentTime = EngineTime::getTime();
+
+      DeltaTime dt   = currentTime - m_previousTime;
+      m_previousTime = currentTime;
 
       m_inputSystem.begin();
       SDL_Event eventFromSDL;
       while (SDL_PollEvent(&eventFromSDL)) {
-        // ImGui_ImplSDL3_ProcessEvent(&eventFromSDL);
+        ImGui_ImplSDL3_ProcessEvent(&eventFromSDL);
 
         ZenEvent e = TranslateEvent(eventFromSDL);
         if (e.header.type != EventType::None) {
@@ -70,26 +82,60 @@ namespace Zen {
       }
 
       while (!m_eventBuffer.isEmpty()) {
-        m_eventDispatcher.dispatch(m_eventBuffer.dequeue());
+        m_eventsDispatcher.dispatch(m_eventBuffer.dequeue());
       }
-      // m_ImGui->begin();
+      m_ImGui->begin();
+      Input::bind(&m_inputSystem);
+      for (auto &layer : m_layerList) {
+        layer->onUpdate(dt);
+      }
 
-      // m_ImGui->end();
       RenderCommand::setClearColour({0.2f, 0.2f, 0.2f, 1.0f});
       RenderCommand::clear();
       m_vertexArray->bind();
       m_shader->bind();
       RenderCommand::drawIndexed(m_vertexArray);
 
+      for (auto &layer : m_layerList) {
+        layer->onGUIRender();
+      }
+
+      Input::unbind();
+
+      m_ImGui->end();
       m_inputSystem.end();
       m_window->onUpdate();
     };
     ZEN_LOG_INFO("Closing Application...");
   };
 
-  int Application::getPriority() const { return 1; }
+  void Application::onUpdate(DeltaTime deltaTime) {}
+
+  void Application::pushLayer(Layer *layer) {
+    m_layerList.pushLayer(layer);
+    m_eventsDispatcher.registerListener(layer);
+    layer->onAttach();
+  }
+
+  void Application::pushOverlay(Layer *overlay) {
+    m_layerList.pushLayer(overlay);
+    m_eventsDispatcher.registerListener(overlay);
+    overlay->onAttach();
+  }
+
+  void Application::popLayer(Layer *layer) {
+    m_layerList.popLayer(layer);
+    m_eventsDispatcher.unregisterListener(layer);
+  }
+
+  void Application::popOverlay(Layer *overlay) {
+    m_layerList.popLayer(overlay);
+    m_eventsDispatcher.unregisterListener(overlay);
+  }
 
   Application &Application::get() { return *s_instance; }
 
   Window &Application::getWindow() { return *m_window; };
+
+  int Application::getPriority() const { return 1; }
 }; // namespace Zen

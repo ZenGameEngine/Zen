@@ -1,3 +1,5 @@
+#include <zen/log/ZEN_Log.h>
+#include <zen/time/ZEN_DeltaTime.h>
 #include <SDL3/SDL_video.h>
 #include <include/imgui/imgui.h>
 #include <include/imgui/imgui_impl_opengl3.h>
@@ -8,8 +10,10 @@
 
 namespace Zen {
   void ImGuiLayer::onAttach() {
+    ZEN_LOG_DEBUG("ATTACHING");
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    ZEN_LOG_DEBUG("imgui context created");
     ImGuiIO &io = ImGui::GetIO();
 
     io.IniFilename = nullptr;
@@ -19,12 +23,15 @@ namespace Zen {
     io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports;
 
     styleSetup();
-
+    ZEN_LOG_DEBUG("style setup?");
     const char *glslVersion = "#version 430";
     Application &app        = Application::get();
+    ZEN_LOG_DEBUG("app gotten");
     SDL_Window *window      = static_cast<SDL_Window *>(app.getWindow().nativeWindow());
+    ZEN_LOG_DEBUG("window gotten");
     SDL_GLContext context   = static_cast<SDL_GLContext>(app.getWindow().context().nativeContext());
 
+    ZEN_LOG_DEBUG("Imgui init");
     ImGui_ImplSDL3_InitForOpenGL(window, context);
     ImGui_ImplOpenGL3_Init(glslVersion);
   }
@@ -35,10 +42,8 @@ namespace Zen {
     ImGui::DestroyContext();
   }
 
-  void ImGuiLayer::onUpdate() {
-    // LOG_INFO("on update imgui");
-    ImGui::ShowDemoWindow(); // This will show the ImGui demo window
-    // OG_INFO("show");
+  void ImGuiLayer::onUpdate(DeltaTime deltaTime) {
+    ImGui::ShowDemoWindow();
   }
 
   bool ImGuiLayer::onEvent(const ZenEvent &event) { return false; }
