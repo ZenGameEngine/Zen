@@ -14,7 +14,7 @@ namespace Zen {
 
   class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties, EventsDispatcher *dispatcher);
+    LinuxWindow(const WindowProperties &properties);
     virtual ~LinuxWindow();
 
     void onUpdate() override;
@@ -43,7 +43,7 @@ namespace Zen {
     const GraphicsContext &context() const override;
 
   private:
-    virtual void init(const WindowProperties &properties, EventsDispatcher *dispatcher);
+    virtual void init(const WindowProperties &properties);
     virtual void shutdown();
 
     EventCallbackFunction m_eventCallbackFunction;

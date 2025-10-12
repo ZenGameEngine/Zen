@@ -4,8 +4,8 @@
 namespace Zen {
   static bool s_SDLInitialized = false;
 
-  LinuxWindow::LinuxWindow(const WindowProperties &properties, EventsDispatcher *dispatcher) {
-    init(properties, dispatcher);
+  LinuxWindow::LinuxWindow(const WindowProperties &properties) {
+    init(properties);
   };
 
   LinuxWindow::~LinuxWindow() { shutdown(); };
@@ -15,12 +15,11 @@ namespace Zen {
 
   WindowProperties &LinuxWindow::getProperties() { return m_windowProperties; };
 
-  void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dispatcher) {
+  void LinuxWindow::init(const WindowProperties &properties) {
     m_windowProperties.title  = properties.title;
     m_windowProperties.width  = properties.width;
     m_windowProperties.height = properties.height;
 
-    dispatcher->registerListener(this);
 
     ZEN_LOG_INFO("Creating new SDL Window: {}, W:{} H: {}",
                  m_windowProperties.title,

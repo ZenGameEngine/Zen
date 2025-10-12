@@ -48,8 +48,7 @@ namespace Zen {
     virtual void emitErrorMessage(const char *message) = 0;
 
     static std::unique_ptr<Window>
-    create(const Zen::WindowProperties &properties = WindowProperties(),
-           Zen::EventsDispatcher *dispatcher       = nullptr);
+    create(const Zen::WindowProperties &properties = WindowProperties());
 
     virtual bool onEvent(const ZenEvent &event) = 0;
 
