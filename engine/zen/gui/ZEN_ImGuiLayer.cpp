@@ -1,10 +1,10 @@
 #include <SDL3/SDL_video.h>
-#include <zen/core/ZEN_Application.h>
-#include <zen/gui/ZEN_ImGuiLayer.h>
-#include <zen/gui/ZEN_Style.h>
 #include <include/imgui/imgui.h>
 #include <include/imgui/imgui_impl_opengl3.h>
 #include <include/imgui/imgui_impl_sdl3.h>
+#include <zen/core/ZEN_Application.h>
+#include <zen/gui/ZEN_ImGuiLayer.h>
+#include <zen/gui/ZEN_Style.h>
 
 namespace Zen {
   void ImGuiLayer::onAttach() {
@@ -41,7 +41,7 @@ namespace Zen {
     // OG_INFO("show");
   }
 
-  bool ImGuiLayer::onEvent(const SDL_Event &event) { return false; }
+  bool ImGuiLayer::onEvent(const ZenEvent &event) { return false; }
 
   void ImGuiLayer::begin() {
     // LOG_INFO("new frame");

@@ -32,9 +32,11 @@ namespace Zen {
     WindowData &getWindowData();
     WindowProperties &getProperties();
 
-    bool resizeEvent(const SDL_Event &event);
-    bool mouseClickEvent(const SDL_Event &event);
-    bool onEvent(const SDL_Event &event) override;
+    bool resizeEvent(const ZenEvent &event);
+    bool mouseClickEvent(const ZenEvent &event);
+
+    bool onEvent(const ZenEvent &event) override;
+    int getPriority() const override;
 
     void *nativeWindow() const override;
     GraphicsContext &context() override;
@@ -44,7 +46,6 @@ namespace Zen {
     virtual void init(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual void shutdown();
 
-  private:
     EventCallbackFunction m_eventCallbackFunction;
 
     // TEMP

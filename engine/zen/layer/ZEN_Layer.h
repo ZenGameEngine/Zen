@@ -1,22 +1,26 @@
 #pragma once
 
 #include <zen/core/ZEN_Core.h>
+#include <zen/events/ZEN_Event.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {
-class Layer : public EventListener {
+  class Layer : public EventListener {
   public:
-    Layer(const std::string &name = "Layer");
+    Layer(int priority);
     virtual ~Layer() = default;
 
     virtual void onAttach() {}
     virtual void onDetach() {}
     virtual void onUpdate() {}
-    virtual bool onEvent(const SDL_Event &event) = 0;
+    virtual bool onEvent(const ZenEvent &event) = 0;
 
-    const std::string &GetName() const { return m_DebugName; }
+    virtual void onGUIRender() {}
+
+    int getPriority() const;
 
   protected:
-    std::string m_DebugName;
-};
+  private:
+    int m_priority;
+  };
 }; // namespace Zen

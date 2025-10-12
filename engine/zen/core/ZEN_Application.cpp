@@ -1,12 +1,15 @@
+#include "zen/gui/ZEN_ImGuiLayer.h"
+#include "zen/log/ZEN_Log.h"
+#include <include/imgui/imgui_impl_sdl3.h>
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Window.h>
 
 namespace Zen {
-  Application *Application::s_Instance = nullptr;
-  
+  Application *Application::s_instance = nullptr;
+
   Application::Application() {
     WindowProperties properties = {"Zen Window Test", 1280, 720, true, false};
-    m_eventDispatcher.registerListener(0, this);
+    m_eventDispatcher.registerListener(this);
     m_window = Window::create(properties, &m_eventDispatcher);
 
     m_vertexArray.reset(VertexArray::Create());
@@ -34,33 +37,59 @@ namespace Zen {
     std::string vPath = std::string(base) + "data/basic.vert";
     std::string fPath = std::string(base) + "data/basic.frag";
     m_shader          = std::make_unique<Shader>(vPath.c_str(), fPath.c_str());
+
+    // m_ImGui = new ImGuiLayer();
   };
 
   Application::~Application() {
 
   };
 
-  bool Application::onEvent(const SDL_Event &event) {
-    if (event.type == SDL_EVENT_QUIT) {
+  bool Application::onEvent(const ZenEvent &event) {
+    if (event.header.type == EventType::Quit) {
+      ZEN_LOG_INFO("Quitting!");
       m_isRunning = false;
       return true;
     };
     return false;
-  };
+  }
 
   void Application::run() {
     ZEN_LOG_INFO("Running Application...");
     while (m_isRunning) {
-      m_eventDispatcher.poll();
 
+      m_inputSystem.begin();
+      SDL_Event eventFromSDL;
+      while (SDL_PollEvent(&eventFromSDL)) {
+        // ImGui_ImplSDL3_ProcessEvent(&eventFromSDL);
+
+        ZenEvent e = TranslateEvent(eventFromSDL);
+        if (e.header.type != EventType::None) {
+          m_eventBuffer.enqueue(e);
+        }
+      }
+
+      while (!m_eventBuffer.isEmpty()) {
+        m_eventDispatcher.dispatch(m_eventBuffer.dequeue());
+      }
+      // m_ImGui->begin();
+
+      // m_ImGui->end();
       RenderCommand::setClearColour({0.2f, 0.2f, 0.2f, 1.0f});
       RenderCommand::clear();
       m_vertexArray->bind();
       m_shader->bind();
       RenderCommand::drawIndexed(m_vertexArray);
 
-      m_window.get()->onUpdate();
+      m_inputSystem.end();
+      m_window->onUpdate();
     };
     ZEN_LOG_INFO("Closing Application...");
   };
+
+  int Application::getPriority() const { return 1; }
+
+  Application &Application::get() { return *s_instance; }
+
+  Window &Application::getWindow() { return *m_window; };
 }; // namespace Zen

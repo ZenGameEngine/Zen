@@ -6,19 +6,18 @@
 #include <zen/layer/ZEN_Layer.h>
 
 namespace Zen {
-class ImGuiLayer : public Layer {
-public:
-  ImGuiLayer() = default;
-  ~ImGuiLayer() = default;
+  class ImGuiLayer : public Layer {
+  public:
+    ImGuiLayer() : Layer(100) {}
+    ~ImGuiLayer() = default;
 
-  void onAttach() override;
-  void onDetach() override;
-  void onUpdate() override;
-  bool onEvent(const SDL_Event &event) override;
+    void onAttach() override;
+    void onDetach() override;
+    void onUpdate() override;
+    bool onEvent(const ZenEvent &event) override;
 
-  void begin();
-  void end();
-
-};
+    void begin();
+    void end();
+  };
 
 } // namespace Zen
