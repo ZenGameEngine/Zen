@@ -43,8 +43,6 @@ namespace Zen {
     float m_previousTime = 0.0f;
 
     EventBuffer m_eventBuffer{512};
-    std::shared_ptr<Shader> m_shader;
-    std::shared_ptr<VertexArray> m_vertexArray;
     InputSystem m_inputSystem;
     ImGuiLayer *m_ImGui = nullptr;
   };
