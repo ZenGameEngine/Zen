@@ -7,14 +7,14 @@
 extern Zen::Application *Zen::CreateApplication();
 
 int main(int argc, char *argv[]) {
-    Zen::Log::init();
-    ZEN_LOG_INFO("Hello, Linux!");
+  Zen::Log::init();
+  ZEN_LOG_INFO("Hello, Linux!");
 
-    auto app = Zen::CreateApplication();
-    app->run();
+  auto app = Zen::CreateApplication();
+  app->run();
 
-    ZEN_LOG_INFO("Deleting app...");
-    delete app;
+  ZEN_LOG_INFO("Deleting app...");
+  delete app;
 };
 
 #endif // __ZEN_PLATFORM_LINUX

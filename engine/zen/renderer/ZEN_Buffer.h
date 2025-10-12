@@ -144,10 +144,10 @@ namespace Zen {
   public:
     virtual ~IndexBuffer() {}
 
-    virtual void bind() const   = 0;
-    virtual void unbind() const = 0;
+    virtual void bind() const             = 0;
+    virtual void unbind() const           = 0;
     virtual void setCount(uint32_t count) = 0;
-    virtual uint32_t getCount() const = 0;
+    virtual uint32_t getCount() const     = 0;
 
     static IndexBuffer *Create(uint32_t *indices, uint32_t count);
   };

@@ -4,9 +4,7 @@
 namespace Zen {
   static bool s_SDLInitialized = false;
 
-  LinuxWindow::LinuxWindow(const WindowProperties &properties) {
-    init(properties);
-  };
+  LinuxWindow::LinuxWindow(const WindowProperties &properties) { init(properties); };
 
   LinuxWindow::~LinuxWindow() { shutdown(); };
 
@@ -19,7 +17,6 @@ namespace Zen {
     m_windowProperties.title  = properties.title;
     m_windowProperties.width  = properties.width;
     m_windowProperties.height = properties.height;
-
 
     ZEN_LOG_INFO("Creating new SDL Window: {}, W:{} H: {}",
                  m_windowProperties.title,

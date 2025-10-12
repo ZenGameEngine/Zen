@@ -1,8 +1,8 @@
 #pragma once
 
-#include <zen/time/ZEN_DeltaTime.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/events/ZEN_Event.h>
+#include <zen/time/ZEN_DeltaTime.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {

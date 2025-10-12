@@ -22,5 +22,8 @@ CMakeUserPresets.json
 out/
 build/
 .vscode/
-.clang-format
 .clangd
+
+# Documentation
+docs/html/
+docs/latex/

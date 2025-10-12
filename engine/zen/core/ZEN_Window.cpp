@@ -2,7 +2,7 @@
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
 
 namespace Zen {
-std::unique_ptr<Window> Window::create(const Zen::WindowProperties &properties) {
+  std::unique_ptr<Window> Window::create(const Zen::WindowProperties &properties) {
 #ifdef __ZEN_PLATFORM_LINUX
     ZEN_LOG_INFO("Creating a Linux Window...");
     return std::make_unique<LinuxWindow>(properties);
@@ -12,6 +12,6 @@ std::unique_ptr<Window> Window::create(const Zen::WindowProperties &properties) 
 #endif              // __ZEN_PLATFORM_WINDOWS
     // Unsupported OS
     return nullptr;
-};
+  };
 
 }; // namespace Zen
