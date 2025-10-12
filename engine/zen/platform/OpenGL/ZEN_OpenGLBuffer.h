@@ -28,10 +28,11 @@ class OpenGLIndexBuffer : public IndexBuffer {
     OpenGLIndexBuffer(uint32_t *indices, uint32_t count);
     virtual ~OpenGLIndexBuffer();
 
-    virtual void bind() const override;
-    virtual void unbind() const override;
-    virtual uint32_t getCount() const override;
-
+    void bind() const override;
+    void unbind() const override;
+    uint32_t getCount() const override;
+    void setCount(uint32_t count) override;
+    
   private:
     uint32_t m_rendererID;
     uint32_t m_count;
