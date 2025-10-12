@@ -11,6 +11,7 @@ include(zen/events/CMakeLists.txt)
 include(zen/layer/CMakeLists.txt)
 include(zen/renderer/CMakeLists.txt)
 include(zen/gui/CMakeLists.txt)
+include(zen/inputs/CMakeLists.txt)
 
 # System Config
 if(UNIX AND NOT APPLE)
@@ -25,7 +26,8 @@ if(UNIX AND NOT APPLE)
       ${ZEN_LAYER_HEADER}
       ${ZEN_OPENGL_HEADER}
       ${ZEN_RENDERER_HEADER}
-      ${ZEN_IMGUI_HEADER})
+      ${ZEN_IMGUI_HEADER}
+      ${ZEN_INPUTS_HEADER})
 
   set(ZEN_SRC 
       ${ZEN_CORE_SRC} 
@@ -36,7 +38,8 @@ if(UNIX AND NOT APPLE)
       ${ZEN_LAYER_SRC}
       ${ZEN_OPENGL_SRC}
       ${ZEN_RENDERER_SRC}
-      ${ZEN_IMGUI_SRC})
+      ${ZEN_IMGUI_SRC}
+      ${ZEN_INPUTS_SRC})
 
   list(APPEND ZEN_SRC ${ZEN_HEADER})
   add_library(ZenEngine STATIC ${ZEN_SRC})
