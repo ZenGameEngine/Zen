@@ -12,6 +12,7 @@ include(zen/layer/CMakeLists.txt)
 include(zen/renderer/CMakeLists.txt)
 include(zen/gui/CMakeLists.txt)
 include(zen/inputs/CMakeLists.txt)
+include(zen/camera/CMakeLists.txt)
 
 # System Config
 if(UNIX AND NOT APPLE)
@@ -27,7 +28,8 @@ if(UNIX AND NOT APPLE)
       ${ZEN_OPENGL_HEADER}
       ${ZEN_RENDERER_HEADER}
       ${ZEN_IMGUI_HEADER}
-      ${ZEN_INPUTS_HEADER})
+      ${ZEN_INPUTS_HEADER}
+      ${ZEN_CAMERA_HEADER})
 
   set(ZEN_SRC 
       ${ZEN_CORE_SRC} 
@@ -39,7 +41,8 @@ if(UNIX AND NOT APPLE)
       ${ZEN_OPENGL_SRC}
       ${ZEN_RENDERER_SRC}
       ${ZEN_IMGUI_SRC}
-      ${ZEN_INPUTS_SRC})
+      ${ZEN_INPUTS_SRC}
+      ${ZEN_CAMERA_SRC})
 
   list(APPEND ZEN_SRC ${ZEN_HEADER})
   add_library(ZenEngine STATIC ${ZEN_SRC})
