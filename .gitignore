@@ -23,3 +23,4 @@ out/
 build/
 .vscode/
 .clang-format
+.clangd

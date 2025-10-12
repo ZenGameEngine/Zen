@@ -1,5 +1,6 @@
 #pragma once
 
+#include <zen/renderer/ZEN_GraphicsContext.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/zen_pch.h>
 
@@ -49,5 +50,9 @@ class Window : public EventListener {
            Zen::EventsDispatcher *dispatcher = nullptr);
 
     virtual bool onEvent(const SDL_Event &event) = 0;
+
+    virtual void* nativeWindow() const = 0;        // SDL_Window* as void*
+    virtual GraphicsContext& context() = 0;
+    virtual const GraphicsContext& context() const = 0;
 };
 }; // namespace Zen

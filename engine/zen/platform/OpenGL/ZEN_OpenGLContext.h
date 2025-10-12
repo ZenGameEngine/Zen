@@ -13,6 +13,7 @@ class OpenGLContext : public GraphicsContext {
     void swapBuffers() override;
 
     void shutdown() override;
+    void* nativeContext() const override;
 
   private:
     SDL_Window *m_window = nullptr;

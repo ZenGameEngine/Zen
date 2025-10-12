@@ -10,6 +10,7 @@ include(zen/log/CMakeLists.txt)
 include(zen/events/CMakeLists.txt)
 include(zen/layer/CMakeLists.txt)
 include(zen/renderer/CMakeLists.txt)
+include(zen/gui/CMakeLists.txt)
 
 # System Config
 if(UNIX AND NOT APPLE)
@@ -23,7 +24,8 @@ if(UNIX AND NOT APPLE)
       ${ZEN_EVENTS_HEADER}
       ${ZEN_LAYER_HEADER}
       ${ZEN_OPENGL_HEADER}
-      ${ZEN_RENDERER_HEADER})
+      ${ZEN_RENDERER_HEADER}
+      ${ZEN_IMGUI_HEADER})
 
   set(ZEN_SRC 
       ${ZEN_CORE_SRC} 
@@ -33,7 +35,8 @@ if(UNIX AND NOT APPLE)
       ${ZEN_EVENTS_SRC} 
       ${ZEN_LAYER_SRC}
       ${ZEN_OPENGL_SRC}
-      ${ZEN_RENDERER_SRC})
+      ${ZEN_RENDERER_SRC}
+      ${ZEN_IMGUI_SRC})
 
   list(APPEND ZEN_SRC ${ZEN_HEADER})
   add_library(ZenEngine STATIC ${ZEN_SRC})
@@ -66,7 +69,8 @@ target_include_directories(
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/textures
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/events
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/layer
-  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/renderer)
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/renderer
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/gui)
 
 include(FetchContent)
 

@@ -6,16 +6,15 @@
 #include <zen/zen_pch.h>
 
 namespace Zen {
-// TEMP
-struct WindowData {
+  // TEMP
+  struct WindowData {
     SDL_Window *window;
     std::unique_ptr<GraphicsContext> context;
-};
+  };
 
-class LinuxWindow : public Window {
+  class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties,
-                EventsDispatcher *dispatcher);
+    LinuxWindow(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual ~LinuxWindow();
 
     void onUpdate() override;
@@ -37,9 +36,12 @@ class LinuxWindow : public Window {
     bool mouseClickEvent(const SDL_Event &event);
     bool onEvent(const SDL_Event &event) override;
 
+    void *nativeWindow() const override;
+    GraphicsContext &context() override;
+    const GraphicsContext &context() const override;
+
   private:
-    virtual void init(const WindowProperties &properties,
-                      EventsDispatcher *dispatcher);
+    virtual void init(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual void shutdown();
 
   private:
@@ -49,5 +51,5 @@ class LinuxWindow : public Window {
     WindowData m_windowData;
 
     WindowProperties m_windowProperties;
-};
+  };
 }; // namespace Zen

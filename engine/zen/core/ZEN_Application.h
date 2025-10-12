@@ -10,7 +10,7 @@
 #include <zen/zen_pch.h>
 
 namespace Zen {
-class Application : public EventListener {
+  class Application : public EventListener {
   public:
     Application();
     virtual ~Application();
@@ -18,16 +18,20 @@ class Application : public EventListener {
     void run();
     bool onEvent(const SDL_Event &event);
 
+    static Application &get();
+    Window &getWindow();
+
   private:
     std::unique_ptr<Window> m_window;
     bool m_isRunning = true;
+    static Application *s_Instance;
 
     EventsDispatcher m_eventDispatcher;
 
     std::shared_ptr<Shader> m_shader;
     std::shared_ptr<VertexArray> m_vertexArray;
-};
+  };
 
-// Defined Client Side
-Application *CreateApplication();
+  // Defined Client Side
+  Application *CreateApplication();
 }; // namespace Zen

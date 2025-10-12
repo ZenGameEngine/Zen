@@ -82,6 +82,21 @@ bool LinuxWindow::onEvent(const SDL_Event &event) {
     }
 
     return false;
+}
+
+void* LinuxWindow::nativeWindow() const 
+{
+  return m_windowData.window;
+}
+
+GraphicsContext& LinuxWindow::context()
+{
+  return *m_windowData.context;
+}
+
+const GraphicsContext& LinuxWindow::context() const 
+{
+  return *m_windowData.context;
 };
 void LinuxWindow::shutdown() {
     m_windowData.context->shutdown();
@@ -151,5 +166,7 @@ bool LinuxWindow::mouseClickEvent(const SDL_Event &event) {
     ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.button.x, event.button.y);
     return true;
 };
+
+
 
 }; // namespace Zen

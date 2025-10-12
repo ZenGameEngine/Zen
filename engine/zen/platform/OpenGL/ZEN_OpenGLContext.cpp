@@ -21,5 +21,10 @@ void OpenGLContext::shutdown() {
         m_glContext = nullptr;
         ZEN_LOG_INFO("OpenGL context destroyed");
     }
+}
+
+void* OpenGLContext::nativeContext() const 
+{
+  return m_glContext;
 };
 }; // namespace Zen
