@@ -4,6 +4,7 @@
 #include <zen/gui/ZEN_ImGuiLayer.h>
 #include <zen/inputs/ZEN_Input.h>
 #include <zen/log/ZEN_Log.h>
+#include <zen/particles/ZEN_ParticleTestLayer.h>
 #include <zen/time/ZEN_EngineTime.h>
 
 namespace Zen {
@@ -47,6 +48,8 @@ namespace Zen {
     ZEN_LOG_DEBUG("new ImGui");
     m_ImGui = new ImGuiLayer;
     pushLayer(m_ImGui);
+
+    pushLayer(new ParticleTestLayer());
   };
 
   Application::~Application() {
@@ -89,12 +92,6 @@ namespace Zen {
       for (auto &layer : m_layerList) {
         layer->onUpdate(dt);
       }
-
-      RenderCommand::setClearColour({0.2f, 0.2f, 0.2f, 1.0f});
-      RenderCommand::clear();
-      m_vertexArray->bind();
-      m_shader->bind();
-      RenderCommand::drawIndexed(m_vertexArray);
 
       for (auto &layer : m_layerList) {
         layer->onGUIRender();
