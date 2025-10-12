@@ -3,5 +3,5 @@
 #include <zen/platform/OpenGL/ZEN_OpenGLRendererAPI.h>
 
 namespace Zen {
-RendererAPI *RenderCommand::s_rendererAPI = new OpenGLRendererAPI;
+  RendererAPI *RenderCommand::s_rendererAPI = new OpenGLRendererAPI;
 }; // namespace Zen

@@ -14,9 +14,9 @@
 
 // OpenGL
 #ifndef __ZEN_OPENGL_H
-#define __ZEN_OPENGL_H
+  #define __ZEN_OPENGL_H
 
-#include <glad/gl.h>
+  #include <glad/gl.h>
 
 #endif // !__ZEN_OPENGL_H
 

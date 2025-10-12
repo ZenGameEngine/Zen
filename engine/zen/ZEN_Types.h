@@ -5,8 +5,8 @@
 #include <sys/types.h>
 
 namespace Zen {
-typedef struct {
+  typedef struct {
     uint32_t width;
     uint32_t height;
-} Size;
+  } Size;
 }; // namespace Zen

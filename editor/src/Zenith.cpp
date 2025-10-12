@@ -1,8 +1,11 @@
+#include "ZEN_Log.h"
 #include "zen.h"
 
 class Zenith : public Zen::Application {
-  public:
-  private:
+public:
+  Zenith() { ZEN_LOG_INFO("Zenith constucted"); }
+
+private:
 };
 
 Zen::Application *Zen::CreateApplication() { return new Zenith(); };

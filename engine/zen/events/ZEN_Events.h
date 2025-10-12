@@ -2,21 +2,29 @@
 
 #include <zen/zen_pch.h>
 
-namespace Zen {
-class EventListener {
-  public:
-    virtual bool onEvent(const SDL_Event &event) = 0;
-    virtual ~EventListener() = default;
-};
+#include <zen/events/ZEN_Event.h>
 
-class EventsDispatcher {
+namespace Zen {
+  class EventListener {
   public:
-    void dispatch(const SDL_Event &event);
-    void poll();
-    void registerListener(int priority, EventListener *listener);
-    void unregisterListener(EventListener *listener);
+    virtual ~EventListener() = default;
+
+    virtual bool onEvent(const ZenEvent &event) = 0;
+    virtual int getPriority() const             = 0;
+  };
+
+  class EventsDispatcher {
+  public:
+    void dispatch(const ZenEvent &event);
+    void registerListener(EventListener *newListener);
+    void unregisterListener(EventListener *targetListener);
 
   private:
-    std::map<int, std::vector<EventListener *>, std::less<int>> m_listeners;
-};
+    struct Listener {
+      int priority;
+      EventListener *listener_ptr;
+    };
+
+    std::vector<Listener> m_listeners;
+  };
 }; // namespace Zen
