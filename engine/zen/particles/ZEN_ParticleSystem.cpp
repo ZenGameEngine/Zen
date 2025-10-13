@@ -117,9 +117,9 @@ namespace Zen {
     while (emitter.emitAccumulator > period) {
       Zen::ParticleProps p = emitter.props;
 
-      p.position = emitter.pos;
-      p.velocity = {(float)(((rand() % 400) / 100.0) - 2.0),
-                    (float)(((rand() % 300) / 100.0) + 2.0)};
+      p.position  = emitter.pos;
+      glm::vec2 v = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
+      p.velocity  = v;
       emit(p);
       emitter.emitAccumulator -= period;
     }
