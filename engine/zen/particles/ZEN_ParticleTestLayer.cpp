@@ -14,15 +14,15 @@ namespace Zen {
     m_camera.setPosition({0.0f, 0.0f, 0.0f});
     m_camera.setOrthographic(-10.0f, 10.0f, -5.625f, 5.625f);
 
-    m_ps                  = std::make_unique<ParticleSystem>(2000);
-    m_particle.position   = {0.0f, 0.0f};
-    m_particle.velocity   = {(float)(((rand() % 400) / 100.0) - 2.0),
-                             (float)(((rand() % 300) / 100.0) + 2.0)};
-    m_particle.lifeTime   = 3.0f;
-    m_particle.sizeBegin  = 1.0f;
-    m_particle.sizeEnd    = 0.0f;
-    m_particle.colorBegin = {1.0f, 0.7f, 0.3f, 1.0f};
-    m_particle.colorEnd   = {1.0f, 0.2f, 0.0f, 1.0f};
+    m_ps                   = std::make_unique<ParticleSystem>(2000);
+    m_particle.position    = {0.0f, 0.0f};
+    m_particle.velocity    = {(float)(((rand() % 400) / 100.0) - 2.0),
+                              (float)(((rand() % 300) / 100.0) + 2.0)};
+    m_particle.lifeTime    = 3.0f;
+    m_particle.sizeBegin   = 1.0f;
+    m_particle.sizeEnd     = 0.0f;
+    m_particle.colourBegin = {1.0f, 0.7f, 0.3f, 1.0f};
+    m_particle.colourEnd   = {1.0f, 0.2f, 0.0f, 1.0f};
   }
 
   void ParticleTestLayer::onUpdate(DeltaTime deltaTime) {
@@ -56,8 +56,8 @@ namespace Zen {
 
   void ParticleTestLayer::onGUIRender() {
     ImGui::Begin("Particle Settings");
-    ImGui::ColorEdit4("Birth Color", glm::value_ptr(m_particle.colorBegin));
-    ImGui::ColorEdit4("Death Color", glm::value_ptr(m_particle.colorEnd));
+    ImGui::ColorEdit4("Birth Color", glm::value_ptr(m_particle.colourBegin));
+    ImGui::ColorEdit4("Death Color", glm::value_ptr(m_particle.colourEnd));
     if (ImGui::DragFloat("Lifetime", &m_particle.lifeTime, 0.1f, 0.01f, 1000.0f)) {
       m_ps->clear();
     }

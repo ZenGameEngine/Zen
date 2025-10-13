@@ -43,7 +43,7 @@ namespace Zen {
   }
 
   void ImGuiLayer::onUpdate(DeltaTime deltaTime) {
-    ImGui::ShowDemoWindow();
+    //ImGui::ShowDemoWindow();
   }
 
   bool ImGuiLayer::onEvent(const ZenEvent &event) { return false; }

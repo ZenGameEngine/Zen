@@ -1,3 +1,4 @@
+#include <glm/gtc/random.hpp>
 #include <zen/particles/ZEN_ParticleSystem.h>
 
 namespace Zen {
@@ -56,8 +57,8 @@ namespace Zen {
     particle.lifeRemaining = p.lifeTime;
     particle.sizeBegin     = p.sizeBegin;
     particle.sizeEnd       = p.sizeEnd;
-    particle.colorBegin    = p.colorBegin;
-    particle.colorEnd      = p.colorEnd;
+    particle.colourBegin   = p.colourBegin;
+    particle.colourEnd     = p.colourEnd;
 
     m_poolIndex = (m_poolIndex + 1) % m_pool.size();
   }
@@ -81,7 +82,7 @@ namespace Zen {
 
       float t     = 1.0f - (p.lifeRemaining / p.lifeTime);
       float size  = glm::mix(p.sizeBegin, p.sizeEnd, t);
-      glm::vec4 c = glm::mix(p.colorBegin, p.colorEnd, t);
+      glm::vec4 c = glm::mix(p.colourBegin, p.colourEnd, t);
 
       glm::vec2 h(size * 0.5f);
       QuadVertex *v = &m_cpuQuad[m_alive * 4];
@@ -92,7 +93,6 @@ namespace Zen {
 
       ++m_alive;
     }
-    ZEN_LOG_INFO("Alive particles: {}", m_alive);
   }
 
   void ParticleSystem::upload() {
@@ -101,6 +101,7 @@ namespace Zen {
     m_vbo->setData(m_cpuQuad.data(), bytes);
     m_ibo->setCount(m_alive * 6); // key line
   }
+
   void ParticleSystem::clear() {
     for (auto &p : m_pool)
       p.active = false;
@@ -108,4 +109,25 @@ namespace Zen {
     m_alive = 0;
   }
 
+  void ParticleSystem::updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime) {
+    float rate   = emitter.spawnRate;
+    float period = 1.0f / glm::max(rate, 0.001f);
+
+    emitter.emitAccumulator += deltaTime.seconds();
+    while (emitter.emitAccumulator > period) {
+      Zen::ParticleProps p = emitter.props;
+
+      p.position = emitter.pos;
+      p.velocity = {(float)(((rand() % 400) / 100.0) - 2.0),
+                    (float)(((rand() % 300) / 100.0) + 2.0)};
+      emit(p);
+      emitter.emitAccumulator -= period;
+    }
+  }
+
+  void ParticleSystem::updateEmitters(std::vector<ParticleEmitter> &emitters, DeltaTime deltaTime) {
+    for (auto &e : emitters) {
+      updateEmitter(e, deltaTime);
+    }
+  }
 } // namespace Zen

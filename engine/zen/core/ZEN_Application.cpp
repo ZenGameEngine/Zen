@@ -23,7 +23,7 @@ namespace Zen {
     m_ImGui = new ImGuiLayer;
     pushLayer(m_ImGui);
 
-    pushLayer(new ParticleTestLayer());
+    //pushLayer(new ParticleTestLayer());
   };
 
   Application::~Application() {

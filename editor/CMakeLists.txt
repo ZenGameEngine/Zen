@@ -7,7 +7,10 @@ project(
 # ###### Main Program Exec #####################################################
 # ##############################################################################
 
-add_executable(Zenith src/Zenith.cpp)
+add_executable(Zenith src/Zenith.cpp
+                      src/GameLayer.cpp
+                      src/Player.cpp
+                      src/QuadBuilder.cpp)
 target_link_directories(Zenith PRIVATE src)
 target_link_libraries(Zenith PRIVATE ZenEngine imgui)
 set_target_properties(Zenith PROPERTIES OUTPUT_NAME "Zenith")
