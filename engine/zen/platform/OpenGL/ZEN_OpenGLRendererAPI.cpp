@@ -9,7 +9,7 @@ namespace Zen {
   void OpenGLRendererAPI::clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
   void OpenGLRendererAPI::setViewport(int width, int height) {
-    ZEN_LOG_DEBUG("resize opengl viewport");
+    ZEN_LOG_TRACE("resize opengl viewport");
     glViewport(0, 0, width, height);
   }
 

@@ -9,7 +9,7 @@ void Player::update(Zen::DeltaTime deltaTime, bool jumpPressed) {
   if (jumpPressed && onGround()) {
     vy           = jumpImpulse;
     m_justJumped = true;
-    ZEN_LOG_DEBUG("Jumped");
+    ZEN_LOG_TRACE("Jumped");
   }
 
   vy += gravity * deltaTime.seconds();

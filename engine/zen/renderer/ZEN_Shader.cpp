@@ -28,10 +28,10 @@ namespace Zen {
       vertexCode   = vShaderStream.str();
       fragmentCode = fShaderStream.str();
 
-      // ZEN_LOG_INFO("{}", vertexCode);
-      // ZEN_LOG_INFO("{}", fragmentCode);
-      // ZEN_LOG_INFO("{}", vertexPath);
-      // ZEN_LOG_INFO("{}", fragmentPath);
+      // ZEN_LOG_DEBUG("{}", vertexCode);
+      // ZEN_LOG_DEBUG("{}", fragmentCode);
+      // ZEN_LOG_DEBUG("{}", vertexPath);
+      // ZEN_LOG_DEBUG("{}", fragmentPath);
     } catch (std::ifstream::failure e) {
       ZEN_LOG_ERROR("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
       throw std::runtime_error("shader file read failed");
@@ -135,17 +135,17 @@ namespace Zen {
   }
 
   Shader::~Shader() {
-    ZEN_LOG_INFO("Shader deconstructed");
+    ZEN_LOG_DEBUG("Shader deconstructed");
     glDeleteProgram(m_rendererID);
   }
 
   void Shader::bind() const {
-    // ZEN_LOG_INFO("Shader binded");
+    // ZEN_LOG_DEBUG("Shader binded");
     glUseProgram(m_rendererID);
   }
 
   void Shader::unBind() const {
-    ZEN_LOG_INFO("Shader unbinded");
+    ZEN_LOG_DEBUG("Shader unbinded");
     glUseProgram(0);
   }
 

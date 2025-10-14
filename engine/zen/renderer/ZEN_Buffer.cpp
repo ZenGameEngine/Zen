@@ -11,7 +11,7 @@ VertexBuffer *VertexBuffer::Create(float *vertices, uint32_t size) {
         return nullptr;
 
     case RendererAPI::API::OpenGL:
-        ZEN_LOG_INFO("Vertex buffer: Using OpenGL renderer API");
+        ZEN_LOG_TRACE("Vertex buffer: Using OpenGL renderer API");
         return new OpenGLVertexBuffer(vertices, size);
     }
 
@@ -25,7 +25,7 @@ IndexBuffer *IndexBuffer::Create(uint32_t *indices, uint32_t count) {
         return nullptr;
 
     case RendererAPI::API::OpenGL:
-        ZEN_LOG_INFO("Index buffer: Using OpenGL renderer API");
+        ZEN_LOG_TRACE("Index buffer: Using OpenGL renderer API");
         return new OpenGLIndexBuffer(indices, count);
     }
 

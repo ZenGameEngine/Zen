@@ -26,8 +26,8 @@ void GameLayer::onAttach() {
   m_cameraController.setWorldBounds(-10.0f, 10.0f, -5.625f, 5.625f);
   m_cameraController.enableWorldBounds(true);
 
-  m_shader         = std::make_shared<Zen::Shader>("data/particle.vert", "data/particle.frag");
-  m_particleSystem = std::make_unique<Zen::ParticleSystem>(5000);
+  m_shader         = std::make_shared<Shader>("data/particle.vert", "data/particle.frag");
+  m_particleSystem = std::make_unique<ParticleSystem>(5000);
   m_quadBuilder.init(m_shader);
 
   m_player.pos = {-7.0f, 0};
@@ -55,7 +55,7 @@ void GameLayer::onAttach() {
   }
 }
 
-void GameLayer::onUpdate(Zen::DeltaTime deltaTime) {
+void GameLayer::onUpdate(DeltaTime deltaTime) {
   m_cameraController.onUpdate(deltaTime);
 
   RenderCommand::setClearColour({0.1f, 0.1f, 0.1f, 1.0f});
@@ -72,15 +72,15 @@ void GameLayer::onUpdate(Zen::DeltaTime deltaTime) {
   m_particleSystem->update(deltaTime);
   m_particleSystem->upload();
 
-  Zen::Renderer::beginScene(m_camera);
+  Renderer::beginScene(m_camera);
 
   drawGround();
   drawObstacles();
   drawPlayer();
 
-  Zen::Renderer::submit(m_particleSystem->shader(), m_particleSystem->vao());
+  Renderer::submit(m_particleSystem->shader(), m_particleSystem->vao());
 
-  Zen::Renderer::endScene();
+  Renderer::endScene();
 
   drawUI();
 }
@@ -88,7 +88,7 @@ bool GameLayer::onEvent(const ZenEvent &event) {
   m_cameraController.onEvent(event);
   if (event.header.type == EventType::WindowResize) {
     RenderCommand::setViewport(event.windowResize.width, event.windowResize.height);
-    ZEN_LOG_DEBUG("resize viewport");
+    ZEN_LOG_TRACE("resize viewport");
   }
   return false;
 }
@@ -98,7 +98,7 @@ void GameLayer::updateGame(DeltaTime deltaTime) {
     m_gameState = GameState::Paused;
     return;
   }
-  const bool jumpPressed = Zen::Input::isKeyPressed(Zen::Key::Space);
+  const bool jumpPressed = Input::isKeyPressed(Key::Space);
   m_player.update(deltaTime, jumpPressed);
 
   if (m_emitJumpBurst && m_player.justJumped()) {
@@ -140,7 +140,7 @@ void GameLayer::updateGame(DeltaTime deltaTime) {
 }
 
 void GameLayer::updateGamePaused(DeltaTime deltaTime) {
-  if (Zen::Input::isKeyPressed(Zen::Key::P) || Zen::Input::isKeyPressed(Zen::Key::Space)) {
+  if (Input::isKeyPressed(Key::P) || Input::isKeyPressed(Key::Space)) {
     m_gameState = GameState::Playing;
     return;
   }
@@ -153,7 +153,7 @@ void GameLayer::updateGamePaused(DeltaTime deltaTime) {
 }
 void GameLayer::updateGameOver(DeltaTime deltaTime) {
 
-  if (Zen::Input::isKeyPressed(Zen::Key::R) || Zen::Input::isKeyPressed(Zen::Key::Space)) {
+  if (Input::isKeyPressed(Key::R) || Input::isKeyPressed(Key::Space)) {
     restartGame();
   }
 
@@ -182,14 +182,14 @@ void GameLayer::spawnObstacle() {
   *obstacle         = Obstacle(type, 12.0f);
   obstacle->active  = true;
 
-  ZEN_LOG_INFO("Spawned obstacle of type {}", static_cast<int>(type));
+  ZEN_LOG_TRACE("Spawned obstacle of type {}", static_cast<int>(type));
 }
 
 void GameLayer::checkCollisions() {
   for (auto &obstacle : m_obstacles) {
     if (obstacle.active && obstacle.collidesWith(m_player.pos, m_player.getSize())) {
 
-      ZEN_LOG_WARN("Collision detected! Game Over!");
+      ZEN_LOG_INFO("Collision detected! Game Over!");
       m_gameState = GameState::GameOver;
 
       if (m_score > m_highScore) {
@@ -225,7 +225,7 @@ void GameLayer::restartGame() {
 void GameLayer::emitJumpBurst() {
   const int burstCount = 30;
   for (int i = 0; i < burstCount; ++i) {
-    Zen::ParticleProps p;
+    ParticleProps p;
     p.position = m_player.pos;
 
     float angle = glm::linearRand(0.0f, glm::two_pi<float>());
@@ -245,7 +245,7 @@ void GameLayer::emitJumpBurst() {
 void GameLayer::emitCollisionEffect() {
   const int explosionCount = 100;
   for (int i = 0; i < explosionCount; ++i) {
-    Zen::ParticleProps explosion;
+    ParticleProps explosion;
     explosion.position = m_player.pos;
 
     // Explosion in all directions
