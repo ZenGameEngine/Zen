@@ -71,7 +71,7 @@ namespace Zen {
       m_camera.setPosition(m_cameraPosition);
     }
 
-    ZEN_LOG_DEBUG("aspect ratio: {}", m_aspectRatio);
+    ZEN_LOG_TRACE("aspect ratio: {}", m_aspectRatio);
     return false;
   }
 
@@ -133,7 +133,7 @@ namespace Zen {
 
     m_camera.setOrthographic(-halfWidth, halfWidth, -halfHeight, halfHeight);
 
-    ZEN_LOG_DEBUG("View size: {}x{}, Zoom: {}, Aspect: {}",
+    ZEN_LOG_TRACE("View size: {}x{}, Zoom: {}, Aspect: {}",
                   viewWidth,
                   viewHeight,
                   m_zoomLevel,
@@ -181,7 +181,7 @@ namespace Zen {
       m_cameraPosition.y = std::clamp(m_cameraPosition.y, minY, maxY);
     }
 
-    ZEN_LOG_DEBUG("Camera pos: ({}, {}), View: {}x{}",
+    ZEN_LOG_TRACE("Camera pos: ({}, {}), View: {}x{}",
                   m_cameraPosition.x,
                   m_cameraPosition.y,
                   viewWidth,
