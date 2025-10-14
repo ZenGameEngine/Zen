@@ -117,10 +117,6 @@ namespace Zen {
     SDL_SetWindowFullscreen(m_windowData.window, m_windowProperties.fullscreen);
   };
 
-  void LinuxWindow::setEventCallback(const EventCallbackFunction &callback) {
-    m_eventCallbackFunction = callback;
-  };
-
   // This should ONLY BE CALLED ON THE MAIN THREAD
   void LinuxWindow::emitErrorMessage(const char *message) {
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Zen Error", message, nullptr);
@@ -128,12 +124,12 @@ namespace Zen {
 
   bool LinuxWindow::resizeEvent(const ZenEvent &event) {
 
-    int newWidth, newHeight;
-    SDL_GetWindowSize(m_windowData.window, &newWidth, &newHeight);
+    int newWidth  = event.windowResize.width;
+    int newHeight = event.windowResize.height;
 
     // Logs the new window width and height
-    ZEN_LOG_INFO("Window Width: {}", newWidth);
-    ZEN_LOG_INFO("Window Height: {}", newHeight);
+    ZEN_LOG_DEBUG("Window Width: {}", newWidth);
+    ZEN_LOG_DEBUG("Window Height: {}", newHeight);
 
     // Assigns the window properties to their new values
     m_windowProperties.width  = newWidth;
@@ -141,16 +137,15 @@ namespace Zen {
 
     // Checks to test if the window properties was actually changed by the
     // above assignments to newWidth and newHeight respectively.
-    ZEN_LOG_INFO("New WinProp Width: {}", m_windowProperties.width);
-    ZEN_LOG_INFO("New WinProp Height: {}", m_windowProperties.height);
+    ZEN_LOG_DEBUG("New WinProp Width: {}", m_windowProperties.width);
+    ZEN_LOG_DEBUG("New WinProp Height: {}", m_windowProperties.height);
 
-    return true;
+    return false;
   };
 
   bool LinuxWindow::mouseClickEvent(const ZenEvent &event) {
-    // Use the event data provided
-    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.mouseButton.x, event.mouseButton.y);
-    return true;
+    ZEN_LOG_DEBUG("Mouse click at X: {}, Y: {}", event.mouseButton.x, event.mouseButton.y);
+    return false;
   };
 
   int LinuxWindow::getPriority() const { return 99; }

@@ -26,7 +26,7 @@ public:
 
   void onAttach() override;
   void onUpdate(DeltaTime deltaTime) override;
-  bool onEvent(const ZenEvent &event) override { return false; }
+  bool onEvent(const ZenEvent &event) override;
   void onGUIRender() override;
 
 private:

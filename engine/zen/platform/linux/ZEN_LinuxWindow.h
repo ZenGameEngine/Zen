@@ -25,7 +25,6 @@ namespace Zen {
     bool isVSyncEnabled() const override;
     void toggleFullscreen() override;
 
-    void setEventCallback(const EventCallbackFunction &callback) override;
     void emitErrorMessage(const char *message) override;
 
     // TEMP
@@ -45,8 +44,6 @@ namespace Zen {
   private:
     virtual void init(const WindowProperties &properties);
     virtual void shutdown();
-
-    EventCallbackFunction m_eventCallbackFunction;
 
     // TEMP
     WindowData m_windowData;

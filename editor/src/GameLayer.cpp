@@ -1,8 +1,10 @@
 #include "GameLayer.h"
+#include "ZEN_Event.h"
 #include "ZEN_Log.h"
 #include "ZEN_RenderCommand.h"
 #include "ZEN_Renderer.h"
 #include "ZEN_Shader.h"
+#include "camera/ZEN_CameraController.h"
 #include "editor/src/Obstacle.h"
 #include "editor/src/QuadBuilder.h"
 #include "imgui.h"
@@ -21,6 +23,8 @@ void GameLayer::onAttach() {
 
   m_camera.setPosition({0, 0, 0});
   m_camera.setOrthographic(-10, 10, -5.625f, 5.625f);
+  m_cameraController.setWorldBounds(-10.0f, 10.0f, -5.625f, 5.625f);
+  m_cameraController.enableWorldBounds(true);
 
   m_shader         = std::make_shared<Zen::Shader>("data/particle.vert", "data/particle.frag");
   m_particleSystem = std::make_unique<Zen::ParticleSystem>(5000);
@@ -52,7 +56,7 @@ void GameLayer::onAttach() {
 }
 
 void GameLayer::onUpdate(Zen::DeltaTime deltaTime) {
-  // m_cameraController.onUpdate(deltaTime);
+  m_cameraController.onUpdate(deltaTime);
 
   RenderCommand::setClearColour({0.1f, 0.1f, 0.1f, 1.0f});
   RenderCommand::clear();
@@ -79,6 +83,14 @@ void GameLayer::onUpdate(Zen::DeltaTime deltaTime) {
   Zen::Renderer::endScene();
 
   drawUI();
+}
+bool GameLayer::onEvent(const ZenEvent &event) {
+  m_cameraController.onEvent(event);
+  if (event.header.type == EventType::WindowResize) {
+    RenderCommand::setViewport(event.windowResize.width, event.windowResize.height);
+    ZEN_LOG_DEBUG("resize viewport");
+  }
+  return false;
 }
 
 void GameLayer::updateGame(DeltaTime deltaTime) {
