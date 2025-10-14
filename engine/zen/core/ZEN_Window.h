@@ -31,8 +31,6 @@ namespace Zen {
 
   class Window : public EventListener {
   public:
-    using EventCallbackFunction = std::function<void(SDL_Event &)>;
-
     virtual ~Window() {};
 
     virtual void onUpdate()      = 0;
@@ -42,8 +40,6 @@ namespace Zen {
     virtual void setVSync(bool enabled) = 0;
     virtual bool isVSyncEnabled() const = 0;
     virtual void toggleFullscreen()     = 0;
-
-    virtual void setEventCallback(const EventCallbackFunction &callback) = 0;
 
     virtual void emitErrorMessage(const char *message) = 0;
 

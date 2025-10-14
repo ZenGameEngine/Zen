@@ -11,7 +11,7 @@ namespace Zen {
         return nullptr;
 
       case RendererAPI::API::OpenGL:
-        ZEN_LOG_INFO("Vertex buffer: Using OpenGL renderer API");
+        ZEN_LOG_TRACE("Vertex buffer: Using OpenGL renderer API");
         return new OpenGLVertexArray();
     }
 

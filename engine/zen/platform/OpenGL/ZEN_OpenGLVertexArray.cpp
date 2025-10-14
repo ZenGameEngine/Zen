@@ -54,7 +54,7 @@ void OpenGLVertexArray::addVertexBuffer(
                               ShaderDataTypeToOpenGLBaseType(element.type),
                               element.isNormalized ? GL_TRUE : GL_FALSE,
                               layout.getStride(), (const void *)element.offset);
-        ZEN_LOG_INFO("index:{}, component count: {}, type:{}, normalized;{}, "
+        ZEN_LOG_TRACE("index:{}, component count: {}, type:{}, normalized;{}, "
                      "stride:{}, offset:{}",
                      index, element.GetComponentCount(),
                      ShaderDataTypeToOpenGLBaseType(element.type),

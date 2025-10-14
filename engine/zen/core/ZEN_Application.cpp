@@ -23,7 +23,7 @@ namespace Zen {
     m_ImGui = new ImGuiLayer;
     pushLayer(m_ImGui);
 
-    pushLayer(new ParticleTestLayer());
+    // pushLayer(new ParticleTestLayer());
   };
 
   Application::~Application() {
@@ -48,6 +48,7 @@ namespace Zen {
       m_previousTime = currentTime;
 
       m_inputSystem.begin();
+
       SDL_Event eventFromSDL;
       while (SDL_PollEvent(&eventFromSDL)) {
         ImGui_ImplSDL3_ProcessEvent(&eventFromSDL);
@@ -57,11 +58,11 @@ namespace Zen {
           m_eventBuffer.enqueue(e);
         }
       }
-
+      m_ImGui->begin();
       while (!m_eventBuffer.isEmpty()) {
         m_eventsDispatcher.dispatch(m_eventBuffer.dequeue());
       }
-      m_ImGui->begin();
+
       Input::bind(&m_inputSystem);
       for (auto &layer : m_layerList) {
         layer->onUpdate(dt);

@@ -3,14 +3,14 @@
 
 namespace Zen {
   OpenGLContext::OpenGLContext(SDL_Window *window) : m_window(window) {
-    ZEN_LOG_INFO("OpenGL context bound");
+    ZEN_LOG_DEBUG("OpenGL context bound");
   };
 
   OpenGLContext::~OpenGLContext() { shutdown(); };
 
   void OpenGLContext::init() {
     m_glContext = SDL_GL_CreateContext(m_window);
-    ZEN_LOG_INFO("OpenGL context initialized");
+    ZEN_LOG_DEBUG("OpenGL context initialized");
   };
 
   void OpenGLContext::swapBuffers() { SDL_GL_SwapWindow(m_window); }
@@ -19,7 +19,7 @@ namespace Zen {
     if (m_glContext != nullptr) {
       SDL_GL_DestroyContext(m_glContext);
       m_glContext = nullptr;
-      ZEN_LOG_INFO("OpenGL context destroyed");
+      ZEN_LOG_DEBUG("OpenGL context destroyed");
     }
   }
 

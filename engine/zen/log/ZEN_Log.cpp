@@ -1,3 +1,4 @@
+#include <spdlog/common.h>
 #include <zen/log/ZEN_Log.h>
 
 namespace Zen {
@@ -6,7 +7,7 @@ namespace Zen {
     console->set_pattern("[%Y-%m-%d %H:%M:%S] [%^%l%$] %v");
 
     auto logger = std::make_shared<spdlog::logger>("ZEN_Log", console);
-    logger->set_level(spdlog::level::trace);
+    logger->set_level(spdlog::level::debug);
     spdlog::set_default_logger(logger);
   }
 }; // namespace Zen

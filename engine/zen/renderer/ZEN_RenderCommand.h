@@ -13,6 +13,8 @@ namespace Zen {
       s_rendererAPI->drawIndexed(vertexArray);
     }
 
+    static void setViewport(int width, int height) { s_rendererAPI->setViewport(width, height); }
+
   private:
     static RendererAPI *s_rendererAPI;
   };
