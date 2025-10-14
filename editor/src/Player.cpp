@@ -7,7 +7,7 @@ void Player::update(Zen::DeltaTime deltaTime, bool jumpPressed) {
   m_justJumped  = false;
 
   if (jumpPressed && onGround()) {
-    vy           = jumpImpulse;
+    vy           = jumpPower;
     m_justJumped = true;
     ZEN_LOG_TRACE("Jumped");
   }

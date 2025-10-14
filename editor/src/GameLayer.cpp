@@ -340,8 +340,8 @@ void GameLayer::onGUIRender() {
     if (ImGui::Button("Pause Game (P)")) {
       m_gameState = GameState::Paused;
     }
-  } else if(m_gameState == GameState::Paused){
-     if (ImGui::Button("Resume Game (P)")) {
+  } else if (m_gameState == GameState::Paused) {
+    if (ImGui::Button("Resume Game (P)")) {
       m_gameState = GameState::Playing;
     }
   }
@@ -357,7 +357,7 @@ void GameLayer::onGUIRender() {
   ImGui::DragFloat("Min Spawn Interval", &m_minSpawnInterval, 0.1f, 0.3f, 2.0f);
 
   ImGui::SeparatorText("Player");
-  ImGui::DragFloat("Jump Power", &m_player.jumpImpulse, 0.1f, 5.0f, 20.0f);
+  ImGui::DragFloat("Jump Power", &m_player.jumpPower, 0.1f, 5.0f, 20.0f);
   ImGui::DragFloat("Gravity", &m_player.gravity, 0.5f, -50.0f, -5.0f);
   ImGui::DragFloat2("Player Size", &m_player.width, 0.1f, 0.1f, 3.0f);
   ImGui::ColorEdit4("Player Colour", &m_player.colour[0]);
