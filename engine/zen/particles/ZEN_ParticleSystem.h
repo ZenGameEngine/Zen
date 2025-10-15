@@ -13,8 +13,8 @@ namespace Zen {
     glm::vec2 position{0};
     glm::vec2 velocity{0};
     float lifeTime{1.0f};
-    float sizeBegin{8.0f};
-    float sizeEnd{0};
+    glm::vec2 sizeBegin{1.0f, 1.0f};
+    glm::vec2 sizeEnd{0};
     glm::vec4 colourBegin{1.0f, 1.0f, 1.0f, 1.0f};
     glm::vec4 colourEnd{1.0f, 1.0f, 1.0f, 0};
   };
@@ -24,8 +24,8 @@ namespace Zen {
     glm::vec2 vel{0};
     float lifeRemaining{0};
     float lifeTime{1.0f};
-    float sizeBegin{8.0f};
-    float sizeEnd{0};
+    glm::vec2 sizeBegin{1.0,1.0};
+    glm::vec2 sizeEnd{0};
     glm::vec4 colourBegin{1.0f};
     glm::vec4 colourEnd{0, 0, 0, 0};
     bool active{false};
@@ -68,11 +68,11 @@ namespace Zen {
     float spawnRate       = 30.0f;
     float emitAccumulator = 0;
 
-    ParticleEmitter(const glm::vec2 &position, const glm::vec2 &sz, const glm::vec4 &col)
+    ParticleEmitter(const glm::vec2 &position = {0,0}, const glm::vec2 &sz = {1,1}, const glm::vec4 &col = {1,1,1,1})
         : pos(position), size(sz), colour(col) {
       props.colourBegin = col;
       props.position    = position;
-      props.sizeBegin   = sz.x;
+      props.sizeBegin = sz;
     }
   };
 
@@ -94,6 +94,8 @@ namespace Zen {
 
     void updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime);
     void updateEmitters(std::vector<ParticleEmitter> &emitters, DeltaTime deltaTime);
+
+    int32_t aliveCount() const { return m_alive; }
 
   private:
     size_t m_max{0};

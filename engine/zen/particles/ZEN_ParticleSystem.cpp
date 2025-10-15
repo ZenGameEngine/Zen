@@ -81,7 +81,7 @@ namespace Zen {
       p.pos += p.vel * deltaTimef;
 
       float t     = 1.0f - (p.lifeRemaining / p.lifeTime);
-      float size  = glm::mix(p.sizeBegin, p.sizeEnd, t);
+      glm::vec2 size  = glm::mix(p.sizeBegin, p.sizeEnd, t);
       glm::vec4 c = glm::mix(p.colourBegin, p.colourEnd, t);
 
       glm::vec2 h(size * 0.5f);
