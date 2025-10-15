@@ -40,8 +40,8 @@ void GameLayer::onAttach() {
   m_player.emitter.props.position    = m_player.pos;
   m_player.emitter.props.velocity    = {-5.0f, 0};
   m_player.emitter.props.lifeTime    = 0.6f;
-  m_player.emitter.props.sizeBegin   = 0.4f;
-  m_player.emitter.props.sizeEnd     = 0;
+  m_player.emitter.props.sizeBegin   = {0.4f, 0.4f};
+  m_player.emitter.props.sizeEnd     = {0, 0};
   m_player.emitter.props.colourBegin = {1.f, 0, 0, 1.0f};
   m_player.emitter.props.colourEnd   = {0.1f, 0.4f, 0.2f, 0};
   m_player.emitter.vRand.coneDeg     = 30.0f;
@@ -98,6 +98,10 @@ void GameLayer::updateGame(DeltaTime deltaTime) {
     m_gameState = GameState::Paused;
     return;
   }
+  if (Input::isKeyPressed(Key::R)) {
+    restartGame();
+  }
+
   const bool jumpPressed = Input::isKeyPressed(Key::Space);
   m_player.update(deltaTime, jumpPressed);
 
@@ -143,6 +147,9 @@ void GameLayer::updateGamePaused(DeltaTime deltaTime) {
   if (Input::isKeyPressed(Key::P) || Input::isKeyPressed(Key::Space)) {
     m_gameState = GameState::Playing;
     return;
+  }
+  if (m_playerEmitTrail) {
+    m_particleSystem->updateEmitter(m_player.emitter, deltaTime);
   }
 
   for (auto &obstacle : m_obstacles) {
@@ -233,8 +240,8 @@ void GameLayer::emitJumpBurst() {
     p.velocity  = {glm::cos(angle) * speed, glm::sin(angle) * speed};
 
     p.lifeTime    = 0.6f;
-    p.sizeBegin   = 0.5f;
-    p.sizeEnd     = 0;
+    p.sizeBegin   = {0.5f, 0.5f};
+    p.sizeEnd     = {0, 0};
     p.colourBegin = {1.0f, 1.0f, 0.3f, 1.0f};
     p.colourEnd   = {1.0f, 0.5f, 0, 0};
 
@@ -254,8 +261,8 @@ void GameLayer::emitCollisionEffect() {
     explosion.velocity = {glm::cos(angle) * speed, glm::sin(angle) * speed};
 
     explosion.lifeTime    = 1.0f;
-    explosion.sizeBegin   = 0.6f;
-    explosion.sizeEnd     = 0;
+    explosion.sizeBegin   = {0.6f, 0.6f};
+    explosion.sizeEnd     = {0, 0};
     explosion.colourBegin = {1.0f, 0.3f, 0.1f, 1.0f};
     explosion.colourEnd   = {0.5f, 0.1f, 0, 0};
 
@@ -321,6 +328,7 @@ void GameLayer::drawUI() {
 }
 
 void GameLayer::onGUIRender() {
+  ImGuiIO &io = ImGui::GetIO();
   ImGui::SetNextWindowSize(ImVec2(400, 600), ImGuiCond_Once);
   ImGui::SetNextWindowPos(ImVec2(800, 10), ImGuiCond_Once);
   ImGui::Begin("Editor");
@@ -369,6 +377,10 @@ void GameLayer::onGUIRender() {
   ImGui::DragFloat2("Trail Velocity", &m_player.emitter.props.velocity[0], 0.1f, -10.0f, 10.0f);
   ImGui::ColorEdit4("Trail Colour Start", &m_player.emitter.props.colourBegin[0]);
   ImGui::ColorEdit4("Trail Colour End", &m_player.emitter.props.colourEnd[0]);
+  ImGui::DragFloat("Particle Width Start", &m_player.emitter.props.sizeBegin.x, 0.1f, 0, 10.0f);
+  ImGui::DragFloat("Particle Height Start", &m_player.emitter.props.sizeBegin.y, 0.1f, 0, 10.0f);
+  ImGui::DragFloat("Particle Width End", &m_player.emitter.props.sizeEnd.x, 0.1f, 0, 10.0f);
+  ImGui::DragFloat("Particle Height End", &m_player.emitter.props.sizeEnd.y, 0.1f, 0, 10.0f);
   ImGui::DragFloat("Trail Life", &m_player.emitter.props.lifeTime, 0.1f, 0.1f, 3.0f);
   ImGui::DragFloat("Cone (deg)", &m_player.emitter.vRand.coneDeg, 0.1f, 0, 60.0f);
   ImGui::DragFloat("Speed min x", &m_player.emitter.vRand.speedMinMul, 0.01f, 0, 2.0f);
@@ -424,6 +436,7 @@ void GameLayer::onGUIRender() {
   if (ImGui::Button("Clear All Particles")) {
     m_particleSystem->clear();
   }
+  ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
 
   ImGui::End();
 }

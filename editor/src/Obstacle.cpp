@@ -32,8 +32,8 @@ Obstacle::Obstacle(ObstacleType t, float x) : type(t), pos{x, 0.0f} {
   emitter.props.position    = pos;
   emitter.props.velocity    = {3.0f, 0.0f};
   emitter.props.lifeTime    = 0.8f;
-  emitter.props.sizeBegin   = 0.3f;
-  emitter.props.sizeEnd     = 0.0f;
+  emitter.props.sizeBegin   = size;
+  emitter.props.sizeEnd     = {0,0};
   emitter.props.colourBegin = colour;
   emitter.props.colourEnd   = glm::vec4(colour.r, colour.g, colour.b, 0.0f);
 }

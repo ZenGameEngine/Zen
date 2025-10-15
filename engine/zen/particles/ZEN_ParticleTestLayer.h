@@ -1,5 +1,8 @@
 #pragma once
 
+#include <editor/src/QuadBuilder.h>
+#include <glm/fwd.hpp>
+#include <memory>
 #include <zen/camera/ZEN_Camera.h>
 #include <zen/camera/ZEN_CameraController.h>
 #include <zen/events/ZEN_Event.h>
@@ -21,9 +24,18 @@ namespace Zen {
   private:
     Camera m_camera;
     CameraController m_cameraController;
-    std::unique_ptr<ParticleSystem> m_ps;
+    std::shared_ptr<Shader> m_shader;
+    int m_capacity = 5000;
+    std::unique_ptr<ParticleSystem> m_particleSystem;
+    QuadBuilder m_quadBuilder;
+
     float m_emitAccumulator{0.0f};
     float m_spawnRate = 60.0f;
-    ParticleProps m_particle;
+    ParticleEmitter m_particleEmitter;
+
+    const glm::vec2 m_worldMin{-10.0f, -5.625f};
+    const glm::vec2 m_worldMax{+10.0f, +5.625f};
+
+    float m_speed = 1.0f;
   };
 } // namespace Zen
