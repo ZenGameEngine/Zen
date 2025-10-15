@@ -1,0 +1,119 @@
+\doxysection{ZEN\+\_\+\+Application.\+cpp}
+\hypertarget{ZEN__Application_8cpp_source}{}\label{ZEN__Application_8cpp_source}\index{engine/zen/core/ZEN\_Application.cpp@{engine/zen/core/ZEN\_Application.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <include/imgui/imgui\_impl\_sdl3.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Application.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Window.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/gui/ZEN\_ImGuiLayer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/inputs/ZEN\_Input.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/log/ZEN\_Log.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <zen/particles/ZEN\_ParticleTestLayer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <zen/time/ZEN\_EngineTime.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00010}00010\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00011}00011\ \ \ \mbox{\hyperlink{classZen_1_1Application}{Application}}\ *Application::s\_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00013}00013\ \ \ Application::Application()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00014}00014\ \ \ \ \ s\_instance\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00016}00016\ \ \ \ \ Log::init();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00017}00017\ \ \ \ \ WindowProperties\ properties\ =\ \{\textcolor{stringliteral}{"{}Zen\ Window\ Test"{}},\ 1280,\ 720,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false}\};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00018}00018\ \ \ \ \ m\_eventsDispatcher.registerListener(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00019}00019\ \ \ \ \ m\_window\ =\ Window::create(properties);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00020}00020\ \ \ \ \ m\_eventsDispatcher.registerListener(m\_window.get());}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00022}00022\ \ \ \ \ ZEN\_LOG\_DEBUG(\textcolor{stringliteral}{"{}new\ ImGui"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00023}00023\ \ \ \ \ m\_ImGui\ =\ \textcolor{keyword}{new}\ ImGuiLayer;}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00024}00024\ \ \ \ \ pushLayer(m\_ImGui);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ pushLayer(new\ ParticleTestLayer());}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00027}00027\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00029}00029\ \ \ Application::\string~Application()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00031}00031\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00033}00033\ \ \ \textcolor{keywordtype}{bool}\ Application::onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.header.type\ ==\ EventType::Quit)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00035}00035\ \ \ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Quitting!"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00036}00036\ \ \ \ \ \ \ m\_isRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00037}00037\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00038}00038\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00040}00040\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00042}00042\ \ \ \textcolor{keywordtype}{void}\ Application::run()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00043}00043\ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Running\ Application..."{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{while}\ (m\_isRunning)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00045}00045\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ currentTime\ =\ EngineTime::getTime();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00047}00047\ \ \ \ \ \ \ DeltaTime\ dt\ \ \ =\ currentTime\ -\/\ m\_previousTime;}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00048}00048\ \ \ \ \ \ \ m\_previousTime\ =\ currentTime;}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00050}00050\ \ \ \ \ \ \ m\_inputSystem.begin();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00052}00052\ \ \ \ \ \ \ SDL\_Event\ eventFromSDL;}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00053}00053\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (SDL\_PollEvent(\&eventFromSDL))\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ ImGui\_ImplSDL3\_ProcessEvent(\&eventFromSDL);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ ZenEvent\ e\ =\ TranslateEvent(eventFromSDL);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e.header.type\ !=\ EventType::None)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ m\_eventBuffer.enqueue(e);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00060}00060\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00061}00061\ \ \ \ \ \ \ m\_ImGui-\/>begin();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00062}00062\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!m\_eventBuffer.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ m\_eventsDispatcher.dispatch(m\_eventBuffer.dequeue());}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00064}00064\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00066}00066\ \ \ \ \ \ \ Input::bind(\&m\_inputSystem);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00067}00067\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&layer\ :\ m\_layerList)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ layer-\/>onUpdate(dt);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00069}00069\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00071}00071\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&layer\ :\ m\_layerList)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ layer-\/>onGUIRender();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00073}00073\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00075}00075\ \ \ \ \ \ \ Input::unbind();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00077}00077\ \ \ \ \ \ \ m\_ImGui-\/>end();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00078}00078\ \ \ \ \ \ \ m\_inputSystem.end();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00079}00079\ \ \ \ \ \ \ m\_window-\/>onUpdate();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00080}00080\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00081}00081\ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Closing\ Application..."{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00082}00082\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00084}00084\ \ \ \textcolor{keywordtype}{void}\ Application::onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00086}00086\ \ \ \textcolor{keywordtype}{void}\ Application::pushLayer(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *layer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00087}00087\ \ \ \ \ m\_layerList.pushLayer(layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00088}00088\ \ \ \ \ m\_eventsDispatcher.registerListener(layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00089}00089\ \ \ \ \ layer-\/>onAttach();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00090}00090\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00092}00092\ \ \ \textcolor{keywordtype}{void}\ Application::pushOverlay(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *overlay)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00093}00093\ \ \ \ \ m\_layerList.pushLayer(overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00094}00094\ \ \ \ \ m\_eventsDispatcher.registerListener(overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00095}00095\ \ \ \ \ overlay-\/>onAttach();}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00096}00096\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00098}00098\ \ \ \textcolor{keywordtype}{void}\ Application::popLayer(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *layer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00099}00099\ \ \ \ \ m\_layerList.popLayer(layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00100}00100\ \ \ \ \ m\_eventsDispatcher.unregisterListener(layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00101}00101\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00103}00103\ \ \ \textcolor{keywordtype}{void}\ Application::popOverlay(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *overlay)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00104}00104\ \ \ \ \ m\_layerList.popLayer(overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00105}00105\ \ \ \ \ m\_eventsDispatcher.unregisterListener(overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00106}00106\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00108}00108\ \ \ \mbox{\hyperlink{classZen_1_1Application}{Application}}\ \&Application::get()\ \{\ \textcolor{keywordflow}{return}\ *s\_instance;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00110}00110\ \ \ \mbox{\hyperlink{classZen_1_1Window}{Window}}\ \&Application::getWindow()\ \{\ \textcolor{keywordflow}{return}\ *m\_window;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00112}00112\ \ \ \textcolor{keywordtype}{int}\ Application::getPriority()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ 1;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Application_8cpp_source_l00113}00113\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

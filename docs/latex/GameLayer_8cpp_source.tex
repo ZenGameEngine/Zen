@@ -1,0 +1,435 @@
+\doxysection{Game\+Layer.\+cpp}
+\hypertarget{GameLayer_8cpp_source}{}\label{GameLayer_8cpp_source}\index{editor/src/GameLayer.cpp@{editor/src/GameLayer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}GameLayer.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}ZEN\_Event.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}ZEN\_Log.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}ZEN\_RenderCommand.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}ZEN\_Renderer.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}ZEN\_Shader.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}camera/ZEN\_CameraController.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}editor/src/Obstacle.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}editor/src/QuadBuilder.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}imgui.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}inputs/ZEN\_KeyCodes.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}time/ZEN\_DeltaTime.h"{}}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <SDL3/SDL\_scancode.h>}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <glm/gtc/random.hpp>}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00018}00018\ \textcolor{keyword}{using\ namespace\ }Zen;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00020}00020\ \textcolor{keywordtype}{void}\ GameLayer::onAttach()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00021}00021\ \ \ glEnable(GL\_BLEND);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00022}00022\ \ \ glBlendFunc(GL\_SRC\_ALPHA,\ GL\_ONE\_MINUS\_SRC\_ALPHA);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00024}00024\ \ \ m\_camera.setPosition(\{0,\ 0,\ 0\});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00025}00025\ \ \ m\_camera.setOrthographic(-\/10,\ 10,\ -\/5.625f,\ 5.625f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00026}00026\ \ \ m\_cameraController.setWorldBounds(-\/10.0f,\ 10.0f,\ -\/5.625f,\ 5.625f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00027}00027\ \ \ m\_cameraController.enableWorldBounds(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00029}00029\ \ \ m\_shader\ \ \ \ \ \ \ \ \ =\ std::make\_shared<Shader>(\textcolor{stringliteral}{"{}data/particle.vert"{}},\ \textcolor{stringliteral}{"{}data/particle.frag"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00030}00030\ \ \ m\_particleSystem\ =\ std::make\_unique<ParticleSystem>(5000);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00031}00031\ \ \ m\_quadBuilder.init(m\_shader);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00033}00033\ \ \ m\_player.pos\ =\ \{-\/7.0f,\ 0\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00035}00035\ \ \ m\_player.emitter.pos\ \ \ \ \ \ \ =\ m\_player.pos;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00036}00036\ \ \ m\_player.emitter.size\ \ \ \ \ \ =\ \{m\_player.width,\ m\_player.height\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00037}00037\ \ \ m\_player.emitter.colour\ \ \ \ =\ m\_player.colour;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00038}00038\ \ \ m\_player.emitter.spawnRate\ =\ 80.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00040}00040\ \ \ m\_player.emitter.props.position\ \ \ \ =\ m\_player.pos;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00041}00041\ \ \ m\_player.emitter.props.velocity\ \ \ \ =\ \{-\/5.0f,\ 0\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00042}00042\ \ \ m\_player.emitter.props.lifeTime\ \ \ \ =\ 0.6f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00043}00043\ \ \ m\_player.emitter.props.sizeBegin\ \ \ =\ 0.4f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00044}00044\ \ \ m\_player.emitter.props.sizeEnd\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00045}00045\ \ \ m\_player.emitter.props.colourBegin\ =\ \{1.f,\ 0,\ 0,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00046}00046\ \ \ m\_player.emitter.props.colourEnd\ \ \ =\ \{0.1f,\ 0.4f,\ 0.2f,\ 0\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00047}00047\ \ \ m\_player.emitter.vRand.coneDeg\ \ \ \ \ =\ 30.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00048}00048\ \ \ m\_player.emitter.vRand.speedMinMul\ =\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00049}00049\ \ \ m\_player.emitter.vRand.speedMaxMul\ =\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00050}00050\ \ \ m\_player.emitter.vRand.noiseSigma\ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00052}00052\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 10;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00053}00053\ \ \ \ \ m\_obstacles.emplace\_back(ObstacleType::SmallBox,\ 50.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00054}00054\ \ \ \ \ m\_obstacles[i].active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00055}00055\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00056}00056\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00058}00058\ \textcolor{keywordtype}{void}\ GameLayer::onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00059}00059\ \ \ m\_cameraController.onUpdate(deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00061}00061\ \ \ RenderCommand::setClearColour(\{0.1f,\ 0.1f,\ 0.1f,\ 1.0f\});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00062}00062\ \ \ RenderCommand::clear();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00064}00064\ \ \ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::Playing)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00065}00065\ \ \ \ \ updateGame(deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00066}00066\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::GameOver)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00067}00067\ \ \ \ \ updateGameOver(deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00068}00068\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::Paused)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00069}00069\ \ \ \ \ updateGamePaused(deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00070}00070\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00072}00072\ \ \ m\_particleSystem-\/>update(deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00073}00073\ \ \ m\_particleSystem-\/>upload();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00075}00075\ \ \ Renderer::beginScene(m\_camera);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00077}00077\ \ \ drawGround();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00078}00078\ \ \ drawObstacles();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00079}00079\ \ \ drawPlayer();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00081}00081\ \ \ Renderer::submit(m\_particleSystem-\/>shader(),\ m\_particleSystem-\/>vao());}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00083}00083\ \ \ Renderer::endScene();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00085}00085\ \ \ drawUI();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00086}00086\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00087}00087\ \textcolor{keywordtype}{bool}\ GameLayer::onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00088}00088\ \ \ m\_cameraController.onEvent(event);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00089}00089\ \ \ \textcolor{keywordflow}{if}\ (event.header.type\ ==\ EventType::WindowResize)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00090}00090\ \ \ \ \ RenderCommand::setViewport(event.windowResize.width,\ event.windowResize.height);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00091}00091\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}resize\ viewport"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00092}00092\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00093}00093\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00094}00094\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00096}00096\ \textcolor{keywordtype}{void}\ GameLayer::updateGame(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00097}00097\ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyPressed(Key::P))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00098}00098\ \ \ \ \ m\_gameState\ =\ GameState::Paused;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00100}00100\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00101}00101\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ jumpPressed\ =\ Input::isKeyPressed(Key::Space);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00102}00102\ \ \ m\_player.update(deltaTime,\ jumpPressed);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00104}00104\ \ \ \textcolor{keywordflow}{if}\ (m\_emitJumpBurst\ \&\&\ m\_player.justJumped())\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00105}00105\ \ \ \ \ emitJumpBurst();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00106}00106\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00107}00107\ \ \ \textcolor{keywordflow}{if}\ (m\_playerEmitTrail)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00108}00108\ \ \ \ \ m\_particleSystem-\/>updateEmitter(m\_player.emitter,\ deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00109}00109\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00111}00111\ \ \ m\_gameSpeed\ +=\ m\_speedIncreaseRate\ *\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00112}00112\ \ \ m\_gameSpeed\ =\ glm::min(m\_gameSpeed,\ 3.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00114}00114\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obstacle\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle.active)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00117}00117\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ originalSpeed\ =\ obstacle.speed;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00118}00118\ \ \ \ \ \ \ obstacle.speed\ \ \ \ \ \ =\ originalSpeed\ *\ m\_gameSpeed;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00119}00119\ \ \ \ \ \ \ obstacle.update(deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00121}00121\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_obstacleEmitTrail)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ m\_particleSystem-\/>updateEmitter(obstacle.emitter,\ deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00123}00123\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00125}00125\ \ \ \ \ \ \ obstacle.speed\ =\ originalSpeed;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00127}00127\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00129}00129\ \ \ m\_spawnTimer\ +=\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00130}00130\ \ \ \textcolor{keywordflow}{if}\ (m\_spawnTimer\ >=\ m\_spawnInterval)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00131}00131\ \ \ \ \ spawnObstacle();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00132}00132\ \ \ \ \ m\_spawnTimer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00134}00134\ \ \ \ \ m\_spawnInterval\ =\ glm::max(m\_spawnInterval\ -\/\ 0.05f,\ m\_minSpawnInterval);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00135}00135\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00137}00137\ \ \ checkCollisions();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00139}00139\ \ \ m\_score\ +=\ deltaTime.seconds()\ *\ m\_gameSpeed\ *\ 5.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00140}00140\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00142}00142\ \textcolor{keywordtype}{void}\ GameLayer::updateGamePaused(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00143}00143\ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyPressed(Key::P)\ ||\ Input::isKeyPressed(Key::Space))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00144}00144\ \ \ \ \ m\_gameState\ =\ GameState::Playing;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00146}00146\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00148}00148\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obstacle\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle.active\ \&\&\ m\_obstacleEmitTrail)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00150}00150\ \ \ \ \ \ \ m\_particleSystem-\/>updateEmitter(obstacle.emitter,\ deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00151}00151\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00152}00152\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00153}00153\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00154}00154\ \textcolor{keywordtype}{void}\ GameLayer::updateGameOver(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00156}00156\ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyPressed(Key::R)\ ||\ Input::isKeyPressed(Key::Space))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00157}00157\ \ \ \ \ restartGame();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00158}00158\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00160}00160\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obstacle\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle.active\ \&\&\ m\_obstacleEmitTrail)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00162}00162\ \ \ \ \ \ \ m\_particleSystem-\/>updateEmitter(obstacle.emitter,\ deltaTime);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00164}00164\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00165}00165\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00167}00167\ \textcolor{keywordtype}{void}\ GameLayer::spawnObstacle()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00168}00168\ \ \ Obstacle\ *obstacle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00169}00169\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obs\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (!obs.active)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00171}00171\ \ \ \ \ \ \ obstacle\ =\ \&obs;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00172}00172\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00173}00173\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00174}00174\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00176}00176\ \ \ \textcolor{keywordflow}{if}\ (!obstacle)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00177}00177\ \ \ \ \ obstacle\ \ \ \ \ \ \ \ \ \ \ \ =\ \&m\_obstacles[m\_nextObstacleIndex];}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00178}00178\ \ \ \ \ m\_nextObstacleIndex\ =\ (m\_nextObstacleIndex\ +\ 1)\ \%\ m\_obstacles.size();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00179}00179\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00181}00181\ \ \ ObstacleType\ type\ =\ getRandomObstacleType();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00182}00182\ \ \ *obstacle\ \ \ \ \ \ \ \ \ =\ Obstacle(type,\ 12.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00183}00183\ \ \ obstacle-\/>active\ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00185}00185\ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Spawned\ obstacle\ of\ type\ \{\}"{}},\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(type));}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00186}00186\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00188}00188\ \textcolor{keywordtype}{void}\ GameLayer::checkCollisions()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00189}00189\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obstacle\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00190}00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle.active\ \&\&\ obstacle.collidesWith(m\_player.pos,\ m\_player.getSize()))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00192}00192\ \ \ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Collision\ detected!\ Game\ Over!"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00193}00193\ \ \ \ \ \ \ m\_gameState\ =\ GameState::GameOver;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00195}00195\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_score\ >\ m\_highScore)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ m\_highScore\ =\ m\_score;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}New\ high\ score:\ \{\}"{}},\ m\_highScore);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00198}00198\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00200}00200\ \ \ \ \ \ \ emitCollisionEffect();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00201}00201\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00202}00202\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00203}00203\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00204}00204\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00206}00206\ \textcolor{keywordtype}{void}\ GameLayer::restartGame()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00207}00207\ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Restarting\ game..."{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00209}00209\ \ \ m\_gameState\ \ \ \ \ =\ GameState::Playing;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00210}00210\ \ \ m\_score\ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00211}00211\ \ \ m\_gameSpeed\ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00212}00212\ \ \ m\_spawnTimer\ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00213}00213\ \ \ m\_spawnInterval\ =\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00215}00215\ \ \ m\_player.pos\ =\ \{-\/7.0f,\ 0\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00216}00216\ \ \ m\_player.vy\ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00218}00218\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obstacle\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00219}00219\ \ \ \ \ obstacle.active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00220}00220\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00222}00222\ \ \ m\_particleSystem-\/>clear();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00223}00223\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00225}00225\ \textcolor{keywordtype}{void}\ GameLayer::emitJumpBurst()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00226}00226\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ burstCount\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00227}00227\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ burstCount;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00228}00228\ \ \ \ \ ParticleProps\ p;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00229}00229\ \ \ \ \ p.position\ =\ m\_player.pos;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00231}00231\ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ glm::linearRand(0.0f,\ glm::two\_pi<float>());}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00232}00232\ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ glm::linearRand(3.0f,\ 6.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00233}00233\ \ \ \ \ p.velocity\ \ =\ \{glm::cos(angle)\ *\ speed,\ glm::sin(angle)\ *\ speed\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00235}00235\ \ \ \ \ p.lifeTime\ \ \ \ =\ 0.6f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00236}00236\ \ \ \ \ p.sizeBegin\ \ \ =\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00237}00237\ \ \ \ \ p.sizeEnd\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00238}00238\ \ \ \ \ p.colourBegin\ =\ \{1.0f,\ 1.0f,\ 0.3f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00239}00239\ \ \ \ \ p.colourEnd\ \ \ =\ \{1.0f,\ 0.5f,\ 0,\ 0\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00241}00241\ \ \ \ \ m\_particleSystem-\/>emit(p);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00242}00242\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00243}00243\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00245}00245\ \textcolor{keywordtype}{void}\ GameLayer::emitCollisionEffect()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00246}00246\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ explosionCount\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00247}00247\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ explosionCount;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00248}00248\ \ \ \ \ ParticleProps\ explosion;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00249}00249\ \ \ \ \ explosion.position\ =\ m\_player.pos;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00251}00251\ \ \ \ \ \textcolor{comment}{//\ Explosion\ in\ all\ directions}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00252}00252\ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ \ \ \ \ \ \ \ =\ glm::linearRand(0.0f,\ glm::two\_pi<float>());}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00253}00253\ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ \ \ \ \ \ \ \ =\ glm::linearRand(3.0f,\ 10.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00254}00254\ \ \ \ \ explosion.velocity\ =\ \{glm::cos(angle)\ *\ speed,\ glm::sin(angle)\ *\ speed\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00256}00256\ \ \ \ \ explosion.lifeTime\ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00257}00257\ \ \ \ \ explosion.sizeBegin\ \ \ =\ 0.6f;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00258}00258\ \ \ \ \ explosion.sizeEnd\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00259}00259\ \ \ \ \ explosion.colourBegin\ =\ \{1.0f,\ 0.3f,\ 0.1f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00260}00260\ \ \ \ \ explosion.colourEnd\ \ \ =\ \{0.5f,\ 0.1f,\ 0,\ 0\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00262}00262\ \ \ \ \ m\_particleSystem-\/>emit(explosion);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00263}00263\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00264}00264\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00266}00266\ ObstacleType\ GameLayer::getRandomObstacleType()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00267}00267\ \ \ \textcolor{keywordtype}{int}\ random\ =\ rand()\ \%\ 100;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00269}00269\ \ \ \textcolor{keywordflow}{if}\ (random\ <\ 40)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00270}00270\ \ \ \ \ \textcolor{keywordflow}{return}\ ObstacleType::SmallBox;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00271}00271\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00272}00272\ \ \ \textcolor{keywordflow}{if}\ (random\ <\ 75)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00273}00273\ \ \ \ \ \textcolor{keywordflow}{return}\ ObstacleType::TallBox;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00274}00274\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00275}00275\ \ \ \textcolor{keywordflow}{return}\ ObstacleType::FlyingBox;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00276}00276\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00278}00278\ \textcolor{keywordtype}{void}\ GameLayer::drawPlayer()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00279}00279\ \ \ glm::vec4\ colour\ =\ m\_player.colour;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00280}00280\ \ \ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::GameOver)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00281}00281\ \ \ \ \ colour\ =\ \{0.5f,\ 0.5f,\ 0.5f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00282}00282\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00283}00283\ \ \ m\_quadBuilder.drawQuad(m\_player.pos,\ m\_player.getSize(),\ colour);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00284}00284\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00286}00286\ \textcolor{keywordtype}{void}\ GameLayer::drawObstacles()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00287}00287\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&obstacle\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00288}00288\ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle.active)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00289}00289\ \ \ \ \ \ \ m\_quadBuilder.drawQuad(obstacle.pos,\ obstacle.size,\ obstacle.colour);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00290}00290\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00291}00291\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00292}00292\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00294}00294\ \textcolor{keywordtype}{void}\ GameLayer::drawGround()\ \{\ m\_quadBuilder.drawQuad(m\_groundPos,\ m\_groundSize,\ m\_groundColour);\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00296}00296\ \textcolor{keywordtype}{void}\ GameLayer::drawUI()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00297}00297\ \ \ ImGui::SetNextWindowPos(ImVec2(10,\ 10),\ ImGuiCond\_Always);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00298}00298\ \ \ ImGui::SetNextWindowBgAlpha(0.6f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00299}00299\ \ \ ImGui::Begin(\textcolor{stringliteral}{"{}Score"{}},}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImGuiWindowFlags\_NoTitleBar\ |\ ImGuiWindowFlags\_NoResize\ |}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImGuiWindowFlags\_AlwaysAutoResize\ |\ ImGuiWindowFlags\_NoMove);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00304}00304\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Score:\ \%.0f"{}},\ m\_score);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00305}00305\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}High:\ \%.0f"{}},\ m\_highScore);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00306}00306\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Speed:\ \%.1fx"{}},\ m\_gameSpeed);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00308}00308\ \ \ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::GameOver)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00309}00309\ \ \ \ \ ImGui::Separator();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00310}00310\ \ \ \ \ ImGui::TextColored(ImVec4(1.0f,\ 0.2f,\ 0.2f,\ 1.0f),\ \textcolor{stringliteral}{"{}GAME\ OVER!"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00311}00311\ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Press\ R\ or\ SPACE\ to\ restart"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00312}00312\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00314}00314\ \ \ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::Paused)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00315}00315\ \ \ \ \ ImGui::Separator();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00316}00316\ \ \ \ \ ImGui::TextColored(ImVec4(1.0f,\ 1.0f,\ 1.0f,\ 1.0f),\ \textcolor{stringliteral}{"{}PAUSED!"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00317}00317\ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Press\ P\ or\ SPACE\ to\ Resume"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00318}00318\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00320}00320\ \ \ ImGui::End();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00321}00321\ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00323}00323\ \textcolor{keywordtype}{void}\ GameLayer::onGUIRender()\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00324}00324\ \ \ ImGui::SetNextWindowSize(ImVec2(400,\ 600),\ ImGuiCond\_Once);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00325}00325\ \ \ ImGui::SetNextWindowPos(ImVec2(800,\ 10),\ ImGuiCond\_Once);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00326}00326\ \ \ ImGui::Begin(\textcolor{stringliteral}{"{}Editor"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00328}00328\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Game\ State"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00330}00330\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *stateNames[]\ =\ \{\textcolor{stringliteral}{"{}Playing"{}},\ \textcolor{stringliteral}{"{}GameOver"{}},\ \textcolor{stringliteral}{"{}Paused"{}}\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00331}00331\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}State:\ \%s"{}},\ stateNames[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_gameState)]);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00332}00332\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Score:\ \%.0f"{}},\ m\_score);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00333}00333\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}High\ Score:\ \%.0f"{}},\ m\_highScore);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00335}00335\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Restart\ Game\ (R)"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00336}00336\ \ \ \ \ restartGame();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00337}00337\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00338}00338\ \ \ ImGui::SameLine();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00339}00339\ \ \ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::Playing)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00340}00340\ \ \ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Pause\ Game\ (P)"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00341}00341\ \ \ \ \ \ \ m\_gameState\ =\ GameState::Paused;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00342}00342\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00343}00343\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_gameState\ ==\ GameState::Paused)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00344}00344\ \ \ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Resume\ Game\ (P)"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00345}00345\ \ \ \ \ \ \ m\_gameState\ =\ GameState::Playing;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00346}00346\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00347}00347\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00348}00348\ \ \ ImGui::SameLine();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00349}00349\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Spawn\ Obstacle"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00350}00350\ \ \ \ \ spawnObstacle();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00351}00351\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00353}00353\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Difficulty"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00354}00354\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Game\ Speed"{}},\ \&m\_gameSpeed,\ 0.1f,\ 0.5f,\ 5.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00355}00355\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Speed\ Increase\ Rate"{}},\ \&m\_speedIncreaseRate,\ 0.01f,\ 0,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00356}00356\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Spawn\ Interval"{}},\ \&m\_spawnInterval,\ 0.1f,\ 0.5f,\ 5.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00357}00357\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Min\ Spawn\ Interval"{}},\ \&m\_minSpawnInterval,\ 0.1f,\ 0.3f,\ 2.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00359}00359\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Player"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00360}00360\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Jump\ Power"{}},\ \&m\_player.jumpPower,\ 0.1f,\ 5.0f,\ 20.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00361}00361\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Gravity"{}},\ \&m\_player.gravity,\ 0.5f,\ -\/50.0f,\ -\/5.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00362}00362\ \ \ ImGui::DragFloat2(\textcolor{stringliteral}{"{}Player\ Size"{}},\ \&m\_player.width,\ 0.1f,\ 0.1f,\ 3.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00363}00363\ \ \ ImGui::ColorEdit4(\textcolor{stringliteral}{"{}Player\ Colour"{}},\ \&m\_player.colour[0]);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00365}00365\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Player\ Particles"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00366}00366\ \ \ ImGui::Checkbox(\textcolor{stringliteral}{"{}Emit\ Trail"{}},\ \&m\_playerEmitTrail);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00367}00367\ \ \ ImGui::Checkbox(\textcolor{stringliteral}{"{}Emit\ Jump\ Burst"{}},\ \&m\_emitJumpBurst);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00368}00368\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Trail\ Spawn\ Rate"{}},\ \&m\_player.emitter.spawnRate,\ 1.0f,\ 0,\ 200.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00369}00369\ \ \ ImGui::DragFloat2(\textcolor{stringliteral}{"{}Trail\ Velocity"{}},\ \&m\_player.emitter.props.velocity[0],\ 0.1f,\ -\/10.0f,\ 10.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00370}00370\ \ \ ImGui::ColorEdit4(\textcolor{stringliteral}{"{}Trail\ Colour\ Start"{}},\ \&m\_player.emitter.props.colourBegin[0]);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00371}00371\ \ \ ImGui::ColorEdit4(\textcolor{stringliteral}{"{}Trail\ Colour\ End"{}},\ \&m\_player.emitter.props.colourEnd[0]);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00372}00372\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Trail\ Life"{}},\ \&m\_player.emitter.props.lifeTime,\ 0.1f,\ 0.1f,\ 3.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00373}00373\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Cone\ (deg)"{}},\ \&m\_player.emitter.vRand.coneDeg,\ 0.1f,\ 0,\ 60.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00374}00374\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Speed\ min\ x"{}},\ \&m\_player.emitter.vRand.speedMinMul,\ 0.01f,\ 0,\ 2.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00375}00375\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Speed\ max\ x"{}},\ \&m\_player.emitter.vRand.speedMaxMul,\ 0.01f,\ 0,\ 3.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00376}00376\ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Noise\ sigma"{}},\ \&m\_player.emitter.vRand.noiseSigma,\ 0.01f,\ 0,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00378}00378\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Obstacles"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00379}00379\ \ \ ImGui::Checkbox(\textcolor{stringliteral}{"{}Emit\ Obstacle\ Trails"{}},\ \&m\_obstacleEmitTrail);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00380}00380\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00381}00381\ \ \ \textcolor{keywordtype}{int}\ activeCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00382}00382\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&obs\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00383}00383\ \ \ \ \ \textcolor{keywordflow}{if}\ (obs.active)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00384}00384\ \ \ \ \ \ \ activeCount++;}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00385}00385\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00386}00386\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00387}00387\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Active\ Obstacles:\ \%d\ /\ \%zu"{}},\ activeCount,\ m\_obstacles.size());}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00389}00389\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Clear\ All\ Obstacles"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00390}00390\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&obs\ :\ m\_obstacles)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00391}00391\ \ \ \ \ \ \ obs.active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00392}00392\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00393}00393\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00395}00395\ \ \ \textcolor{keywordflow}{if}\ (ImGui::TreeNode(\textcolor{stringliteral}{"{}Obstacle\ Types"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00396}00396\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ m\_obstacles.size()\ \&\&\ i\ <\ 5;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00397}00397\ \ \ \ \ \ \ ImGui::PushID(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i));}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00398}00398\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_obstacles[i].active)\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *typeNames[]\ =\ \{\textcolor{stringliteral}{"{}Small"{}},\ \textcolor{stringliteral}{"{}Tall"{}},\ \textcolor{stringliteral}{"{}Flying"{}}\};}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Obstacle\ \%zu:\ \%s\ (\%.1f,\ \%.1f)"{}},}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ typeNames[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_obstacles[i].type)],}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_obstacles[i].pos.x,}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_obstacles[i].pos.y);}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00405}00405\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00406}00406\ \ \ \ \ \ \ ImGui::PopID();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00407}00407\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00408}00408\ \ \ \ \ ImGui::TreePop();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00409}00409\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00410}00410\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00411}00411\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Test\ Spawns"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00412}00412\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Spawn\ Small\ Box"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00413}00413\ \ \ \ \ m\_obstacles.push\_back(Obstacle(ObstacleType::SmallBox,\ 12.0f));}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00414}00414\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00415}00415\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Spawn\ Tall\ Box"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00416}00416\ \ \ \ \ m\_obstacles.push\_back(Obstacle(ObstacleType::TallBox,\ 12.0f));}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00417}00417\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00418}00418\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Spawn\ Flying\ Box"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00419}00419\ \ \ \ \ m\_obstacles.push\_back(Obstacle(ObstacleType::FlyingBox,\ 12.0f));}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00420}00420\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00422}00422\ \ \ ImGui::SeparatorText(\textcolor{stringliteral}{"{}Particle\ System"{}});}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00423}00423\ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Particles:\ \%zu"{}},\ m\_particleSystem-\/>capacity());}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00424}00424\ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Clear\ All\ Particles"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00425}00425\ \ \ \ \ m\_particleSystem-\/>clear();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00426}00426\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00428}00428\ \ \ ImGui::End();}
+\DoxyCodeLine{\Hypertarget{GameLayer_8cpp_source_l00429}00429\ \}}
+
+\end{DoxyCode}

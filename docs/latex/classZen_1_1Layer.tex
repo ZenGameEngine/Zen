@@ -1,0 +1,122 @@
+\doxysection{Zen\+::Layer Class Reference}
+\hypertarget{classZen_1_1Layer}{}\label{classZen_1_1Layer}\index{Zen::Layer@{Zen::Layer}}
+Inheritance diagram for Zen\+::Layer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classZen_1_1Layer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1Layer_a489f15a6dc5134e88daf587ee6733445}{Layer}} (int priority)
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_a3b711332534f887dfea85308bc2a0c84}{on\+Attach}} ()
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf}{on\+Detach}} ()
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_a88c455ff3ae5d8eb36f9b3a6c2f721dd}{on\+Update}} (\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}} delta\+Time)
+\item 
+virtual bool \mbox{\hyperlink{classZen_1_1Layer_ac249b3a3f5f50a6d2afc1f0bc6dbb40e}{on\+Event}} (const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&event)=0
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_ae5e641d2e656f9b8bc978c551dfe4ae0}{on\+GUIRender}} ()
+\item 
+int \mbox{\hyperlink{classZen_1_1Layer_a0e0d7bf49988f2b987ffc88c568f3b86}{get\+Priority}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00009}{9}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1Layer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1Layer_a489f15a6dc5134e88daf587ee6733445}\index{Zen::Layer@{Zen::Layer}!Layer@{Layer}}
+\index{Layer@{Layer}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{Layer()}{Layer()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a489f15a6dc5134e88daf587ee6733445} 
+Zen\+::\+Layer\+::\+Layer (\begin{DoxyParamCaption}\item[{int}]{priority}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{ZEN__Layer_8cpp_source}{ZEN\+\_\+\+Layer.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1Layer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Layer_a0e0d7bf49988f2b987ffc88c568f3b86}\index{Zen::Layer@{Zen::Layer}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a0e0d7bf49988f2b987ffc88c568f3b86} 
+int Zen\+::\+Layer\+::get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{ZEN__Layer_8cpp_source}{ZEN\+\_\+\+Layer.\+cpp}}.
+
+\Hypertarget{classZen_1_1Layer_a3b711332534f887dfea85308bc2a0c84}\index{Zen::Layer@{Zen::Layer}!onAttach@{onAttach}}
+\index{onAttach@{onAttach}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onAttach()}{onAttach()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a3b711332534f887dfea85308bc2a0c84} 
+virtual void Zen\+::\+Layer\+::on\+Attach (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00014}{14}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf}\index{Zen::Layer@{Zen::Layer}!onDetach@{onDetach}}
+\index{onDetach@{onDetach}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onDetach()}{onDetach()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf} 
+virtual void Zen\+::\+Layer\+::on\+Detach (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00015}{15}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classZen_1_1Layer_ac249b3a3f5f50a6d2afc1f0bc6dbb40e}\index{Zen::Layer@{Zen::Layer}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_ac249b3a3f5f50a6d2afc1f0bc6dbb40e} 
+virtual bool Zen\+::\+Layer\+::on\+Event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+\Hypertarget{classZen_1_1Layer_ae5e641d2e656f9b8bc978c551dfe4ae0}\index{Zen::Layer@{Zen::Layer}!onGUIRender@{onGUIRender}}
+\index{onGUIRender@{onGUIRender}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onGUIRender()}{onGUIRender()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_ae5e641d2e656f9b8bc978c551dfe4ae0} 
+virtual void Zen\+::\+Layer\+::on\+GUIRender (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00019}{19}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classZen_1_1Layer_a88c455ff3ae5d8eb36f9b3a6c2f721dd}\index{Zen::Layer@{Zen::Layer}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onUpdate()}{onUpdate()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a88c455ff3ae5d8eb36f9b3a6c2f721dd} 
+virtual void Zen\+::\+Layer\+::on\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}}}]{delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00016}{16}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/layer/ZEN\+\_\+\+Layer.\+h\item 
+engine/zen/layer/ZEN\+\_\+\+Layer.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,197 @@
+\doxysection{ZEN\+\_\+\+Camera\+Controller.\+cpp}
+\hypertarget{ZEN__CameraController_8cpp_source}{}\label{ZEN__CameraController_8cpp_source}\index{engine/zen/camera/ZEN\_CameraController.cpp@{engine/zen/camera/ZEN\_CameraController.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}zen/log/ZEN\_Log.h"{}}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/camera/ZEN\_CameraController.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00005}00005\ \ \ CameraController::CameraController(\mbox{\hyperlink{classZen_1_1Camera}{Camera}}\ \&camera)\ :\ m\_camera(camera)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00006}00006\ \ \ \ \ m\_aspectRatio\ =\ m\_camera.aspectRatio();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00007}00007\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00009}00009\ \ \ \textcolor{keywordtype}{void}\ CameraController::onUpdate(DeltaTime\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{float}\ step\ =\ m\_camera.speed()\ *\ (float)deltaTime;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyHeld(Key::W))\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00012}00012\ \ \ \ \ \ \ m\_cameraPosition.y\ +=\ step;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00013}00013\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyHeld(Key::S))\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00015}00015\ \ \ \ \ \ \ m\_cameraPosition.y\ -\/=\ step;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyHeld(Key::D))\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00018}00018\ \ \ \ \ \ \ m\_cameraPosition.x\ +=\ step;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (Input::isKeyHeld(Key::A))\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00021}00021\ \ \ \ \ \ \ m\_cameraPosition.x\ -\/=\ step;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_worldBoundsEnabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00024}00024\ \ \ \ \ \ \ clampCameraToWorld();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00027}00027\ \ \ \ \ m\_camera.setPosition(m\_cameraPosition);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00028}00028\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00030}00030\ \ \ \textcolor{keywordtype}{bool}\ CameraController::onEvent(\textcolor{keyword}{const}\ ZenEvent\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.header.type\ ==\ EventType::MouseScrolled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00032}00032\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>onMouseScrolled(event);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.header.type\ ==\ EventType::WindowResize)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00035}00035\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>onWindowResize(event);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00038}00038\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00040}00040\ \ \ \textcolor{keywordtype}{bool}\ CameraController::onMouseScrolled(\textcolor{keyword}{const}\ ZenEvent\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_worldBoundsEnabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00042}00042\ \ \ \ \ \ \ m\_aspectRatio\ =\ m\_camera.aspectRatio();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00043}00043\ \ \ \ \ \ \ m\_zoomLevel\ -\/=\ (float)event.mouseWheel.scrl\_height\ *\ 0.25f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00044}00044\ \ \ \ \ \ \ m\_zoomLevel\ =\ std::max(m\_zoomLevel,\ 0.25f);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00045}00045\ \ \ \ \ \ \ m\_camera.setOrthographic(-\/m\_aspectRatio\ *\ m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aspectRatio\ *\ m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_zoomLevel);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00049}00049\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00050}00050\ \ \ \ \ \ \ m\_zoomLevel\ -\/=\ (float)event.mouseWheel.scrl\_height\ *\ 0.25f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00051}00051\ \ \ \ \ \ \ m\_zoomLevel\ =\ std::max(m\_zoomLevel,\ 0.25f);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00052}00052\ \ \ \ \ \ \ updateCameraProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00053}00053\ \ \ \ \ \ \ clampCameraToWorld();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00054}00054\ \ \ \ \ \ \ m\_camera.setPosition(m\_cameraPosition);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00058}00058\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00060}00060\ \ \ \textcolor{keywordtype}{bool}\ CameraController::onWindowResize(\textcolor{keyword}{const}\ ZenEvent\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00061}00061\ \ \ \ \ m\_aspectRatio\ =\ (float)event.windowResize.width\ /\ (\textcolor{keywordtype}{float})\textcolor{keyword}{event}.windowResize.height;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_worldBoundsEnabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00064}00064\ \ \ \ \ \ \ m\_camera.setOrthographic(-\/m\_aspectRatio\ *\ m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aspectRatio\ *\ m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_zoomLevel);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00068}00068\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00069}00069\ \ \ \ \ \ \ updateCameraProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00070}00070\ \ \ \ \ \ \ clampCameraToWorld();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00071}00071\ \ \ \ \ \ \ m\_camera.setPosition(m\_cameraPosition);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00074}00074\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}aspect\ ratio:\ \{\}"{}},\ m\_aspectRatio);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00076}00076\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00078}00078\ \ \ \textcolor{keywordtype}{void}\ CameraController::setWorldBounds(\textcolor{keywordtype}{float}\ left,\ \textcolor{keywordtype}{float}\ right,\ \textcolor{keywordtype}{float}\ bottom,\ \textcolor{keywordtype}{float}\ top)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00079}00079\ \ \ \ \ m\_worldLeft\ \ \ =\ left;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00080}00080\ \ \ \ \ m\_worldRight\ \ =\ right;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00081}00081\ \ \ \ \ m\_worldBottom\ =\ bottom;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00082}00082\ \ \ \ \ m\_worldTop\ \ \ \ =\ top;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00084}00084\ \ \ \ \ m\_worldWidth\ \ \ \ \ \ \ =\ m\_worldRight\ -\/\ m\_worldLeft;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00085}00085\ \ \ \ \ m\_worldHeight\ \ \ \ \ \ =\ m\_worldTop\ -\/\ m\_worldBottom;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00086}00086\ \ \ \ \ m\_worldAspectRatio\ =\ m\_worldWidth\ /\ m\_worldHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_worldBoundsEnabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00089}00089\ \ \ \ \ \ \ updateCameraProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00090}00090\ \ \ \ \ \ \ clampCameraToWorld();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00091}00091\ \ \ \ \ \ \ m\_camera.setPosition(m\_cameraPosition);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00093}00093\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00095}00095\ \ \ \textcolor{keywordtype}{void}\ CameraController::enableWorldBounds(\textcolor{keywordtype}{bool}\ enabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00096}00096\ \ \ \ \ m\_worldBoundsEnabled\ =\ enabled;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (enabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00098}00098\ \ \ \ \ \ \ updateCameraProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00099}00099\ \ \ \ \ \ \ clampCameraToWorld();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00100}00100\ \ \ \ \ \ \ m\_camera.setPosition(m\_cameraPosition);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00101}00101\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00102}00102\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00104}00104\ \ \ \textcolor{keywordtype}{void}\ CameraController::getViewDimensions(\textcolor{keywordtype}{float}\ \&outWidth,\ \textcolor{keywordtype}{float}\ \&outHeight)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//\ the\ world\ has\ a\ fixed\ size:\ m\_worldWidth\ x\ m\_worldHeight}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ use\ this\ to\ adjust\ the\ view\ to\ match\ the\ world\ while\ respecting\ zoom\ and\ aspect\ ratio}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordtype}{float}\ baseWidth\ \ =\ m\_worldWidth\ /\ m\_zoomLevel;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordtype}{float}\ baseHeight\ =\ m\_worldHeight\ /\ m\_zoomLevel;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordtype}{float}\ zoomedWorldAspect\ =\ baseWidth\ /\ baseHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_aspectRatio\ >\ zoomedWorldAspect)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00114}00114\ \ \ \ \ \ \ \textcolor{comment}{//\ window\ is\ WIDER\ than\ the\ zoomed\ world}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00115}00115\ \ \ \ \ \ \ \textcolor{comment}{//\ lock\ width\ to\ world,\ crop\ height}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00116}00116\ \ \ \ \ \ \ outWidth\ \ =\ baseWidth;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00117}00117\ \ \ \ \ \ \ outHeight\ =\ baseWidth\ /\ m\_aspectRatio;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00118}00118\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00119}00119\ \ \ \ \ \ \ \textcolor{comment}{//\ window\ is\ TALLER/EQUAL\ to\ the\ zoomed\ world}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00120}00120\ \ \ \ \ \ \ \textcolor{comment}{//\ lock\ height\ to\ world,\ crop\ width}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00121}00121\ \ \ \ \ \ \ outHeight\ =\ baseHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00122}00122\ \ \ \ \ \ \ outWidth\ \ =\ baseHeight\ *\ m\_aspectRatio;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00124}00124\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00126}00126\ \ \ \textcolor{keywordtype}{void}\ CameraController::updateCameraProjection()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00127}00127\ \ \ \ \ \textcolor{keywordtype}{float}\ viewWidth;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordtype}{float}\ viewHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00129}00129\ \ \ \ \ getViewDimensions(viewWidth,\ viewHeight);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{keywordtype}{float}\ halfWidth\ \ =\ viewWidth\ /\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keywordtype}{float}\ halfHeight\ =\ viewHeight\ /\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00134}00134\ \ \ \ \ m\_camera.setOrthographic(-\/halfWidth,\ halfWidth,\ -\/halfHeight,\ halfHeight);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00136}00136\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}View\ size:\ \{\}x\{\},\ Zoom:\ \{\},\ Aspect:\ \{\}"{}},}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ viewWidth,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ viewHeight,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_zoomLevel,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aspectRatio);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00141}00141\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00143}00143\ \ \ \textcolor{keywordtype}{void}\ CameraController::clampCameraToWorld()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00144}00144\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ minZoomOut\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{keywordtype}{float}\ oldZoom\ \ \ \ \ \ \ \ \ \ =\ m\_zoomLevel;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00146}00146\ \ \ \ \ m\_zoomLevel\ \ \ \ \ \ \ \ \ \ \ \ =\ std::max(m\_zoomLevel,\ minZoomOut);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_zoomLevel\ !=\ oldZoom)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00148}00148\ \ \ \ \ \ \ updateCameraProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00149}00149\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{keywordtype}{float}\ viewWidth;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordtype}{float}\ viewHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00152}00152\ \ \ \ \ getViewDimensions(viewWidth,\ viewHeight);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordtype}{float}\ halfWidth\ \ =\ viewWidth\ /\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00155}00155\ \ \ \ \ \textcolor{keywordtype}{float}\ halfHeight\ =\ viewHeight\ /\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{comment}{//\ calculate\ world\ center}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{keywordtype}{float}\ worldCenterX\ =\ (m\_worldLeft\ +\ m\_worldRight)\ /\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{keywordtype}{float}\ worldCenterY\ =\ (m\_worldBottom\ +\ m\_worldTop)\ /\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{comment}{//\ clamp\ camera\ position\ so\ view\ edges\ don't\ exceed\ world\ bounds}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{comment}{//\ x\ axis\ clamping}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00163}00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (viewWidth\ >=\ m\_worldWidth)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00164}00164\ \ \ \ \ \ \ \textcolor{comment}{//\ view\ is\ wider\ than\ world,\ center\ camera\ on\ world\ x}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00165}00165\ \ \ \ \ \ \ m\_cameraPosition.x\ =\ worldCenterX;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00166}00166\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00167}00167\ \ \ \ \ \ \ \textcolor{comment}{//\ view\ is\ smaller,\ clamp\ position\ so\ edges\ stay\ within\ world}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00168}00168\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ minX\ \ \ \ \ \ \ \ \ =\ m\_worldLeft\ +\ halfWidth;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00169}00169\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ maxX\ \ \ \ \ \ \ \ \ =\ m\_worldRight\ -\/\ halfWidth;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00170}00170\ \ \ \ \ \ \ m\_cameraPosition.x\ =\ std::clamp(m\_cameraPosition.x,\ minX,\ maxX);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00171}00171\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00173}00173\ \ \ \ \ \textcolor{comment}{//\ x\ axis\ clamping}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (viewHeight\ >=\ m\_worldHeight)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00175}00175\ \ \ \ \ \ \ \textcolor{comment}{//\ view\ is\ taller\ than\ world,\ center\ camera\ on\ world\ y}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00176}00176\ \ \ \ \ \ \ m\_cameraPosition.y\ =\ worldCenterY;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00177}00177\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00178}00178\ \ \ \ \ \ \ \textcolor{comment}{//\ view\ is\ smaller,\ clamp\ position\ so\ edges\ stay\ within\ world}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00179}00179\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ minY\ \ \ \ \ \ \ \ \ =\ m\_worldBottom\ +\ halfHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00180}00180\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ maxY\ \ \ \ \ \ \ \ \ =\ m\_worldTop\ -\/\ halfHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00181}00181\ \ \ \ \ \ \ m\_cameraPosition.y\ =\ std::clamp(m\_cameraPosition.y,\ minY,\ maxY);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00182}00182\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00184}00184\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Camera\ pos:\ (\{\},\ \{\}),\ View:\ \{\}x\{\}"{}},}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_cameraPosition.x,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_cameraPosition.y,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ viewWidth,}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ viewHeight);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00189}00189\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8cpp_source_l00191}00191\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,51 @@
+\doxysection{ZEN\+\_\+\+Mouse\+Codes.\+h}
+\hypertarget{ZEN__MouseCodes_8h_source}{}\label{ZEN__MouseCodes_8h_source}\index{engine/zen/inputs/ZEN\_MouseCodes.h@{engine/zen/inputs/ZEN\_MouseCodes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00005}00005\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00006}00006\ \ \ \textcolor{keyword}{enum\ class}\ MouseButton\ :\ uint8\_t\ \{\ None\ =\ 0,\ Left\ =\ 1,\ Middle\ =\ 2,\ Right\ =\ 3,\ X1\ =\ 4,\ X2\ =\ 5\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00007}00007\ \ \ \textcolor{keyword}{enum\ class}\ MouseButtonState\ :\ uint32\_t\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00008}00008\ \ \ \ \ None\ \ \ =\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00009}00009\ \ \ \ \ Left\ \ \ =\ 1\ <<\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00010}00010\ \ \ \ \ Middle\ =\ 1\ <<\ 1,}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00011}00011\ \ \ \ \ Right\ \ =\ 1\ <<\ 2,}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00012}00012\ \ \ \ \ X1\ \ \ \ \ =\ 1\ <<\ 3,}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00013}00013\ \ \ \ \ X2\ \ \ \ \ =\ 1\ <<\ 4}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00014}00014\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00016}00016\ \ \ \textcolor{keyword}{constexpr}\ MouseButtonState\ operator|(MouseButtonState\ a,\ MouseButtonState\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}MouseButtonState\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(a)\ |\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00018}00018\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00020}00020\ \ \ \textcolor{keyword}{constexpr}\ MouseButtonState\ operator\&(MouseButtonState\ a,\ MouseButtonState\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}MouseButtonState\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(a)\ \&\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00022}00022\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00024}00024\ \ \ \textcolor{keyword}{constexpr}\ MouseButtonState\ \&operator|=(MouseButtonState\ \&a,\ MouseButtonState\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00025}00025\ \ \ \ \ a\ =\ a\ |\ b;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ a;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00027}00027\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00029}00029\ \ \ \textcolor{keyword}{constexpr}\ MouseButtonState\ mapSDLMouseStates(SDL\_MouseButtonFlags\ currentState)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00030}00030\ \ \ \ \ MouseButtonState\ states\ =\ MouseButtonState::None;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentState\ \&\ SDL\_BUTTON\_LMASK)}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00033}00033\ \ \ \ \ \ \ states\ |=\ MouseButtonState::Left;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentState\ \&\ SDL\_BUTTON\_MMASK)}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00035}00035\ \ \ \ \ \ \ states\ |=\ MouseButtonState::Middle;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentState\ \&\ SDL\_BUTTON\_RMASK)}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00037}00037\ \ \ \ \ \ \ states\ |=\ MouseButtonState::Right;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentState\ \&\ SDL\_BUTTON\_X1MASK)}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00039}00039\ \ \ \ \ \ \ states\ |=\ MouseButtonState::X1;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentState\ \&\ SDL\_BUTTON\_X2MASK)}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00041}00041\ \ \ \ \ \ \ states\ |=\ MouseButtonState::X2;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{return}\ states;}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00044}00044\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__MouseCodes_8h_source_l00045}00045\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,59 @@
+\doxysection{ZEN\+\_\+\+Linux\+Window.\+h}
+\hypertarget{ZEN__LinuxWindow_8h_source}{}\label{ZEN__LinuxWindow_8h_source}\index{engine/zen/platform/linux/ZEN\_LinuxWindow.h@{engine/zen/platform/linux/ZEN\_LinuxWindow.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Core.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Window.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_GraphicsContext.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00008}00008\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00009}00009\ \ \ \textcolor{comment}{//\ TEMP}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00010}\mbox{\hyperlink{structZen_1_1WindowData}{00010}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1WindowData}{WindowData}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00011}00011\ \ \ \ \ SDL\_Window\ *window;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00012}00012\ \ \ \ \ std::unique\_ptr<GraphicsContext>\ context;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00013}00013\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00015}\mbox{\hyperlink{classZen_1_1LinuxWindow}{00015}}\ \ \ \textcolor{keyword}{class\ }LinuxWindow\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZen_1_1Window}{Window}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00016}00016\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00017}00017\ \ \ \ \ LinuxWindow(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ \&properties);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~LinuxWindow();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{void}\ onUpdate()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00021}00021\ \ \ \ \ uint32\_t\ getWidth()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00022}00022\ \ \ \ \ uint32\_t\ getHeight()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setVSync(\textcolor{keywordtype}{bool}\ enabled)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ isVSyncEnabled()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleFullscreen()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{void}\ emitErrorMessage(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *message)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ TEMP}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowData}{WindowData}}\ \&getWindowData();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ \&getProperties();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ resizeEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ mouseClickEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordtype}{int}\ getPriority()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{void}\ *nativeWindow()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{classZen_1_1GraphicsContext}{GraphicsContext}}\ \&context()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classZen_1_1GraphicsContext}{GraphicsContext}}\ \&context()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00044}00044\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ init(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ \&properties);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00046}00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ shutdown();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ TEMP}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowData}{WindowData}}\ m\_windowData;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00051}00051\ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ m\_windowProperties;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00052}00052\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8h_source_l00053}00053\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

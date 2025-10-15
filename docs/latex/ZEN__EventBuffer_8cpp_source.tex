@@ -1,0 +1,59 @@
+\doxysection{ZEN\+\_\+\+Event\+Buffer.\+cpp}
+\hypertarget{ZEN__EventBuffer_8cpp_source}{}\label{ZEN__EventBuffer_8cpp_source}\index{engine/zen/events/ZEN\_EventBuffer.cpp@{engine/zen/events/ZEN\_EventBuffer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Event.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_EventBuffer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00006}00006\ \ \ \textcolor{keywordtype}{void}\ EventBuffer::enqueue(\mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00007}00007\ \ \ \ \ m\_buffer[m\_head]\ =\ event;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00009}00009\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_full)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00010}00010\ \ \ \ \ \ \ m\_tail\ =\ (m\_tail\ +\ 1)\ \%\ m\_maxCapacity;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00011}00011\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00013}00013\ \ \ \ \ m\_head\ =\ (m\_head\ +\ 1)\ \%\ m\_maxCapacity;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00014}00014\ \ \ \ \ m\_full\ =\ m\_head\ ==\ m\_tail;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00015}00015\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00017}00017\ \ \ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ EventBuffer::dequeue()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00019}00019\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00022}00022\ \ \ \ \ ZenEvent\ \textcolor{keyword}{event}\ =\ m\_buffer[m\_tail];}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00024}00024\ \ \ \ \ m\_full\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00025}00025\ \ \ \ \ m\_tail\ =\ (m\_tail\ +\ 1)\ \%\ m\_maxCapacity;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{return}\ event;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00028}00028\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00030}00030\ \ \ \textcolor{keywordtype}{void}\ EventBuffer::flush()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00031}00031\ \ \ \ \ m\_head\ =\ m\_tail;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00032}00032\ \ \ \ \ m\_full\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00033}00033\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00035}00035\ \ \ \textcolor{keywordtype}{bool}\ EventBuffer::isEmpty()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (!m\_full\ \&\&\ (m\_head\ ==\ m\_tail));\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00036}00036\ \ \ \textcolor{keywordtype}{bool}\ EventBuffer::isFull()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_full;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00038}00038\ \ \ \textcolor{keywordtype}{size\_t}\ EventBuffer::capacity()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_maxCapacity;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00039}00039\ \ \ \textcolor{keywordtype}{size\_t}\ EventBuffer::size()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ m\_maxCapacity;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_full)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00043}00043\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_head\ >=\ m\_tail)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ size\ =\ m\_head\ -\/\ m\_tail;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00045}00045\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ size\ =\ m\_maxCapacity\ +\ m\_head\ -\/\ m\_tail;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00047}00047\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{return}\ size;}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00051}00051\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EventBuffer_8cpp_source_l00053}00053\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,354 @@
+\doxysection{ZEN\+\_\+\+Key\+Codes.\+h}
+\hypertarget{ZEN__KeyCodes_8h_source}{}\label{ZEN__KeyCodes_8h_source}\index{engine/zen/inputs/ZEN\_KeyCodes.h@{engine/zen/inputs/ZEN\_KeyCodes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00005}00005\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00006}00006\ \ \ \textcolor{keyword}{enum\ class}\ KeyModifier\ :\ uint16\_t\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00007}00007\ \ \ \ \ None\ \ =\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00008}00008\ \ \ \ \ Shift\ =\ 1\ <<\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00009}00009\ \ \ \ \ Ctrl\ \ =\ 1\ <<\ 1,}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00010}00010\ \ \ \ \ Alt\ \ \ =\ 1\ <<\ 2,}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00011}00011\ \ \ \ \ Super\ =\ 1\ <<\ 3,}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00012}00012\ \ \ \ \ Caps\ \ =\ 1\ <<\ 4,}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00013}00013\ \ \ \ \ Num\ \ \ =\ 1\ <<\ 5}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00014}00014\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00016}00016\ \ \ \textcolor{keyword}{constexpr}\ KeyModifier\ operator|(KeyModifier\ a,\ KeyModifier\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}KeyModifier\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(a)\ |\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00018}00018\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00020}00020\ \ \ \textcolor{keyword}{constexpr}\ KeyModifier\ operator\&(KeyModifier\ a,\ KeyModifier\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}KeyModifier\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(a)\ \&\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00022}00022\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00024}00024\ \ \ \textcolor{keyword}{constexpr}\ KeyModifier\ \&operator|=(KeyModifier\ \&a,\ KeyModifier\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00025}00025\ \ \ \ \ a\ =\ a\ |\ b;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ a;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00027}00027\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00029}00029\ \ \ \textcolor{keyword}{constexpr}\ KeyModifier\ mapSDLMods(SDL\_Keymod\ currentMod)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00030}00030\ \ \ \ \ KeyModifier\ mods\ =\ KeyModifier::None;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentMod\ \&\ SDL\_KMOD\_SHIFT)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00033}00033\ \ \ \ \ \ \ mods\ |=\ KeyModifier::Shift;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentMod\ \&\ SDL\_KMOD\_CTRL)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00036}00036\ \ \ \ \ \ \ mods\ |=\ KeyModifier::Ctrl;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentMod\ \&\ SDL\_KMOD\_ALT)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00039}00039\ \ \ \ \ \ \ mods\ |=\ KeyModifier::Alt;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentMod\ \&\ SDL\_KMOD\_GUI)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00042}00042\ \ \ \ \ \ \ mods\ |=\ KeyModifier::Super;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentMod\ \&\ SDL\_KMOD\_CAPS)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00045}00045\ \ \ \ \ \ \ mods\ |=\ KeyModifier::Caps;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentMod\ \&\ SDL\_KMOD\_NUM)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00048}00048\ \ \ \ \ \ \ mods\ |=\ KeyModifier::Num;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{return}\ mods;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00052}00052\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00054}00054\ \ \ \textcolor{keyword}{using\ }ScanCode\ =\ std::uint16\_t;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00056}00056\ \ \ \textcolor{keyword}{namespace\ }Key\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00058}00058\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Unknown\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00060}00060\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ A\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00061}00061\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ B\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ C\ =\ 6;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D\ =\ 7;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00064}00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ E\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F\ =\ 9;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00066}00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ G\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00067}00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ H\ =\ 11;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00068}00068\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ I\ =\ 12;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00069}00069\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ J\ =\ 13;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00070}00070\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ K\ =\ 14;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ L\ =\ 15;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ M\ =\ 16;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00073}00073\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ N\ =\ 17;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00074}00074\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ O\ =\ 18;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00075}00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ P\ =\ 19;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00076}00076\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Q\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00077}00077\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ R\ =\ 21;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00078}00078\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ S\ =\ 22;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00079}00079\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ T\ =\ 23;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00080}00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ U\ =\ 24;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ V\ =\ 25;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00082}00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ W\ =\ 26;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00083}00083\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ X\ =\ 27;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00084}00084\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Y\ =\ 28;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00085}00085\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Z\ =\ 29;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ Number\ row\ (top\ digits)}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00088}00088\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D1\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00089}00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D2\ =\ 31;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00090}00090\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D3\ =\ 32;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00091}00091\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D4\ =\ 33;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00092}00092\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D5\ =\ 34;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00093}00093\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D6\ =\ 35;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00094}00094\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D7\ =\ 36;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00095}00095\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D8\ =\ 37;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00096}00096\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D9\ =\ 38;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00097}00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ D0\ =\ 39;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00099}00099\ \ \ \ \ \textcolor{comment}{//\ Controls\ /\ Punctuation}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00100}00100\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Enter\ \ \ \ \ \ \ \ =\ 40;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Escape\ \ \ \ \ \ \ =\ 41;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00102}00102\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Backspace\ \ \ \ =\ 42;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00103}00103\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Tab\ \ \ \ \ \ \ \ \ \ =\ 43;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00104}00104\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Space\ \ \ \ \ \ \ \ =\ 44;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00105}00105\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Minus\ \ \ \ \ \ \ \ =\ 45;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00106}00106\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Equals\ \ \ \ \ \ \ =\ 46;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00107}00107\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LeftBracket\ \ =\ 47;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00108}00108\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RightBracket\ =\ 48;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00109}00109\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Backslash\ \ \ \ =\ 49;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00110}00110\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ NonUSHash\ \ \ \ =\ 50;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00111}00111\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Semicolon\ \ \ \ =\ 51;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00112}00112\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Apostrophe\ \ \ =\ 52;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00113}00113\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Grave\ \ \ \ \ \ \ \ =\ 53;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00114}00114\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Comma\ \ \ \ \ \ \ \ =\ 54;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00115}00115\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Period\ \ \ \ \ \ \ =\ 55;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00116}00116\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Slash\ \ \ \ \ \ \ \ =\ 56;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00117}00117\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ CapsLock\ \ \ \ \ =\ 57;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00119}00119\ \ \ \ \ \textcolor{comment}{//\ Function\ keys}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00120}00120\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F1\ \ \ \ \ \ \ \ \ \ =\ 58;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00121}00121\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F2\ \ \ \ \ \ \ \ \ \ =\ 59;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00122}00122\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F3\ \ \ \ \ \ \ \ \ \ =\ 60;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00123}00123\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F4\ \ \ \ \ \ \ \ \ \ =\ 61;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00124}00124\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F5\ \ \ \ \ \ \ \ \ \ =\ 62;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00125}00125\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F6\ \ \ \ \ \ \ \ \ \ =\ 63;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00126}00126\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F7\ \ \ \ \ \ \ \ \ \ =\ 64;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00127}00127\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F8\ \ \ \ \ \ \ \ \ \ =\ 65;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00128}00128\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F9\ \ \ \ \ \ \ \ \ \ =\ 66;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00129}00129\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F10\ \ \ \ \ \ \ \ \ =\ 67;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00130}00130\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F11\ \ \ \ \ \ \ \ \ =\ 68;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00131}00131\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F12\ \ \ \ \ \ \ \ \ =\ 69;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ PrintScreen\ =\ 70;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00133}00133\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ ScrollLock\ \ =\ 71;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00134}00134\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Pause\ \ \ \ \ \ \ =\ 72;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00136}00136\ \ \ \ \ \textcolor{comment}{//\ Navigation\ /\ Editing}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00137}00137\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Insert\ \ \ =\ 73;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00138}00138\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Home\ \ \ \ \ =\ 74;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00139}00139\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ PageUp\ \ \ =\ 75;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00140}00140\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Delete\ \ \ =\ 76;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00141}00141\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ End\ \ \ \ \ \ =\ 77;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00142}00142\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ PageDown\ =\ 78;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00143}00143\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Right\ \ \ \ =\ 79;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00144}00144\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Left\ \ \ \ \ =\ 80;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00145}00145\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Down\ \ \ \ \ =\ 81;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00146}00146\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Up\ \ \ \ \ \ \ =\ 82;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00148}00148\ \ \ \ \ \textcolor{comment}{//\ Numpad\ (Keypad)}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00149}00149\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ NumLockClear\ =\ 83;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00150}00150\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpDivide\ \ \ \ \ =\ 84;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00151}00151\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMultiply\ \ \ =\ 85;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00152}00152\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMinus\ \ \ \ \ \ =\ 86;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00153}00153\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpPlus\ \ \ \ \ \ \ =\ 87;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00154}00154\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpEnter\ \ \ \ \ \ =\ 88;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00155}00155\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp1\ \ \ \ \ \ \ \ \ \ =\ 89;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00156}00156\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp2\ \ \ \ \ \ \ \ \ \ =\ 90;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00157}00157\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp3\ \ \ \ \ \ \ \ \ \ =\ 91;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00158}00158\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp4\ \ \ \ \ \ \ \ \ \ =\ 92;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00159}00159\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp5\ \ \ \ \ \ \ \ \ \ =\ 93;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00160}00160\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp6\ \ \ \ \ \ \ \ \ \ =\ 94;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00161}00161\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp7\ \ \ \ \ \ \ \ \ \ =\ 95;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00162}00162\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp8\ \ \ \ \ \ \ \ \ \ =\ 96;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00163}00163\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp9\ \ \ \ \ \ \ \ \ \ =\ 97;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00164}00164\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp0\ \ \ \ \ \ \ \ \ \ =\ 98;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00165}00165\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpPeriod\ \ \ \ \ =\ 99;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00167}00167\ \ \ \ \ \textcolor{comment}{//\ Misc\ /\ International}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00168}00168\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ NonUSBackslash\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00169}00169\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Application\ \ \ \ =\ 101;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00170}00170\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Power\ \ \ \ \ \ \ \ \ \ =\ 102;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00171}00171\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpEquals\ \ \ \ \ \ \ =\ 103;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00172}00172\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F13\ \ \ \ \ \ \ \ \ \ \ \ =\ 104;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00173}00173\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F14\ \ \ \ \ \ \ \ \ \ \ \ =\ 105;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00174}00174\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F15\ \ \ \ \ \ \ \ \ \ \ \ =\ 106;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00175}00175\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F16\ \ \ \ \ \ \ \ \ \ \ \ =\ 107;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00176}00176\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F17\ \ \ \ \ \ \ \ \ \ \ \ =\ 108;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00177}00177\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F18\ \ \ \ \ \ \ \ \ \ \ \ =\ 109;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00178}00178\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F19\ \ \ \ \ \ \ \ \ \ \ \ =\ 110;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00179}00179\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F20\ \ \ \ \ \ \ \ \ \ \ \ =\ 111;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00180}00180\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F21\ \ \ \ \ \ \ \ \ \ \ \ =\ 112;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00181}00181\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F22\ \ \ \ \ \ \ \ \ \ \ \ =\ 113;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00182}00182\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F23\ \ \ \ \ \ \ \ \ \ \ \ =\ 114;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00183}00183\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ F24\ \ \ \ \ \ \ \ \ \ \ \ =\ 115;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00184}00184\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Execute\ \ \ \ \ \ \ \ =\ 116;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00185}00185\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Help\ \ \ \ \ \ \ \ \ \ \ =\ 117;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00186}00186\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Menu\ \ \ \ \ \ \ \ \ \ \ =\ 118;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00187}00187\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Select\ \ \ \ \ \ \ \ \ =\ 119;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00188}00188\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Stop\ \ \ \ \ \ \ \ \ \ \ =\ 120;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00189}00189\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Again\ \ \ \ \ \ \ \ \ \ =\ 121;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00190}00190\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Undo\ \ \ \ \ \ \ \ \ \ \ =\ 122;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00191}00191\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Cut\ \ \ \ \ \ \ \ \ \ \ \ =\ 123;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00192}00192\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Copy\ \ \ \ \ \ \ \ \ \ \ =\ 124;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00193}00193\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Paste\ \ \ \ \ \ \ \ \ \ =\ 125;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00194}00194\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Find\ \ \ \ \ \ \ \ \ \ \ =\ 126;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00195}00195\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Mute\ \ \ \ \ \ \ \ \ \ \ =\ 127;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00196}00196\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ VolumeUp\ \ \ \ \ \ \ =\ 128;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00197}00197\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ VolumeDown\ \ \ \ \ =\ 129;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00199}00199\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpComma\ \ \ \ \ \ \ =\ 133;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00200}00200\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpEqualsAS400\ =\ 134;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00202}00202\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International1\ =\ 135;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00203}00203\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International2\ =\ 136;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00204}00204\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International3\ =\ 137;\ \textcolor{comment}{//\ Yen}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00205}00205\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International4\ =\ 138;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00206}00206\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International5\ =\ 139;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00207}00207\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International6\ =\ 140;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00208}00208\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International7\ =\ 141;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00209}00209\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International8\ =\ 142;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00210}00210\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ International9\ =\ 143;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00212}00212\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang1\ =\ 144;\ \textcolor{comment}{//\ Hangul/English}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00213}00213\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang2\ =\ 145;\ \textcolor{comment}{//\ Hanja}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00214}00214\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang3\ =\ 146;\ \textcolor{comment}{//\ Katakana}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00215}00215\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang4\ =\ 147;\ \textcolor{comment}{//\ Hiragana}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00216}00216\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang5\ =\ 148;\ \textcolor{comment}{//\ Zenkaku/Hankaku}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00217}00217\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang6\ =\ 149;\ \textcolor{comment}{//\ reserved}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00218}00218\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang7\ =\ 150;\ \textcolor{comment}{//\ reserved}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00219}00219\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang8\ =\ 151;\ \textcolor{comment}{//\ reserved}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00220}00220\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Lang9\ =\ 152;\ \textcolor{comment}{//\ reserved}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00222}00222\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AltErase\ \ \ =\ 153;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00223}00223\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ SysReq\ \ \ \ \ =\ 154;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00224}00224\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Cancel\ \ \ \ \ =\ 155;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00225}00225\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Clear\ \ \ \ \ \ =\ 156;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00226}00226\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Prior\ \ \ \ \ \ =\ 157;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00227}00227\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Return2\ \ \ \ =\ 158;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00228}00228\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Separator\ \ =\ 159;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00229}00229\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Out\ \ \ \ \ \ \ \ =\ 160;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00230}00230\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Oper\ \ \ \ \ \ \ =\ 161;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00231}00231\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ ClearAgain\ =\ 162;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00232}00232\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ CrSel\ \ \ \ \ \ =\ 163;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00233}00233\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ ExSel\ \ \ \ \ \ =\ 164;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00235}00235\ \ \ \ \ \textcolor{comment}{//\ Extended\ Keypad}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00236}00236\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 176;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00237}00237\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Kp000\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 177;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00238}00238\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ ThousandsSeparator\ =\ 178;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00239}00239\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ DecimalSeparator\ \ \ =\ 179;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00240}00240\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ CurrencyUnit\ \ \ \ \ \ \ =\ 180;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00241}00241\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ CurrencySubUnit\ \ \ \ =\ 181;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00242}00242\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpLeftParen\ \ \ \ \ \ \ \ =\ 182;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00243}00243\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpRightParen\ \ \ \ \ \ \ =\ 183;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00244}00244\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpLeftBrace\ \ \ \ \ \ \ \ =\ 184;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00245}00245\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpRightBrace\ \ \ \ \ \ \ =\ 185;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00246}00246\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpTab\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 186;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00247}00247\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpBackspace\ \ \ \ \ \ \ \ =\ 187;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00248}00248\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 188;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00249}00249\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 189;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00250}00250\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 190;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00251}00251\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 191;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00252}00252\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 192;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00253}00253\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 193;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00254}00254\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpXor\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 194;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00255}00255\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpPower\ \ \ \ \ \ \ \ \ \ \ \ =\ 195;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00256}00256\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpPercent\ \ \ \ \ \ \ \ \ \ =\ 196;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00257}00257\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpLess\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 197;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00258}00258\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpGreater\ \ \ \ \ \ \ \ \ \ =\ 198;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00259}00259\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpAmpersand\ \ \ \ \ \ \ \ =\ 199;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00260}00260\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpDblAmpersand\ \ \ \ \ =\ 200;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00261}00261\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpVerticalBar\ \ \ \ \ \ =\ 201;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00262}00262\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpDblVerticalBar\ \ \ =\ 202;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00263}00263\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpColon\ \ \ \ \ \ \ \ \ \ \ \ =\ 203;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00264}00264\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpHash\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 204;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00265}00265\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpSpace\ \ \ \ \ \ \ \ \ \ \ \ =\ 205;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00266}00266\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpAt\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 206;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00267}00267\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpExclam\ \ \ \ \ \ \ \ \ \ \ =\ 207;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00268}00268\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemStore\ \ \ \ \ \ \ \ \ =\ 208;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00269}00269\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemRecall\ \ \ \ \ \ \ \ =\ 209;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00270}00270\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemClear\ \ \ \ \ \ \ \ \ =\ 210;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00271}00271\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemAdd\ \ \ \ \ \ \ \ \ \ \ =\ 211;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00272}00272\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemSubtract\ \ \ \ \ \ =\ 212;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00273}00273\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemMultiply\ \ \ \ \ \ =\ 213;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00274}00274\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpMemDivide\ \ \ \ \ \ \ \ =\ 214;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00275}00275\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpPlusMinus\ \ \ \ \ \ \ \ =\ 215;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00276}00276\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpClear\ \ \ \ \ \ \ \ \ \ \ \ =\ 216;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00277}00277\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpClearEntry\ \ \ \ \ \ \ =\ 217;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00278}00278\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpBinary\ \ \ \ \ \ \ \ \ \ \ =\ 218;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00279}00279\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpOctal\ \ \ \ \ \ \ \ \ \ \ \ =\ 219;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00280}00280\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpDecimal\ \ \ \ \ \ \ \ \ \ =\ 220;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00281}00281\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ KpHexadecimal\ \ \ \ \ \ =\ 221;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00283}00283\ \ \ \ \ \textcolor{comment}{//\ Modifiers}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00284}00284\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LCtrl\ \ =\ 224;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00285}00285\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LShift\ =\ 225;\ \textcolor{comment}{//\ you\ already\ had\ this}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00286}00286\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LAlt\ \ \ =\ 226;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00287}00287\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LGUI\ \ \ =\ 227;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00288}00288\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RCtrl\ \ =\ 228;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00289}00289\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RShift\ =\ 229;\ \textcolor{comment}{//\ you\ already\ had\ this}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00290}00290\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RAlt\ \ \ =\ 230;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00291}00291\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RGUI\ \ \ =\ 231;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00293}00293\ \ \ \ \ \textcolor{comment}{//\ Mode\ (special\ modifier)}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00294}00294\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Mode\ =\ 257;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00296}00296\ \ \ \ \ \textcolor{comment}{//\ Consumer\ (USB\ page\ 0x0C)}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00297}00297\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Sleep\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 258;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00298}00298\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Wake\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 259;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00299}00299\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ ChannelIncrement\ \ \ =\ 260;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00300}00300\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ ChannelDecrement\ \ \ =\ 261;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00301}00301\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaPlay\ \ \ \ \ \ \ \ \ \ =\ 262;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00302}00302\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaPause\ \ \ \ \ \ \ \ \ =\ 263;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00303}00303\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaRecord\ \ \ \ \ \ \ \ =\ 264;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00304}00304\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaFastForward\ \ \ =\ 265;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00305}00305\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaRewind\ \ \ \ \ \ \ \ =\ 266;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00306}00306\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaNextTrack\ \ \ \ \ =\ 267;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00307}00307\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaPreviousTrack\ =\ 268;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00308}00308\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaStop\ \ \ \ \ \ \ \ \ \ =\ 269;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00309}00309\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaEject\ \ \ \ \ \ \ \ \ =\ 270;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00310}00310\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaPlayPause\ \ \ \ \ =\ 271;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00311}00311\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ MediaSelect\ \ \ \ \ \ \ \ =\ 272;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00312}00312\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_New\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 273;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00313}00313\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Open\ \ \ \ \ \ \ \ \ \ \ \ =\ 274;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00314}00314\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Close\ \ \ \ \ \ \ \ \ \ \ =\ 275;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00315}00315\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Exit\ \ \ \ \ \ \ \ \ \ \ \ =\ 276;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00316}00316\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Save\ \ \ \ \ \ \ \ \ \ \ \ =\ 277;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00317}00317\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Print\ \ \ \ \ \ \ \ \ \ \ =\ 278;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00318}00318\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Properties\ \ \ \ \ \ =\ 279;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00319}00319\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Search\ \ \ \ \ \ \ \ \ \ =\ 280;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00320}00320\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Home\ \ \ \ \ \ \ \ \ \ \ \ =\ 281;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00321}00321\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Back\ \ \ \ \ \ \ \ \ \ \ \ =\ 282;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00322}00322\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Forward\ \ \ \ \ \ \ \ \ =\ 283;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00323}00323\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Stop\ \ \ \ \ \ \ \ \ \ \ \ =\ 284;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00324}00324\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Refresh\ \ \ \ \ \ \ \ \ =\ 285;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00325}00325\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ AC\_Bookmarks\ \ \ \ \ \ \ =\ 286;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00327}00327\ \ \ \ \ \textcolor{comment}{//\ Mobile}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00328}00328\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ SoftLeft\ \ =\ 287;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00329}00329\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ SoftRight\ =\ 288;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00330}00330\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Call\ \ \ \ \ \ =\ 289;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00331}00331\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ EndCall\ \ \ =\ 290;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00333}00333\ \ \ \ \ \textcolor{comment}{//\ Reserved\ ranges\ /\ counters}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00334}00334\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Reserved\ =\ 400;\ \textcolor{comment}{//\ reserved\ for\ dynamic\ keycodes\ (400..500)}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00335}00335\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Count\ \ \ \ =\ 512;\ \textcolor{comment}{//\ not\ a\ key;\ size\ sentinel}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00337}00337\ \ \ \ \ \textcolor{comment}{//\ Useful\ aliases}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00338}00338\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ Return\ \ \ \ =\ Enter;\ \textcolor{comment}{//\ SDL\ name}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00339}00339\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LeftCtrl\ \ =\ LCtrl;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00340}00340\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LeftAlt\ \ \ =\ LAlt;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00341}00341\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ LeftGUI\ \ \ =\ LGUI;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00342}00342\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RightCtrl\ =\ RCtrl;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00343}00343\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RightAlt\ \ =\ RAlt;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00344}00344\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ ScanCode\ RightGUI\ \ =\ RGUI;}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00346}00346\ \ \ \}\ \textcolor{comment}{//\ namespace\ Key}}
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{ZEN__KeyCodes_8h_source_l00348}00348\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

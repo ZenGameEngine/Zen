@@ -1,0 +1,174 @@
+\doxysection{Zenith Class Reference}
+\hypertarget{classZenith}{}\label{classZenith}\index{Zenith@{Zenith}}
+Inheritance diagram for Zenith\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classZenith}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classZen_1_1Application_ae18b534436edbf87465df39ec63fd748}{run}} ()
+\item 
+bool \mbox{\hyperlink{classZen_1_1Application_a84f80709c445e9e12877e7b26304938d}{on\+Event}} (const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&event) override
+\item 
+void \mbox{\hyperlink{classZen_1_1Application_a0e407ea1ed0e58acac24ead9cf1d2a7d}{on\+Update}} (\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}} delta\+Time)
+\item 
+void \mbox{\hyperlink{classZen_1_1Application_ab0ea90f03bb82b16a404fd56f62bbb3e}{push\+Layer}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}layer)
+\item 
+void \mbox{\hyperlink{classZen_1_1Application_a47a9a9dfd95e41d4b4d75a5396b5ab2c}{push\+Overlay}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}overlay)
+\item 
+void \mbox{\hyperlink{classZen_1_1Application_a831904813b5d25b7c0ed6f954b78b645}{pop\+Layer}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}layer)
+\item 
+void \mbox{\hyperlink{classZen_1_1Application_ad89f339aaf3c3770fe1b7ea153a951b7}{pop\+Overlay}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}overlay)
+\item 
+\mbox{\hyperlink{classZen_1_1Window}{Window}} \& \mbox{\hyperlink{classZen_1_1Application_aa5fd6922fc043e27ec8f1b7cb663b443}{get\+Window}} ()
+\item 
+int \mbox{\hyperlink{classZen_1_1Application_a2be67f7c27984d24d1d37f9b5b564483}{get\+Priority}} () const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classZen_1_1Application}{Application}} \& \mbox{\hyperlink{classZen_1_1Application_ac3f1f362c197888cbec73551a6bc4bd2}{get}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{Zenith_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{Zenith_8cpp_source}{Zenith.\+cpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZenith_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZenith_a80a6a8a792eef49f82c1c20434491e84}\index{Zenith@{Zenith}!Zenith@{Zenith}}
+\index{Zenith@{Zenith}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{Zenith()}{Zenith()}}
+{\footnotesize\ttfamily \label{classZenith_a80a6a8a792eef49f82c1c20434491e84} 
+Zenith\+::\+Zenith (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Zenith_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{Zenith_8cpp_source}{Zenith.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZenith_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Application_ac3f1f362c197888cbec73551a6bc4bd2}\index{Zenith@{Zenith}!get@{get}}
+\index{get@{get}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_ac3f1f362c197888cbec73551a6bc4bd2} 
+\mbox{\hyperlink{classZen_1_1Application}{Application}} \& Zen\+::\+Application\+::get (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_a2be67f7c27984d24d1d37f9b5b564483}\index{Zenith@{Zenith}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_a2be67f7c27984d24d1d37f9b5b564483} 
+int Zen\+::\+Application\+::get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_aa5fd6922fc043e27ec8f1b7cb663b443}\index{Zenith@{Zenith}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_aa5fd6922fc043e27ec8f1b7cb663b443} 
+\mbox{\hyperlink{classZen_1_1Window}{Window}} \& Zen\+::\+Application\+::get\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00110}{110}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_a84f80709c445e9e12877e7b26304938d}\index{Zenith@{Zenith}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_a84f80709c445e9e12877e7b26304938d} 
+bool Zen\+::\+Application\+::on\+Event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_a0e407ea1ed0e58acac24ead9cf1d2a7d}\index{Zenith@{Zenith}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{onUpdate()}{onUpdate()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_a0e407ea1ed0e58acac24ead9cf1d2a7d} 
+void Zen\+::\+Application\+::on\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}}}]{delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_a831904813b5d25b7c0ed6f954b78b645}\index{Zenith@{Zenith}!popLayer@{popLayer}}
+\index{popLayer@{popLayer}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{popLayer()}{popLayer()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_a831904813b5d25b7c0ed6f954b78b645} 
+void Zen\+::\+Application\+::pop\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{layer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_ad89f339aaf3c3770fe1b7ea153a951b7}\index{Zenith@{Zenith}!popOverlay@{popOverlay}}
+\index{popOverlay@{popOverlay}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{popOverlay()}{popOverlay()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_ad89f339aaf3c3770fe1b7ea153a951b7} 
+void Zen\+::\+Application\+::pop\+Overlay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{overlay}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00103}{103}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_ab0ea90f03bb82b16a404fd56f62bbb3e}\index{Zenith@{Zenith}!pushLayer@{pushLayer}}
+\index{pushLayer@{pushLayer}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{pushLayer()}{pushLayer()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_ab0ea90f03bb82b16a404fd56f62bbb3e} 
+void Zen\+::\+Application\+::push\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{layer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_a47a9a9dfd95e41d4b4d75a5396b5ab2c}\index{Zenith@{Zenith}!pushOverlay@{pushOverlay}}
+\index{pushOverlay@{pushOverlay}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{pushOverlay()}{pushOverlay()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_a47a9a9dfd95e41d4b4d75a5396b5ab2c} 
+void Zen\+::\+Application\+::push\+Overlay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{overlay}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00092}{92}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+\Hypertarget{classZen_1_1Application_ae18b534436edbf87465df39ec63fd748}\index{Zenith@{Zenith}!run@{run}}
+\index{run@{run}!Zenith@{Zenith}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classZen_1_1Application_ae18b534436edbf87465df39ec63fd748} 
+void Zen\+::\+Application\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Application_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{ZEN__Application_8cpp_source}{ZEN\+\_\+\+Application.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+editor/src/Zenith.\+cpp\end{DoxyCompactItemize}

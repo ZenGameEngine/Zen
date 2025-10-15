@@ -1,0 +1,41 @@
+\doxysection{ZEN\+\_\+\+Open\+GLVertex\+Array.\+h}
+\hypertarget{ZEN__OpenGLVertexArray_8h_source}{}\label{ZEN__OpenGLVertexArray_8h_source}\index{engine/zen/platform/OpenGL/ZEN\_OpenGLVertexArray.h@{engine/zen/platform/OpenGL/ZEN\_OpenGLVertexArray.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_VertexArray.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00007}00007\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00008}\mbox{\hyperlink{classZen_1_1OpenGLVertexArray}{00008}}\ \textcolor{keyword}{class\ }OpenGLVertexArray\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZen_1_1VertexArray}{VertexArray}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00009}00009\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00010}00010\ \ \ \ \ OpenGLVertexArray();}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~OpenGLVertexArray()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00017}00017\ \ \ \ \ addVertexBuffer(\textcolor{keyword}{const}\ std::shared\_ptr<VertexBuffer>\ \&vertexBuffer)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00019}00019\ \ \ \ \ setIndexBuffer(\textcolor{keyword}{const}\ std::shared\_ptr<IndexBuffer>\ \&indexBuffer)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<std::shared\_ptr<VertexBuffer>>\ \&}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00022}00022\ \ \ \ \ getVertexBuffers()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_vertexBuffers;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::shared\_ptr<IndexBuffer>\ \&getIndexBuffer()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_indexBuffer;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00029}00029\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00030}00030\ \ \ \ \ uint32\_t\ m\_rendererID;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00032}00032\ \ \ \ \ std::vector<std::shared\_ptr<VertexBuffer>>\ m\_vertexBuffers;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00033}00033\ \ \ \ \ std::shared\_ptr<IndexBuffer>\ m\_indexBuffer;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00034}00034\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8h_source_l00035}00035\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,75 @@
+\doxysection{ZEN\+\_\+\+Particle\+Test\+Layer.\+cpp}
+\hypertarget{ZEN__ParticleTestLayer_8cpp_source}{}\label{ZEN__ParticleTestLayer_8cpp_source}\index{engine/zen/particles/ZEN\_ParticleTestLayer.cpp@{engine/zen/particles/ZEN\_ParticleTestLayer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <glm/gtc/random.hpp>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <glm/gtc/type\_ptr.hpp>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <include/imgui/imgui.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/particles/ZEN\_ParticleTestLayer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_RenderCommand.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_Renderer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00009}00009\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00010}00010\ \ \ \textcolor{keywordtype}{void}\ ParticleTestLayer::onAttach()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00011}00011\ \ \ \ \ glEnable(GL\_BLEND);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00012}00012\ \ \ \ \ glBlendFunc(GL\_SRC\_ALPHA,\ GL\_ONE\_MINUS\_SRC\_ALPHA);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00014}00014\ \ \ \ \ m\_camera.setPosition(\{0.0f,\ 0.0f,\ 0.0f\});}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00015}00015\ \ \ \ \ m\_camera.setOrthographic(-\/10.0f,\ 10.0f,\ -\/5.625f,\ 5.625f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00017}00017\ \ \ \ \ m\_ps\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ std::make\_unique<ParticleSystem>(2000);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00018}00018\ \ \ \ \ m\_particle.position\ \ \ \ =\ \{0.0f,\ 0.0f\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00019}00019\ \ \ \ \ m\_particle.velocity\ \ \ \ =\ \{(float)(((rand()\ \%\ 400)\ /\ 100.0)\ -\/\ 2.0),}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (float)(((rand()\ \%\ 300)\ /\ 100.0)\ +\ 2.0)\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00021}00021\ \ \ \ \ m\_particle.lifeTime\ \ \ \ =\ 3.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00022}00022\ \ \ \ \ m\_particle.sizeBegin\ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00023}00023\ \ \ \ \ m\_particle.sizeEnd\ \ \ \ \ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00024}00024\ \ \ \ \ m\_particle.colourBegin\ =\ \{1.0f,\ 0.7f,\ 0.3f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00025}00025\ \ \ \ \ m\_particle.colourEnd\ \ \ =\ \{1.0f,\ 0.2f,\ 0.0f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00026}00026\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00028}00028\ \ \ \textcolor{keywordtype}{void}\ ParticleTestLayer::onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00029}00029\ \ \ \ \ m\_cameraController.onUpdate(deltaTime);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00030}00030\ \ \ \ \ RenderCommand::setClearColour(\{0.1f,\ 0.1f,\ 0.1f,\ 1.0f\});}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00031}00031\ \ \ \ \ RenderCommand::clear();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordtype}{float}\ rate\ \ \ =\ m\_spawnRate;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{float}\ period\ =\ 1.0f\ /\ glm::max(rate,\ 0.001f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00036}00036\ \ \ \ \ m\_emitAccumulator\ +=\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{while}\ (m\_emitAccumulator\ >\ period)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00038}00038\ \ \ \ \ \ \ m\_particle.velocity\ =\ \{(float)(((rand()\ \%\ 400)\ /\ 100.0)\ -\/\ 2.0),}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (float)(((rand()\ \%\ 300)\ /\ 100.0)\ +\ 2.0)\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00040}00040\ \ \ \ \ \ \ m\_ps-\/>emit(m\_particle);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00041}00041\ \ \ \ \ \ \ m\_emitAccumulator\ -\/=\ period;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00044}00044\ \ \ \ \ m\_ps-\/>update(deltaTime);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00045}00045\ \ \ \ \ m\_ps-\/>upload();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00047}00047\ \ \ \ \ Renderer::beginScene(m\_camera);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00048}00048\ \ \ \ \ Renderer::submit(m\_ps-\/>shader(),\ m\_ps-\/>vao());}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00049}00049\ \ \ \ \ Renderer::endScene();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00050}00050\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00052}00052\ \ \ \textcolor{keywordtype}{bool}\ ParticleTestLayer::onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ m\_cameraController.onEvent(event);}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00055}00055\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00057}00057\ \ \ \textcolor{keywordtype}{void}\ ParticleTestLayer::onGUIRender()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00058}00058\ \ \ \ \ ImGui::Begin(\textcolor{stringliteral}{"{}Particle\ Settings"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00059}00059\ \ \ \ \ ImGui::ColorEdit4(\textcolor{stringliteral}{"{}Birth\ Color"{}},\ glm::value\_ptr(m\_particle.colourBegin));}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00060}00060\ \ \ \ \ ImGui::ColorEdit4(\textcolor{stringliteral}{"{}Death\ Color"{}},\ glm::value\_ptr(m\_particle.colourEnd));}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (ImGui::DragFloat(\textcolor{stringliteral}{"{}Lifetime"{}},\ \&m\_particle.lifeTime,\ 0.1f,\ 0.01f,\ 1000.0f))\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00062}00062\ \ \ \ \ \ \ m\_ps-\/>clear();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00064}00064\ \ \ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Size\ (beginning)"{}},\ \&m\_particle.sizeBegin,\ 0.1f,\ 0.1f,\ 100.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00065}00065\ \ \ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Size\ (end)"{}},\ \&m\_particle.sizeEnd,\ 0.1f,\ 0.0f,\ 100.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00066}00066\ \ \ \ \ ImGui::DragFloat(\textcolor{stringliteral}{"{}Spawn\ Rate\ (p/s)"{}},\ \&m\_spawnRate,\ 1.0f,\ 1.0f,\ 1000.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00067}00067\ \ \ \ \ ImGui::End();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00068}00068\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8cpp_source_l00069}00069\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

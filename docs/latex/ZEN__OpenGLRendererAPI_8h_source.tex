@@ -1,0 +1,22 @@
+\doxysection{ZEN\+\_\+\+Open\+GLRenderer\+API.\+h}
+\hypertarget{ZEN__OpenGLRendererAPI_8h_source}{}\label{ZEN__OpenGLRendererAPI_8h_source}\index{engine/zen/platform/OpenGL/ZEN\_OpenGLRendererAPI.h@{engine/zen/platform/OpenGL/ZEN\_OpenGLRendererAPI.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_RendererAPI.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00007}00007\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00008}\mbox{\hyperlink{classZen_1_1OpenGLRendererAPI}{00008}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1OpenGLRendererAPI}{OpenGLRendererAPI}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZen_1_1RendererAPI}{RendererAPI}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00009}00009\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{void}\ setClearColour(\textcolor{keyword}{const}\ glm::vec4\ \&colour)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{void}\ clear()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00012}00012\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{void}\ drawIndexed(\textcolor{keyword}{const}\ std::shared\_ptr<VertexArray>\ \&vertexArray)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{void}\ setViewport(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00015}00015\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLRendererAPI_8h_source_l00016}00016\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,32 @@
+\doxysection{ZEN\+\_\+\+Image.\+h}
+\hypertarget{ZEN__Image_8h_source}{}\label{ZEN__Image_8h_source}\index{engine/zen/textures/ZEN\_Image.h@{engine/zen/textures/ZEN\_Image.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00005}00005\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00006}\mbox{\hyperlink{structZen_1_1Image}{00006}}\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }Image\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *data\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{unsigned}\ char;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00008}00008\ \ \ \ \ uint32\_t\ width\{0\};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00009}00009\ \ \ \ \ uint32\_t\ height\{0\};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filePath;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00012}00012\ \ \ \ \ Image()\ \{\};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00013}00013\ \ \ \ \ Image(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *data,\ uint32\_t\ width,\ uint32\_t\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filePath)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00014}00014\ \ \ \ \ \ \ this-\/>data\ \ \ \ \ =\ data;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00015}00015\ \ \ \ \ \ \ this-\/>width\ \ \ \ =\ width;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00016}00016\ \ \ \ \ \ \ this-\/>height\ \ \ =\ height;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00017}00017\ \ \ \ \ \ \ this-\/>filePath\ =\ filePath;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00018}00018\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00020}00020\ \ \ \ \ \string~Image()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00021}00021\ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>data;}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00022}00022\ \ \ \ \ \ \ this-\/>data\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00023}00023\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00025}00025\ \ \ \}\ \mbox{\hyperlink{structZen_1_1Image}{Image}};}
+\DoxyCodeLine{\Hypertarget{ZEN__Image_8h_source_l00026}00026\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

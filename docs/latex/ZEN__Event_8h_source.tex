@@ -1,0 +1,107 @@
+\doxysection{ZEN\+\_\+\+Event.\+h}
+\hypertarget{ZEN__Event_8h_source}{}\label{ZEN__Event_8h_source}\index{engine/zen/events/ZEN\_Event.h@{engine/zen/events/ZEN\_Event.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/inputs/ZEN\_KeyCodes.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/inputs/ZEN\_MouseCodes.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00008}00008\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00009}00009\ \ \ \textcolor{keyword}{enum\ class}\ EventType\ :\ uint8\_t\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00010}00010\ \ \ \ \ None\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00011}00011\ \ \ \ \ WindowClose,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowResize}{WindowResize}},}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00013}00013\ \ \ \ \ WindowFocus,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00014}00014\ \ \ \ \ WindowLostFocus,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00015}00015\ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowMoved}{WindowMoved}},}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00016}00016\ \ \ \ \ KeyPressed,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00017}00017\ \ \ \ \ KeyReleased,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00018}00018\ \ \ \ \ MouseButtonPressed,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00019}00019\ \ \ \ \ MouseButtonReleased,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00020}00020\ \ \ \ \ MouseMoved,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00021}00021\ \ \ \ \ MouseScrolled,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00022}00022\ \ \ \ \ TextInput,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00023}00023\ \ \ \ \ Quit}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00024}00024\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00026}00026\ \ \ \textcolor{keyword}{enum\ class}\ EventCategory\ :\ uint32\_t\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00027}00027\ \ \ \ \ None\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{classZen_1_1Application}{Application}}\ =\ 1\ <<\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{classZen_1_1Input}{Input}}\ \ \ \ \ \ \ =\ 1\ <<\ 1,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00030}00030\ \ \ \ \ Keyboard\ \ \ \ =\ 1\ <<\ 2,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00031}00031\ \ \ \ \ Mouse\ \ \ \ \ \ \ =\ 1\ <<\ 3,}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00032}00032\ \ \ \ \ Text\ \ \ \ \ \ \ \ =\ 1\ <<\ 4}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00033}00033\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00035}00035\ \ \ \textcolor{keyword}{constexpr}\ EventCategory\ operator|(EventCategory\ a,\ EventCategory\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{return}\ EventCategory((uint32\_t)a\ |\ (uint32\_t)b);}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00037}00037\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00039}00039\ \ \ \textcolor{keyword}{constexpr}\ EventCategory\ operator\&(EventCategory\ a,\ EventCategory\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{return}\ EventCategory((uint32\_t)a\ \&\ (uint32\_t)b);}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00041}00041\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00043}00043\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ any(EventCategory\ c,\ EventCategory\ mask)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{return}\ ((uint32\_t)c\ \&\ (uint32\_t)mask)\ !=\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00045}00045\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00047}00047\ \ \ \textcolor{comment}{//\ FOR\ EVENT\ TYPE\ PAYLOAD\ STUFF}}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00048}\mbox{\hyperlink{structZen_1_1EventHeader}{00048}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1EventHeader}{EventHeader}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00049}00049\ \ \ \ \ EventType\ type;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00050}00050\ \ \ \ \ EventCategory\ category;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00051}00051\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00053}\mbox{\hyperlink{structZen_1_1WindowResize}{00053}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1WindowResize}{WindowResize}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{int}\ width,\ height;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00055}00055\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00057}\mbox{\hyperlink{structZen_1_1WindowMoved}{00057}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1WindowMoved}{WindowMoved}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00059}00059\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00061}\mbox{\hyperlink{structZen_1_1KeyPayload}{00061}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1KeyPayload}{KeyPayload}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00062}00062\ \ \ \ \ ScanCode\ scancode;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ repeat;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00064}00064\ \ \ \ \ KeyModifier\ mods;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00065}00065\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00067}\mbox{\hyperlink{structZen_1_1MouseMovePayload}{00067}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1MouseMovePayload}{MouseMovePayload}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y,\ dx,\ dy;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00069}00069\ \ \ \ \ MouseButtonState\ state;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00070}00070\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00072}\mbox{\hyperlink{structZen_1_1MouseButtonPayload}{00072}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1MouseButtonPayload}{MouseButtonPayload}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00073}00073\ \ \ \ \ MouseButton\ button;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00074}00074\ \ \ \ \ uint8\_t\ clicks;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00075}00075\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00076}00076\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00078}\mbox{\hyperlink{structZen_1_1MouseWheelPayload}{00078}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1MouseWheelPayload}{MouseWheelPayload}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y,\ pos\_x,\ pos\_y;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00080}00080\ \ \ \ \ \textcolor{keywordtype}{int}\ scrl\_length,\ scrl\_height;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00081}00081\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00083}\mbox{\hyperlink{structZen_1_1TextInputPayload}{00083}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1TextInputPayload}{TextInputPayload}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{char32\_t}\ codepoint;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00085}00085\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00087}\mbox{\hyperlink{structZen_1_1ZenEvent}{00087}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00088}00088\ \ \ \ \ \mbox{\hyperlink{structZen_1_1EventHeader}{EventHeader}}\ header;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00089}00089\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00090}00090\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowResize}{WindowResize}}\ windowResize;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00091}00091\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1WindowMoved}{WindowMoved}}\ windowMoved;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00092}00092\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1KeyPayload}{KeyPayload}}\ key;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00093}00093\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1MouseMovePayload}{MouseMovePayload}}\ mouseMove;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00094}00094\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1MouseButtonPayload}{MouseButtonPayload}}\ mouseButton;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00095}00095\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1MouseWheelPayload}{MouseWheelPayload}}\ mouseWheel;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00096}00096\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1TextInputPayload}{TextInputPayload}}\ textInput;}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00097}00097\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00098}00098\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00100}00100\ \ \ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ TranslateEvent(\textcolor{keyword}{const}\ SDL\_Event\ \&e);}
+\DoxyCodeLine{\Hypertarget{ZEN__Event_8h_source_l00101}00101\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

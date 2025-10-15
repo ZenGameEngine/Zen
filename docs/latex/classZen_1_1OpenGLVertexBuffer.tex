@@ -1,0 +1,151 @@
+\doxysection{Zen\+::Open\+GLVertex\+Buffer Class Reference}
+\hypertarget{classZen_1_1OpenGLVertexBuffer}{}\label{classZen_1_1OpenGLVertexBuffer}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+Inheritance diagram for Zen\+::Open\+GLVertex\+Buffer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classZen_1_1OpenGLVertexBuffer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer_a7d357c939beb45f1fdd136f8ba3f88b4}{Open\+GLVertex\+Buffer}} (float \texorpdfstring{$\ast$}{*}vertices, uint32\+\_\+t size)
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer_a2a13319dc25bde9dff609e5344f07dc1}{bind}} () const override
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer_a6679ee2ba99f1ba6725fa848e002be23}{unbind}} () const override
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer_a10b6d556b4b95dffeb6c542cd3c1f317}{set\+Data}} (const void \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t size) override
+\item 
+virtual const \mbox{\hyperlink{classZen_1_1BufferLayout}{Buffer\+Layout}} \& \mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer_aca0525c10dc3d69b470246cf105fc656}{get\+Layout}} () const override
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer_abd1df3d7adbf6ea57c859f28676e39d5}{set\+Layout}} (const \mbox{\hyperlink{classZen_1_1BufferLayout}{Buffer\+Layout}} \&layout) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classZen_1_1VertexBuffer}{Vertex\+Buffer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classZen_1_1VertexBuffer_ad397b7ed319812650aacd4b843c67941}{Create}} (float \texorpdfstring{$\ast$}{*}vertices, uint32\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8h_source_l00006}{6}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8h_source}{ZEN\+\_\+\+Open\+GLBuffer.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_a7d357c939beb45f1fdd136f8ba3f88b4}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!OpenGLVertexBuffer@{OpenGLVertexBuffer}}
+\index{OpenGLVertexBuffer@{OpenGLVertexBuffer}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{OpenGLVertexBuffer()}{OpenGLVertexBuffer()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_a7d357c939beb45f1fdd136f8ba3f88b4} 
+Zen\+::\+Open\+GLVertex\+Buffer\+::\+Open\+GLVertex\+Buffer (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{vertices}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source}{ZEN\+\_\+\+Open\+GLBuffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_a90671398b2448e85e32cf937e8d9dd6e}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!````~OpenGLVertexBuffer@{\texorpdfstring{$\sim$}{\string~}OpenGLVertexBuffer}}
+\index{````~OpenGLVertexBuffer@{\texorpdfstring{$\sim$}{\string~}OpenGLVertexBuffer}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}OpenGLVertexBuffer()}{\string~OpenGLVertexBuffer()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_a90671398b2448e85e32cf937e8d9dd6e} 
+Zen\+::\+Open\+GLVertex\+Buffer\+::\texorpdfstring{$\sim$}{\string~}\+Open\+GLVertex\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source}{ZEN\+\_\+\+Open\+GLBuffer.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_a2a13319dc25bde9dff609e5344f07dc1}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!bind@{bind}}
+\index{bind@{bind}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_a2a13319dc25bde9dff609e5344f07dc1} 
+void Zen\+::\+Open\+GLVertex\+Buffer\+::bind (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1VertexBuffer}{Zen\+::\+Vertex\+Buffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source}{ZEN\+\_\+\+Open\+GLBuffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1VertexBuffer_ad397b7ed319812650aacd4b843c67941}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!Create@{Create}}
+\index{Create@{Create}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{classZen_1_1VertexBuffer_ad397b7ed319812650aacd4b843c67941} 
+\mbox{\hyperlink{classZen_1_1VertexBuffer}{Vertex\+Buffer}} \texorpdfstring{$\ast$}{*} Zen\+::\+Vertex\+Buffer\+::\+Create (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{vertices}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Buffer_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{ZEN__Buffer_8cpp_source}{ZEN\+\_\+\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_aca0525c10dc3d69b470246cf105fc656}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!getLayout@{getLayout}}
+\index{getLayout@{getLayout}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{getLayout()}{getLayout()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_aca0525c10dc3d69b470246cf105fc656} 
+virtual const \mbox{\hyperlink{classZen_1_1BufferLayout}{Buffer\+Layout}} \& Zen\+::\+Open\+GLVertex\+Buffer\+::get\+Layout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1VertexBuffer}{Zen\+::\+Vertex\+Buffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8h_source_l00016}{16}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8h_source}{ZEN\+\_\+\+Open\+GLBuffer.\+h}}.
+
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_a10b6d556b4b95dffeb6c542cd3c1f317}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!setData@{setData}}
+\index{setData@{setData}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{setData()}{setData()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_a10b6d556b4b95dffeb6c542cd3c1f317} 
+void Zen\+::\+Open\+GLVertex\+Buffer\+::set\+Data (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1VertexBuffer}{Zen\+::\+Vertex\+Buffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source}{ZEN\+\_\+\+Open\+GLBuffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_abd1df3d7adbf6ea57c859f28676e39d5}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!setLayout@{setLayout}}
+\index{setLayout@{setLayout}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{setLayout()}{setLayout()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_abd1df3d7adbf6ea57c859f28676e39d5} 
+virtual void Zen\+::\+Open\+GLVertex\+Buffer\+::set\+Layout (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classZen_1_1BufferLayout}{Buffer\+Layout}} \&}]{layout}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1VertexBuffer}{Zen\+::\+Vertex\+Buffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8h_source_l00017}{17}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8h_source}{ZEN\+\_\+\+Open\+GLBuffer.\+h}}.
+
+\Hypertarget{classZen_1_1OpenGLVertexBuffer_a6679ee2ba99f1ba6725fa848e002be23}\index{Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}!unbind@{unbind}}
+\index{unbind@{unbind}!Zen::OpenGLVertexBuffer@{Zen::OpenGLVertexBuffer}}
+\doxysubsubsection{\texorpdfstring{unbind()}{unbind()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLVertexBuffer_a6679ee2ba99f1ba6725fa848e002be23} 
+void Zen\+::\+Open\+GLVertex\+Buffer\+::unbind (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1VertexBuffer}{Zen\+::\+Vertex\+Buffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{ZEN__OpenGLBuffer_8cpp_source}{ZEN\+\_\+\+Open\+GLBuffer.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/platform/\+Open\+GL/ZEN\+\_\+\+Open\+GLBuffer.\+h\item 
+engine/zen/platform/\+Open\+GL/ZEN\+\_\+\+Open\+GLBuffer.\+cpp\end{DoxyCompactItemize}

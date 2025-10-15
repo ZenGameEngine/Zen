@@ -1,0 +1,80 @@
+\doxysection{ZEN\+\_\+\+Open\+GLVertex\+Array.\+cpp}
+\hypertarget{ZEN__OpenGLVertexArray_8cpp_source}{}\label{ZEN__OpenGLVertexArray_8cpp_source}\index{engine/zen/platform/OpenGL/ZEN\_OpenGLVertexArray.cpp@{engine/zen/platform/OpenGL/ZEN\_OpenGLVertexArray.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/platform/OpenGL/ZEN\_OpenGLVertexArray.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00004}00004\ \textcolor{keyword}{static}\ GLenum\ ShaderDataTypeToOpenGLBaseType(ShaderDataType\ type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_FLOAT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float2:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_FLOAT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float3:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_FLOAT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float4:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_FLOAT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Mat3:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_FLOAT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Mat4:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_FLOAT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_INT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int2:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_INT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int3:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_INT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int4:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_INT;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Bool:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GL\_BOOL;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00033}00033\ OpenGLVertexArray::OpenGLVertexArray()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00034}00034\ \ \ \ \ glCreateVertexArrays(1,\ \&m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00037}00037\ OpenGLVertexArray::\string~OpenGLVertexArray()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00038}00038\ \ \ \ \ glDeleteVertexArrays(1,\ \&m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00041}00041\ \textcolor{keywordtype}{void}\ OpenGLVertexArray::bind()\textcolor{keyword}{\ const\ }\{\ glBindVertexArray(m\_rendererID);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00042}00042\ \textcolor{keywordtype}{void}\ OpenGLVertexArray::unbind()\textcolor{keyword}{\ const\ }\{\ glBindVertexArray(0);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00043}00043\ \textcolor{keywordtype}{void}\ OpenGLVertexArray::addVertexBuffer(}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<VertexBuffer>\ \&vertexBuffer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00045}00045\ \ \ \ \ glBindVertexArray(m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00046}00046\ \ \ \ \ vertexBuffer-\/>bind();}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00048}00048\ \ \ \ \ uint32\_t\ index\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&layout\ =\ vertexBuffer-\/>getLayout();}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&element\ :\ layout)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ glEnableVertexAttribArray(index);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ glVertexAttribPointer(index,\ element.GetComponentCount(),}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ShaderDataTypeToOpenGLBaseType(element.type),}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element.isNormalized\ ?\ GL\_TRUE\ :\ GL\_FALSE,}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ layout.getStride(),\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *)element.offset);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}index:\{\},\ component\ count:\ \{\},\ type:\{\},\ normalized;\{\},\ "{}}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stride:\{\},\ offset:\{\}"{}},}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index,\ element.GetComponentCount(),}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ShaderDataTypeToOpenGLBaseType(element.type),}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element.isNormalized,\ layout.getStride(),}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *)element.offset);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00065}00065\ \ \ \ \ m\_vertexBuffers.push\_back(vertexBuffer);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00067}00067\ \textcolor{keywordtype}{void}\ OpenGLVertexArray::setIndexBuffer(}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<IndexBuffer>\ \&indexBuffer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00069}00069\ \ \ \ \ glBindVertexArray(m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00070}00070\ \ \ \ \ indexBuffer-\/>bind();}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00071}00071\ \ \ \ \ m\_indexBuffer\ =\ indexBuffer;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00072}00072\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLVertexArray_8cpp_source_l00074}00074\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

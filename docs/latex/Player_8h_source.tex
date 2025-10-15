@@ -1,0 +1,39 @@
+\doxysection{Player.\+h}
+\hypertarget{Player_8h_source}{}\label{Player_8h_source}\index{editor/src/Player.h@{editor/src/Player.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <particles/ZEN\_ParticleSystem.h>}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/time/ZEN\_DeltaTime.h>}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00006}\mbox{\hyperlink{classPlayer}{00006}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlayer}{Player}}\ \{}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00007}00007\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00008}00008\ \ \ glm::vec2\ pos\{0.0f,\ 0.0f\};}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00009}00009\ \ \ \textcolor{keywordtype}{float}\ vy\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00011}00011\ \ \ \textcolor{keywordtype}{float}\ gravity\ \ \ \ =\ -\/50.0f;\ \textcolor{comment}{//\ units/s\string^2}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00012}00012\ \ \ \textcolor{keywordtype}{float}\ jumpPower\ \ =\ 18.0f;\ \ \textcolor{comment}{//\ units/s}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00013}00013\ \ \ \textcolor{keywordtype}{float}\ width\ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00014}00014\ \ \ \textcolor{keywordtype}{float}\ height\ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00015}00015\ \ \ glm::vec4\ colour\ =\ \{1.0f,\ 0.0f,\ 0.0f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00017}00017\ \ \ \mbox{\hyperlink{structZen_1_1ParticleEmitter}{Zen::ParticleEmitter}}\ emitter\{}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00018}00018\ \ \ \ \ \ \ \{0,\ 0\},}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00019}00019\ \ \ \ \ \ \ \{1,\ 1\},}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00020}00020\ \ \ \ \ \ \ \{1,\ 1,\ 1,\ 1\}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00021}00021\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00023}00023\ \ \ \textcolor{keywordtype}{bool}\ onGround()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00024}00024\ \ \ \textcolor{keywordtype}{void}\ update(\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen::DeltaTime}}\ deltaTime,\ \textcolor{keywordtype}{bool}\ jumpPressed);}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00026}00026\ \ \ \textcolor{keywordtype}{bool}\ wasOnGround()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_wasOnGround;\ \}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00027}00027\ \ \ \textcolor{keywordtype}{bool}\ justJumped()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_justJumped;\ \}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00028}00028\ \ \ glm::vec2\ getSize()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \{width,\ height\};\ \}}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00030}00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00031}00031\ \ \ \textcolor{keywordtype}{bool}\ m\_wasOnGround\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00032}00032\ \ \ \textcolor{keywordtype}{bool}\ m\_justJumped\ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Player_8h_source_l00033}00033\ \};}
+
+\end{DoxyCode}

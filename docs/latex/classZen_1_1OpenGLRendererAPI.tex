@@ -1,0 +1,130 @@
+\doxysection{Zen\+::Open\+GLRenderer\+API Class Reference}
+\hypertarget{classZen_1_1OpenGLRendererAPI}{}\label{classZen_1_1OpenGLRendererAPI}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+Inheritance diagram for Zen\+::Open\+GLRenderer\+API\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classZen_1_1OpenGLRendererAPI}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class {\bfseries API} \{ {\bfseries None} = 0
+, {\bfseries Open\+GL} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_a57a53f2bc4385c8b47e35dff3b8cdae4}{set\+Clear\+Colour}} (const glm\+::vec4 \&colour) override
+\item 
+void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_a5bb6a2d8e54aad502f6ef24f217b5b01}{clear}} () override
+\item 
+void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_a891b31591aacdd1df7bb8ec579918436}{draw\+Indexed}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1VertexArray}{Vertex\+Array}} $>$ \&vertex\+Array) override
+\item 
+void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_abd42af107d437d300e5c685013d662e3}{set\+Viewport}} (int width, int height) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static API \mbox{\hyperlink{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90}{get\+API}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8h_source_l00008}{8}} of file \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8h_source}{ZEN\+\_\+\+Open\+GLRenderer\+API.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{classZen_1_1OpenGLRendererAPI_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!API@{API}}
+\index{API@{API}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+\doxysubsubsection{\texorpdfstring{API}{API}}
+{\footnotesize\ttfamily \label{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b} 
+enum class Zen\+::\+Renderer\+API\+::\+API\hspace{0.3cm}{\ttfamily [strong]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00010}{10}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1OpenGLRendererAPI_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1OpenGLRendererAPI_a5bb6a2d8e54aad502f6ef24f217b5b01}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!clear@{clear}}
+\index{clear@{clear}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLRendererAPI_a5bb6a2d8e54aad502f6ef24f217b5b01} 
+void Zen\+::\+Open\+GLRenderer\+API\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source}{ZEN\+\_\+\+Open\+GLRenderer\+API.\+cpp}}.
+
+\Hypertarget{classZen_1_1OpenGLRendererAPI_a891b31591aacdd1df7bb8ec579918436}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!drawIndexed@{drawIndexed}}
+\index{drawIndexed@{drawIndexed}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+\doxysubsubsection{\texorpdfstring{drawIndexed()}{drawIndexed()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLRendererAPI_a891b31591aacdd1df7bb8ec579918436} 
+void Zen\+::\+Open\+GLRenderer\+API\+::draw\+Indexed (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1VertexArray}{Vertex\+Array}} $>$ \&}]{vertex\+Array}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source}{ZEN\+\_\+\+Open\+GLRenderer\+API.\+cpp}}.
+
+\Hypertarget{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!getAPI@{getAPI}}
+\index{getAPI@{getAPI}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+\doxysubsubsection{\texorpdfstring{getAPI()}{getAPI()}}
+{\footnotesize\ttfamily \label{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90} 
+API Zen\+::\+Renderer\+API\+::get\+API (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00020}{20}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+
+\Hypertarget{classZen_1_1OpenGLRendererAPI_a57a53f2bc4385c8b47e35dff3b8cdae4}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!setClearColour@{setClearColour}}
+\index{setClearColour@{setClearColour}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+\doxysubsubsection{\texorpdfstring{setClearColour()}{setClearColour()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLRendererAPI_a57a53f2bc4385c8b47e35dff3b8cdae4} 
+void Zen\+::\+Open\+GLRenderer\+API\+::set\+Clear\+Colour (\begin{DoxyParamCaption}\item[{const glm\+::vec4 \&}]{colour}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source}{ZEN\+\_\+\+Open\+GLRenderer\+API.\+cpp}}.
+
+\Hypertarget{classZen_1_1OpenGLRendererAPI_abd42af107d437d300e5c685013d662e3}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!setViewport@{setViewport}}
+\index{setViewport@{setViewport}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
+\doxysubsubsection{\texorpdfstring{setViewport()}{setViewport()}}
+{\footnotesize\ttfamily \label{classZen_1_1OpenGLRendererAPI_abd42af107d437d300e5c685013d662e3} 
+void Zen\+::\+Open\+GLRenderer\+API\+::set\+Viewport (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source}{ZEN\+\_\+\+Open\+GLRenderer\+API.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/platform/\+Open\+GL/ZEN\+\_\+\+Open\+GLRenderer\+API.\+h\item 
+engine/zen/platform/\+Open\+GL/ZEN\+\_\+\+Open\+GLRenderer\+API.\+cpp\end{DoxyCompactItemize}

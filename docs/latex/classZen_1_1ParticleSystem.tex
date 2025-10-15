@@ -1,0 +1,148 @@
+\doxysection{Zen\+::Particle\+System Class Reference}
+\hypertarget{classZen_1_1ParticleSystem}{}\label{classZen_1_1ParticleSystem}\index{Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1ParticleSystem_a36832b0e9e5f467e3f2c2a0eb470ce24}{Particle\+System}} (size\+\_\+t max\+Particles=1000)
+\item 
+void \mbox{\hyperlink{classZen_1_1ParticleSystem_abe15d05f8f3d4469f721219beebb882e}{emit}} (const \mbox{\hyperlink{structZen_1_1ParticleProps}{Particle\+Props}} \&props)
+\item 
+void \mbox{\hyperlink{classZen_1_1ParticleSystem_a4f3911e8e60c3984bc1eafdc006b6c18}{update}} (\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}} delta\+Time)
+\item 
+void \mbox{\hyperlink{classZen_1_1ParticleSystem_a94744a0a4e28252f1b174a76c5119cd9}{upload}} ()
+\item 
+void \mbox{\hyperlink{classZen_1_1ParticleSystem_a39c2b10222fdc40ee1d83eda62dc558f}{clear}} ()
+\item 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1VertexArray}{Vertex\+Array}} $>$ \& \mbox{\hyperlink{classZen_1_1ParticleSystem_a38404f438e09c13a8516985af0146479}{vao}} () const
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Shader}{Shader}} $>$ \& \mbox{\hyperlink{classZen_1_1ParticleSystem_a78087f352da06628836a2656166a894a}{shader}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classZen_1_1ParticleSystem_a6fd5135a485e90d17347c3193b13c905}{capacity}} () const
+\item 
+void \mbox{\hyperlink{classZen_1_1ParticleSystem_ae9f70354f368e9904e0e9b60e5d2c754}{update\+Emitter}} (\mbox{\hyperlink{structZen_1_1ParticleEmitter}{Particle\+Emitter}} \&emitter, \mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}} delta\+Time)
+\item 
+void \mbox{\hyperlink{classZen_1_1ParticleSystem_a78fcba20582e046b624b1e8a3b0d9703}{update\+Emitters}} (std\+::vector$<$ \mbox{\hyperlink{structZen_1_1ParticleEmitter}{Particle\+Emitter}} $>$ \&emitters, \mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}} delta\+Time)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8h_source_l00079}{79}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8h_source}{ZEN\+\_\+\+Particle\+System.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1ParticleSystem_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1ParticleSystem_a36832b0e9e5f467e3f2c2a0eb470ce24}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\index{ParticleSystem@{ParticleSystem}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{ParticleSystem()}{ParticleSystem()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a36832b0e9e5f467e3f2c2a0eb470ce24} 
+Zen\+::\+Particle\+System\+::\+Particle\+System (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{max\+Particles}{ = {\ttfamily 1000}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1ParticleSystem_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1ParticleSystem_a6fd5135a485e90d17347c3193b13c905}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!capacity@{capacity}}
+\index{capacity@{capacity}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a6fd5135a485e90d17347c3193b13c905} 
+size\+\_\+t Zen\+::\+Particle\+System\+::capacity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8h_source_l00093}{93}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8h_source}{ZEN\+\_\+\+Particle\+System.\+h}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_a39c2b10222fdc40ee1d83eda62dc558f}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!clear@{clear}}
+\index{clear@{clear}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a39c2b10222fdc40ee1d83eda62dc558f} 
+void Zen\+::\+Particle\+System\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00105}{105}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_abe15d05f8f3d4469f721219beebb882e}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!emit@{emit}}
+\index{emit@{emit}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emit()}{emit()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_abe15d05f8f3d4469f721219beebb882e} 
+void Zen\+::\+Particle\+System\+::emit (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1ParticleProps}{Particle\+Props}} \&}]{props}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_a78087f352da06628836a2656166a894a}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!shader@{shader}}
+\index{shader@{shader}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{shader()}{shader()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a78087f352da06628836a2656166a894a} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Shader}{Shader}} $>$ \& Zen\+::\+Particle\+System\+::shader (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8h_source_l00091}{91}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8h_source}{ZEN\+\_\+\+Particle\+System.\+h}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_a4f3911e8e60c3984bc1eafdc006b6c18}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!update@{update}}
+\index{update@{update}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a4f3911e8e60c3984bc1eafdc006b6c18} 
+void Zen\+::\+Particle\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}}}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_ae9f70354f368e9904e0e9b60e5d2c754}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!updateEmitter@{updateEmitter}}
+\index{updateEmitter@{updateEmitter}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{updateEmitter()}{updateEmitter()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_ae9f70354f368e9904e0e9b60e5d2c754} 
+void Zen\+::\+Particle\+System\+::update\+Emitter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structZen_1_1ParticleEmitter}{Particle\+Emitter}} \&}]{emitter}{, }\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}}}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_a78fcba20582e046b624b1e8a3b0d9703}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!updateEmitters@{updateEmitters}}
+\index{updateEmitters@{updateEmitters}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{updateEmitters()}{updateEmitters()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a78fcba20582e046b624b1e8a3b0d9703} 
+void Zen\+::\+Particle\+System\+::update\+Emitters (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structZen_1_1ParticleEmitter}{Particle\+Emitter}} $>$ \&}]{emitters}{, }\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}}}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00128}{128}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_a94744a0a4e28252f1b174a76c5119cd9}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!upload@{upload}}
+\index{upload@{upload}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{upload()}{upload()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a94744a0a4e28252f1b174a76c5119cd9} 
+void Zen\+::\+Particle\+System\+::upload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8cpp_source}{ZEN\+\_\+\+Particle\+System.\+cpp}}.
+
+\Hypertarget{classZen_1_1ParticleSystem_a38404f438e09c13a8516985af0146479}\index{Zen::ParticleSystem@{Zen::ParticleSystem}!vao@{vao}}
+\index{vao@{vao}!Zen::ParticleSystem@{Zen::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{vao()}{vao()}}
+{\footnotesize\ttfamily \label{classZen_1_1ParticleSystem_a38404f438e09c13a8516985af0146479} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1VertexArray}{Vertex\+Array}} $>$ \& Zen\+::\+Particle\+System\+::vao (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__ParticleSystem_8h_source_l00090}{90}} of file \mbox{\hyperlink{ZEN__ParticleSystem_8h_source}{ZEN\+\_\+\+Particle\+System.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/particles/ZEN\+\_\+\+Particle\+System.\+h\item 
+engine/zen/particles/ZEN\+\_\+\+Particle\+System.\+cpp\end{DoxyCompactItemize}

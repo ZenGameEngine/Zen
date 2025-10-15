@@ -1,0 +1,45 @@
+\doxysection{ZEN\+\_\+\+Open\+GLBuffer.\+cpp}
+\hypertarget{ZEN__OpenGLBuffer_8cpp_source}{}\label{ZEN__OpenGLBuffer_8cpp_source}\index{engine/zen/platform/OpenGL/ZEN\_OpenGLBuffer.cpp@{engine/zen/platform/OpenGL/ZEN\_OpenGLBuffer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/platform/OpenGL/ZEN\_OpenGLBuffer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00004}00004\ \ \ \textcolor{comment}{//\ Vertex\ Buffer}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00005}00005\ \ \ OpenGLVertexBuffer::OpenGLVertexBuffer(\textcolor{keywordtype}{float}\ *vertices,\ uint32\_t\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00006}00006\ \ \ \ \ glCreateBuffers(1,\ \&m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00007}00007\ \ \ \ \ glBindBuffer(GL\_ARRAY\_BUFFER,\ m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00008}00008\ \ \ \ \ glBufferData(GL\_ARRAY\_BUFFER,\ size,\ vertices,\ GL\_STATIC\_DRAW);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00009}00009\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00011}00011\ \ \ OpenGLVertexBuffer::\string~OpenGLVertexBuffer()\ \{\ glDeleteBuffers(1,\ \&m\_rendererID);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00013}00013\ \ \ \textcolor{keywordtype}{void}\ OpenGLVertexBuffer::bind()\textcolor{keyword}{\ const\ }\{\ glBindBuffer(GL\_ARRAY\_BUFFER,\ m\_rendererID);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00014}00014\ \ \ \textcolor{keywordtype}{void}\ OpenGLVertexBuffer::unbind()\textcolor{keyword}{\ const\ }\{\ glBindBuffer(GL\_ARRAY\_BUFFER,\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00016}00016\ \ \ \textcolor{keywordtype}{void}\ OpenGLVertexBuffer::setData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ uint32\_t\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00017}00017\ \ \ \ \ glBindBuffer(GL\_ARRAY\_BUFFER,\ m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00018}00018\ \ \ \ \ glBufferSubData(GL\_ARRAY\_BUFFER,\ 0,\ size,\ data);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00019}00019\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00021}00021\ \ \ \textcolor{comment}{//\ Index\ Buffer}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00022}00022\ \ \ OpenGLIndexBuffer::OpenGLIndexBuffer(uint32\_t\ *indices,\ uint32\_t\ count)\ :\ m\_count(count)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00023}00023\ \ \ \ \ glCreateBuffers(1,\ \&m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00024}00024\ \ \ \ \ glBindBuffer(GL\_ELEMENT\_ARRAY\_BUFFER,\ m\_rendererID);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00025}00025\ \ \ \ \ glBufferData(GL\_ELEMENT\_ARRAY\_BUFFER,\ count\ *\ \textcolor{keyword}{sizeof}(uint32\_t),\ indices,\ GL\_STATIC\_DRAW);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00026}00026\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00028}00028\ \ \ OpenGLIndexBuffer::\string~OpenGLIndexBuffer()\ \{\ glDeleteBuffers(1,\ \&m\_rendererID);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00030}00030\ \ \ \textcolor{keywordtype}{void}\ OpenGLIndexBuffer::bind()\textcolor{keyword}{\ const\ }\{\ glBindBuffer(GL\_ELEMENT\_ARRAY\_BUFFER,\ m\_rendererID);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00031}00031\ \ \ \textcolor{keywordtype}{void}\ OpenGLIndexBuffer::unbind()\textcolor{keyword}{\ const\ }\{\ glBindBuffer(GL\_ELEMENT\_ARRAY\_BUFFER,\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00033}00033\ \ \ uint32\_t\ OpenGLIndexBuffer::getCount()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ ZEN\_LOG\_INFO("{}Index\ count:\ \{\}"{},\ m\_count);}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_count;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00036}00036\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00038}00038\ \ \ \textcolor{keywordtype}{void}\ OpenGLIndexBuffer::setCount(uint32\_t\ count)\ \{\ m\_count\ =\ count;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8cpp_source_l00039}00039\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

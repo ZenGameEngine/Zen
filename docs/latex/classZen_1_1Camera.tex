@@ -1,0 +1,256 @@
+\doxysection{Zen\+::Camera Class Reference}
+\hypertarget{classZen_1_1Camera}{}\label{classZen_1_1Camera}\index{Zen::Camera@{Zen::Camera}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1Camera_aece83ea04e4a66f390de87a8ab0c2795}{Camera}} (Camera\+Type type=Camera\+Type\+::\+Orthographic)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_aefb0d6f3477ab1b576e2f0839dc5221c}{set\+Camera\+Type}} (Camera\+Type type)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_a5d6641c640e5548b412d08bb7defedf8}{set\+Perspective}} (float fov, float aspect, float near, float far)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_ab61c78ede778116db2835772d91eb56a}{set\+Orthographic}} (float left, float right, float bottom, float top)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_ac4011dfbf4861f71b88f6d8caaf166db}{set\+Aspect\+Ratio}} (float aspect)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_a69e54247590f6dcc82ea1fd376f3e4ac}{set\+Clip}} (float near, float far)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_aeb0c71f53ee9c7a606a012508cb746da}{set\+Position}} (const glm\+::vec3 \&position)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_a1e01eec5961d460734724948985db4a4}{set\+Rotation}} (float yaw, float pitch, float roll)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_aae07538d64e1b7c2a15a7deb8a35f608}{set\+Speed}} (float speed)
+\item 
+void \mbox{\hyperlink{classZen_1_1Camera_abcf478d0d301bf25dd8fa2e898dfe4c5}{set\+Sensitivity}} (float sensitivity)
+\item 
+Camera\+Type \mbox{\hyperlink{classZen_1_1Camera_a44af167c4ec02d6623f2f18f8764e535}{type}} () const
+\item 
+const glm\+::vec3 \& \mbox{\hyperlink{classZen_1_1Camera_ae88ba9ad757e79f3272ad0da78a351f2}{position}} () const
+\item 
+glm\+::vec3 \mbox{\hyperlink{classZen_1_1Camera_a930a51aa61b8b2dc89487b9dd88eec8a}{rotation}} () const
+\item 
+float \mbox{\hyperlink{classZen_1_1Camera_aa23153321be10476a5c2e74fd3337f64}{speed}} () const
+\item 
+float \mbox{\hyperlink{classZen_1_1Camera_aa29cb8a74ebd519f9fa14a69207e6269}{sensitivity}} () const
+\item 
+float \mbox{\hyperlink{classZen_1_1Camera_abc5988c1e2c6b9c14bbe7a141704ef4b}{aspect\+Ratio}} () const
+\item 
+const glm\+::mat4 \& \mbox{\hyperlink{classZen_1_1Camera_a2d2cb446dc44522803d9855ec34a9ecb}{projection\+Matrix}} () const
+\item 
+const glm\+::mat4 \& \mbox{\hyperlink{classZen_1_1Camera_afae4f884b5d28ced1d652aacf2738a49}{view\+Matrix}} () const
+\item 
+glm\+::mat4 \mbox{\hyperlink{classZen_1_1Camera_a471c0cf49bb0d6a602a9603af4e24d35}{view\+Projection\+Matrix}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8h_source_l00011}{11}} of file \mbox{\hyperlink{ZEN__Camera_8h_source}{ZEN\+\_\+\+Camera.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1Camera_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1Camera_aece83ea04e4a66f390de87a8ab0c2795}\index{Zen::Camera@{Zen::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_aece83ea04e4a66f390de87a8ab0c2795} 
+Zen\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{Camera\+Type}]{type}{ = {\ttfamily CameraType\+:\+:Orthographic}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1Camera_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Camera_abc5988c1e2c6b9c14bbe7a141704ef4b}\index{Zen::Camera@{Zen::Camera}!aspectRatio@{aspectRatio}}
+\index{aspectRatio@{aspectRatio}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{aspectRatio()}{aspectRatio()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_abc5988c1e2c6b9c14bbe7a141704ef4b} 
+float Zen\+::\+Camera\+::aspect\+Ratio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_ae88ba9ad757e79f3272ad0da78a351f2}\index{Zen::Camera@{Zen::Camera}!position@{position}}
+\index{position@{position}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{position()}{position()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_ae88ba9ad757e79f3272ad0da78a351f2} 
+const glm\+::vec3 \& Zen\+::\+Camera\+::position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a2d2cb446dc44522803d9855ec34a9ecb}\index{Zen::Camera@{Zen::Camera}!projectionMatrix@{projectionMatrix}}
+\index{projectionMatrix@{projectionMatrix}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{projectionMatrix()}{projectionMatrix()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a2d2cb446dc44522803d9855ec34a9ecb} 
+const glm\+::mat4 \& Zen\+::\+Camera\+::projection\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a930a51aa61b8b2dc89487b9dd88eec8a}\index{Zen::Camera@{Zen::Camera}!rotation@{rotation}}
+\index{rotation@{rotation}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{rotation()}{rotation()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a930a51aa61b8b2dc89487b9dd88eec8a} 
+glm\+::vec3 Zen\+::\+Camera\+::rotation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_aa29cb8a74ebd519f9fa14a69207e6269}\index{Zen::Camera@{Zen::Camera}!sensitivity@{sensitivity}}
+\index{sensitivity@{sensitivity}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{sensitivity()}{sensitivity()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_aa29cb8a74ebd519f9fa14a69207e6269} 
+float Zen\+::\+Camera\+::sensitivity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_ac4011dfbf4861f71b88f6d8caaf166db}\index{Zen::Camera@{Zen::Camera}!setAspectRatio@{setAspectRatio}}
+\index{setAspectRatio@{setAspectRatio}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setAspectRatio()}{setAspectRatio()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_ac4011dfbf4861f71b88f6d8caaf166db} 
+void Zen\+::\+Camera\+::set\+Aspect\+Ratio (\begin{DoxyParamCaption}\item[{float}]{aspect}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_aefb0d6f3477ab1b576e2f0839dc5221c}\index{Zen::Camera@{Zen::Camera}!setCameraType@{setCameraType}}
+\index{setCameraType@{setCameraType}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setCameraType()}{setCameraType()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_aefb0d6f3477ab1b576e2f0839dc5221c} 
+void Zen\+::\+Camera\+::set\+Camera\+Type (\begin{DoxyParamCaption}\item[{Camera\+Type}]{type}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a69e54247590f6dcc82ea1fd376f3e4ac}\index{Zen::Camera@{Zen::Camera}!setClip@{setClip}}
+\index{setClip@{setClip}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setClip()}{setClip()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a69e54247590f6dcc82ea1fd376f3e4ac} 
+void Zen\+::\+Camera\+::set\+Clip (\begin{DoxyParamCaption}\item[{float}]{near}{, }\item[{float}]{far}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_ab61c78ede778116db2835772d91eb56a}\index{Zen::Camera@{Zen::Camera}!setOrthographic@{setOrthographic}}
+\index{setOrthographic@{setOrthographic}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setOrthographic()}{setOrthographic()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_ab61c78ede778116db2835772d91eb56a} 
+void Zen\+::\+Camera\+::set\+Orthographic (\begin{DoxyParamCaption}\item[{float}]{left}{, }\item[{float}]{right}{, }\item[{float}]{bottom}{, }\item[{float}]{top}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a5d6641c640e5548b412d08bb7defedf8}\index{Zen::Camera@{Zen::Camera}!setPerspective@{setPerspective}}
+\index{setPerspective@{setPerspective}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setPerspective()}{setPerspective()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a5d6641c640e5548b412d08bb7defedf8} 
+void Zen\+::\+Camera\+::set\+Perspective (\begin{DoxyParamCaption}\item[{float}]{fov}{, }\item[{float}]{aspect}{, }\item[{float}]{near}{, }\item[{float}]{far}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_aeb0c71f53ee9c7a606a012508cb746da}\index{Zen::Camera@{Zen::Camera}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_aeb0c71f53ee9c7a606a012508cb746da} 
+void Zen\+::\+Camera\+::set\+Position (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a1e01eec5961d460734724948985db4a4}\index{Zen::Camera@{Zen::Camera}!setRotation@{setRotation}}
+\index{setRotation@{setRotation}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setRotation()}{setRotation()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a1e01eec5961d460734724948985db4a4} 
+void Zen\+::\+Camera\+::set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{yaw}{, }\item[{float}]{pitch}{, }\item[{float}]{roll}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_abcf478d0d301bf25dd8fa2e898dfe4c5}\index{Zen::Camera@{Zen::Camera}!setSensitivity@{setSensitivity}}
+\index{setSensitivity@{setSensitivity}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setSensitivity()}{setSensitivity()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_abcf478d0d301bf25dd8fa2e898dfe4c5} 
+void Zen\+::\+Camera\+::set\+Sensitivity (\begin{DoxyParamCaption}\item[{float}]{sensitivity}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_aae07538d64e1b7c2a15a7deb8a35f608}\index{Zen::Camera@{Zen::Camera}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_aae07538d64e1b7c2a15a7deb8a35f608} 
+void Zen\+::\+Camera\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00067}{67}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_aa23153321be10476a5c2e74fd3337f64}\index{Zen::Camera@{Zen::Camera}!speed@{speed}}
+\index{speed@{speed}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{speed()}{speed()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_aa23153321be10476a5c2e74fd3337f64} 
+float Zen\+::\+Camera\+::speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a44af167c4ec02d6623f2f18f8764e535}\index{Zen::Camera@{Zen::Camera}!type@{type}}
+\index{type@{type}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a44af167c4ec02d6623f2f18f8764e535} 
+Camera\+Type Zen\+::\+Camera\+::type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_afae4f884b5d28ced1d652aacf2738a49}\index{Zen::Camera@{Zen::Camera}!viewMatrix@{viewMatrix}}
+\index{viewMatrix@{viewMatrix}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{viewMatrix()}{viewMatrix()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_afae4f884b5d28ced1d652aacf2738a49} 
+const glm\+::mat4 \& Zen\+::\+Camera\+::view\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00085}{85}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+\Hypertarget{classZen_1_1Camera_a471c0cf49bb0d6a602a9603af4e24d35}\index{Zen::Camera@{Zen::Camera}!viewProjectionMatrix@{viewProjectionMatrix}}
+\index{viewProjectionMatrix@{viewProjectionMatrix}!Zen::Camera@{Zen::Camera}}
+\doxysubsubsection{\texorpdfstring{viewProjectionMatrix()}{viewProjectionMatrix()}}
+{\footnotesize\ttfamily \label{classZen_1_1Camera_a471c0cf49bb0d6a602a9603af4e24d35} 
+glm\+::mat4 Zen\+::\+Camera\+::view\+Projection\+Matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Camera_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{ZEN__Camera_8cpp_source}{ZEN\+\_\+\+Camera.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/camera/ZEN\+\_\+\+Camera.\+h\item 
+engine/zen/camera/ZEN\+\_\+\+Camera.\+cpp\end{DoxyCompactItemize}

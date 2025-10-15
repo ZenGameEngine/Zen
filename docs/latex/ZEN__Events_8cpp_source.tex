@@ -1,0 +1,58 @@
+\doxysection{ZEN\+\_\+\+Events.\+cpp}
+\hypertarget{ZEN__Events_8cpp_source}{}\label{ZEN__Events_8cpp_source}\index{engine/zen/events/ZEN\_Events.cpp@{engine/zen/events/ZEN\_Events.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Events.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00004}00004\ \ \ \textcolor{keywordtype}{void}\ EventsDispatcher::dispatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&l\ :\ m\_listeners)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00006}00006\ \ \ \ \ \ \ EventListener\ *eventListener\ =\ l.listener\_ptr;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00007}00007\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (eventListener\ \&\&\ eventListener-\/>onEvent(event))\ \{\ \textcolor{comment}{//\ if\ not\ null\ and\ if\ onEvent\ ==\ true}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00009}00009\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00010}00010\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00011}00011\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00013}00013\ \ \ \textcolor{keywordtype}{void}\ EventsDispatcher::registerListener(\mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ *newListener)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (!newListener)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00015}00015\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ m\_listeners.begin();}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{auto}\ end\ \ \ =\ m\_listeners.end();}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ p\ =\ newListener-\/>getPriority();}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{auto}\ duplicate\ =\ std::find\_if(start,\ end,\ [newListener](Listener\ \&l)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00024}00024\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ newListener\ ==\ l.listener\_ptr;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00025}00025\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (duplicate\ !=\ end)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00027}00027\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{auto}\ position\ =\ std::find\_if(start,\ end,\ [p](\textcolor{keyword}{const}\ Listener\ \&l)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00031}00031\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p\ >\ l.listener\_ptr-\/>getPriority();}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00032}00032\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00033}00033\ \ \ \ \ m\_listeners.insert(position,\ Listener(p,\ newListener));}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00034}00034\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00036}00036\ \ \ \textcolor{keywordtype}{void}\ EventsDispatcher::unregisterListener(\mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ *targetListener)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (!targetListener)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00038}00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ m\_listeners.begin();}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{auto}\ end\ \ \ =\ m\_listeners.end();}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ std::find\_if(start,\ end,\ [targetListener](Listener\ \&l)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00045}00045\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ targetListener\ ==\ l.listener\_ptr;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00046}00046\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ end)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00048}00048\ \ \ \ \ \ \ m\_listeners.erase(it);}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00050}00050\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8cpp_source_l00052}00052\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

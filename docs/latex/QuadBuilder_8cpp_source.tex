@@ -1,0 +1,50 @@
+\doxysection{Quad\+Builder.\+cpp}
+\hypertarget{QuadBuilder_8cpp_source}{}\label{QuadBuilder_8cpp_source}\index{editor/src/QuadBuilder.cpp@{editor/src/QuadBuilder.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}QuadBuilder.h"{}}}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <ZEN\_Shader.h>}}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <glm/gtc/constants.hpp>}}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00007}00007\ \textcolor{keyword}{using\ namespace\ }Zen;}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00009}00009\ \textcolor{keywordtype}{void}\ QuadBuilder::init(std::shared\_ptr<Shader>\ shader)\ \{}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00011}00011\ \ \ m\_shader\ =\ shader;}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00013}00013\ \ \ m\_vao.reset(VertexArray::Create());}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00015}00015\ \ \ m\_vbo.reset(VertexBuffer::Create(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{sizeof}(QuadVertex)\ *\ 4));}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00016}00016\ \ \ m\_vbo-\/>setLayout(\{}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00017}00017\ \ \ \ \ \ \ \{ShaderDataType::Float2,\ \textcolor{stringliteral}{"{}a\_Position"{}}\},}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00018}00018\ \ \ \ \ \ \ \{ShaderDataType::Float4,\ \textcolor{stringliteral}{"{}a\_Color"{}}\ \ \ \},}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00019}00019\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00020}00020\ \ \ m\_vao-\/>addVertexBuffer(m\_vbo);}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00022}00022\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint32\_t\ kIndices[6]\ =\ \{0,\ 1,\ 2,\ 2,\ 3,\ 0\};}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00024}00024\ \ \ m\_ibo.reset(IndexBuffer::Create(\textcolor{keyword}{const\_cast<}uint32\_t\ *\textcolor{keyword}{>}(kIndices),\ 6));}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00025}00025\ \ \ m\_vao-\/>setIndexBuffer(m\_ibo);}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00028}00028\ \textcolor{keywordtype}{void}\ QuadBuilder::drawQuad(\textcolor{keyword}{const}\ glm::vec2\ \&position,}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec2\ \&size,}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\ \&colour)\ \{}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00031}00031\ \ \ \textcolor{keyword}{const}\ glm::vec2\ h\ =\ 0.5f\ *\ size;}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00033}00033\ \ \ QuadVertex\ verts[4]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00034}00034\ \ \ \ \ \ \ \{\{position.x\ -\/\ h.x,\ position.y\ -\/\ h.y\},\ colour\},}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00035}00035\ \ \ \ \ \ \ \{\{position.x\ +\ h.x,\ position.y\ -\/\ h.y\},\ colour\},}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00036}00036\ \ \ \ \ \ \ \{\{position.x\ +\ h.x,\ position.y\ +\ h.y\},\ colour\},}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00037}00037\ \ \ \ \ \ \ \{\{position.x\ -\/\ h.x,\ position.y\ +\ h.y\},\ colour\},}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00038}00038\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00040}00040\ \ \ m\_vbo-\/>setData(verts,\ \textcolor{keyword}{sizeof}(verts));}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00042}00042\ \ \ m\_shader-\/>bind();}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00043}00043\ \ \ Renderer::submit(m\_shader,\ m\_vao);}
+\DoxyCodeLine{\Hypertarget{QuadBuilder_8cpp_source_l00044}00044\ \}}
+
+\end{DoxyCode}

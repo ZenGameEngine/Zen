@@ -23,7 +23,3 @@ out/
 build/
 .vscode/
 .clangd
-
-# Documentation
-docs/html/
-docs/latex/

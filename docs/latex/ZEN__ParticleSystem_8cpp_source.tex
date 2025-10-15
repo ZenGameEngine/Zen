@@ -1,0 +1,139 @@
+\doxysection{ZEN\+\_\+\+Particle\+System.\+cpp}
+\hypertarget{ZEN__ParticleSystem_8cpp_source}{}\label{ZEN__ParticleSystem_8cpp_source}\index{engine/zen/particles/ZEN\_ParticleSystem.cpp@{engine/zen/particles/ZEN\_ParticleSystem.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <glm/gtc/random.hpp>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/particles/ZEN\_ParticleSystem.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00006}00006\ \ \ ParticleSystem::ParticleSystem(\textcolor{keywordtype}{size\_t}\ maxParticles)\ :\ m\_max(maxParticles)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00008}00008\ \ \ \ \ m\_pool.resize(m\_max);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00009}00009\ \ \ \ \ m\_cpuQuad.resize(m\_max\ *\ 4);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//\ geometry\ setup}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00012}00012\ \ \ \ \ m\_vao.reset(VertexArray::Create());}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//\ dynamic\ vertex\ buffer\ (positions\ +\ colors),\ sized\ for\ the\ full\ pool}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00015}00015\ \ \ \ \ m\_vbo.reset(VertexBuffer::Create(\textcolor{keyword}{nullptr},}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(m\_cpuQuad.size()\ *\ \textcolor{keyword}{sizeof}(QuadVertex))));}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00017}00017\ \ \ \ \ m\_vbo-\/>setLayout(\{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \{ShaderDataType::Float2,\ \textcolor{stringliteral}{"{}a\_Position"{}}\},}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \{ShaderDataType::Float4,\ \textcolor{stringliteral}{"{}a\_Color"{}}\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00020}00020\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00022}00022\ \ \ \ \ m\_vao-\/>addVertexBuffer(m\_vbo);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00024}00024\ \ \ \ \ std::vector<uint32\_t>\ indices;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00025}00025\ \ \ \ \ indices.reserve(m\_max\ *\ 6);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ m\_max;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00027}00027\ \ \ \ \ \ \ uint32\_t\ b\ =\ i\ *\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00028}00028\ \ \ \ \ \ \ indices.push\_back(b\ +\ 0);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00029}00029\ \ \ \ \ \ \ indices.push\_back(b\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00030}00030\ \ \ \ \ \ \ indices.push\_back(b\ +\ 2);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00031}00031\ \ \ \ \ \ \ indices.push\_back(b\ +\ 2);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00032}00032\ \ \ \ \ \ \ indices.push\_back(b\ +\ 3);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00033}00033\ \ \ \ \ \ \ indices.push\_back(b\ +\ 0);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00035}00035\ \ \ \ \ m\_ibo.reset(IndexBuffer::Create(indices.data(),\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(indices.size())));}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00036}00036\ \ \ \ \ m\_vao-\/>setIndexBuffer(m\_ibo);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00038}00038\ \ \ \ \ m\_shader\ =\ std::make\_shared<Shader>(\textcolor{stringliteral}{"{}data/particle.vert"{}},\ \textcolor{stringliteral}{"{}data/particle.frag"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec2\ deadPos(0.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\ deadCol(0.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ m\_max;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00043}00043\ \ \ \ \ \ \ QuadVertex\ *v\ =\ \&m\_cpuQuad[i\ *\ 4];}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00044}00044\ \ \ \ \ \ \ v[0]\ =\ v[1]\ =\ v[2]\ =\ v[3]\ =\ \{deadPos,\ deadCol\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00047}00047\ \ \ \ \ m\_vbo-\/>bind();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00048}00048\ \ \ \ \ m\_vbo-\/>setData(m\_cpuQuad.data(),\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(m\_cpuQuad.size()\ *\ \textcolor{keyword}{sizeof}(QuadVertex)));}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00049}00049\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00051}00051\ \ \ \textcolor{keywordtype}{void}\ ParticleSystem::emit(\textcolor{keyword}{const}\ ParticleProps\ \&p)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00052}00052\ \ \ \ \ Particle\ \&particle\ \ \ \ \ =\ m\_pool[m\_poolIndex];}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00053}00053\ \ \ \ \ particle.active\ \ \ \ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00054}00054\ \ \ \ \ particle.pos\ \ \ \ \ \ \ \ \ \ \ =\ p.position;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00055}00055\ \ \ \ \ particle.vel\ \ \ \ \ \ \ \ \ \ \ =\ p.velocity;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00056}00056\ \ \ \ \ particle.lifeTime\ \ \ \ \ \ =\ p.lifeTime;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00057}00057\ \ \ \ \ particle.lifeRemaining\ =\ p.lifeTime;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00058}00058\ \ \ \ \ particle.sizeBegin\ \ \ \ \ =\ p.sizeBegin;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00059}00059\ \ \ \ \ particle.sizeEnd\ \ \ \ \ \ \ =\ p.sizeEnd;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00060}00060\ \ \ \ \ particle.colourBegin\ \ \ =\ p.colourBegin;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00061}00061\ \ \ \ \ particle.colourEnd\ \ \ \ \ =\ p.colourEnd;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00063}00063\ \ \ \ \ m\_poolIndex\ =\ (m\_poolIndex\ +\ 1)\ \%\ m\_pool.size();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00064}00064\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00066}00066\ \ \ \textcolor{keywordtype}{void}\ ParticleSystem::update(DeltaTime\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{float}\ deltaTimef\ =\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00068}00068\ \ \ \ \ m\_alive\ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&p\ :\ m\_pool)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00071}00071\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p.active)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00073}00073\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00075}00075\ \ \ \ \ \ \ p.lifeRemaining\ -\/=\ deltaTimef;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00076}00076\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p.lifeRemaining\ <=\ 0.f)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ p.active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00079}00079\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00081}00081\ \ \ \ \ \ \ p.pos\ +=\ p.vel\ *\ deltaTimef;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00083}00083\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\ \ \ \ \ =\ 1.0f\ -\/\ (p.lifeRemaining\ /\ p.lifeTime);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00084}00084\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ size\ \ =\ glm::mix(p.sizeBegin,\ p.sizeEnd,\ t);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00085}00085\ \ \ \ \ \ \ glm::vec4\ c\ =\ glm::mix(p.colourBegin,\ p.colourEnd,\ t);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00087}00087\ \ \ \ \ \ \ glm::vec2\ h(size\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00088}00088\ \ \ \ \ \ \ QuadVertex\ *v\ =\ \&m\_cpuQuad[m\_alive\ *\ 4];}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00089}00089\ \ \ \ \ \ \ v[0]\ \ \ \ \ \ \ \ \ \ =\ \{p.pos\ +\ glm::vec2(-\/h.x,\ -\/h.y),\ c\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00090}00090\ \ \ \ \ \ \ v[1]\ \ \ \ \ \ \ \ \ \ =\ \{p.pos\ +\ glm::vec2(+h.x,\ -\/h.y),\ c\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00091}00091\ \ \ \ \ \ \ v[2]\ \ \ \ \ \ \ \ \ \ =\ \{p.pos\ +\ glm::vec2(+h.x,\ +h.y),\ c\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00092}00092\ \ \ \ \ \ \ v[3]\ \ \ \ \ \ \ \ \ \ =\ \{p.pos\ +\ glm::vec2(-\/h.x,\ +h.y),\ c\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00094}00094\ \ \ \ \ \ \ ++m\_alive;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00096}00096\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00098}00098\ \ \ \textcolor{keywordtype}{void}\ ParticleSystem::upload()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ bytes\ =\ m\_alive\ *\ 4\ *\ \textcolor{keyword}{sizeof}(QuadVertex);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00100}00100\ \ \ \ \ m\_vbo-\/>bind();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00101}00101\ \ \ \ \ m\_vbo-\/>setData(m\_cpuQuad.data(),\ bytes);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00102}00102\ \ \ \ \ m\_ibo-\/>setCount(m\_alive\ *\ 6);\ \textcolor{comment}{//\ key\ line}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00103}00103\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00105}00105\ \ \ \textcolor{keywordtype}{void}\ ParticleSystem::clear()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&p\ :\ m\_pool)}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00107}00107\ \ \ \ \ \ \ p.active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00109}00109\ \ \ \ \ m\_alive\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00110}00110\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00112}00112\ \ \ \textcolor{keywordtype}{void}\ ParticleSystem::updateEmitter(ParticleEmitter\ \&emitter,\ DeltaTime\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{float}\ rate\ \ \ =\ emitter.spawnRate;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordtype}{float}\ period\ =\ 1.0f\ /\ glm::max(rate,\ 0.001f);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00116}00116\ \ \ \ \ emitter.emitAccumulator\ +=\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{while}\ (emitter.emitAccumulator\ >\ period)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00118}00118\ \ \ \ \ \ \ \mbox{\hyperlink{structZen_1_1ParticleProps}{Zen::ParticleProps}}\ p\ =\ emitter.props;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00120}00120\ \ \ \ \ \ \ p.position\ \ =\ emitter.pos;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00121}00121\ \ \ \ \ \ \ glm::vec2\ v\ =\ sampleVelocityFromBase(emitter.props.velocity,\ emitter.vRand);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00122}00122\ \ \ \ \ \ \ p.velocity\ \ =\ v;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00123}00123\ \ \ \ \ \ \ emit(p);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00124}00124\ \ \ \ \ \ \ emitter.emitAccumulator\ -\/=\ period;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00125}00125\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00126}00126\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00128}00128\ \ \ \textcolor{keywordtype}{void}\ ParticleSystem::updateEmitters(std::vector<ParticleEmitter>\ \&emitters,\ DeltaTime\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&e\ :\ emitters)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00130}00130\ \ \ \ \ \ \ updateEmitter(e,\ deltaTime);}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00131}00131\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00132}00132\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleSystem_8cpp_source_l00133}00133\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

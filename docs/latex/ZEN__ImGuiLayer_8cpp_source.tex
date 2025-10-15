@@ -1,0 +1,99 @@
+\doxysection{ZEN\+\_\+\+Im\+Gui\+Layer.\+cpp}
+\hypertarget{ZEN__ImGuiLayer_8cpp_source}{}\label{ZEN__ImGuiLayer_8cpp_source}\index{engine/zen/gui/ZEN\_ImGuiLayer.cpp@{engine/zen/gui/ZEN\_ImGuiLayer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}zen/events/ZEN\_Event.h"{}}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <SDL3/SDL\_video.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <include/imgui/imgui.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <include/imgui/imgui\_impl\_opengl3.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <include/imgui/imgui\_impl\_sdl3.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Application.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <zen/gui/ZEN\_ImGuiLayer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <zen/gui/ZEN\_Style.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <zen/log/ZEN\_Log.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <zen/time/ZEN\_DeltaTime.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00012}00012\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00013}00013\ \ \ \textcolor{keywordtype}{void}\ ImGuiLayer::onAttach()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00014}00014\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}ATTACHING"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00015}00015\ \ \ \ \ IMGUI\_CHECKVERSION();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00016}00016\ \ \ \ \ ImGui::CreateContext();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00017}00017\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}imgui\ context\ created"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00018}00018\ \ \ \ \ ImGuiIO\ \&io\ =\ ImGui::GetIO();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00020}00020\ \ \ \ \ io.IniFilename\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00021}00021\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_NavEnableKeyboard;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00022}00022\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_DockingEnable;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00023}00023\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_DpiEnableScaleFonts;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00024}00024\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_DpiEnableScaleViewports;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00026}00026\ \ \ \ \ styleSetup();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00027}00027\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}style\ setup?"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *glslVersion\ =\ \textcolor{stringliteral}{"{}\#version\ 430"{}};}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00029}00029\ \ \ \ \ Application\ \&app\ \ \ \ \ \ \ \ =\ Application::get();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00030}00030\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}app\ gotten"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00031}00031\ \ \ \ \ SDL\_Window\ *window\ =\ \textcolor{keyword}{static\_cast<}SDL\_Window\ *\textcolor{keyword}{>}(app.getWindow().nativeWindow());}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00032}00032\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}window\ gotten"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00033}00033\ \ \ \ \ SDL\_GLContext\ context\ =\ \textcolor{keyword}{static\_cast<}SDL\_GLContext\textcolor{keyword}{>}(app.getWindow().context().nativeContext());}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00035}00035\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Imgui\ init"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00036}00036\ \ \ \ \ ImGui\_ImplSDL3\_InitForOpenGL(window,\ context);}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00037}00037\ \ \ \ \ ImGui\_ImplOpenGL3\_Init(glslVersion);}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00038}00038\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00040}00040\ \ \ \textcolor{keywordtype}{void}\ ImGuiLayer::onDetach()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00041}00041\ \ \ \ \ ImGui\_ImplOpenGL3\_Shutdown();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00042}00042\ \ \ \ \ ImGui\_ImplSDL3\_Shutdown();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00043}00043\ \ \ \ \ ImGui::DestroyContext();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00044}00044\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00046}00046\ \ \ \textcolor{keywordtype}{void}\ ImGuiLayer::onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ ImGui::ShowDemoWindow();}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00048}00048\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00050}00050\ \ \ \textcolor{keywordtype}{bool}\ ImGuiLayer::onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00051}00051\ \ \ \ \ ImGuiIO\ \&io\ =\ ImGui::GetIO();\ \textcolor{comment}{//\ valid\ after\ NewFrame()}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{switch}\ (event.header.type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00053}00053\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::MouseMoved:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00054}00054\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::MouseButtonPressed:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00055}00055\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::MouseButtonReleased:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00056}00056\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::MouseScrolled:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ io.WantCaptureMouse;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00058}00058\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::KeyPressed:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00059}00059\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::KeyReleased:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ io.WantCaptureKeyboard;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00061}00061\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EventType::TextInput:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ io.WantTextInput;}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00063}00063\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00066}00066\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00068}00068\ \ \ \textcolor{keywordtype}{void}\ ImGuiLayer::begin()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ LOG\_INFO("{}new\ frame"{});}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00070}00070\ \ \ \ \ ImGui\_ImplOpenGL3\_NewFrame();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00071}00071\ \ \ \ \ ImGui\_ImplSDL3\_NewFrame();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00072}00072\ \ \ \ \ ImGui::NewFrame();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ LOG\_INFO("{}Done\ begin\ frame"{});}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00074}00074\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00076}00076\ \ \ \textcolor{keywordtype}{void}\ ImGuiLayer::end()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00077}00077\ \ \ \ \ ImGui::Render();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00078}00078\ \ \ \ \ ImGui\_ImplOpenGL3\_RenderDrawData(ImGui::GetDrawData());}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00080}00080\ \ \ \ \ ImGuiIO\ \&io\ =\ ImGui::GetIO();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00082}00082\ \ \ \ \ Application\ \&app\ =\ Application::get();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00083}00083\ \ \ \ \ io.DisplaySize\ =\ ImVec2((\textcolor{keywordtype}{float})app.getWindow().getWidth(),\ (\textcolor{keywordtype}{float})app.getWindow().getHeight());}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (io.ConfigFlags\ \&\ ImGuiConfigFlags\_ViewportsEnable)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00086}00086\ \ \ \ \ \ \ SDL\_Window\ *backup\_current\_window\ \ \ \ =\ SDL\_GL\_GetCurrentWindow();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00087}00087\ \ \ \ \ \ \ SDL\_GLContext\ backup\_current\_context\ =\ SDL\_GL\_GetCurrentContext();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00088}00088\ \ \ \ \ \ \ ImGui::UpdatePlatformWindows();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00089}00089\ \ \ \ \ \ \ ImGui::RenderPlatformWindowsDefault();}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00090}00090\ \ \ \ \ \ \ SDL\_GL\_MakeCurrent(backup\_current\_window,\ backup\_current\_context);}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00092}00092\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__ImGuiLayer_8cpp_source_l00093}00093\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

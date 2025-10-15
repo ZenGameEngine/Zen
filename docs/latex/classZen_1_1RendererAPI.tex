@@ -1,0 +1,78 @@
+\doxysection{Zen\+::Renderer\+API Class Reference}
+\hypertarget{classZen_1_1RendererAPI}{}\label{classZen_1_1RendererAPI}\index{Zen::RendererAPI@{Zen::RendererAPI}}
+Inheritance diagram for Zen\+::Renderer\+API\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classZen_1_1RendererAPI}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class {\bfseries API} \{ {\bfseries None} = 0
+, {\bfseries Open\+GL} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classZen_1_1RendererAPI_a8af72a564813f8f93fa5bca77d049f30}\label{classZen_1_1RendererAPI_a8af72a564813f8f93fa5bca77d049f30} 
+virtual void {\bfseries set\+Clear\+Colour} (const glm\+::vec4 \&colour)=0
+\item 
+\Hypertarget{classZen_1_1RendererAPI_acf36a62e1364c4753f889d5a0d143639}\label{classZen_1_1RendererAPI_acf36a62e1364c4753f889d5a0d143639} 
+virtual void {\bfseries clear} ()=0
+\item 
+\Hypertarget{classZen_1_1RendererAPI_ae1007abd90672e434255c6d68d474877}\label{classZen_1_1RendererAPI_ae1007abd90672e434255c6d68d474877} 
+virtual void {\bfseries set\+Viewport} (int width, int height)=0
+\item 
+\Hypertarget{classZen_1_1RendererAPI_af3af20902ffb0ad0f627ae4f440d17e5}\label{classZen_1_1RendererAPI_af3af20902ffb0ad0f627ae4f440d17e5} 
+virtual void {\bfseries draw\+Indexed} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1VertexArray}{Vertex\+Array}} $>$ \&vertex\+Array)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static API \mbox{\hyperlink{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90}{get\+API}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00008}{8}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{classZen_1_1RendererAPI_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}\index{Zen::RendererAPI@{Zen::RendererAPI}!API@{API}}
+\index{API@{API}!Zen::RendererAPI@{Zen::RendererAPI}}
+\doxysubsubsection{\texorpdfstring{API}{API}}
+{\footnotesize\ttfamily \label{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b} 
+enum class Zen\+::\+Renderer\+API\+::\+API\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00010}{10}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1RendererAPI_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90}\index{Zen::RendererAPI@{Zen::RendererAPI}!getAPI@{getAPI}}
+\index{getAPI@{getAPI}!Zen::RendererAPI@{Zen::RendererAPI}}
+\doxysubsubsection{\texorpdfstring{getAPI()}{getAPI()}}
+{\footnotesize\ttfamily \label{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90} 
+API Zen\+::\+Renderer\+API\+::get\+API (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00020}{20}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/renderer/ZEN\+\_\+\+Renderer\+API.\+h\item 
+engine/zen/renderer/ZEN\+\_\+\+Renderer\+API.\+cpp\end{DoxyCompactItemize}

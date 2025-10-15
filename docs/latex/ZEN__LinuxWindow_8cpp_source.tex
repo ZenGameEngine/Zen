@@ -1,0 +1,152 @@
+\doxysection{ZEN\+\_\+\+Linux\+Window.\+cpp}
+\hypertarget{ZEN__LinuxWindow_8cpp_source}{}\label{ZEN__LinuxWindow_8cpp_source}\index{engine/zen/platform/linux/ZEN\_LinuxWindow.cpp@{engine/zen/platform/linux/ZEN\_LinuxWindow.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Event.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/platform/linux/ZEN\_LinuxWindow.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00005}00005\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ s\_SDLInitialized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00007}00007\ \ \ LinuxWindow::LinuxWindow(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ \&properties)\ \{\ init(properties);\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00009}00009\ \ \ LinuxWindow::\string~LinuxWindow()\ \{\ shutdown();\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00011}00011\ \ \ \textcolor{comment}{//\ TEMP\ MUST\ CHANGE}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00012}00012\ \ \ \mbox{\hyperlink{structZen_1_1WindowData}{WindowData}}\ \&LinuxWindow::getWindowData()\ \{\ \textcolor{keywordflow}{return}\ m\_windowData;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00014}00014\ \ \ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ \&LinuxWindow::getProperties()\ \{\ \textcolor{keywordflow}{return}\ m\_windowProperties;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00016}00016\ \ \ \textcolor{keywordtype}{void}\ LinuxWindow::init(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1WindowProperties}{WindowProperties}}\ \&properties)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00017}00017\ \ \ \ \ m\_windowProperties.title\ \ =\ properties.title;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00018}00018\ \ \ \ \ m\_windowProperties.width\ \ =\ properties.width;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00019}00019\ \ \ \ \ m\_windowProperties.height\ =\ properties.height;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00021}00021\ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Creating\ new\ SDL\ Window:\ \{\},\ W:\{\}\ H:\ \{\}"{}},}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_windowProperties.title,}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_windowProperties.width,}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_windowProperties.height);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!s\_SDLInitialized)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00026}00026\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ SDL\_Init(SDL\_INIT\_VIDEO\ |\ SDL\_INIT\_EVENTS);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00027}00027\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *error\ =\ SDL\_GetError();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ emitErrorMessage(error);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}SDL\ was\ not\ initialized\ properly:\ \{\}"{}},\ error);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00031}00031\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00033}00033\ \ \ \ \ \ \ ZEN\_LOG\_DEBUG(\textcolor{stringliteral}{"{}SDL\ Successfully\ Initialized!"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00034}00034\ \ \ \ \ \ \ s\_SDLInitialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00035}00035\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{constexpr}\ SDL\_WindowFlags\ flags\ =\ SDL\_WINDOW\_OPENGL\ |\ SDL\_WINDOW\_INPUT\_FOCUS\ |}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_WINDOW\_MOUSE\_FOCUS\ |\ SDL\_WINDOW\_MOUSE\_CAPTURE\ |}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_WINDOW\_RESIZABLE;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ UNCOMMENT\ BELOW\ TO\ FORCE\ ERROR}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ SDL\_WindowFlags\ flags;}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00044}00044\ \ \ \ \ m\_windowData.window\ =\ SDL\_CreateWindow(m\_windowProperties.title.c\_str(),}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_windowProperties.width,}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_windowProperties.height,}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ flags);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_windowData.window\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00049}00049\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *error\ =\ SDL\_GetError();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00050}00050\ \ \ \ \ \ \ emitErrorMessage(error);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00051}00051\ \ \ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}The\ SDL\ Window\ could\ not\ be\ initialized.\ \{\}"{}},\ error);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00052}00052\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00054}00054\ \ \ \ \ m\_windowData.context\ =\ GraphicsContext::Create(m\_windowData.window);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00055}00055\ \ \ \ \ m\_windowData.context-\/>init();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_windowData.context\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00057}00057\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *error\ =\ SDL\_GetError();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00058}00058\ \ \ \ \ \ \ emitErrorMessage(error);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00059}00059\ \ \ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}The\ SDL\ OpenGL\ context\ could\ not\ be\ initialized:\ \{\}"{}},\ error);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00060}00060\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00062}00062\ \ \ \ \ gladLoadGL((GLADloadfunc)SDL\_GL\_GetProcAddress);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00064}00064\ \ \ \ \ setVSync(m\_windowProperties.vsync);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00066}00066\ \ \ \ \ ZEN\_LOG\_DEBUG(\textcolor{stringliteral}{"{}Window\ Successfully\ Initialized!"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00067}00067\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00069}00069\ \ \ \textcolor{keywordtype}{bool}\ LinuxWindow::onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.header.type\ ==\ EventType::WindowResize)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00071}00071\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resizeEvent(event);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.header.type\ ==\ EventType::MouseButtonPressed)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00075}00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mouseClickEvent(event);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00079}00079\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00081}00081\ \ \ \textcolor{keywordtype}{void}\ *LinuxWindow::nativeWindow()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_windowData.window;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00083}00083\ \ \ \mbox{\hyperlink{classZen_1_1GraphicsContext}{GraphicsContext}}\ \&LinuxWindow::context()\ \{\ \textcolor{keywordflow}{return}\ *m\_windowData.context;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00085}00085\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classZen_1_1GraphicsContext}{GraphicsContext}}\ \&LinuxWindow::context()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ *m\_windowData.context;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00086}00086\ \ \ \textcolor{keywordtype}{void}\ LinuxWindow::shutdown()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00087}00087\ \ \ \ \ m\_windowData.context-\/>shutdown();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00088}00088\ \ \ \ \ SDL\_DestroyWindow(m\_windowData.window);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00089}00089\ \ \ \ \ ZEN\_LOG\_DEBUG(\textcolor{stringliteral}{"{}SDL\ Window\ destroyed"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00090}00090\ \ \ \ \ SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00091}00091\ \ \ \ \ ZEN\_LOG\_DEBUG(\textcolor{stringliteral}{"{}SDL\ Quit"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00092}00092\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00094}00094\ \ \ \textcolor{keywordtype}{void}\ LinuxWindow::onUpdate()\ \{\ m\_windowData.context-\/>swapBuffers();\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00096}00096\ \ \ uint32\_t\ LinuxWindow::getWidth()\ \{\ \textcolor{keywordflow}{return}\ m\_windowProperties.width;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00098}00098\ \ \ uint32\_t\ LinuxWindow::getHeight()\ \{\ \textcolor{keywordflow}{return}\ m\_windowProperties.height;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00100}00100\ \ \ \textcolor{keywordtype}{void}\ LinuxWindow::setVSync(\textcolor{keywordtype}{bool}\ enabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (enabled)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00102}00102\ \ \ \ \ \ \ SDL\_GL\_SetSwapInterval(1);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00103}00103\ \ \ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}VSync\ On"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00105}00105\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00106}00106\ \ \ \ \ \ \ SDL\_GL\_SetSwapInterval(0);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00107}00107\ \ \ \ \ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}VSync\ Off"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00108}00108\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00109}00109\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00111}00111\ \ \ \textcolor{keywordtype}{bool}\ LinuxWindow::isVSyncEnabled()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_windowProperties.vsync;\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00113}00113\ \ \ \textcolor{keywordtype}{void}\ LinuxWindow::toggleFullscreen()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00114}00114\ \ \ \ \ m\_windowProperties.fullscreen\ =\ !m\_windowProperties.fullscreen;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00115}00115\ \ \ \ \ SDL\_SetWindowFullscreen(m\_windowData.window,\ m\_windowProperties.fullscreen);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00116}00116\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00118}00118\ \ \ \textcolor{comment}{//\ This\ should\ ONLY\ BE\ CALLED\ ON\ THE\ MAIN\ THREAD}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00119}00119\ \ \ \textcolor{keywordtype}{void}\ LinuxWindow::emitErrorMessage(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *message)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00120}00120\ \ \ \ \ SDL\_ShowSimpleMessageBox(SDL\_MESSAGEBOX\_ERROR,\ \textcolor{stringliteral}{"{}Zen\ Error"{}},\ message,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00121}00121\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00123}00123\ \ \ \textcolor{keywordtype}{bool}\ LinuxWindow::resizeEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{keywordtype}{int}\ newWidth\ \ =\ \textcolor{keyword}{event}.windowResize.width;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{keywordtype}{int}\ newHeight\ =\ \textcolor{keyword}{event}.windowResize.height;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00128}00128\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Window\ Width:\ \{\}"{}},\ newWidth);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00129}00129\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Window\ Height:\ \{\}"{}},\ newHeight);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00131}00131\ \ \ \ \ m\_windowProperties.width\ \ =\ newWidth;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00132}00132\ \ \ \ \ m\_windowProperties.height\ =\ newHeight;}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00134}00134\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}New\ WinProp\ Width:\ \{\}"{}},\ m\_windowProperties.width);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00135}00135\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}New\ WinProp\ Height:\ \{\}"{}},\ m\_windowProperties.height);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00137}00137\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00138}00138\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00140}00140\ \ \ \textcolor{keywordtype}{bool}\ LinuxWindow::mouseClickEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00141}00141\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Mouse\ click\ at\ X:\ \{\},\ Y:\ \{\}"{}},\ event.mouseButton.x,\ event.mouseButton.y);}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00143}00143\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00145}00145\ \ \ \textcolor{keywordtype}{int}\ LinuxWindow::getPriority()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ 99;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LinuxWindow_8cpp_source_l00146}00146\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

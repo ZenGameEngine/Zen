@@ -1,0 +1,226 @@
+\doxysection{Zen\+::Layer\+List Class Reference}
+\hypertarget{classZen_1_1LayerList}{}\label{classZen_1_1LayerList}\index{Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classZen_1_1LayerList_a2deda62db6af444fa38b1dd35308eef9}{List\+Of\+Layers}} = std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classZen_1_1Layer}{Layer}}$>$$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classZen_1_1LayerList_a37b23e8a6af055a7868fdda3d0ca7202}{push\+Layer}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Layer}{Layer}} $>$ layer)
+\item 
+void \mbox{\hyperlink{classZen_1_1LayerList_a9f7fb4828b45f4ad63cf5f01b8d3bca9}{push\+Overlay}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Layer}{Layer}} $>$ overlay)
+\item 
+void \mbox{\hyperlink{classZen_1_1LayerList_abbb5248c1549980895e85f8eb7e4e065}{push\+Layer}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}layer)
+\item 
+void \mbox{\hyperlink{classZen_1_1LayerList_a480eab2a00040a878d56bb5b6011f982}{push\+Overlay}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}overlay)
+\item 
+void \mbox{\hyperlink{classZen_1_1LayerList_a103dcda08b1f6bbacbcf9eda4d7b0411}{pop\+Layer}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}layer)
+\item 
+void \mbox{\hyperlink{classZen_1_1LayerList_a1315d1e640bdc65d24ef76d39bd08223}{pop\+Overlay}} (\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}overlay)
+\item 
+List\+Of\+Layers\+::iterator \mbox{\hyperlink{classZen_1_1LayerList_a902c27fb2f6d083b8dd6da0311cc75a6}{begin}} ()
+\item 
+List\+Of\+Layers\+::iterator \mbox{\hyperlink{classZen_1_1LayerList_ab9b580e2331fd16ef600b86281b01efe}{end}} ()
+\item 
+List\+Of\+Layers\+::reverse\+\_\+iterator \mbox{\hyperlink{classZen_1_1LayerList_a88e87e998ef56fad805e93aab0ae1272}{rbegin}} ()
+\item 
+List\+Of\+Layers\+::reverse\+\_\+iterator \mbox{\hyperlink{classZen_1_1LayerList_a18581efc37921e4a91fc900bc32acadd}{rend}} ()
+\item 
+List\+Of\+Layers\+::const\+\_\+iterator \mbox{\hyperlink{classZen_1_1LayerList_a889c18393d2478ca5520f78d3b0491a5}{begin}} () const
+\item 
+List\+Of\+Layers\+::const\+\_\+iterator \mbox{\hyperlink{classZen_1_1LayerList_af4b2570af000b8c68dc2b598e241b0ac}{end}} () const
+\item 
+List\+Of\+Layers\+::const\+\_\+reverse\+\_\+iterator \mbox{\hyperlink{classZen_1_1LayerList_a3c577098f2059598e89aea56db344489}{rbegin}} () const
+\item 
+List\+Of\+Layers\+::const\+\_\+reverse\+\_\+iterator \mbox{\hyperlink{classZen_1_1LayerList_a8585124402a64c7fc3a77396d79e62a4}{rend}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00008}{8}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{classZen_1_1LayerList_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classZen_1_1LayerList_a2deda62db6af444fa38b1dd35308eef9}\index{Zen::LayerList@{Zen::LayerList}!ListOfLayers@{ListOfLayers}}
+\index{ListOfLayers@{ListOfLayers}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{ListOfLayers}{ListOfLayers}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a2deda62db6af444fa38b1dd35308eef9} 
+using Zen\+::\+Layer\+List\+::\+List\+Of\+Layers = std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classZen_1_1Layer}{Layer}}$>$$>$}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00010}{10}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1LayerList_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1LayerList_ae1a1708c53cee45d95db5aa0a2d12a55}\index{Zen::LayerList@{Zen::LayerList}!````~LayerList@{\texorpdfstring{$\sim$}{\string~}LayerList}}
+\index{````~LayerList@{\texorpdfstring{$\sim$}{\string~}LayerList}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LayerList()}{\string~LayerList()}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_ae1a1708c53cee45d95db5aa0a2d12a55} 
+Zen\+::\+Layer\+List\+::\texorpdfstring{$\sim$}{\string~}\+Layer\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1LayerList_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1LayerList_a902c27fb2f6d083b8dd6da0311cc75a6}\index{Zen::LayerList@{Zen::LayerList}!begin@{begin}}
+\index{begin@{begin}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a902c27fb2f6d083b8dd6da0311cc75a6} 
+List\+Of\+Layers\+::iterator Zen\+::\+Layer\+List\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00024}{24}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_a889c18393d2478ca5520f78d3b0491a5}\index{Zen::LayerList@{Zen::LayerList}!begin@{begin}}
+\index{begin@{begin}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a889c18393d2478ca5520f78d3b0491a5} 
+List\+Of\+Layers\+::const\+\_\+iterator Zen\+::\+Layer\+List\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00029}{29}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_ab9b580e2331fd16ef600b86281b01efe}\index{Zen::LayerList@{Zen::LayerList}!end@{end}}
+\index{end@{end}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_ab9b580e2331fd16ef600b86281b01efe} 
+List\+Of\+Layers\+::iterator Zen\+::\+Layer\+List\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00025}{25}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_af4b2570af000b8c68dc2b598e241b0ac}\index{Zen::LayerList@{Zen::LayerList}!end@{end}}
+\index{end@{end}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_af4b2570af000b8c68dc2b598e241b0ac} 
+List\+Of\+Layers\+::const\+\_\+iterator Zen\+::\+Layer\+List\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00030}{30}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_a103dcda08b1f6bbacbcf9eda4d7b0411}\index{Zen::LayerList@{Zen::LayerList}!popLayer@{popLayer}}
+\index{popLayer@{popLayer}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{popLayer()}{popLayer()}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a103dcda08b1f6bbacbcf9eda4d7b0411} 
+void Zen\+::\+Layer\+List\+::pop\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{layer}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+\Hypertarget{classZen_1_1LayerList_a1315d1e640bdc65d24ef76d39bd08223}\index{Zen::LayerList@{Zen::LayerList}!popOverlay@{popOverlay}}
+\index{popOverlay@{popOverlay}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{popOverlay()}{popOverlay()}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a1315d1e640bdc65d24ef76d39bd08223} 
+void Zen\+::\+Layer\+List\+::pop\+Overlay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{overlay}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+\Hypertarget{classZen_1_1LayerList_abbb5248c1549980895e85f8eb7e4e065}\index{Zen::LayerList@{Zen::LayerList}!pushLayer@{pushLayer}}
+\index{pushLayer@{pushLayer}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{pushLayer()}{pushLayer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_abbb5248c1549980895e85f8eb7e4e065} 
+void Zen\+::\+Layer\+List\+::push\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{layer}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+\Hypertarget{classZen_1_1LayerList_a37b23e8a6af055a7868fdda3d0ca7202}\index{Zen::LayerList@{Zen::LayerList}!pushLayer@{pushLayer}}
+\index{pushLayer@{pushLayer}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{pushLayer()}{pushLayer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a37b23e8a6af055a7868fdda3d0ca7202} 
+void Zen\+::\+Layer\+List\+::push\+Layer (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Layer}{Layer}} $>$}]{layer}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+\Hypertarget{classZen_1_1LayerList_a480eab2a00040a878d56bb5b6011f982}\index{Zen::LayerList@{Zen::LayerList}!pushOverlay@{pushOverlay}}
+\index{pushOverlay@{pushOverlay}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{pushOverlay()}{pushOverlay()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a480eab2a00040a878d56bb5b6011f982} 
+void Zen\+::\+Layer\+List\+::push\+Overlay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1Layer}{Layer}} \texorpdfstring{$\ast$}{*}}]{overlay}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+\Hypertarget{classZen_1_1LayerList_a9f7fb4828b45f4ad63cf5f01b8d3bca9}\index{Zen::LayerList@{Zen::LayerList}!pushOverlay@{pushOverlay}}
+\index{pushOverlay@{pushOverlay}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{pushOverlay()}{pushOverlay()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a9f7fb4828b45f4ad63cf5f01b8d3bca9} 
+void Zen\+::\+Layer\+List\+::push\+Overlay (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Layer}{Layer}} $>$}]{overlay}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{ZEN__LayerList_8cpp_source}{ZEN\+\_\+\+Layer\+List.\+cpp}}.
+
+\Hypertarget{classZen_1_1LayerList_a88e87e998ef56fad805e93aab0ae1272}\index{Zen::LayerList@{Zen::LayerList}!rbegin@{rbegin}}
+\index{rbegin@{rbegin}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{rbegin()}{rbegin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a88e87e998ef56fad805e93aab0ae1272} 
+List\+Of\+Layers\+::reverse\+\_\+iterator Zen\+::\+Layer\+List\+::rbegin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00026}{26}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_a3c577098f2059598e89aea56db344489}\index{Zen::LayerList@{Zen::LayerList}!rbegin@{rbegin}}
+\index{rbegin@{rbegin}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{rbegin()}{rbegin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a3c577098f2059598e89aea56db344489} 
+List\+Of\+Layers\+::const\+\_\+reverse\+\_\+iterator Zen\+::\+Layer\+List\+::rbegin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00031}{31}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_a18581efc37921e4a91fc900bc32acadd}\index{Zen::LayerList@{Zen::LayerList}!rend@{rend}}
+\index{rend@{rend}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{rend()}{rend()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a18581efc37921e4a91fc900bc32acadd} 
+List\+Of\+Layers\+::reverse\+\_\+iterator Zen\+::\+Layer\+List\+::rend (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00027}{27}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+\Hypertarget{classZen_1_1LayerList_a8585124402a64c7fc3a77396d79e62a4}\index{Zen::LayerList@{Zen::LayerList}!rend@{rend}}
+\index{rend@{rend}!Zen::LayerList@{Zen::LayerList}}
+\doxysubsubsection{\texorpdfstring{rend()}{rend()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZen_1_1LayerList_a8585124402a64c7fc3a77396d79e62a4} 
+List\+Of\+Layers\+::const\+\_\+reverse\+\_\+iterator Zen\+::\+Layer\+List\+::rend (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LayerList_8h_source_l00032}{32}} of file \mbox{\hyperlink{ZEN__LayerList_8h_source}{ZEN\+\_\+\+Layer\+List.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/layer/ZEN\+\_\+\+Layer\+List.\+h\item 
+engine/zen/layer/ZEN\+\_\+\+Layer\+List.\+cpp\end{DoxyCompactItemize}

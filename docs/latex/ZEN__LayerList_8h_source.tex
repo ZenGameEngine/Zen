@@ -1,0 +1,44 @@
+\doxysection{ZEN\+\_\+\+Layer\+List.\+h}
+\hypertarget{ZEN__LayerList_8h_source}{}\label{ZEN__LayerList_8h_source}\index{engine/zen/layer/ZEN\_LayerList.h@{engine/zen/layer/ZEN\_LayerList.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Core.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/layer/ZEN\_Layer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00007}00007\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00008}\mbox{\hyperlink{classZen_1_1LayerList}{00008}}\ \ \ \textcolor{keyword}{class\ }LayerList\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00009}00009\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{using\ }ListOfLayers\ =\ std::vector<std::unique\_ptr<Layer>>;}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00012}00012\ \ \ \ \ LayerList()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00013}00013\ \ \ \ \ \string~LayerList();}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{void}\ pushLayer(std::unique\_ptr<Layer>\ layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{void}\ pushOverlay(std::unique\_ptr<Layer>\ overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{void}\ pushLayer(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ pushOverlay(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{void}\ popLayer(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *layer);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00022}00022\ \ \ \ \ \textcolor{keywordtype}{void}\ popOverlay(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00024}00024\ \ \ \ \ ListOfLayers::iterator\ begin()\ \{\ \textcolor{keywordflow}{return}\ m\_layers.begin();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00025}00025\ \ \ \ \ ListOfLayers::iterator\ end()\ \{\ \textcolor{keywordflow}{return}\ m\_layers.end();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00026}00026\ \ \ \ \ ListOfLayers::reverse\_iterator\ rbegin()\ \{\ \textcolor{keywordflow}{return}\ m\_layers.rbegin();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00027}00027\ \ \ \ \ ListOfLayers::reverse\_iterator\ rend()\ \{\ \textcolor{keywordflow}{return}\ m\_layers.rend();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00029}00029\ \ \ \ \ ListOfLayers::const\_iterator\ begin()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_layers.begin();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00030}00030\ \ \ \ \ ListOfLayers::const\_iterator\ end()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_layers.end();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00031}00031\ \ \ \ \ ListOfLayers::const\_reverse\_iterator\ rbegin()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_layers.rbegin();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00032}00032\ \ \ \ \ ListOfLayers::const\_reverse\_iterator\ rend()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_layers.rend();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00034}00034\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00035}00035\ \ \ \ \ ListOfLayers\ m\_layers;}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\_layerInsertIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00037}00037\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerList_8h_source_l00038}00038\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

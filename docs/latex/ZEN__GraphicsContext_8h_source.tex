@@ -1,0 +1,25 @@
+\doxysection{ZEN\+\_\+\+Graphics\+Context.\+h}
+\hypertarget{ZEN__GraphicsContext_8h_source}{}\label{ZEN__GraphicsContext_8h_source}\index{engine/zen/renderer/ZEN\_GraphicsContext.h@{engine/zen/renderer/ZEN\_GraphicsContext.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00005}00005\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00006}\mbox{\hyperlink{classZen_1_1GraphicsContext}{00006}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1GraphicsContext}{GraphicsContext}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00007}00007\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classZen_1_1GraphicsContext}{\string~GraphicsContext}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ init()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ swapBuffers()\ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ shutdown()\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ *nativeContext()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{static}\ std::unique\_ptr<GraphicsContext>\ Create(SDL\_Window\ *window);}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00017}00017\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00018}00018\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8h_source_l00019}00019\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

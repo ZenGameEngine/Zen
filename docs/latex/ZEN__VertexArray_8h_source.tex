@@ -1,0 +1,28 @@
+\doxysection{ZEN\+\_\+\+Vertex\+Array.\+h}
+\hypertarget{ZEN__VertexArray_8h_source}{}\label{ZEN__VertexArray_8h_source}\index{engine/zen/renderer/ZEN\_VertexArray.h@{engine/zen/renderer/ZEN\_VertexArray.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_Buffer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00006}00006\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00007}\mbox{\hyperlink{classZen_1_1VertexArray}{00007}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1VertexArray}{VertexArray}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00008}00008\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classZen_1_1VertexArray}{\string~VertexArray}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind()\ \textcolor{keyword}{const}\ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ addVertexBuffer(\textcolor{keyword}{const}\ std::shared\_ptr<VertexBuffer>\ \&vertexBuffer)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setIndexBuffer(\textcolor{keyword}{const}\ std::shared\_ptr<IndexBuffer>\ \&indexBuffer)\ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<std::shared\_ptr<VertexBuffer>>\ \&getVertexBuffers()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::shared\_ptr<IndexBuffer>\ \&getIndexBuffer()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classZen_1_1VertexArray}{VertexArray}}\ *Create();}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00021}00021\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__VertexArray_8h_source_l00022}00022\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

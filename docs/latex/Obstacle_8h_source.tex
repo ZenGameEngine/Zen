@@ -1,0 +1,44 @@
+\doxysection{Obstacle.\+h}
+\hypertarget{Obstacle_8h_source}{}\label{Obstacle_8h_source}\index{editor/src/Obstacle.h@{editor/src/Obstacle.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}particles/ZEN\_ParticleSystem.h"{}}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/time/ZEN\_DeltaTime.h>}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00006}00006\ \textcolor{keyword}{enum\ class}\ ObstacleType\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00007}00007\ \ \ SmallBox,\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00008}00008\ \ \ TallBox,\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00009}00009\ \ \ FlyingBox\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00010}00010\ \};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00012}\mbox{\hyperlink{classObstacle}{00012}}\ \textcolor{keyword}{class\ }Obstacle\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00014}00014\ \ \ glm::vec2\ pos\{12.0f,\ 0.0f\};\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00015}00015\ \ \ glm::vec2\ size\{1.0f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00016}00016\ \ \ glm::vec4\ colour\{1.0f,\ 0.5f,\ 0.0f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00018}00018\ \ \ ObstacleType\ type\ =\ ObstacleType::SmallBox;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00019}00019\ \ \ \textcolor{keywordtype}{float}\ speed\ \ \ \ \ \ \ =\ 5.0f;\ \textcolor{comment}{//\ units/s}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00020}00020\ \ \ \textcolor{keywordtype}{bool}\ active\ \ \ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00022}00022\ \ \ \mbox{\hyperlink{structZen_1_1ParticleEmitter}{Zen::ParticleEmitter}}\ emitter\{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00023}00023\ \ \ \ \ \ \ \{0,\ 0\},}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00024}00024\ \ \ \ \ \ \ \{1,\ 1\},}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00025}00025\ \ \ \ \ \ \ \{1,\ 1,\ 1,\ 1\}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00026}00026\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00028}00028\ \ \ Obstacle(ObstacleType\ t,\ \textcolor{keywordtype}{float}\ x\ =\ 12.0f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00030}00030\ \ \ \textcolor{keywordtype}{void}\ update(\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen::DeltaTime}}\ dt);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00031}00031\ \ \ \textcolor{keywordtype}{void}\ reset(\textcolor{keywordtype}{float}\ x\ =\ 12.0f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00033}00033\ \ \ \textcolor{comment}{//\ Simple\ AABB\ collision}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00034}00034\ \ \ \textcolor{keywordtype}{bool}\ collidesWith(\textcolor{keyword}{const}\ glm::vec2\ \&otherPos,\ \textcolor{keyword}{const}\ glm::vec2\ \&otherSize)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00036}00036\ \ \ \textcolor{comment}{//\ Get\ bottom\ Y\ position\ (for\ ground\ vs\ flying)}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00037}00037\ \ \ \textcolor{keywordtype}{float}\ getBottomY()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ pos.y\ -\/\ size.y\ *\ 0.5f;\ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8h_source_l00038}00038\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,35 @@
+\doxysection{ZEN\+\_\+\+Particle\+Test\+Layer.\+h}
+\hypertarget{ZEN__ParticleTestLayer_8h_source}{}\label{ZEN__ParticleTestLayer_8h_source}\index{engine/zen/particles/ZEN\_ParticleTestLayer.h@{engine/zen/particles/ZEN\_ParticleTestLayer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/camera/ZEN\_Camera.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/camera/ZEN\_CameraController.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Event.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/layer/ZEN\_Layer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <zen/particles/ZEN\_ParticleSystem.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00010}00010\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00011}\mbox{\hyperlink{classZen_1_1ParticleTestLayer}{00011}}\ \ \ \textcolor{keyword}{class\ }ParticleTestLayer\ :\ \textcolor{keyword}{public}\ Layer\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00012}00012\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00013}00013\ \ \ \ \ ParticleTestLayer()}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ :\ Layer(50),\ m\_camera(CameraType::Orthographic),\ m\_cameraController(m\_camera)\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{void}\ onAttach()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{void}\ onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ onGUIRender()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00021}00021\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{classZen_1_1Camera}{Camera}}\ m\_camera;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00023}00023\ \ \ \ \ \mbox{\hyperlink{classZen_1_1CameraController}{CameraController}}\ m\_cameraController;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00024}00024\ \ \ \ \ std::unique\_ptr<ParticleSystem>\ m\_ps;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_emitAccumulator\{0.0f\};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_spawnRate\ =\ 60.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{structZen_1_1ParticleProps}{ParticleProps}}\ m\_particle;}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00028}00028\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__ParticleTestLayer_8h_source_l00029}00029\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

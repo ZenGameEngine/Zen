@@ -1,0 +1,14 @@
+\doxysection{ZEN\+\_\+\+Graphics\+Context.\+cpp}
+\hypertarget{ZEN__GraphicsContext_8cpp_source}{}\label{ZEN__GraphicsContext_8cpp_source}\index{engine/zen/renderer/ZEN\_GraphicsContext.cpp@{engine/zen/renderer/ZEN\_GraphicsContext.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/platform/OpenGL/ZEN\_OpenGLContext.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_GraphicsContext.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00005}00005\ \ \ std::unique\_ptr<GraphicsContext>\ GraphicsContext::Create(SDL\_Window\ *window)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_unique<OpenGLContext>(window);}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00007}00007\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__GraphicsContext_8cpp_source_l00008}00008\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

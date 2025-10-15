@@ -1,0 +1,196 @@
+\doxysection{Player Class Reference}
+\hypertarget{classPlayer}{}\label{classPlayer}\index{Player@{Player}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classPlayer_a308deeadae84e59a95ee988e5d470a3d}{on\+Ground}} () const
+\item 
+void \mbox{\hyperlink{classPlayer_aff74f1edeb1397ab0dd77ddbc4f61406}{update}} (\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen\+::\+Delta\+Time}} delta\+Time, bool jump\+Pressed)
+\item 
+bool \mbox{\hyperlink{classPlayer_aba10e03ea7e6ca92e184f6b9256ec43c}{was\+On\+Ground}} () const
+\item 
+bool \mbox{\hyperlink{classPlayer_aaf3821000eea062af65f738637f5da01}{just\+Jumped}} () const
+\item 
+glm\+::vec2 \mbox{\hyperlink{classPlayer_a3ee12b0d12757e6c63ba7203428cb5db}{get\+Size}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec2 \mbox{\hyperlink{classPlayer_a28f02e86586dffa953135acfb3edd6c5}{pos}} \{0.\+0f, 0.\+0f\}
+\item 
+float \mbox{\hyperlink{classPlayer_af995498de723272471eeb9b5d87073b2}{vy}} = 0.\+0f
+\item 
+float \mbox{\hyperlink{classPlayer_a941efcdf3d69b0845158e393ed30f817}{gravity}} = -\/50.\+0f
+\item 
+float \mbox{\hyperlink{classPlayer_a8f55e6431a8245c45f1e21079713b4a0}{jump\+Power}} = 18.\+0f
+\item 
+float \mbox{\hyperlink{classPlayer_a6b52330e4e70ef321e6818a4cd424379}{width}} = 1.\+0f
+\item 
+float \mbox{\hyperlink{classPlayer_a1470344c20073c3a20b3700d1d638f07}{height}} = 1.\+0f
+\item 
+glm\+::vec4 \mbox{\hyperlink{classPlayer_a3ed2d6aec62396a46199ec66e8e905e0}{colour}} = \{1.\+0f, 0.\+0f, 0.\+0f, 1.\+0f\}
+\item 
+\mbox{\hyperlink{structZen_1_1ParticleEmitter}{Zen\+::\+Particle\+Emitter}} \mbox{\hyperlink{classPlayer_ac288fa08742b7bc2b746bd2e974e7ec2}{emitter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00006}{6}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classPlayer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlayer_a3ee12b0d12757e6c63ba7203428cb5db}\index{Player@{Player}!getSize@{getSize}}
+\index{getSize@{getSize}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \label{classPlayer_a3ee12b0d12757e6c63ba7203428cb5db} 
+glm\+::vec2 Player\+::get\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00028}{28}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_aaf3821000eea062af65f738637f5da01}\index{Player@{Player}!justJumped@{justJumped}}
+\index{justJumped@{justJumped}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{justJumped()}{justJumped()}}
+{\footnotesize\ttfamily \label{classPlayer_aaf3821000eea062af65f738637f5da01} 
+bool Player\+::just\+Jumped (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00027}{27}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_a308deeadae84e59a95ee988e5d470a3d}\index{Player@{Player}!onGround@{onGround}}
+\index{onGround@{onGround}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{onGround()}{onGround()}}
+{\footnotesize\ttfamily \label{classPlayer_a308deeadae84e59a95ee988e5d470a3d} 
+bool Player\+::on\+Ground (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{Player_8cpp_source}{Player.\+cpp}}.
+
+\Hypertarget{classPlayer_aff74f1edeb1397ab0dd77ddbc4f61406}\index{Player@{Player}!update@{update}}
+\index{update@{update}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classPlayer_aff74f1edeb1397ab0dd77ddbc4f61406} 
+void Player\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen\+::\+Delta\+Time}}}]{delta\+Time}{, }\item[{bool}]{jump\+Pressed}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{Player_8cpp_source}{Player.\+cpp}}.
+
+\Hypertarget{classPlayer_aba10e03ea7e6ca92e184f6b9256ec43c}\index{Player@{Player}!wasOnGround@{wasOnGround}}
+\index{wasOnGround@{wasOnGround}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{wasOnGround()}{wasOnGround()}}
+{\footnotesize\ttfamily \label{classPlayer_aba10e03ea7e6ca92e184f6b9256ec43c} 
+bool Player\+::was\+On\+Ground (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00026}{26}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classPlayer_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPlayer_a3ed2d6aec62396a46199ec66e8e905e0}\index{Player@{Player}!colour@{colour}}
+\index{colour@{colour}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{colour}{colour}}
+{\footnotesize\ttfamily \label{classPlayer_a3ed2d6aec62396a46199ec66e8e905e0} 
+glm\+::vec4 Player\+::colour = \{1.\+0f, 0.\+0f, 0.\+0f, 1.\+0f\}}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00015}{15}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_ac288fa08742b7bc2b746bd2e974e7ec2}\index{Player@{Player}!emitter@{emitter}}
+\index{emitter@{emitter}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{emitter}{emitter}}
+{\footnotesize\ttfamily \label{classPlayer_ac288fa08742b7bc2b746bd2e974e7ec2} 
+\mbox{\hyperlink{structZen_1_1ParticleEmitter}{Zen\+::\+Particle\+Emitter}} Player\+::emitter}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \ \ \{0,\ 0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \{1,\ 1\},}
+\DoxyCodeLine{\ \ \ \ \ \ \{1,\ 1,\ 1,\ 1\}}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00017}{17}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_a941efcdf3d69b0845158e393ed30f817}\index{Player@{Player}!gravity@{gravity}}
+\index{gravity@{gravity}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{gravity}{gravity}}
+{\footnotesize\ttfamily \label{classPlayer_a941efcdf3d69b0845158e393ed30f817} 
+float Player\+::gravity = -\/50.\+0f}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00011}{11}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_a1470344c20073c3a20b3700d1d638f07}\index{Player@{Player}!height@{height}}
+\index{height@{height}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{classPlayer_a1470344c20073c3a20b3700d1d638f07} 
+float Player\+::height = 1.\+0f}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00014}{14}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_a8f55e6431a8245c45f1e21079713b4a0}\index{Player@{Player}!jumpPower@{jumpPower}}
+\index{jumpPower@{jumpPower}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{jumpPower}{jumpPower}}
+{\footnotesize\ttfamily \label{classPlayer_a8f55e6431a8245c45f1e21079713b4a0} 
+float Player\+::jump\+Power = 18.\+0f}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00012}{12}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_a28f02e86586dffa953135acfb3edd6c5}\index{Player@{Player}!pos@{pos}}
+\index{pos@{pos}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \label{classPlayer_a28f02e86586dffa953135acfb3edd6c5} 
+glm\+::vec2 Player\+::pos \{0.\+0f, 0.\+0f\}}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00008}{8}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_af995498de723272471eeb9b5d87073b2}\index{Player@{Player}!vy@{vy}}
+\index{vy@{vy}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{vy}{vy}}
+{\footnotesize\ttfamily \label{classPlayer_af995498de723272471eeb9b5d87073b2} 
+float Player\+::vy = 0.\+0f}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00009}{9}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+\Hypertarget{classPlayer_a6b52330e4e70ef321e6818a4cd424379}\index{Player@{Player}!width@{width}}
+\index{width@{width}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{classPlayer_a6b52330e4e70ef321e6818a4cd424379} 
+float Player\+::width = 1.\+0f}
+
+
+
+Definition at line \mbox{\hyperlink{Player_8h_source_l00013}{13}} of file \mbox{\hyperlink{Player_8h_source}{Player.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+editor/src/Player.\+h\item 
+editor/src/Player.\+cpp\end{DoxyCompactItemize}

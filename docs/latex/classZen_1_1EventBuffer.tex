@@ -1,0 +1,124 @@
+\doxysection{Zen\+::Event\+Buffer Class Reference}
+\hypertarget{classZen_1_1EventBuffer}{}\label{classZen_1_1EventBuffer}\index{Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1EventBuffer_a73498184dc6f294c290828f04fff8d43}{Event\+Buffer}} (std\+::size\+\_\+t capacity)
+\item 
+void \mbox{\hyperlink{classZen_1_1EventBuffer_afbdcfb80b87671b8fa52faf2a6b6b3f7}{enqueue}} (\mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} event)
+\item 
+\mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \mbox{\hyperlink{classZen_1_1EventBuffer_a321215b4b3335c189cef03355eea6ffd}{dequeue}} ()
+\item 
+void \mbox{\hyperlink{classZen_1_1EventBuffer_ab49123f3874e9054b929d491d51fa064}{flush}} ()
+\item 
+bool \mbox{\hyperlink{classZen_1_1EventBuffer_a173ae4dd9b87f01f55c9d918c77ae1c5}{is\+Empty}} () const
+\item 
+bool \mbox{\hyperlink{classZen_1_1EventBuffer_a556516d3611f5487f0ca09db4642792e}{is\+Full}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classZen_1_1EventBuffer_a1b3ecd0f46722fc36430739da5228e70}{capacity}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classZen_1_1EventBuffer_ab760bd8f3c3cae493201ed0161828ed2}{size}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8h_source_l00008}{8}} of file \mbox{\hyperlink{ZEN__EventBuffer_8h_source}{ZEN\+\_\+\+Event\+Buffer.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1EventBuffer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1EventBuffer_a73498184dc6f294c290828f04fff8d43}\index{Zen::EventBuffer@{Zen::EventBuffer}!EventBuffer@{EventBuffer}}
+\index{EventBuffer@{EventBuffer}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{EventBuffer()}{EventBuffer()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_a73498184dc6f294c290828f04fff8d43} 
+Zen\+::\+Event\+Buffer\+::\+Event\+Buffer (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{capacity}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8h_source_l00010}{10}} of file \mbox{\hyperlink{ZEN__EventBuffer_8h_source}{ZEN\+\_\+\+Event\+Buffer.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1EventBuffer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1EventBuffer_a1b3ecd0f46722fc36430739da5228e70}\index{Zen::EventBuffer@{Zen::EventBuffer}!capacity@{capacity}}
+\index{capacity@{capacity}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_a1b3ecd0f46722fc36430739da5228e70} 
+size\+\_\+t Zen\+::\+Event\+Buffer\+::capacity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1EventBuffer_a321215b4b3335c189cef03355eea6ffd}\index{Zen::EventBuffer@{Zen::EventBuffer}!dequeue@{dequeue}}
+\index{dequeue@{dequeue}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{dequeue()}{dequeue()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_a321215b4b3335c189cef03355eea6ffd} 
+\mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} Zen\+::\+Event\+Buffer\+::dequeue (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1EventBuffer_afbdcfb80b87671b8fa52faf2a6b6b3f7}\index{Zen::EventBuffer@{Zen::EventBuffer}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{enqueue()}{enqueue()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_afbdcfb80b87671b8fa52faf2a6b6b3f7} 
+void Zen\+::\+Event\+Buffer\+::enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}}}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1EventBuffer_ab49123f3874e9054b929d491d51fa064}\index{Zen::EventBuffer@{Zen::EventBuffer}!flush@{flush}}
+\index{flush@{flush}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_ab49123f3874e9054b929d491d51fa064} 
+void Zen\+::\+Event\+Buffer\+::flush (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1EventBuffer_a173ae4dd9b87f01f55c9d918c77ae1c5}\index{Zen::EventBuffer@{Zen::EventBuffer}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_a173ae4dd9b87f01f55c9d918c77ae1c5} 
+bool Zen\+::\+Event\+Buffer\+::is\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1EventBuffer_a556516d3611f5487f0ca09db4642792e}\index{Zen::EventBuffer@{Zen::EventBuffer}!isFull@{isFull}}
+\index{isFull@{isFull}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{isFull()}{isFull()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_a556516d3611f5487f0ca09db4642792e} 
+bool Zen\+::\+Event\+Buffer\+::is\+Full (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+\Hypertarget{classZen_1_1EventBuffer_ab760bd8f3c3cae493201ed0161828ed2}\index{Zen::EventBuffer@{Zen::EventBuffer}!size@{size}}
+\index{size@{size}!Zen::EventBuffer@{Zen::EventBuffer}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classZen_1_1EventBuffer_ab760bd8f3c3cae493201ed0161828ed2} 
+size\+\_\+t Zen\+::\+Event\+Buffer\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{ZEN__EventBuffer_8cpp_source}{ZEN\+\_\+\+Event\+Buffer.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/events/ZEN\+\_\+\+Event\+Buffer.\+h\item 
+engine/zen/events/ZEN\+\_\+\+Event\+Buffer.\+cpp\end{DoxyCompactItemize}

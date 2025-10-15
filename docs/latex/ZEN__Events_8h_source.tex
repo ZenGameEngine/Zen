@@ -1,0 +1,36 @@
+\doxysection{ZEN\+\_\+\+Events.\+h}
+\hypertarget{ZEN__Events_8h_source}{}\label{ZEN__Events_8h_source}\index{engine/zen/events/ZEN\_Events.h@{engine/zen/events/ZEN\_Events.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Event.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00007}00007\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00008}\mbox{\hyperlink{classZen_1_1EventListener}{00008}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00009}00009\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classZen_1_1EventListener}{\string~EventListener}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ getPriority()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00014}00014\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00016}\mbox{\hyperlink{classZen_1_1EventsDispatcher}{00016}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1EventsDispatcher}{EventsDispatcher}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00017}00017\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{void}\ dispatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event);}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ registerListener(\mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ *newListener);}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{void}\ unregisterListener(\mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ *targetListener);}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00022}00022\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{struct\ }Listener\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00024}00024\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ priority;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00025}00025\ \ \ \ \ \ \ \mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ *listener\_ptr;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00026}00026\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00028}00028\ \ \ \ \ std::vector<Listener>\ m\_listeners;}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00029}00029\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Events_8h_source_l00030}00030\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,30 @@
+\doxysection{ZEN\+\_\+\+Entry\+Point.\+h}
+\hypertarget{ZEN__EntryPoint_8h_source}{}\label{ZEN__EntryPoint_8h_source}\index{engine/zen/core/ZEN\_EntryPoint.h@{engine/zen/core/ZEN\_EntryPoint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Application.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Core.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00006}00006\ \textcolor{preprocessor}{\#ifdef\ \_\_ZEN\_PLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00007}00007\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classZen_1_1Application}{Zen::Application}}\ *Zen::CreateApplication();}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00009}00009\ \textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00010}00010\ \ \ Zen::Log::init();}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00011}00011\ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Hello,\ Linux!"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00013}00013\ \ \ \textcolor{keyword}{auto}\ app\ =\ Zen::CreateApplication();}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00014}00014\ \ \ app-\/>run();}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00016}00016\ \ \ ZEN\_LOG\_INFO(\textcolor{stringliteral}{"{}Deleting\ app..."{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00017}00017\ \ \ \textcolor{keyword}{delete}\ app;}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00018}00018\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00020}00020\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_ZEN\_PLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00022}00022\ \textcolor{preprocessor}{\#ifdef\ \_\_ZEN\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00023}00023\ \textcolor{comment}{//\ NOT\ USED\ YET}}
+\DoxyCodeLine{\Hypertarget{ZEN__EntryPoint_8h_source_l00024}00024\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_ZEN\_PLATFORM\_LINUX}}
+
+\end{DoxyCode}

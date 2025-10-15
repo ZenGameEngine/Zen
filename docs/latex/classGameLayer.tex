@@ -1,0 +1,136 @@
+\doxysection{Game\+Layer Class Reference}
+\hypertarget{classGameLayer}{}\label{classGameLayer}\index{GameLayer@{GameLayer}}
+Inheritance diagram for Game\+Layer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGameLayer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGameLayer_afad6bf8078b034cf824e3650fddc2386}{on\+Attach}} () override
+\item 
+void \mbox{\hyperlink{classGameLayer_a8c15db8dea216abab5da4bcea9b76b25}{on\+Update}} (\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}} delta\+Time) override
+\item 
+bool \mbox{\hyperlink{classGameLayer_abceead6ad2ade1adc5d6dd1c8a61d7c3}{on\+Event}} (const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&event) override
+\item 
+void \mbox{\hyperlink{classGameLayer_a0de49873635941b17f85cd135b43e891}{on\+GUIRender}} () override
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf}{on\+Detach}} ()
+\item 
+int \mbox{\hyperlink{classZen_1_1Layer_a0e0d7bf49988f2b987ffc88c568f3b86}{get\+Priority}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{GameLayer_8h_source_l00023}{23}} of file \mbox{\hyperlink{GameLayer_8h_source}{Game\+Layer.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classGameLayer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classGameLayer_a867f76f6783f7d63333a646cbc2bbfa0}\index{GameLayer@{GameLayer}!GameLayer@{GameLayer}}
+\index{GameLayer@{GameLayer}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{GameLayer()}{GameLayer()}}
+{\footnotesize\ttfamily \label{classGameLayer_a867f76f6783f7d63333a646cbc2bbfa0} 
+Game\+Layer\+::\+Game\+Layer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{GameLayer_8h_source_l00025}{25}} of file \mbox{\hyperlink{GameLayer_8h_source}{Game\+Layer.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classGameLayer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Layer_a0e0d7bf49988f2b987ffc88c568f3b86}\index{GameLayer@{GameLayer}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a0e0d7bf49988f2b987ffc88c568f3b86} 
+int Zen\+::\+Layer\+::get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{ZEN__Layer_8cpp_source}{ZEN\+\_\+\+Layer.\+cpp}}.
+
+\Hypertarget{classGameLayer_afad6bf8078b034cf824e3650fddc2386}\index{GameLayer@{GameLayer}!onAttach@{onAttach}}
+\index{onAttach@{onAttach}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{onAttach()}{onAttach()}}
+{\footnotesize\ttfamily \label{classGameLayer_afad6bf8078b034cf824e3650fddc2386} 
+void Game\+Layer\+::on\+Attach (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classZen_1_1Layer}{Zen\+::\+Layer}}.
+
+
+
+Definition at line \mbox{\hyperlink{GameLayer_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{GameLayer_8cpp_source}{Game\+Layer.\+cpp}}.
+
+\Hypertarget{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf}\index{GameLayer@{GameLayer}!onDetach@{onDetach}}
+\index{onDetach@{onDetach}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{onDetach()}{onDetach()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf} 
+virtual void Zen\+::\+Layer\+::on\+Detach (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00015}{15}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classGameLayer_abceead6ad2ade1adc5d6dd1c8a61d7c3}\index{GameLayer@{GameLayer}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classGameLayer_abceead6ad2ade1adc5d6dd1c8a61d7c3} 
+bool Game\+Layer\+::on\+Event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Layer}{Zen\+::\+Layer}}.
+
+
+
+Definition at line \mbox{\hyperlink{GameLayer_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{GameLayer_8cpp_source}{Game\+Layer.\+cpp}}.
+
+\Hypertarget{classGameLayer_a0de49873635941b17f85cd135b43e891}\index{GameLayer@{GameLayer}!onGUIRender@{onGUIRender}}
+\index{onGUIRender@{onGUIRender}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{onGUIRender()}{onGUIRender()}}
+{\footnotesize\ttfamily \label{classGameLayer_a0de49873635941b17f85cd135b43e891} 
+void Game\+Layer\+::on\+GUIRender (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classZen_1_1Layer}{Zen\+::\+Layer}}.
+
+
+
+Definition at line \mbox{\hyperlink{GameLayer_8cpp_source_l00323}{323}} of file \mbox{\hyperlink{GameLayer_8cpp_source}{Game\+Layer.\+cpp}}.
+
+\Hypertarget{classGameLayer_a8c15db8dea216abab5da4bcea9b76b25}\index{GameLayer@{GameLayer}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!GameLayer@{GameLayer}}
+\doxysubsubsection{\texorpdfstring{onUpdate()}{onUpdate()}}
+{\footnotesize\ttfamily \label{classGameLayer_a8c15db8dea216abab5da4bcea9b76b25} 
+void Game\+Layer\+::on\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Delta\+Time}}}]{delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classZen_1_1Layer}{Zen\+::\+Layer}}.
+
+
+
+Definition at line \mbox{\hyperlink{GameLayer_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{GameLayer_8cpp_source}{Game\+Layer.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+editor/src/Game\+Layer.\+h\item 
+editor/src/Game\+Layer.\+cpp\end{DoxyCompactItemize}

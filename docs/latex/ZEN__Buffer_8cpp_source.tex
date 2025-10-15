@@ -1,0 +1,40 @@
+\doxysection{ZEN\+\_\+\+Buffer.\+cpp}
+\hypertarget{ZEN__Buffer_8cpp_source}{}\label{ZEN__Buffer_8cpp_source}\index{engine/zen/renderer/ZEN\_Buffer.cpp@{engine/zen/renderer/ZEN\_Buffer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_Buffer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/platform/OpenGL/ZEN\_OpenGLBuffer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_Renderer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00006}00006\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00007}00007\ \mbox{\hyperlink{classZen_1_1VertexBuffer}{VertexBuffer}}\ *VertexBuffer::Create(\textcolor{keywordtype}{float}\ *vertices,\ uint32\_t\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordflow}{switch}\ (Renderer::getAPI())\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00009}00009\ \ \ \ \ \textcolor{keywordflow}{case}\ RendererAPI::API::None:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}Renderer\ API\ is\ not\ supported"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{case}\ RendererAPI::API::OpenGL:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Vertex\ buffer:\ Using\ OpenGL\ renderer\ API"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ OpenGLVertexBuffer(vertices,\ size);}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00018}00018\ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}Unknown\ renderer\ API"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00019}00019\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00021}00021\ \mbox{\hyperlink{classZen_1_1IndexBuffer}{IndexBuffer}}\ *IndexBuffer::Create(uint32\_t\ *indices,\ uint32\_t\ count)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{switch}\ (Renderer::getAPI())\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{case}\ RendererAPI::API::None:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}Renderer\ API\ is\ not\ supported"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{case}\ RendererAPI::API::OpenGL:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Index\ buffer:\ Using\ OpenGL\ renderer\ API"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ OpenGLIndexBuffer(indices,\ count);}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00032}00032\ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}Unknown\ renderer\ API"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00033}00033\ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8cpp_source_l00034}00034\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

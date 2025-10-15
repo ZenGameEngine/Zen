@@ -1,0 +1,33 @@
+\doxysection{ZEN\+\_\+\+Layer.\+h}
+\hypertarget{ZEN__Layer_8h_source}{}\label{ZEN__Layer_8h_source}\index{engine/zen/layer/ZEN\_Layer.h@{engine/zen/layer/ZEN\_Layer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/core/ZEN\_Core.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Event.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/time/ZEN\_DeltaTime.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00008}00008\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00009}\mbox{\hyperlink{classZen_1_1Layer}{00009}}\ \ \ \textcolor{keyword}{class\ }Layer\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZen_1_1EventListener}{EventListener}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00010}00010\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00011}00011\ \ \ \ \ Layer(\textcolor{keywordtype}{int}\ priority);}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Layer()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onAttach()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onDetach()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime)\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ onGUIRender()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{int}\ getPriority()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00023}00023\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00024}00024\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_priority;}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00026}00026\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Layer_8h_source_l00027}00027\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

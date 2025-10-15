@@ -1,0 +1,49 @@
+\doxysection{ZEN\+\_\+\+Camera\+Controller.\+h}
+\hypertarget{ZEN__CameraController_8h_source}{}\label{ZEN__CameraController_8h_source}\index{engine/zen/camera/ZEN\_CameraController.h@{engine/zen/camera/ZEN\_CameraController.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/camera/ZEN\_Camera.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/events/ZEN\_Event.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <zen/inputs/ZEN\_Input.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <zen/time/ZEN\_DeltaTime.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00009}00009\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00010}\mbox{\hyperlink{classZen_1_1CameraController}{00010}}\ \ \ \textcolor{keyword}{class\ }CameraController\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00011}00011\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00012}00012\ \ \ \ \ CameraController(\mbox{\hyperlink{classZen_1_1Camera}{Camera}}\ \&camera);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{void}\ onUpdate(\mbox{\hyperlink{classZen_1_1DeltaTime}{DeltaTime}}\ deltaTime);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ onEvent(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ onMouseScrolled(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ onWindowResize(\textcolor{keyword}{const}\ \mbox{\hyperlink{structZen_1_1ZenEvent}{ZenEvent}}\ \&event);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ setWorldBounds(\textcolor{keywordtype}{float}\ left,\ \textcolor{keywordtype}{float}\ right,\ \textcolor{keywordtype}{float}\ bottom,\ \textcolor{keywordtype}{float}\ top);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{void}\ enableWorldBounds(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00022}00022\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00023}00023\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCameraProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}\ clampCameraToWorld();}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{void}\ getViewDimensions(\textcolor{keywordtype}{float}\ \&outWidth,\ \textcolor{keywordtype}{float}\ \&outHeight)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{classZen_1_1Camera}{Camera}}\ \&m\_camera;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_aspectRatio;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_zoomLevel\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00031}00031\ \ \ \ \ glm::vec3\ m\_cameraPosition\ =\ \{0.0f,\ 0.0f,\ 0.0f\};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00033}00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_worldBoundsEnabled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldLeft\ \ \ \ \ \ \ \ \ =\ -\/10.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldRight\ \ \ \ \ \ \ \ =\ 10.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldBottom\ \ \ \ \ \ \ =\ -\/5.625f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldTop\ \ \ \ \ \ \ \ \ \ =\ 5.625f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldWidth\ \ \ \ \ \ \ =\ 20.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldHeight\ \ \ \ \ \ =\ 11.25f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_worldAspectRatio\ =\ 16.0f\ /\ 9.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00042}00042\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__CameraController_8h_source_l00043}00043\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{ZEN\+\_\+\+Open\+GLBuffer.\+h}
+\hypertarget{ZEN__OpenGLBuffer_8h_source}{}\label{ZEN__OpenGLBuffer_8h_source}\index{engine/zen/platform/OpenGL/ZEN\_OpenGLBuffer.h@{engine/zen/platform/OpenGL/ZEN\_OpenGLBuffer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/renderer/ZEN\_Buffer.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00005}00005\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00006}\mbox{\hyperlink{classZen_1_1OpenGLVertexBuffer}{00006}}\ \ \ \textcolor{keyword}{class\ }OpenGLVertexBuffer\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZen_1_1VertexBuffer}{VertexBuffer}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00007}00007\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00008}00008\ \ \ \ \ OpenGLVertexBuffer(\textcolor{keywordtype}{float}\ *vertices,\ uint32\_t\ size);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~OpenGLVertexBuffer();}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ uint32\_t\ size)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classZen_1_1BufferLayout}{BufferLayout}}\ \&getLayout()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ m\_layout;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setLayout(\textcolor{keyword}{const}\ \mbox{\hyperlink{classZen_1_1BufferLayout}{BufferLayout}}\ \&layout)\textcolor{keyword}{\ override\ }\{\ m\_layout\ =\ layout;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00019}00019\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00020}00020\ \ \ \ \ uint32\_t\ m\_rendererID;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{classZen_1_1BufferLayout}{BufferLayout}}\ m\_layout;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00022}00022\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00024}\mbox{\hyperlink{classZen_1_1OpenGLIndexBuffer}{00024}}\ \ \ \textcolor{keyword}{class\ }OpenGLIndexBuffer\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZen_1_1IndexBuffer}{IndexBuffer}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00025}00025\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00026}00026\ \ \ \ \ OpenGLIndexBuffer(uint32\_t\ *indices,\ uint32\_t\ count);}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~OpenGLIndexBuffer();}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{void}\ bind()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00031}00031\ \ \ \ \ uint32\_t\ getCount()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setCount(uint32\_t\ count)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00034}00034\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00035}00035\ \ \ \ \ uint32\_t\ m\_rendererID;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00036}00036\ \ \ \ \ uint32\_t\ m\_count;}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00037}00037\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{ZEN__OpenGLBuffer_8h_source_l00039}00039\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

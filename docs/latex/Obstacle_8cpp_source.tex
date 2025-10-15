@@ -1,0 +1,99 @@
+\doxysection{Obstacle.\+cpp}
+\hypertarget{Obstacle_8cpp_source}{}\label{Obstacle_8cpp_source}\index{editor/src/Obstacle.cpp@{editor/src/Obstacle.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}Obstacle.h"{}}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00003}00003\ Obstacle::Obstacle(ObstacleType\ t,\ \textcolor{keywordtype}{float}\ x)\ :\ type(t),\ pos\{x,\ 0.0f\}\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00004}00004\ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordflow}{case}\ ObstacleType::SmallBox:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00006}00006\ \ \ \ \ \ \ size\ \ \ =\ \{0.8f,\ 0.8f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00007}00007\ \ \ \ \ \ \ pos.y\ \ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00008}00008\ \ \ \ \ \ \ colour\ =\ \{1.0f,\ 0.5f,\ 0.0f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00009}00009\ \ \ \ \ \ \ speed\ \ =\ 6.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00010}00010\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{case}\ ObstacleType::TallBox:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00013}00013\ \ \ \ \ \ \ size\ \ \ =\ \{0.6f,\ 2.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00014}00014\ \ \ \ \ \ \ pos.y\ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00015}00015\ \ \ \ \ \ \ colour\ =\ \{1.0f,\ 0.2f,\ 0.2f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00016}00016\ \ \ \ \ \ \ speed\ \ =\ 5.5f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00017}00017\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{case}\ ObstacleType::FlyingBox:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00020}00020\ \ \ \ \ \ \ size\ \ \ =\ \{1.0f,\ 0.6f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00021}00021\ \ \ \ \ \ \ pos.y\ \ =\ 2.5f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00022}00022\ \ \ \ \ \ \ colour\ =\ \{0.5f,\ 0.2f,\ 1.0f,\ 1.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00023}00023\ \ \ \ \ \ \ speed\ \ =\ 7.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00024}00024\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00025}00025\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00027}00027\ \ \ emitter.pos\ \ \ \ \ \ \ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00028}00028\ \ \ emitter.size\ \ \ \ \ \ =\ size;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00029}00029\ \ \ emitter.colour\ \ \ \ =\ colour;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00030}00030\ \ \ emitter.spawnRate\ =\ 40.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00032}00032\ \ \ emitter.props.position\ \ \ \ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00033}00033\ \ \ emitter.props.velocity\ \ \ \ =\ \{3.0f,\ 0.0f\};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00034}00034\ \ \ emitter.props.lifeTime\ \ \ \ =\ 0.8f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00035}00035\ \ \ emitter.props.sizeBegin\ \ \ =\ 0.3f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00036}00036\ \ \ emitter.props.sizeEnd\ \ \ \ \ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00037}00037\ \ \ emitter.props.colourBegin\ =\ colour;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00038}00038\ \ \ emitter.props.colourEnd\ \ \ =\ glm::vec4(colour.r,\ colour.g,\ colour.b,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00041}00041\ \textcolor{keywordtype}{void}\ Obstacle::update(\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen::DeltaTime}}\ dt)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00042}00042\ \ \ \textcolor{keywordflow}{if}\ (!active)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00044}00044\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00046}00046\ \ \ pos.x\ -\/=\ speed\ *\ dt.seconds();}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00048}00048\ \ \ emitter.pos\ \ \ \ \ \ \ \ \ \ \ \ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00049}00049\ \ \ emitter.props.position\ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00051}00051\ \ \ \textcolor{keywordflow}{if}\ (pos.x\ <\ -\/12.0f)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00052}00052\ \ \ \ \ active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00053}00053\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00056}00056\ \textcolor{keywordtype}{void}\ Obstacle::reset(\textcolor{keywordtype}{float}\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00057}00057\ \ \ pos.x\ \ =\ x;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00058}00058\ \ \ active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00060}00060\ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{case}\ ObstacleType::SmallBox:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00062}00062\ \ \ \ \ \ \ pos.y\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00063}00063\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{case}\ ObstacleType::TallBox:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00065}00065\ \ \ \ \ \ \ pos.y\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00066}00066\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{case}\ ObstacleType::FlyingBox:}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00068}00068\ \ \ \ \ \ \ pos.y\ =\ 2.5f;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00069}00069\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00070}00070\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00072}00072\ \ \ emitter.pos\ \ \ \ \ \ \ \ \ \ \ \ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00073}00073\ \ \ emitter.props.position\ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00074}00074\ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00076}00076\ \textcolor{keywordtype}{bool}\ Obstacle::collidesWith(\textcolor{keyword}{const}\ glm::vec2\ \&otherPos,\ \textcolor{keyword}{const}\ glm::vec2\ \&otherSize)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00077}00077\ \ \ \textcolor{keywordflow}{if}\ (!active)\ \{}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00079}00079\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00081}00081\ \ \ \textcolor{comment}{//\ simple\ AABB\ collision}}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00082}00082\ \ \ \textcolor{keywordtype}{float}\ left1\ \ \ =\ pos.x\ -\/\ (size.x\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00083}00083\ \ \ \textcolor{keywordtype}{float}\ right1\ \ =\ pos.x\ +\ (size.x\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00084}00084\ \ \ \textcolor{keywordtype}{float}\ bottom1\ =\ pos.y\ -\/\ (size.y\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00085}00085\ \ \ \textcolor{keywordtype}{float}\ top1\ \ \ \ =\ pos.y\ +\ (size.y\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00087}00087\ \ \ \textcolor{keywordtype}{float}\ left2\ \ \ =\ otherPos.x\ -\/\ (otherSize.x\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00088}00088\ \ \ \textcolor{keywordtype}{float}\ right2\ \ =\ otherPos.x\ +\ (otherSize.x\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00089}00089\ \ \ \textcolor{keywordtype}{float}\ bottom2\ =\ otherPos.y\ -\/\ (otherSize.y\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00090}00090\ \ \ \textcolor{keywordtype}{float}\ top2\ \ \ \ =\ otherPos.y\ +\ (otherSize.y\ *\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00092}00092\ \ \ \textcolor{keywordflow}{return}\ !(left1\ >\ right2\ ||\ right1\ <\ left2\ ||\ bottom1\ >\ top2\ ||\ top1\ <\ bottom2);}
+\DoxyCodeLine{\Hypertarget{Obstacle_8cpp_source_l00093}00093\ \}}
+
+\end{DoxyCode}

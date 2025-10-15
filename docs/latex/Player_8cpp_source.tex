@@ -1,0 +1,31 @@
+\doxysection{Player.\+cpp}
+\hypertarget{Player_8cpp_source}{}\label{Player_8cpp_source}\index{editor/src/Player.cpp@{editor/src/Player.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}Player.h"{}}}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00003}00003\ \textcolor{keywordtype}{bool}\ Player::onGround()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ pos.y\ <=\ 0.0f;\ \}}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00005}00005\ \textcolor{keywordtype}{void}\ Player::update(\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen::DeltaTime}}\ deltaTime,\ \textcolor{keywordtype}{bool}\ jumpPressed)\ \{}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00006}00006\ \ \ m\_wasOnGround\ =\ onGround();}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00007}00007\ \ \ m\_justJumped\ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00009}00009\ \ \ \textcolor{keywordflow}{if}\ (jumpPressed\ \&\&\ onGround())\ \{}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00010}00010\ \ \ \ \ vy\ \ \ \ \ \ \ \ \ \ \ =\ jumpPower;}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00011}00011\ \ \ \ \ m\_justJumped\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00012}00012\ \ \ \ \ ZEN\_LOG\_TRACE(\textcolor{stringliteral}{"{}Jumped"{}});}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00013}00013\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00015}00015\ \ \ vy\ +=\ gravity\ *\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00016}00016\ \ \ pos.y\ +=\ vy\ *\ deltaTime.seconds();}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00018}00018\ \ \ \textcolor{keywordflow}{if}\ (pos.y\ <\ 0.0f)\ \{}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00019}00019\ \ \ \ \ pos.y\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00020}00020\ \ \ \ \ vy\ \ \ \ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00021}00021\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00023}00023\ \ \ emitter.pos\ \ \ \ \ \ \ \ \ \ \ \ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00024}00024\ \ \ emitter.props.position\ =\ pos;}
+\DoxyCodeLine{\Hypertarget{Player_8cpp_source_l00025}00025\ \}}
+
+\end{DoxyCode}

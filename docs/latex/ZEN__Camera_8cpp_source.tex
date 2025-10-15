@@ -1,0 +1,137 @@
+\doxysection{ZEN\+\_\+\+Camera.\+cpp}
+\hypertarget{ZEN__Camera_8cpp_source}{}\label{ZEN__Camera_8cpp_source}\index{engine/zen/camera/ZEN\_Camera.cpp@{engine/zen/camera/ZEN\_Camera.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/camera/ZEN\_Camera.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <glm/ext/matrix\_clip\_space.hpp>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <glm/ext/matrix\_transform.hpp>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00007}00007\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00008}00008\ \ \ Camera::Camera(CameraType\ type)\ :\ m\_cameraType(type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00009}00009\ \ \ \ \ updateDirection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00010}00010\ \ \ \ \ updateProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00011}00011\ \ \ \ \ updateView();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00012}00012\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00014}00014\ \ \ \textcolor{keywordtype}{void}\ Camera::setCameraType(CameraType\ type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00015}00015\ \ \ \ \ m\_cameraType\ =\ type;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00016}00016\ \ \ \ \ updateProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00017}00017\ \ \ \ \ updateView();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00018}00018\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00020}00020\ \ \ \textcolor{keywordtype}{void}\ Camera::setPerspective(\textcolor{keywordtype}{float}\ fov,\ \textcolor{keywordtype}{float}\ aspect,\ \textcolor{keywordtype}{float}\ near,\ \textcolor{keywordtype}{float}\ far)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00021}00021\ \ \ \ \ m\_cameraType\ \ =\ CameraType::Perspective;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00022}00022\ \ \ \ \ m\_fov\ \ \ \ \ \ \ \ \ =\ fov;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00023}00023\ \ \ \ \ m\_aspectRatio\ =\ aspect;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00024}00024\ \ \ \ \ m\_near\ \ \ \ \ \ \ \ =\ near;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00025}00025\ \ \ \ \ m\_far\ \ \ \ \ \ \ \ \ =\ far;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00026}00026\ \ \ \ \ updateProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00027}00027\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00029}00029\ \ \ \textcolor{keywordtype}{void}\ Camera::setOrthographic(\textcolor{keywordtype}{float}\ left,\ \textcolor{keywordtype}{float}\ right,\ \textcolor{keywordtype}{float}\ bottom,\ \textcolor{keywordtype}{float}\ top)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00030}00030\ \ \ \ \ m\_cameraType\ \ =\ CameraType::Orthographic;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00031}00031\ \ \ \ \ m\_orthoLeft\ \ \ =\ left;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00032}00032\ \ \ \ \ m\_orthoRight\ \ =\ right;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00033}00033\ \ \ \ \ m\_orthoBottom\ =\ bottom;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00034}00034\ \ \ \ \ m\_orthoTop\ \ \ \ =\ top;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00035}00035\ \ \ \ \ updateProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00036}00036\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00038}00038\ \ \ \textcolor{keywordtype}{void}\ Camera::setAspectRatio(\textcolor{keywordtype}{float}\ aspect)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00039}00039\ \ \ \ \ m\_aspectRatio\ =\ aspect;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_cameraType\ ==\ CameraType::Perspective)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00041}00041\ \ \ \ \ \ \ updateProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00043}00043\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00045}00045\ \ \ \textcolor{keywordtype}{void}\ Camera::setClip(\textcolor{keywordtype}{float}\ near,\ \textcolor{keywordtype}{float}\ far)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00046}00046\ \ \ \ \ m\_near\ =\ near;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00047}00047\ \ \ \ \ m\_far\ \ =\ far;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_cameraType\ ==\ CameraType::Perspective)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00049}00049\ \ \ \ \ \ \ updateProjection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00051}00051\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00053}00053\ \ \ \textcolor{keywordtype}{void}\ Camera::setPosition(\textcolor{keyword}{const}\ glm::vec3\ \&position)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00054}00054\ \ \ \ \ m\_position\ =\ position;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00055}00055\ \ \ \ \ updateView();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00056}00056\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00058}00058\ \ \ \textcolor{keywordtype}{void}\ Camera::setRotation(\textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ roll)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00059}00059\ \ \ \ \ m\_yaw\ \ \ =\ yaw;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00060}00060\ \ \ \ \ m\_pitch\ =\ pitch;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00061}00061\ \ \ \ \ m\_roll\ \ =\ roll;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00062}00062\ \ \ \ \ clampPitch();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00063}00063\ \ \ \ \ updateDirection();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00064}00064\ \ \ \ \ updateView();}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00065}00065\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00067}00067\ \ \ \textcolor{keywordtype}{void}\ Camera::setSpeed(\textcolor{keywordtype}{float}\ speed)\ \{\ m\_cameraSpeed\ =\ speed;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00069}00069\ \ \ \textcolor{keywordtype}{void}\ Camera::setSensitivity(\textcolor{keywordtype}{float}\ sensitivity)\ \{\ m\_cameraSensitivity\ =\ sensitivity;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00071}00071\ \ \ CameraType\ Camera::type()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_cameraType;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00073}00073\ \ \ \textcolor{keyword}{const}\ glm::vec3\ \&Camera::position()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_position;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00075}00075\ \ \ glm::vec3\ Camera::rotation()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \{m\_yaw,\ m\_pitch,\ m\_roll\};\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00077}00077\ \ \ \textcolor{keywordtype}{float}\ Camera::speed()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_cameraSpeed;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00079}00079\ \ \ \textcolor{keywordtype}{float}\ Camera::sensitivity()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_cameraSensitivity;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00081}00081\ \ \ \textcolor{keywordtype}{float}\ Camera::aspectRatio()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_aspectRatio;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00083}00083\ \ \ \textcolor{keyword}{const}\ glm::mat4\ \&Camera::projectionMatrix()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_projection;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00085}00085\ \ \ \textcolor{keyword}{const}\ glm::mat4\ \&Camera::viewMatrix()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_view;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00087}00087\ \ \ glm::mat4\ Camera::viewProjectionMatrix()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_projection\ *\ m\_view;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00089}00089\ \ \ \textcolor{keywordtype}{void}\ Camera::updateProjection()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_cameraType\ ==\ CameraType::Perspective)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00091}00091\ \ \ \ \ \ \ m\_projection\ =\ glm::perspective(glm::radians(m\_fov),\ m\_aspectRatio,\ m\_near,\ m\_far);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00092}00092\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00093}00093\ \ \ \ \ \ \ m\_projection\ =\ glm::ortho(m\_orthoLeft,\ m\_orthoRight,\ m\_orthoBottom,\ m\_orthoTop,\ -\/1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00095}00095\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00097}00097\ \ \ \textcolor{keywordtype}{void}\ Camera::updateView()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_cameraType\ ==\ CameraType::Orthographic)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00100}00100\ \ \ \ \ \ \ glm::mat4\ translate\ =\ glm::translate(glm::mat4(1.0f),\ m\_position);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00101}00101\ \ \ \ \ \ \ glm::mat4\ roll\ \ \ \ \ \ =\ glm::rotate(glm::mat4(1.0f),\ glm::radians(m\_roll),\ glm::vec3(0,\ 0,\ 1));}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00103}00103\ \ \ \ \ \ \ m\_view\ =\ glm::inverse(translate\ *\ roll);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00105}00105\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00106}00106\ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\ target\ =\ m\_position\ +\ m\_front;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00108}00108\ \ \ \ \ \ \ m\_view\ =\ glm::lookAt(m\_position,\ target,\ m\_up);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00110}00110\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00112}00112\ \ \ \textcolor{keywordtype}{void}\ Camera::updateDirection()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ yaw\ \ \ =\ glm::radians(m\_yaw);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ pitch\ =\ glm::radians(m\_pitch);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00116}00116\ \ \ \ \ glm::vec3\ front;}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00117}00117\ \ \ \ \ front.x\ =\ std::cos(yaw)\ *\ std::cos(pitch);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00118}00118\ \ \ \ \ front.y\ =\ std::sin(pitch);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00119}00119\ \ \ \ \ front.z\ =\ std::sin(yaw)\ *\ std::cos(pitch);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00120}00120\ \ \ \ \ m\_front\ =\ glm::normalize(front);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00122}00122\ \ \ \ \ m\_right\ =\ glm::normalize(glm::cross(m\_front,\ m\_worldUp));}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00123}00123\ \ \ \ \ m\_up\ \ \ \ =\ glm::normalize(glm::cross(m\_right,\ m\_front));}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00124}00124\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00126}00126\ \ \ \textcolor{keywordtype}{void}\ Camera::clampPitch()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00127}00127\ \ \ \ \ m\_pitch\ =\ std::min(m\_pitch,\ 89.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00128}00128\ \ \ \ \ m\_pitch\ =\ std::max(m\_pitch,\ -\/89.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00129}00129\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Camera_8cpp_source_l00131}00131\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

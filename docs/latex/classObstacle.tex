@@ -1,0 +1,189 @@
+\doxysection{Obstacle Class Reference}
+\hypertarget{classObstacle}{}\label{classObstacle}\index{Obstacle@{Obstacle}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classObstacle_ab762aa3a2882a952ba6327ed79b3c520}{Obstacle}} (Obstacle\+Type t, float x=12.\+0f)
+\item 
+void \mbox{\hyperlink{classObstacle_ac70fada8fdd82e123076b72e6b126ad2}{update}} (\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen\+::\+Delta\+Time}} dt)
+\item 
+void \mbox{\hyperlink{classObstacle_ae709f83bdae69b0acad14689a179cc88}{reset}} (float x=12.\+0f)
+\item 
+bool \mbox{\hyperlink{classObstacle_a1eaacdbc6120bf899b487c159ed3a969}{collides\+With}} (const glm\+::vec2 \&other\+Pos, const glm\+::vec2 \&other\+Size) const
+\item 
+float \mbox{\hyperlink{classObstacle_a7121d0fc57c9a274f6c68180d28ebebc}{get\+BottomY}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec2 \mbox{\hyperlink{classObstacle_aa28e792409f4958329f2456bc05c0085}{pos}} \{12.\+0f, 0.\+0f\}
+\item 
+glm\+::vec2 \mbox{\hyperlink{classObstacle_a6e9c176e7bdfdce15e4ced58d66ef85e}{size}} \{1.\+0f, 1.\+0f\}
+\item 
+glm\+::vec4 \mbox{\hyperlink{classObstacle_a61511459ea4910d2ab5d9b366ed2524c}{colour}} \{1.\+0f, 0.\+5f, 0.\+0f, 1.\+0f\}
+\item 
+Obstacle\+Type \mbox{\hyperlink{classObstacle_a096ac83585d3339dd3bc6a6e9d898357}{type}} = Obstacle\+Type\+::\+Small\+Box
+\item 
+float \mbox{\hyperlink{classObstacle_a1e2b46db05325273ce0fcba3550b5b2a}{speed}} = 5.\+0f
+\item 
+bool \mbox{\hyperlink{classObstacle_a8c650df327b3d4cc1c9233fd00a76727}{active}} = true
+\item 
+\mbox{\hyperlink{structZen_1_1ParticleEmitter}{Zen\+::\+Particle\+Emitter}} \mbox{\hyperlink{classObstacle_aa92d8ed8267b5454594a15000ad3e66d}{emitter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00012}{12}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classObstacle_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classObstacle_ab762aa3a2882a952ba6327ed79b3c520}\index{Obstacle@{Obstacle}!Obstacle@{Obstacle}}
+\index{Obstacle@{Obstacle}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{Obstacle()}{Obstacle()}}
+{\footnotesize\ttfamily \label{classObstacle_ab762aa3a2882a952ba6327ed79b3c520} 
+Obstacle\+::\+Obstacle (\begin{DoxyParamCaption}\item[{Obstacle\+Type}]{t}{, }\item[{float}]{x}{ = {\ttfamily 12.0f}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{Obstacle_8cpp_source}{Obstacle.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classObstacle_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObstacle_a1eaacdbc6120bf899b487c159ed3a969}\index{Obstacle@{Obstacle}!collidesWith@{collidesWith}}
+\index{collidesWith@{collidesWith}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{collidesWith()}{collidesWith()}}
+{\footnotesize\ttfamily \label{classObstacle_a1eaacdbc6120bf899b487c159ed3a969} 
+bool Obstacle\+::collides\+With (\begin{DoxyParamCaption}\item[{const glm\+::vec2 \&}]{other\+Pos}{, }\item[{const glm\+::vec2 \&}]{other\+Size}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8cpp_source_l00076}{76}} of file \mbox{\hyperlink{Obstacle_8cpp_source}{Obstacle.\+cpp}}.
+
+\Hypertarget{classObstacle_a7121d0fc57c9a274f6c68180d28ebebc}\index{Obstacle@{Obstacle}!getBottomY@{getBottomY}}
+\index{getBottomY@{getBottomY}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{getBottomY()}{getBottomY()}}
+{\footnotesize\ttfamily \label{classObstacle_a7121d0fc57c9a274f6c68180d28ebebc} 
+float Obstacle\+::get\+BottomY (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00037}{37}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_ae709f83bdae69b0acad14689a179cc88}\index{Obstacle@{Obstacle}!reset@{reset}}
+\index{reset@{reset}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classObstacle_ae709f83bdae69b0acad14689a179cc88} 
+void Obstacle\+::reset (\begin{DoxyParamCaption}\item[{float}]{x}{ = {\ttfamily 12.0f}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{Obstacle_8cpp_source}{Obstacle.\+cpp}}.
+
+\Hypertarget{classObstacle_ac70fada8fdd82e123076b72e6b126ad2}\index{Obstacle@{Obstacle}!update@{update}}
+\index{update@{update}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classObstacle_ac70fada8fdd82e123076b72e6b126ad2} 
+void Obstacle\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classZen_1_1DeltaTime}{Zen\+::\+Delta\+Time}}}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{Obstacle_8cpp_source}{Obstacle.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classObstacle_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classObstacle_a8c650df327b3d4cc1c9233fd00a76727}\index{Obstacle@{Obstacle}!active@{active}}
+\index{active@{active}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily \label{classObstacle_a8c650df327b3d4cc1c9233fd00a76727} 
+bool Obstacle\+::active = true}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00020}{20}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_a61511459ea4910d2ab5d9b366ed2524c}\index{Obstacle@{Obstacle}!colour@{colour}}
+\index{colour@{colour}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{colour}{colour}}
+{\footnotesize\ttfamily \label{classObstacle_a61511459ea4910d2ab5d9b366ed2524c} 
+glm\+::vec4 Obstacle\+::colour \{1.\+0f, 0.\+5f, 0.\+0f, 1.\+0f\}}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00016}{16}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_aa92d8ed8267b5454594a15000ad3e66d}\index{Obstacle@{Obstacle}!emitter@{emitter}}
+\index{emitter@{emitter}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{emitter}{emitter}}
+{\footnotesize\ttfamily \label{classObstacle_aa92d8ed8267b5454594a15000ad3e66d} 
+\mbox{\hyperlink{structZen_1_1ParticleEmitter}{Zen\+::\+Particle\+Emitter}} Obstacle\+::emitter}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \ \ \{0,\ 0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \{1,\ 1\},}
+\DoxyCodeLine{\ \ \ \ \ \ \{1,\ 1,\ 1,\ 1\}}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00022}{22}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_aa28e792409f4958329f2456bc05c0085}\index{Obstacle@{Obstacle}!pos@{pos}}
+\index{pos@{pos}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \label{classObstacle_aa28e792409f4958329f2456bc05c0085} 
+glm\+::vec2 Obstacle\+::pos \{12.\+0f, 0.\+0f\}}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00014}{14}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_a6e9c176e7bdfdce15e4ced58d66ef85e}\index{Obstacle@{Obstacle}!size@{size}}
+\index{size@{size}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \label{classObstacle_a6e9c176e7bdfdce15e4ced58d66ef85e} 
+glm\+::vec2 Obstacle\+::size \{1.\+0f, 1.\+0f\}}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00015}{15}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_a1e2b46db05325273ce0fcba3550b5b2a}\index{Obstacle@{Obstacle}!speed@{speed}}
+\index{speed@{speed}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily \label{classObstacle_a1e2b46db05325273ce0fcba3550b5b2a} 
+float Obstacle\+::speed = 5.\+0f}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00019}{19}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+\Hypertarget{classObstacle_a096ac83585d3339dd3bc6a6e9d898357}\index{Obstacle@{Obstacle}!type@{type}}
+\index{type@{type}!Obstacle@{Obstacle}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{classObstacle_a096ac83585d3339dd3bc6a6e9d898357} 
+Obstacle\+Type Obstacle\+::type = Obstacle\+Type\+::\+Small\+Box}
+
+
+
+Definition at line \mbox{\hyperlink{Obstacle_8h_source_l00018}{18}} of file \mbox{\hyperlink{Obstacle_8h_source}{Obstacle.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+editor/src/Obstacle.\+h\item 
+editor/src/Obstacle.\+cpp\end{DoxyCompactItemize}

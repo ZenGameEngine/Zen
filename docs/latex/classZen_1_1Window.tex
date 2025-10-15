@@ -1,0 +1,104 @@
+\doxysection{Zen\+::Window Class Reference}
+\hypertarget{classZen_1_1Window}{}\label{classZen_1_1Window}\index{Zen::Window@{Zen::Window}}
+Inheritance diagram for Zen\+::Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classZen_1_1Window}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classZen_1_1Window_abfea2d780184623db573586bab51baf4}\label{classZen_1_1Window_abfea2d780184623db573586bab51baf4} 
+virtual void {\bfseries on\+Update} ()=0
+\item 
+\Hypertarget{classZen_1_1Window_a0b2c325658c1156c60a7fd52a1ea6ec5}\label{classZen_1_1Window_a0b2c325658c1156c60a7fd52a1ea6ec5} 
+virtual uint32\+\_\+t {\bfseries get\+Width} ()=0
+\item 
+\Hypertarget{classZen_1_1Window_a8d055bc4ae9ccf73763ab29ed3be73bc}\label{classZen_1_1Window_a8d055bc4ae9ccf73763ab29ed3be73bc} 
+virtual uint32\+\_\+t {\bfseries get\+Height} ()=0
+\item 
+\Hypertarget{classZen_1_1Window_a96c6b058f4a0bea1f8a8624849dbe9b6}\label{classZen_1_1Window_a96c6b058f4a0bea1f8a8624849dbe9b6} 
+virtual void {\bfseries set\+VSync} (bool enabled)=0
+\item 
+\Hypertarget{classZen_1_1Window_a1c2f14e286ad5f720dd1e82e5b8aa49b}\label{classZen_1_1Window_a1c2f14e286ad5f720dd1e82e5b8aa49b} 
+virtual bool {\bfseries is\+VSync\+Enabled} () const =0
+\item 
+\Hypertarget{classZen_1_1Window_af31bb0c0bb0eb89d2dacd1298de3c085}\label{classZen_1_1Window_af31bb0c0bb0eb89d2dacd1298de3c085} 
+virtual void {\bfseries toggle\+Fullscreen} ()=0
+\item 
+\Hypertarget{classZen_1_1Window_a9c4d4de69b57d42a46ba43710d6138d7}\label{classZen_1_1Window_a9c4d4de69b57d42a46ba43710d6138d7} 
+virtual void {\bfseries emit\+Error\+Message} (const char \texorpdfstring{$\ast$}{*}message)=0
+\item 
+virtual bool \mbox{\hyperlink{classZen_1_1Window_a6ac48ff3de64250626ccb7b898abb0b2}{on\+Event}} (const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&event)=0
+\item 
+\Hypertarget{classZen_1_1Window_a3ac36a9ea2f3f1fcb51955b712f18e08}\label{classZen_1_1Window_a3ac36a9ea2f3f1fcb51955b712f18e08} 
+virtual void \texorpdfstring{$\ast$}{*} {\bfseries native\+Window} () const =0
+\item 
+\Hypertarget{classZen_1_1Window_aa4b411f2c67e3d2837c06552c48b1d3a}\label{classZen_1_1Window_aa4b411f2c67e3d2837c06552c48b1d3a} 
+virtual \mbox{\hyperlink{classZen_1_1GraphicsContext}{Graphics\+Context}} \& {\bfseries context} ()=0
+\item 
+\Hypertarget{classZen_1_1Window_ae07f8089099b06fe617b02255a6a9bdd}\label{classZen_1_1Window_ae07f8089099b06fe617b02255a6a9bdd} 
+virtual const \mbox{\hyperlink{classZen_1_1GraphicsContext}{Graphics\+Context}} \& {\bfseries context} () const =0
+\item 
+\Hypertarget{classZen_1_1EventListener_aabdcb6991f5db652ec582d8b94dc3dc3}\label{classZen_1_1EventListener_aabdcb6991f5db652ec582d8b94dc3dc3} 
+virtual int {\bfseries get\+Priority} () const =0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Window}{Window}} $>$ \mbox{\hyperlink{classZen_1_1Window_ab80d2d4ee5f10b7b4b2c66dedd9fa86a}{create}} (const \mbox{\hyperlink{structZen_1_1WindowProperties}{Zen\+::\+Window\+Properties}} \&properties=\mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}}())
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__Window_8h_source_l00032}{32}} of file \mbox{\hyperlink{ZEN__Window_8h_source}{ZEN\+\_\+\+Window.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1Window_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1Window_a6e82847e7890da405e5872b3c5b227f1}\index{Zen::Window@{Zen::Window}!````~Window@{\texorpdfstring{$\sim$}{\string~}Window}}
+\index{````~Window@{\texorpdfstring{$\sim$}{\string~}Window}!Zen::Window@{Zen::Window}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Window()}{\string~Window()}}
+{\footnotesize\ttfamily \label{classZen_1_1Window_a6e82847e7890da405e5872b3c5b227f1} 
+virtual Zen\+::\+Window\+::\texorpdfstring{$\sim$}{\string~}\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Window_8h_source_l00034}{34}} of file \mbox{\hyperlink{ZEN__Window_8h_source}{ZEN\+\_\+\+Window.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1Window_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Window_ab80d2d4ee5f10b7b4b2c66dedd9fa86a}\index{Zen::Window@{Zen::Window}!create@{create}}
+\index{create@{create}!Zen::Window@{Zen::Window}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{classZen_1_1Window_ab80d2d4ee5f10b7b4b2c66dedd9fa86a} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Window}{Window}} $>$ Zen\+::\+Window\+::create (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1WindowProperties}{Zen\+::\+Window\+Properties}} \&}]{properties}{ = {\ttfamily \mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}}()}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Window_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{ZEN__Window_8cpp_source}{ZEN\+\_\+\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1Window_a6ac48ff3de64250626ccb7b898abb0b2}\index{Zen::Window@{Zen::Window}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!Zen::Window@{Zen::Window}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1Window_a6ac48ff3de64250626ccb7b898abb0b2} 
+virtual bool Zen\+::\+Window\+::on\+Event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1ZenEvent}{Zen\+Event}} \&}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/core/ZEN\+\_\+\+Window.\+h\item 
+engine/zen/core/ZEN\+\_\+\+Window.\+cpp\end{DoxyCompactItemize}

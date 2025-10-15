@@ -1,0 +1,178 @@
+\doxysection{ZEN\+\_\+\+Style.\+cpp}
+\hypertarget{ZEN__Style_8cpp_source}{}\label{ZEN__Style_8cpp_source}\index{engine/zen/gui/ZEN\_Style.cpp@{engine/zen/gui/ZEN\_Style.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/gui/ZEN\_Style.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <include/imgui/imgui.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00005}00005\ \ \ \textcolor{keywordtype}{void}\ styleSetup()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{comment}{//\ Zen\ Style}}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00007}00007\ \ \ \ \ ImGuiStyle\ \&style\ =\ ImGui::GetStyle();}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00009}00009\ \ \ \ \ style.Alpha\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00010}00010\ \ \ \ \ style.DisabledAlpha\ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00011}00011\ \ \ \ \ style.WindowPadding\ \ \ \ \ \ \ \ \ \ \ \ =\ ImVec2(20.0f,\ 20.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00012}00012\ \ \ \ \ style.WindowRounding\ \ \ \ \ \ \ \ \ \ \ =\ 8.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00013}00013\ \ \ \ \ style.WindowBorderSize\ \ \ \ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00014}00014\ \ \ \ \ style.WindowMinSize\ \ \ \ \ \ \ \ \ \ \ \ =\ ImVec2(20.0f,\ 20.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00015}00015\ \ \ \ \ style.WindowTitleAlign\ \ \ \ \ \ \ \ \ =\ ImVec2(0.5f,\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00016}00016\ \ \ \ \ style.WindowMenuButtonPosition\ =\ ImGuiDir\_None;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00017}00017\ \ \ \ \ style.ChildRounding\ \ \ \ \ \ \ \ \ \ \ \ =\ 10.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00018}00018\ \ \ \ \ style.ChildBorderSize\ \ \ \ \ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00019}00019\ \ \ \ \ style.PopupRounding\ \ \ \ \ \ \ \ \ \ \ \ =\ 16.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00020}00020\ \ \ \ \ style.PopupBorderSize\ \ \ \ \ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00021}00021\ \ \ \ \ style.FramePadding\ \ \ \ \ \ \ \ \ \ \ \ \ =\ ImVec2(20.0f,\ 4.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00022}00022\ \ \ \ \ style.FrameRounding\ \ \ \ \ \ \ \ \ \ \ \ =\ 12.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00023}00023\ \ \ \ \ style.FrameBorderSize\ \ \ \ \ \ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00024}00024\ \ \ \ \ style.ItemSpacing\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ImVec2(8.0f,\ 12.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00025}00025\ \ \ \ \ style.ItemInnerSpacing\ \ \ \ \ \ \ \ \ =\ ImVec2(8.0f,\ 2.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00026}00026\ \ \ \ \ style.CellPadding\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ImVec2(12.0f,\ 8.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00027}00027\ \ \ \ \ style.IndentSpacing\ \ \ \ \ \ \ \ \ \ \ \ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00029}00029\ \ \ \ \ style.ScrollbarSize\ \ \ \ \ =\ 12.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00030}00030\ \ \ \ \ style.ScrollbarRounding\ =\ 20.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00031}00031\ \ \ \ \ style.GrabMinSize\ \ \ \ \ \ \ =\ 12.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00032}00032\ \ \ \ \ style.GrabRounding\ \ \ \ \ \ =\ 20.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00033}00033\ \ \ \ \ style.TabRounding\ \ \ \ \ \ \ =\ 12.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00034}00034\ \ \ \ \ style.TabBorderSize\ \ \ \ \ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00036}00036\ \ \ \ \ style.ColorButtonPosition\ =\ ImGuiDir\_Right;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00037}00037\ \ \ \ \ style.ButtonTextAlign\ \ \ \ \ =\ ImVec2(0.5f,\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00038}00038\ \ \ \ \ style.SelectableTextAlign\ =\ ImVec2(0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00040}00040\ \ \ \ \ style.Colors[ImGuiCol\_Text]\ =\ ImVec4(1.0f,\ 1.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00041}00041\ \ \ \ \ style.Colors[ImGuiCol\_TextDisabled]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ ImVec4(0.2745098173618317f,\ 0.3176470696926117f,\ 0.4509803950786591f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00044}00044\ \ \ \ \ style.Colors[ImGuiCol\_WindowBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ ImVec4(0.0784313753247261f,\ 0.08627451211214066f,\ 0.1019607856869698f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00046}00046\ \ \ \ \ style.Colors[ImGuiCol\_ChildBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ ImVec4(0.09411764889955521f,\ 0.1019607856869698f,\ 0.1176470592617989f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00048}00048\ \ \ \ \ style.Colors[ImGuiCol\_PopupBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ ImVec4(0.01960784383118153f,\ 0.09803921729326248f,\ 0.1372549086809158f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00051}00051\ \ \ \ \ style.Colors[ImGuiCol\_Border]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ ImVec4(0.1777524054050446f,\ 0.2026628106832504f,\ 0.2145922780036926f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00053}00053\ \ \ \ \ style.Colors[ImGuiCol\_BorderShadow]\ =\ ImVec4(0.01960784383118153f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.09803921729326248f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1372549086809158f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.09442061185836792f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00058}00058\ \ \ \ \ style.Colors[ImGuiCol\_FrameBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ ImVec4(0.1137254908680916f,\ 0.125490203499794f,\ 0.1529411822557449f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00060}00060\ \ \ \ \ style.Colors[ImGuiCol\_FrameBgHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.1882352977991104f,\ 0.2784313857555389f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00062}00062\ \ \ \ \ style.Colors[ImGuiCol\_FrameBgActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.1882352977991104f,\ 0.2784313857555389f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00065}00065\ \ \ \ \ style.Colors[ImGuiCol\_TitleBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ ImVec4(0.0470588244497776f,\ 0.05490196123719215f,\ 0.07058823853731155f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00067}00067\ \ \ \ \ style.Colors[ImGuiCol\_TitleBgActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ ImVec4(0.0117647061124444f,\ 0.05098039284348488f,\ 0.07058823853731155f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00069}00069\ \ \ \ \ style.Colors[ImGuiCol\_TitleBgCollapsed]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ ImVec4(0.01960784383118153f,\ 0.09803921729326248f,\ 0.1372549086809158f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00071}00071\ \ \ \ \ style.Colors[ImGuiCol\_MenuBarBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.08627451211214066f,\ 0.1372549086809158f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00074}00074\ \ \ \ \ style.Colors[ImGuiCol\_ScrollbarBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ ImVec4(0.1490196138620377f,\ 0.1647058874368668f,\ 0.1725490242242813f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00076}00076\ \ \ \ \ style.Colors[ImGuiCol\_ScrollbarGrab]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ ImVec4(0.3843137323856354f,\ 0.5254902243614197f,\ 0.5960784554481506f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00078}00078\ \ \ \ \ style.Colors[ImGuiCol\_ScrollbarGrabHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.6509804129600525f,\ 0.9843137264251709f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00080}00080\ \ \ \ \ style.Colors[ImGuiCol\_ScrollbarGrabActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ ImVec4(0.3843137323856354f,\ 0.5254902243614197f,\ 0.5960784554481506f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00083}00083\ \ \ \ \ style.Colors[ImGuiCol\_CheckMark]\ =\ ImVec4(0.0f,\ 0.6509804129600525f,\ 0.9843137264251709f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00084}00084\ \ \ \ \ style.Colors[ImGuiCol\_SliderGrab]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ ImVec4(0.3843137323856354f,\ 0.5254902243614197f,\ 0.5960784554481506f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00086}00086\ \ \ \ \ style.Colors[ImGuiCol\_SliderGrabActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ ImVec4(0.3843137323856354f,\ 0.5254902243614197f,\ 0.5960784554481506f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00089}00089\ \ \ \ \ style.Colors[ImGuiCol\_Button]\ =\ ImVec4(0.0f,\ 0.1176470592617989f,\ 0.1843137294054031f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00090}00090\ \ \ \ \ style.Colors[ImGuiCol\_ButtonHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.1882352977991104f,\ 0.2784313857555389f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00092}00092\ \ \ \ \ style.Colors[ImGuiCol\_ButtonActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ ImVec4(0.1529411822557449f,\ 0.1529411822557449f,\ 0.1529411822557449f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00095}00095\ \ \ \ \ style.Colors[ImGuiCol\_Header]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ ImVec4(0.1411764770746231f,\ 0.1647058874368668f,\ 0.2078431397676468f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00097}00097\ \ \ \ \ style.Colors[ImGuiCol\_HeaderHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.1882352977991104f,\ 0.2784313857555389f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00099}00099\ \ \ \ \ style.Colors[ImGuiCol\_HeaderActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ ImVec4(0.0784313753247261f,\ 0.08627451211214066f,\ 0.1019607856869698f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00102}00102\ \ \ \ \ style.Colors[ImGuiCol\_Separator]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ ImVec4(0.1294117718935013f,\ 0.1490196138620377f,\ 0.1921568661928177f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00104}00104\ \ \ \ \ style.Colors[ImGuiCol\_SeparatorHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ ImVec4(0.1568627506494522f,\ 0.1843137294054031f,\ 0.250980406999588f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00106}00106\ \ \ \ \ style.Colors[ImGuiCol\_SeparatorActive]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ ImVec4(0.1568627506494522f,\ 0.1843137294054031f,\ 0.250980406999588f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00109}00109\ \ \ \ \ style.Colors[ImGuiCol\_ResizeGrip]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ ImVec4(0.1450980454683304f,\ 0.1450980454683304f,\ 0.1450980454683304f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00111}00111\ \ \ \ \ style.Colors[ImGuiCol\_ResizeGripHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.6509804129600525f,\ 0.9843137264251709f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00113}00113\ \ \ \ \ style.Colors[ImGuiCol\_ResizeGripActive]\ =\ ImVec4(1.0f,\ 1.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{keyword}{const}\ ImVec4\ col\_Tab\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ ImVec4(0.0784313753247261f,\ 0.08627451211214066f,\ 0.1019607856869698f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{keyword}{const}\ ImVec4\ col\_TabHovered\ =\ ImVec4(0.0f,\ 0.1176470592617989f,\ 0.1843137294054031f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keyword}{const}\ ImVec4\ col\_TabActive\ \ =\ ImVec4(0.0f,\ 0.1176470592617989f,\ 0.1843137294054031f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keyword}{const}\ ImVec4\ col\_TabUnfocused\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ ImVec4(0.0784313753247261f,\ 0.08627451211214066f,\ 0.1019607856869698f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keyword}{const}\ ImVec4\ col\_TabUnfocusedActive\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ ImVec4(0.125490203499794f,\ 0.2745098173618317f,\ 0.572549045085907f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00124}00124\ \ \ \ \ style.Colors[ImGuiCol\_Tab]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ col\_Tab;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00125}00125\ \ \ \ \ style.Colors[ImGuiCol\_TabHovered]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ col\_TabHovered;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00126}00126\ \ \ \ \ style.Colors[ImGuiCol\_TabSelected]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ col\_TabActive;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00127}00127\ \ \ \ \ style.Colors[ImGuiCol\_TabSelectedOverline]\ \ \ \ \ \ \ =\ col\_TabActive;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00128}00128\ \ \ \ \ style.Colors[ImGuiCol\_TabDimmed]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ col\_TabUnfocused;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00129}00129\ \ \ \ \ style.Colors[ImGuiCol\_TabDimmedSelected]\ \ \ \ \ \ \ \ \ =\ col\_TabUnfocusedActive;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00130}00130\ \ \ \ \ style.Colors[ImGuiCol\_TabDimmedSelectedOverline]\ =\ col\_TabUnfocusedActive;}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00132}00132\ \ \ \ \ style.Colors[ImGuiCol\_PlotLines]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ ImVec4(0.5215686559677124f,\ 0.6000000238418579f,\ 0.7019608020782471f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00134}00134\ \ \ \ \ style.Colors[ImGuiCol\_PlotLinesHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.6509804129600525f,\ 0.9843137264251709f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00136}00136\ \ \ \ \ style.Colors[ImGuiCol\_PlotHistogram]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.6509804129600525f,\ 0.9843137264251709f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00138}00138\ \ \ \ \ style.Colors[ImGuiCol\_PlotHistogramHovered]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.9803921580314636f,\ 0.9725490212440491f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00141}00141\ \ \ \ \ style.Colors[ImGuiCol\_TableHeaderBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ ImVec4(0.0117647061124444f,\ 0.05098039284348488f,\ 0.07058823853731155f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00143}00143\ \ \ \ \ style.Colors[ImGuiCol\_TableBorderStrong]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ ImVec4(0.0117647061124444f,\ 0.05098039284348488f,\ 0.07058823853731155f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00145}00145\ \ \ \ \ style.Colors[ImGuiCol\_TableBorderLight]\ =\ ImVec4(0.0f,\ 0.0f,\ 0.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00146}00146\ \ \ \ \ style.Colors[ImGuiCol\_TableRowBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.1176470592617989f,\ 0.1843137294054031f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00148}00148\ \ \ \ \ style.Colors[ImGuiCol\_TableRowBgAlt]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ ImVec4(0.01960784383118153f,\ 0.09803921729326248f,\ 0.1372549086809158f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00151}00151\ \ \ \ \ style.Colors[ImGuiCol\_TextSelectedBg]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ ImVec4(0.3490196168422699f,\ 0.5372549295425415f,\ 0.6313725709915161f,\ 0.5665236115455627f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00153}00153\ \ \ \ \ style.Colors[ImGuiCol\_DragDropTarget]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ ImVec4(0.4980392158031464f,\ 0.5137255191802979f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00156}00156\ \ \ \ \ style.Colors[ImGuiCol\_NavCursor]\ =\ ImVec4(0.2666666805744171f,\ 0.2901960909366608f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00157}00157\ \ \ \ \ style.Colors[ImGuiCol\_NavWindowingHighlight]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ ImVec4(0.4980392158031464f,\ 0.5137255191802979f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00159}00159\ \ \ \ \ style.Colors[ImGuiCol\_NavWindowingDimBg]\ =\ ImVec4(0.01960784383118153f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.09803921729326248f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1372549086809158f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.3764705955982208f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00163}00163\ \ \ \ \ style.Colors[ImGuiCol\_ModalWindowDimBg]\ \ =\ ImVec4(0.01960784383118153f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.09803921729326248f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1372549086809158f,}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.3776823878288269f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00168}00168\ \ \ \ \ style.Colors[ImGuiCol\_DockingPreview]\ =}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ ImVec4(0.0f,\ 0.6509804129600525f,\ 0.9843137264251709f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00170}00170\ \ \ \ \ style.Colors[ImGuiCol\_DockingEmptyBg]\ =\ style.Colors[ImGuiCol\_WindowBg];}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00171}00171\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Style_8cpp_source_l00172}00172\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

@@ -1,0 +1,49 @@
+\doxysection{ZEN\+\_\+\+Texture.\+h}
+\hypertarget{ZEN__Texture_8h_source}{}\label{ZEN__Texture_8h_source}\index{engine/zen/textures/ZEN\_Texture.h@{engine/zen/textures/ZEN\_Texture.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/textures/ZEN\_Image.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00006}00006\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00007}\mbox{\hyperlink{structZen_1_1Texture}{00007}}\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }Texture\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00008}00008\ \ \ \ \ uint32\_t\ id;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00009}00009\ \ \ \ \ uint32\_t\ width\{0\};}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00010}00010\ \ \ \ \ uint32\_t\ height\{0\};}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *textureName;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00013}00013\ \ \ \ \ std::weak\_ptr<Zen::Image>\ image;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00015}00015\ \ \ \ \ Texture(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *textureName,\ std::weak\_ptr<Zen::Image>\ image)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00016}00016\ \ \ \ \ \ \ this-\/>textureName\ =\ textureName;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00017}00017\ \ \ \ \ \ \ this-\/>image\ \ \ \ \ \ \ =\ image;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00018}00018\ \ \ \ \ \ \ this-\/>width\ \ \ \ \ \ \ =\ image.lock()-\/>width;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00019}00019\ \ \ \ \ \ \ this-\/>height\ \ \ \ \ \ =\ image.lock()-\/>height;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00021}00021\ \ \ \ \ \ \ glGenTextures(1,\ \&this-\/>\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00022}00022\ \ \ \ \ \ \ glBindTexture(GL\_TEXTURE\_2D,\ this-\/>\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00023}00023\ \ \ \ \ \ \ glTexImage2D(GL\_TEXTURE\_2D,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GL\_RGBA,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>width,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>height,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GL\_RGBA,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GL\_UNSIGNED\_BYTE,}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image.lock()-\/>data);}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00033}00033\ \ \ \ \ \ \ glTexParameteri(GL\_TEXTURE\_2D,\ GL\_TEXTURE\_MIN\_FILTER,\ GL\_NEAREST);}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00034}00034\ \ \ \ \ \ \ glTexParameteri(GL\_TEXTURE\_2D,\ GL\_TEXTURE\_MAG\_FILTER,\ GL\_NEAREST);}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00035}00035\ \ \ \ \ \ \ glTexParameterf(GL\_TEXTURE\_2D,\ GL\_TEXTURE\_MAX\_ANISOTROPY,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00037}00037\ \ \ \ \ \ \ glBindTexture(GL\_TEXTURE\_2D,\ 0);}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00038}00038\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00040}00040\ \ \ \}\ \mbox{\hyperlink{structZen_1_1Texture}{Texture}};}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00042}00042\ \ \ \textcolor{keyword}{using\ }TexturePtr\ =\ std::shared\_ptr<Zen::Texture>;}
+\DoxyCodeLine{\Hypertarget{ZEN__Texture_8h_source_l00043}00043\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

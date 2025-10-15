@@ -1,0 +1,161 @@
+\doxysection{ZEN\+\_\+\+Buffer.\+h}
+\hypertarget{ZEN__Buffer_8h_source}{}\label{ZEN__Buffer_8h_source}\index{engine/zen/renderer/ZEN\_Buffer.h@{engine/zen/renderer/ZEN\_Buffer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <zen/zen\_pch.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00005}00005\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00007}00007\ \ \ \textcolor{keyword}{enum\ class}\ ShaderDataType\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00008}00008\ \ \ \ \ None\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00009}00009\ \ \ \ \ Float,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00010}00010\ \ \ \ \ Float2,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00011}00011\ \ \ \ \ Float3,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00012}00012\ \ \ \ \ Float4,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00013}00013\ \ \ \ \ Mat3,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00014}00014\ \ \ \ \ Mat4,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00015}00015\ \ \ \ \ Int,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00016}00016\ \ \ \ \ Int2,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00017}00017\ \ \ \ \ Int3,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00018}00018\ \ \ \ \ Int4,}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00019}00019\ \ \ \ \ Bool}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00020}00020\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00022}00022\ \ \ \textcolor{keyword}{static}\ uint32\_t\ ShaderDataTypeSize(ShaderDataType\ type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00024}00024\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00026}00026\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float2:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 2;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00028}00028\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float3:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 3;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00030}00030\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float4:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00032}00032\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Mat3:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 3\ *\ 3;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00034}00034\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Mat4:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 4\ *\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00036}00036\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00038}00038\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int2:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 2;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00040}00040\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int3:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 3;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00042}00042\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int4:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00044}00044\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Bool:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00048}00048\ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}Unknown\ ShaderDataType"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00050}00050\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00052}\mbox{\hyperlink{structZen_1_1BufferElement}{00052}}\ \ \ \textcolor{keyword}{struct\ }BufferElement\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00053}00053\ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00054}00054\ \ \ \ \ ShaderDataType\ type;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00055}00055\ \ \ \ \ uint32\_t\ size;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00057}00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ isNormalized;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00059}00059\ \ \ \ \ BufferElement()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00061}00061\ \ \ \ \ BufferElement(ShaderDataType\ type,\ \textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{bool}\ isNormalized\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ :\ name(name),\ type(type),\ size(ShaderDataTypeSize(type)),\ offset(0),}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ isNormalized(isNormalized)\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00065}00065\ \ \ \ \ uint32\_t\ GetComponentCount()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00066}00066\ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float2:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float3:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Float4:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Mat3:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3\ *\ 3;\ \textcolor{comment}{//\ 3*\ float3}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Mat4:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ 3;\ \textcolor{comment}{//\ 4*\ float4}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int2:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int3:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Int4:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ShaderDataType::Bool:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00089}00089\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00091}00091\ \ \ \ \ \ \ ZEN\_LOG\_ERROR(\textcolor{stringliteral}{"{}Unknown\ ShaderDataType"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00092}00092\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00094}00094\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00096}\mbox{\hyperlink{classZen_1_1BufferLayout}{00096}}\ \ \ \textcolor{keyword}{class\ }BufferLayout\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00097}00097\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00098}00098\ \ \ \ \ BufferLayout()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00100}00100\ \ \ \ \ BufferLayout(\textcolor{keyword}{const}\ std::initializer\_list<BufferElement>\ \&elements)\ :\ m\_elements(elements)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00101}00101\ \ \ \ \ \ \ \_calculateOffsetAndStride();}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00104}00104\ \ \ \ \ uint32\_t\ getStride()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_stride;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00105}00105\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::vector<BufferElement>\ \&getElements()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_elements;\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00107}00107\ \ \ \ \ std::vector<BufferElement>::iterator\ begin()\ \{\ \textcolor{keywordflow}{return}\ m\_elements.begin();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00108}00108\ \ \ \ \ std::vector<BufferElement>::iterator\ end()\ \{\ \textcolor{keywordflow}{return}\ m\_elements.end();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00109}00109\ \ \ \ \ std::vector<BufferElement>::const\_iterator\ begin()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_elements.begin();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00110}00110\ \ \ \ \ std::vector<BufferElement>::const\_iterator\ end()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_elements.end();\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00112}00112\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \_calculateOffsetAndStride()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00114}00114\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00115}00115\ \ \ \ \ \ \ m\_stride\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00116}00116\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&element\ :\ m\_elements)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00117}00117\ \ \ \ \ \ \ \ \ element.offset\ =\ offset;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00118}00118\ \ \ \ \ \ \ \ \ offset\ +=\ element.size;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00119}00119\ \ \ \ \ \ \ \ \ m\_stride\ +=\ element.size;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00120}00120\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00123}00123\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00124}00124\ \ \ \ \ std::vector<BufferElement>\ m\_elements;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00125}00125\ \ \ \ \ uint32\_t\ m\_stride\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00126}00126\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00128}\mbox{\hyperlink{classZen_1_1VertexBuffer}{00128}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1VertexBuffer}{VertexBuffer}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00129}00129\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00130}00130\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classZen_1_1VertexBuffer}{\string~VertexBuffer}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind()\ \textcolor{keyword}{const}\ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00133}00133\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00135}00135\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ uint32\_t\ size)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00137}00137\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classZen_1_1BufferLayout}{BufferLayout}}\ \&getLayout()\ \textcolor{keyword}{const}\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00138}00138\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setLayout(\textcolor{keyword}{const}\ \mbox{\hyperlink{classZen_1_1BufferLayout}{BufferLayout}}\ \&layout)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00140}00140\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classZen_1_1VertexBuffer}{VertexBuffer}}\ *Create(\textcolor{keywordtype}{float}\ *vertices,\ uint32\_t\ size);}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00141}00141\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00143}\mbox{\hyperlink{classZen_1_1IndexBuffer}{00143}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZen_1_1IndexBuffer}{IndexBuffer}}\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00144}00144\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00145}00145\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classZen_1_1IndexBuffer}{\string~IndexBuffer}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00147}00147\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00148}00148\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00149}00149\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setCount(uint32\_t\ count)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00150}00150\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ getCount()\ \textcolor{keyword}{const}\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00152}00152\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classZen_1_1IndexBuffer}{IndexBuffer}}\ *Create(uint32\_t\ *indices,\ uint32\_t\ count);}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00153}00153\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Buffer_8h_source_l00155}00155\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}
