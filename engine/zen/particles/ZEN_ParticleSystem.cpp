@@ -104,28 +104,28 @@ namespace Zen {
     m_alive          = 0;
 
     for (int i = 0; i < m_particles.active.size(); i++) {
-      if (!m_particles.active.at(i)) {
+      if (!m_particles.active[i]) {
         continue;
       }
 
-      m_particles.lifeRemaining.at(i) -= deltaTimef;
-      if (m_particles.lifeRemaining.at(i) <= 0.f) {
-        m_particles.active.at(i) = false;
+      m_particles.lifeRemaining[i] -= deltaTimef;
+      if (m_particles.lifeRemaining[i] <= 0.f) {
+        m_particles.active[i] = false;
         continue;
       }
 
-      m_particles.positions.at(i) += m_particles.velocities.at(i) * deltaTimef;
+      m_particles.positions[i] += m_particles.velocities[i] * deltaTimef;
 
-      float t        = 1.0f - (m_particles.lifeRemaining.at(i) / m_particles.lifeTime.at(i));
-      glm::vec2 size = glm::mix(m_particles.sizeBegin.at(i), m_particles.sizeEnd.at(i), t);
-      glm::vec4 c    = glm::mix(m_particles.colourBegin.at(i), m_particles.colourEnd.at(i), t);
+      float t        = 1.0f - (m_particles.lifeRemaining[i] / m_particles.lifeTime[i]);
+      glm::vec2 size = glm::mix(m_particles.sizeBegin[i], m_particles.sizeEnd[i], t);
+      glm::vec4 c    = glm::mix(m_particles.colourBegin[i], m_particles.colourEnd[i], t);
 
       glm::vec2 h(size * 0.5f);
       QuadVertex *v = &m_cpuQuad[m_alive * 4];
-      v[0]          = {m_particles.positions.at(i) + glm::vec2(-h.x, -h.y), c};
-      v[1]          = {m_particles.positions.at(i) + glm::vec2(+h.x, -h.y), c};
-      v[2]          = {m_particles.positions.at(i) + glm::vec2(+h.x, +h.y), c};
-      v[3]          = {m_particles.positions.at(i) + glm::vec2(-h.x, +h.y), c};
+      v[0]          = {m_particles.positions[i] + glm::vec2(-h.x, -h.y), c};
+      v[1]          = {m_particles.positions[i] + glm::vec2(+h.x, -h.y), c};
+      v[2]          = {m_particles.positions[i] + glm::vec2(+h.x, +h.y), c};
+      v[3]          = {m_particles.positions[i] + glm::vec2(-h.x, +h.y), c};
 
       ++m_alive;
     }
@@ -140,7 +140,7 @@ namespace Zen {
 
   void ParticleSystem::clear() {
     for (int i = 0; i < m_particles.active.size(); i++) {
-      m_particles.active.at(i) = false;
+      m_particles.active[i] = false;
     };
 
     m_alive = 0;
