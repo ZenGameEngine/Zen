@@ -94,8 +94,8 @@ namespace Zen {
 
     size_t capacity() const { return m_max; }
 
-    void updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime);
-    void updateEmitters(std::vector<ParticleEmitter> &emitters, DeltaTime deltaTime);
+    void updateEmitter(ParticleEmitter &emitter, DeltaTime &deltaTime);
+    void updateEmitters(std::vector<ParticleEmitter> &emitters, DeltaTime &deltaTime);
 
     int32_t aliveCount() const { return m_alive; }
 

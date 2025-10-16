@@ -100,8 +100,8 @@ namespace Zen {
   }
 
   void ParticleSystem::update(DeltaTime deltaTime) {
-    float deltaTimef = deltaTime.seconds();
-    m_alive          = 0;
+    const float &deltaTimef = deltaTime.seconds();
+    m_alive                 = 0;
 
     for (int i = 0; i < m_particles.active.size(); i++) {
       if (!m_particles.active[i]) {
@@ -132,7 +132,7 @@ namespace Zen {
   }
 
   void ParticleSystem::upload() {
-    const uint32_t bytes = m_alive * 4 * sizeof(QuadVertex);
+    const uint32_t &bytes = m_alive * 4 * sizeof(QuadVertex);
     m_vbo->bind();
     m_vbo->setData(m_cpuQuad.data(), bytes);
     m_ibo->setCount(m_alive * 6); // key line
@@ -146,23 +146,26 @@ namespace Zen {
     m_alive = 0;
   }
 
-  void ParticleSystem::updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime) {
-    float rate   = emitter.spawnRate;
-    float period = 1.0f / glm::max(rate, 0.001f);
+  void ParticleSystem::updateEmitter(ParticleEmitter &emitter, DeltaTime &deltaTime) {
+    const float &rate   = static_cast<float>(emitter.spawnRate);
+    const float &period = 1.0f / glm::max(rate, 0.001f);
+
+    static Zen::ParticleProps props;
 
     emitter.emitAccumulator += deltaTime.seconds();
     while (emitter.emitAccumulator > period) {
-      Zen::ParticleProps p = emitter.props;
+      props                     = emitter.props;
+      props.position            = emitter.pos;
+      const glm::vec2 &velocity = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
+      props.velocity            = velocity;
 
-      p.position  = emitter.pos;
-      glm::vec2 v = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
-      p.velocity  = v;
-      emit(p);
+      emit(props);
       emitter.emitAccumulator -= period;
     }
   }
 
-  void ParticleSystem::updateEmitters(std::vector<ParticleEmitter> &emitters, DeltaTime deltaTime) {
+  void ParticleSystem::updateEmitters(std::vector<ParticleEmitter> &emitters,
+                                      DeltaTime &deltaTime) {
     for (auto &e : emitters) {
       updateEmitter(e, deltaTime);
     }
