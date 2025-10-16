@@ -25,7 +25,7 @@ namespace Zen {
     m_particleEmitter.pos               = {0, 0};
     m_particleEmitter.size              = {1, 1};
     m_particleEmitter.colour            = {1.0f, 0.5f, 0, 1.0f};
-    m_particleEmitter.spawnRate         = 60.f;
+    m_particleEmitter.spawnRate         = 60;
     m_particleEmitter.props.colourBegin = {1.0f, 0.5f, 0, 1.0f};
     m_particleEmitter.props.colourEnd   = {1.0f, 0, 0, 1.0f};
     m_particleEmitter.props.sizeBegin   = {1, 1};
@@ -112,7 +112,7 @@ namespace Zen {
     ImGui::Begin("Particle Settings", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     showHelpMarker("Controls the amount of particles are emitted per second");
     ImGui::SameLine();
-    ImGui::DragFloat("Spawn Rate (p/s)", &m_particleEmitter.spawnRate, 1.0f, 0, m_capacity);
+    ImGui::DragInt("Spawn Rate (p/s)", &m_particleEmitter.spawnRate, 1.0f, 0, m_capacity);
     showHelpMarker("Controls how many seconds until a particle dies after being emitted");
     ImGui::SameLine();
     ImGui::DragFloat("Lifetime (s)", &m_particleEmitter.props.lifeTime, 0.1f, 0.1f, 10.0f);
