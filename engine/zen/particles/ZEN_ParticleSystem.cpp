@@ -106,11 +106,11 @@ namespace Zen {
 
       m_particles.positions[i] += m_particles.velocities[i] * deltaTimef;
 
-      float t        = 1.0f - (m_particles.lifeRemaining[i] / m_particles.lifeTime[i]);
-      glm::vec2 size = glm::mix(m_particles.sizeBegin[i], m_particles.sizeEnd[i], t);
-      glm::vec4 c    = glm::mix(m_particles.colourBegin[i], m_particles.colourEnd[i], t);
+      const float &t        = 1.0f - (m_particles.lifeRemaining[i] / m_particles.lifeTime[i]);
+      const glm::vec2 &size = glm::mix(m_particles.sizeBegin[i], m_particles.sizeEnd[i], t);
+      const glm::vec4 &c    = glm::mix(m_particles.colourBegin[i], m_particles.colourEnd[i], t);
 
-      glm::vec2 h(size * 0.5f);
+      const glm::vec2 &h(size * 0.5f);
       QuadVertex *v = &m_cpuQuad[m_alive * 4];
       v[0]          = {m_particles.positions[i] + glm::vec2(-h.x, -h.y), c};
       v[1]          = {m_particles.positions[i] + glm::vec2(+h.x, -h.y), c};
@@ -129,10 +129,7 @@ namespace Zen {
   }
 
   void ParticleSystem::clear() {
-    for (int i = 0; i < m_particles.active.size(); i++) {
-      m_particles.active[i] = false;
-    };
-
+    m_particles.active.assign(m_particles.active.size(), false);
     m_alive = 0;
   }
 
