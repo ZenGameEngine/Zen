@@ -9,6 +9,18 @@
 #include <zen/zen_pch.h>
 
 namespace Zen {
+  typedef struct Particles {
+    std::vector<glm::vec2> positions;
+    std::vector<glm::vec2> velocities;
+    std::vector<glm::vec2> sizeBegin;
+    std::vector<glm::vec2> sizeEnd;
+    std::vector<glm::vec4> colourBegin;
+    std::vector<glm::vec4> colourEnd;
+    std::vector<float> lifeRemaining;
+    std::vector<float> lifeTime;
+    std::vector<bool> active;
+  } Particles;
+
   struct ParticleProps {
     glm::vec2 position{0};
     glm::vec2 velocity{0};
@@ -17,18 +29,6 @@ namespace Zen {
     glm::vec2 sizeEnd{0};
     glm::vec4 colourBegin{1.0f, 1.0f, 1.0f, 1.0f};
     glm::vec4 colourEnd{1.0f, 1.0f, 1.0f, 0};
-  };
-
-  struct Particle {
-    glm::vec2 pos{0};
-    glm::vec2 vel{0};
-    float lifeRemaining{0};
-    float lifeTime{1.0f};
-    glm::vec2 sizeBegin{1.0,1.0};
-    glm::vec2 sizeEnd{0};
-    glm::vec4 colourBegin{1.0f};
-    glm::vec4 colourEnd{0, 0, 0, 0};
-    bool active{false};
   };
 
   struct QuadVertex {
@@ -65,14 +65,16 @@ namespace Zen {
     VelocityRandomizer vRand{};
 
     ParticleProps props;
-    float spawnRate       = 30.0f;
+    int spawnRate         = 30;
     float emitAccumulator = 0;
 
-    ParticleEmitter(const glm::vec2 &position = {0,0}, const glm::vec2 &sz = {1,1}, const glm::vec4 &col = {1,1,1,1})
+    ParticleEmitter(const glm::vec2 &position = {0, 0},
+                    const glm::vec2 &sz       = {1, 1},
+                    const glm::vec4 &col      = {1, 1, 1, 1})
         : pos(position), size(sz), colour(col) {
       props.colourBegin = col;
       props.position    = position;
-      props.sizeBegin = sz;
+      props.sizeBegin   = sz;
     }
   };
 
@@ -100,7 +102,9 @@ namespace Zen {
   private:
     size_t m_max{0};
     int32_t m_alive{0};
-    std::vector<Particle> m_pool;
+
+    Particles m_particles;
+
     size_t m_poolIndex{0};             // ring index
 
     std::vector<QuadVertex> m_cpuQuad; // size = m_max * 4
