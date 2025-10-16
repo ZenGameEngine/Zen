@@ -99,7 +99,7 @@ namespace Zen {
     m_poolIndex = (m_poolIndex + 1) % m_particles.active.size();
   }
 
-  void ParticleSystem::update(DeltaTime deltaTime) {
+  void ParticleSystem::update(DeltaTime &deltaTime) {
     const float &deltaTimef = deltaTime.seconds();
     m_alive                 = 0;
 
