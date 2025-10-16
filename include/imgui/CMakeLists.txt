@@ -22,3 +22,4 @@ set(ZEN_IMGUI_SRC
 
 add_library(imgui ${ZEN_IMGUI_HEADERS} ${ZEN_IMGUI_SRC})
 target_include_directories(imgui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(imgui PUBLIC SDL3::SDL3) 
