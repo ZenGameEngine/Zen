@@ -25,7 +25,7 @@ namespace Zen {
     Camera m_camera;
     CameraController m_cameraController;
     std::shared_ptr<Shader> m_shader;
-    int m_capacity = 5000;
+    int m_capacity = 10000;
     std::unique_ptr<ParticleSystem> m_particleSystem;
     QuadBuilder m_quadBuilder;
 
@@ -36,6 +36,12 @@ namespace Zen {
     const glm::vec2 m_worldMin{-10.0f, -5.625f};
     const glm::vec2 m_worldMax{+10.0f, +5.625f};
 
-    float m_speed = 1.0f;
+    float m_speed                = 3.0f;
+    bool m_linkStartSize         = false;
+    bool m_linkEndSize           = false;
+    bool m_linkEmitterSize       = false;
+    bool m_linkEmitterToParticle = false;
+
+    bool m_startup = true;
   };
 } // namespace Zen

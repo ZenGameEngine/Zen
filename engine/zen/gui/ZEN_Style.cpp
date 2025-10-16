@@ -1,7 +1,19 @@
 #include <zen/gui/ZEN_Style.h>
 
 #include <include/imgui/imgui.h>
+
 namespace Zen {
+  void showHelpMarker(const char *message) {
+    ImGui::TextDisabled("(?)");
+    if (ImGui::IsItemHovered()) {
+      ImGui::BeginTooltip();
+      ImGui::PushTextWrapPos(450.0f);
+      ImGui::TextUnformatted(message);
+      ImGui::PopTextWrapPos();
+      ImGui::EndTooltip();
+    }
+  }
+
   void styleSetup() {
     // Zen Style
     ImGuiStyle &style = ImGui::GetStyle();

@@ -1,4 +1,5 @@
 #include <glm/gtc/random.hpp>
+#include <zen/gui/ZEN_Style.h>
 #include <zen/particles/ZEN_ParticleSystem.h>
 
 namespace Zen {
