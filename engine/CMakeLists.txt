@@ -126,8 +126,7 @@ endif()
 
 FetchContent_MakeAvailable(glm)
 
-# spdlog
-find_package(spdlog QUIET)    
+# spdlog    
 
 if (NOT TARGET spdlog)         
     message(STATUS "spdlog not found, using FetchContent")
