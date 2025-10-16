@@ -6,16 +6,6 @@
 namespace Zen {
 
   ParticleSystem::ParticleSystem(size_t maxParticles) : m_max(maxParticles) {
-    // std::vector<glm::vec2> positions;
-    // std::vector<glm::vec2> velocities;
-    // std::vector<glm::vec2> sizeBegin;
-    // std::vector<glm::vec2> sizeEnd;
-    // std::vector<glm::vec4> colourBegin;
-    // std::vector<glm::vec4> colourEnd;
-    // std::vector<float> lifeRemaining;
-    // std::vector<float> lifeTime;
-    // std::vector<bool> active;
-
     m_particles.active.reserve(m_max);
     m_particles.active.assign(m_max, false);
 
