@@ -43,5 +43,7 @@ namespace Zen {
     bool m_linkEmitterToParticle = false;
 
     bool m_startup = true;
+
+    int m_spawnRateDummy = 60;
   };
 } // namespace Zen

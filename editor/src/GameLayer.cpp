@@ -373,7 +373,7 @@ void GameLayer::onGUIRender() {
   ImGui::SeparatorText("Player Particles");
   ImGui::Checkbox("Emit Trail", &m_playerEmitTrail);
   ImGui::Checkbox("Emit Jump Burst", &m_emitJumpBurst);
-  ImGui::DragInt("Trail Spawn Rate", &m_player.emitter.spawnRate, 1.0f, 0, 200.0f);
+  ImGui::DragInt("Trail Spawn Rate", &m_player.emitter.spawnRate, 1.0f, 0, m_particleSystem->capacity());
   ImGui::DragFloat2("Trail Velocity", &m_player.emitter.props.velocity[0], 0.1f, -10.0f, 10.0f);
   ImGui::ColorEdit4("Trail Colour Start", &m_player.emitter.props.colourBegin[0]);
   ImGui::ColorEdit4("Trail Colour End", &m_player.emitter.props.colourEnd[0]);

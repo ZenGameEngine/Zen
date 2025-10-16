@@ -27,7 +27,7 @@ Obstacle::Obstacle(ObstacleType t, float x) : type(t), pos{x, 0.0f} {
   emitter.pos       = pos;
   emitter.size      = size;
   emitter.colour    = colour;
-  emitter.spawnRate = 40.0f;
+  emitter.spawnRate = 40;
 
   emitter.props.position    = pos;
   emitter.props.velocity    = {3.0f, 0.0f};

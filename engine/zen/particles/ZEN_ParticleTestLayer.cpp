@@ -26,6 +26,7 @@ namespace Zen {
     m_particleEmitter.size              = {1, 1};
     m_particleEmitter.colour            = {1.0f, 0.5f, 0, 1.0f};
     m_particleEmitter.spawnRate         = 60;
+    m_particleEmitter.spawnRate         = 60;
     m_particleEmitter.props.colourBegin = {1.0f, 0.5f, 0, 1.0f};
     m_particleEmitter.props.colourEnd   = {1.0f, 0, 0, 1.0f};
     m_particleEmitter.props.sizeBegin   = {1, 1};
@@ -112,7 +113,17 @@ namespace Zen {
     ImGui::Begin("Particle Settings", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     showHelpMarker("Controls the amount of particles are emitted per second");
     ImGui::SameLine();
-    ImGui::DragInt("Spawn Rate (p/s)", &m_particleEmitter.spawnRate, 1.0f, 0, m_capacity);
+    ImGui::DragInt("Spawn Rate (p/s)", &m_spawnRateDummy, 1, 0, m_capacity);
+    if (m_spawnRateDummy < 0) {
+      m_particleEmitter.spawnRate = 0;
+      m_spawnRateDummy            = 0;
+    } else if (m_spawnRateDummy > m_capacity) {
+      m_particleEmitter.spawnRate = m_capacity;
+      m_spawnRateDummy            = m_capacity;
+    } else {
+      m_particleEmitter.spawnRate = m_spawnRateDummy;
+    }
+
     showHelpMarker("Controls how many seconds until a particle dies after being emitted");
     ImGui::SameLine();
     ImGui::DragFloat("Lifetime (s)", &m_particleEmitter.props.lifeTime, 0.1f, 0.1f, 10.0f);
@@ -176,14 +187,14 @@ namespace Zen {
 
     if (ImGui::TreeNode("Emitter Settings")) {
       ImGui::ColorEdit4("Colour", &m_particleEmitter.colour[0]);
-      ImGui::DragFloat("Width", &m_particleEmitter.size.x, 0.1f, 0, 10.0f);
-      ImGui::DragFloat("Height", &m_particleEmitter.size.y, 0.1f, 0, 10.0f);
+      ImGui::DragFloat2("Size", &m_particleEmitter.size[0], 0.1f, 0, 10.0f);
       ImGui::SameLine();
+      ImGui::Checkbox("Link Size", &m_linkEmitterSize);
       if (m_linkEmitterSize) {
         m_particleEmitter.size.y = m_particleEmitter.size.x;
       }
       ImGui::DragFloat("Speed", &m_speed, 0.1f, 0.1f, 10.0f);
-      ImGui::Checkbox("Link Size", &m_linkEmitterSize);
+
       ImGui::Checkbox("Link Start Size", &m_linkEmitterToParticle);
       if (m_linkEmitterToParticle) {
         m_particleEmitter.props.sizeBegin = m_particleEmitter.size;
