@@ -122,7 +122,7 @@ namespace Zen {
                      " Frame time (max): {:.3f} ms\n"
                      " Alive particles (avg/peak): {:.1f} / {}\n"
                      " Achieved spawn (p/s): {:.1f}\n"
-                     " Lifetime (s): {.1f}\n"
+                     " Lifetime (s): {:.1f}\n"
                      " Target Spawn Rate (p/s): {}\n"
                      " Draw Calls per second: {:.3f}\n"
                      " Draw Calls per frame: {:.3f}\n"
