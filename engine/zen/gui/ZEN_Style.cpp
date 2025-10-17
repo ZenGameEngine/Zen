@@ -13,7 +13,15 @@ namespace Zen {
       ImGui::EndTooltip();
     }
   }
-
+  void showHelpNoMarker(const char *message) {
+    if (ImGui::IsItemHovered()) {
+      ImGui::BeginTooltip();
+      ImGui::PushTextWrapPos(450.0f);
+      ImGui::TextUnformatted(message);
+      ImGui::PopTextWrapPos();
+      ImGui::EndTooltip();
+    }
+  }
   void styleSetup() {
     // Zen Style
     ImGuiStyle &style = ImGui::GetStyle();
