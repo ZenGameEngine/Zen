@@ -19,7 +19,7 @@ namespace Zen {
     m_cameraController.enableWorldBounds(true);
 
     m_shader         = std::make_shared<Shader>("data/particle.vert", "data/particle.frag");
-    m_particleSystem = std::make_unique<BadParticleSystem>(m_capacity);
+    m_particleSystem = std::make_unique<ParticleSystem>(m_capacity);
     m_quadBuilder.init(m_shader);
 
     m_particleEmitter.pos               = {0, 0};
@@ -120,7 +120,8 @@ namespace Zen {
                      " Frame time (avg): {:.2f} ms\n"
                      " Frame time (min): {:.2f} ms\n"
                      " Frame time (max): {:.2f} ms\n"
-                     " Alive particles (avg/peak): {:.1f} / {}\n"
+                     " Alive particles (avg): {:.1f}\n"
+                     "Alive particles (peak): {}\n"
                      " Achieved spawn (p/s): {:.1f}\n"
                      " Lifetime (s): {:.1f}\n"
                      " Target Spawn Rate (p/s): {}\n"
