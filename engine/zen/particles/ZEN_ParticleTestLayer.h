@@ -8,7 +8,6 @@
 #include <zen/events/ZEN_Event.h>
 #include <zen/layer/ZEN_Layer.h>
 #include <zen/particles/ZEN_ParticleSystem.h>
-#include <zen/particles/BADParticleSystem.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {
