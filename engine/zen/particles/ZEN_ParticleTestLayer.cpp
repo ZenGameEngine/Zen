@@ -322,9 +322,7 @@ namespace Zen {
 
     ImGui::SeparatorText("Profiling");
     ImGui::SliderFloat("Duration (s)", &m_stats.window_sec, 1.0f, 300.0f, "%.0f");
-    if (m_particleSystem->aliveCount() == m_capacity) {
-      ImGui::TextColored(ImVec4(1.0f, 0, 0, 1.0f), "== Saturated ==");
-    }
+
     if (!m_stats.active) {
       if (ImGui::Button("Start Profiling")) {
         StartProfiling();
@@ -339,7 +337,9 @@ namespace Zen {
       const float profPct = (float)m_stats.elapsed_sec / m_stats.window_sec;
       ImGui::ProgressBar(profPct, ImVec2(-1, 0), nullptr);
     }
-
+    if (m_particleSystem->aliveCount() == m_capacity) {
+      ImGui::TextColored(ImVec4(1.0f, 0, 0, 1.0f), "== Saturated ==");
+    }
     ImGui::End();
   }
 
