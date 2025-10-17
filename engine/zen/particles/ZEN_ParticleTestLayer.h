@@ -26,8 +26,8 @@ namespace Zen {
     Camera m_camera;
     CameraController m_cameraController;
     std::shared_ptr<Shader> m_shader;
-    int m_capacity = 10000;
-    std::unique_ptr<ParticleSystem> m_particleSystem;
+    int m_capacity = 1000;
+    std::unique_ptr<BadParticleSystem> m_particleSystem;
     QuadBuilder m_quadBuilder;
 
     float m_emitAccumulator{0.0f};
