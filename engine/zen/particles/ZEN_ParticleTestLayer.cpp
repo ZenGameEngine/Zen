@@ -138,7 +138,7 @@ namespace Zen {
                      avg_alive,
                      m_stats.peak_alive,
                      achieved_spawn_ps,
-                     (int)m_particleEmitter.props.lifeTime,
+                     m_particleEmitter.props.lifeTime,
                      (int)m_particleEmitter.spawnRate,
                      dps,
                      dpf,
