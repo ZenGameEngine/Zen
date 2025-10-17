@@ -1,4 +1,3 @@
-#include <glm/fwd.hpp>
 #include <glm/gtc/random.hpp>
 #include <zen/gui/ZEN_Style.h>
 #include <zen/particles/ZEN_ParticleSystem.h>
@@ -6,43 +5,8 @@
 namespace Zen {
 
   ParticleSystem::ParticleSystem(size_t maxParticles) : m_max(maxParticles) {
-    // std::vector<glm::vec2> positions;
-    // std::vector<glm::vec2> velocities;
-    // std::vector<glm::vec2> sizeBegin;
-    // std::vector<glm::vec2> sizeEnd;
-    // std::vector<glm::vec4> colourBegin;
-    // std::vector<glm::vec4> colourEnd;
-    // std::vector<float> lifeRemaining;
-    // std::vector<float> lifeTime;
-    // std::vector<bool> active;
 
-    m_particles.active.reserve(m_max);
-    m_particles.active.assign(m_max, false);
-
-    m_particles.positions.reserve(m_max);
-    m_particles.positions.assign(m_max, glm::vec2(0));
-
-    m_particles.velocities.reserve(m_max);
-    m_particles.velocities.assign(m_max, glm::vec2(0));
-
-    m_particles.lifeTime.reserve(m_max);
-    m_particles.lifeTime.assign(m_max, 0.0f);
-
-    m_particles.lifeRemaining.reserve(m_max);
-    m_particles.lifeRemaining.assign(m_max, 0.0f);
-
-    m_particles.sizeBegin.reserve(m_max);
-    m_particles.sizeBegin.assign(m_max, glm::vec2(0));
-
-    m_particles.sizeEnd.reserve(m_max);
-    m_particles.sizeEnd.assign(m_max, glm::vec2(0));
-
-    m_particles.colourBegin.reserve(m_max);
-    m_particles.colourBegin.assign(m_max, glm::vec4(0));
-
-    m_particles.colourEnd.reserve(m_max);
-    m_particles.colourEnd.assign(m_max, glm::vec4(0));
-
+    m_pool.resize(m_max);
     m_cpuQuad.resize(m_max * 4);
 
     // geometry setup
@@ -86,46 +50,47 @@ namespace Zen {
   }
 
   void ParticleSystem::emit(const ParticleProps &p) {
-    m_particles.active[m_poolIndex]        = true;
-    m_particles.positions[m_poolIndex]     = p.position;
-    m_particles.velocities[m_poolIndex]    = p.velocity;
-    m_particles.lifeTime[m_poolIndex]      = p.lifeTime;
-    m_particles.lifeRemaining[m_poolIndex] = p.lifeTime;
-    m_particles.sizeBegin[m_poolIndex]     = p.sizeBegin;
-    m_particles.sizeEnd[m_poolIndex]       = p.sizeEnd;
-    m_particles.colourBegin[m_poolIndex]   = p.colourBegin;
-    m_particles.colourEnd[m_poolIndex]     = p.colourEnd;
+    Particle &particle     = m_pool[m_poolIndex];
+    particle.active        = true;
+    particle.pos           = p.position;
+    particle.vel           = p.velocity;
+    particle.lifeTime      = p.lifeTime;
+    particle.lifeRemaining = p.lifeTime;
+    particle.sizeBegin     = p.sizeBegin;
+    particle.sizeEnd       = p.sizeEnd;
+    particle.colourBegin   = p.colourBegin;
+    particle.colourEnd     = p.colourEnd;
 
-    m_poolIndex = (m_poolIndex + 1) % m_particles.active.size();
+    m_poolIndex = (m_poolIndex + 1) % m_pool.size();
   }
 
   void ParticleSystem::update(DeltaTime deltaTime) {
     float deltaTimef = deltaTime.seconds();
     m_alive          = 0;
 
-    for (int i = 0; i < m_particles.active.size(); i++) {
-      if (!m_particles.active.at(i)) {
+    for (auto &p : m_pool) {
+      if (!p.active) {
         continue;
       }
 
-      m_particles.lifeRemaining.at(i) -= deltaTimef;
-      if (m_particles.lifeRemaining.at(i) <= 0.f) {
-        m_particles.active.at(i) = false;
+      p.lifeRemaining -= deltaTimef;
+      if (p.lifeRemaining <= 0.f) {
+        p.active = false;
         continue;
       }
 
-      m_particles.positions.at(i) += m_particles.velocities.at(i) * deltaTimef;
+      p.pos += p.vel * deltaTimef;
 
-      float t        = 1.0f - (m_particles.lifeRemaining.at(i) / m_particles.lifeTime.at(i));
-      glm::vec2 size = glm::mix(m_particles.sizeBegin.at(i), m_particles.sizeEnd.at(i), t);
-      glm::vec4 c    = glm::mix(m_particles.colourBegin.at(i), m_particles.colourEnd.at(i), t);
+      float t     = 1.0f - (p.lifeRemaining / p.lifeTime);
+      glm::vec2 size  = glm::mix(p.sizeBegin, p.sizeEnd, t);
+      glm::vec4 c = glm::mix(p.colourBegin, p.colourEnd, t);
 
       glm::vec2 h(size * 0.5f);
       QuadVertex *v = &m_cpuQuad[m_alive * 4];
-      v[0]          = {m_particles.positions.at(i) + glm::vec2(-h.x, -h.y), c};
-      v[1]          = {m_particles.positions.at(i) + glm::vec2(+h.x, -h.y), c};
-      v[2]          = {m_particles.positions.at(i) + glm::vec2(+h.x, +h.y), c};
-      v[3]          = {m_particles.positions.at(i) + glm::vec2(-h.x, +h.y), c};
+      v[0]          = {p.pos + glm::vec2(-h.x, -h.y), c};
+      v[1]          = {p.pos + glm::vec2(+h.x, -h.y), c};
+      v[2]          = {p.pos + glm::vec2(+h.x, +h.y), c};
+      v[3]          = {p.pos + glm::vec2(-h.x, +h.y), c};
 
       ++m_alive;
     }
@@ -139,9 +104,8 @@ namespace Zen {
   }
 
   void ParticleSystem::clear() {
-    for (int i = 0; i < m_particles.active.size(); i++) {
-      m_particles.active.at(i) = false;
-    };
+    for (auto &p : m_pool)
+      p.active = false;
 
     m_alive = 0;
   }

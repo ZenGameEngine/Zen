@@ -8,7 +8,7 @@
 #include <zen/events/ZEN_Event.h>
 #include <zen/layer/ZEN_Layer.h>
 #include <zen/particles/ZEN_ParticleSystem.h>
-#include <zen/particles/BADParticleSystem.h>
+//#include <zen/particles/BADParticleSystem.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {
@@ -26,7 +26,7 @@ namespace Zen {
     Camera m_camera;
     CameraController m_cameraController;
     std::shared_ptr<Shader> m_shader;
-    int m_capacity = 10000;
+    int m_capacity = 1000;
     std::unique_ptr<ParticleSystem> m_particleSystem;
     QuadBuilder m_quadBuilder;
 
