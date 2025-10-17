@@ -1,4 +1,5 @@
 
+#include "zen/time/ZEN_DeltaTime.h"
 #include <glm/gtc/random.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <include/imgui/imgui.h>
@@ -26,7 +27,6 @@ namespace Zen {
     m_particleEmitter.size              = {1, 1};
     m_particleEmitter.colour            = {1.0f, 0.5f, 0, 1.0f};
     m_particleEmitter.spawnRate         = 60;
-    m_particleEmitter.spawnRate         = 60;
     m_particleEmitter.props.colourBegin = {1.0f, 0.5f, 0, 1.0f};
     m_particleEmitter.props.colourEnd   = {1.0f, 0, 0, 1.0f};
     m_particleEmitter.props.sizeBegin   = {1, 1};
@@ -38,8 +38,9 @@ namespace Zen {
     m_particleEmitter.vRand.speedMaxMul = 1.0f;
     m_particleEmitter.vRand.speedMinMul = 0;
 
-    if (m_stats.gpu_name.empty())
+    if (m_stats.gpu_name.empty()) {
       m_stats.gpu_name = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
+    }
   }
 
   void ParticleTestLayer::onUpdate(DeltaTime deltaTime) {
@@ -81,74 +82,7 @@ namespace Zen {
     Renderer::endScene();
 
     if (m_stats.active) {
-      const float dt       = deltaTime.seconds();
-      const float frame_ms = deltaTime.milliseconds();
-      m_stats.frames++;
-      m_stats.elapsed_sec += dt;
-      m_stats.sum_ms += frame_ms;
-      m_stats.min_ms = std::min(m_stats.min_ms, frame_ms);
-      m_stats.max_ms = std::max(m_stats.max_ms, frame_ms);
-
-      m_stats.last_draw_calls = (uint32_t)DrawStats::drawCalls;
-      m_stats.total_draw_calls += (uint32_t)DrawStats::drawCalls;
-
-      const int alive_now = m_particleSystem->aliveCount();
-      m_stats.sum_alive += (alive_now >= 0 ? (uint64_t)alive_now : 0);
-      m_stats.peak_alive = std::max(m_stats.peak_alive, alive_now);
-
-      if (m_stats.elapsed_sec >= (double)m_stats.window_sec && m_stats.frames > 0) {
-        const double avg_ms = m_stats.sum_ms / (double)m_stats.frames;
-        const double avg_fps =
-            (m_stats.elapsed_sec > 0.0) ? ((double)m_stats.frames / m_stats.elapsed_sec) : 0.0;
-        const double min_ms = (m_stats.min_ms == FLT_MAX) ? 0.0 : (double)m_stats.min_ms;
-        const double max_ms = (double)m_stats.max_ms;
-
-        const double avg_alive         = (double)m_stats.sum_alive / (double)m_stats.frames;
-        const double lifetime_s        = (double)m_particleEmitter.props.lifeTime;
-        const double achieved_spawn_ps = (lifetime_s > 0.0) ? (avg_alive / lifetime_s) : 0.0;
-
-        const double dps = (m_stats.elapsed_sec > 0.0)
-                               ? ((double)m_stats.total_draw_calls / m_stats.elapsed_sec)
-                               : 0.0;
-        const double dpf = (m_stats.frames > 0)
-                               ? ((double)m_stats.total_draw_calls / (double)m_stats.frames)
-                               : 0.0;
-
-        ZEN_LOG_INFO(" Duration (s): {}\n"
-                     " Average FPS: {:.1f}\n"
-                     " Frames (total): {}\n"
-                     " Frame time (avg): {:.2f} ms\n"
-                     " Frame time (min): {:.2f} ms\n"
-                     " Frame time (max): {:.2f} ms\n"
-                     " Alive particles (avg): {:.1f}\n"
-                     "Alive particles (peak): {}\n"
-                     " Achieved spawn (p/s): {:.1f}\n"
-                     " Lifetime (s): {:.1f}\n"
-                     " Target Spawn Rate (p/s): {}\n"
-                     " Draw Calls per second: {:.2f}\n"
-                     " Draw Calls per frame: {:.2f}\n"
-                     " Draw Calls last frame: {}\n"
-                     " Draw Calls total: {}\n"
-                     " GPU: {}",
-                     (int)m_stats.window_sec,
-                     avg_fps,
-                     m_stats.frames,
-                     avg_ms,
-                     min_ms,
-                     max_ms,
-                     avg_alive,
-                     m_stats.peak_alive,
-                     achieved_spawn_ps,
-                     m_particleEmitter.props.lifeTime,
-                     (int)m_particleEmitter.spawnRate,
-                     dps,
-                     dpf,
-                     m_stats.last_draw_calls,
-                     (uint64_t)m_stats.total_draw_calls,
-                     m_stats.gpu_name.c_str());
-
-        m_stats.active = false;
-      }
+      startProfiling(deltaTime);
     }
   }
 
@@ -243,14 +177,7 @@ namespace Zen {
       if (m_linkStartSize) {
         m_particleEmitter.props.sizeBegin.y = m_particleEmitter.props.sizeBegin.x;
       }
-      if (ImGui::IsItemHovered()) {
-        ImGui::BeginTooltip();
-        ImGui::PushTextWrapPos(450.0f);
-        ImGui::TextUnformatted("Links width and height");
-        ImGui::TextUnformatted("Change through width");
-        ImGui::PopTextWrapPos();
-        ImGui::EndTooltip();
-      }
+      showHelpNoMarker("Links width and height \nChange through width");
       showHelpMarker("Controls the particles final width and height before disappearing");
       ImGui::SameLine();
       ImGui::DragFloat2("Particle Size End  ", &m_particleEmitter.props.sizeEnd[0], 0.1f, 0, 10.0f);
@@ -259,17 +186,10 @@ namespace Zen {
       if (m_linkEndSize) {
         m_particleEmitter.props.sizeEnd.y = m_particleEmitter.props.sizeEnd.x;
       }
-      if (ImGui::IsItemHovered()) {
-        ImGui::BeginTooltip();
-        ImGui::PushTextWrapPos(450.0f);
-        ImGui::TextUnformatted("Links width and height");
-        ImGui::TextUnformatted("Change through width");
-        ImGui::PopTextWrapPos();
-        ImGui::EndTooltip();
-      }
+      showHelpNoMarker("Links width and height \nChange through width");
       showHelpMarker("Controls the angle of the particle emission");
       ImGui::SameLine();
-      ImGui::DragFloat("Cone (deg)", &m_particleEmitter.vRand.coneDeg, 0.1f, 0, 60.0f);
+      ImGui::DragFloat("Cone (deg)", &m_particleEmitter.vRand.coneDeg, 0.1f, 0, 360.0f);
       showHelpMarker("Controls the minimum emission speed for the velocity randomizer");
       ImGui::SameLine();
       ImGui::DragFloat("Speed min x", &m_particleEmitter.vRand.speedMinMul, 0.01f, 0, 2.0f);
@@ -287,16 +207,18 @@ namespace Zen {
         ImGui::ColorEdit4("Colour", &m_particleEmitter.colour[0]);
         ImGui::DragFloat2("Size", &m_particleEmitter.size[0], 0.1f, 0, 10.0f);
         ImGui::SameLine();
-        ImGui::Checkbox("Link Size", &m_linkEmitterSize);
+        ImGui::Checkbox("##Link Size", &m_linkEmitterSize);
         if (m_linkEmitterSize) {
           m_particleEmitter.size.y = m_particleEmitter.size.x;
         }
+        showHelpNoMarker("Links width and height \nChange through width");
         ImGui::DragFloat("Speed", &m_speed, 0.1f, 0.1f, 10.0f);
 
         ImGui::Checkbox("Link Start Size", &m_linkEmitterToParticle);
         if (m_linkEmitterToParticle) {
           m_particleEmitter.props.sizeBegin = m_particleEmitter.size;
         }
+        showHelpNoMarker("Links width and height of emitter andParticle begin size");
 
         ImGui::TreePop();
       }
@@ -326,8 +248,19 @@ namespace Zen {
 
     if (!m_stats.active) {
       if (ImGui::Button("Start Profiling")) {
-        StartProfiling();
+        const float keep_window    = m_stats.window_sec;
+        const std::string keep_gpu = m_stats.gpu_name.empty()
+                                         ? reinterpret_cast<const char *>(glGetString(GL_RENDERER))
+                                         : m_stats.gpu_name;
+
+        m_stats            = RunStats{};
+        m_stats.window_sec = keep_window;
+        m_stats.gpu_name   = keep_gpu;
+        m_stats.active     = true;
+
+        ZEN_LOG_INFO("Starting profiling for {} s...", (int)m_stats.window_sec);
       }
+      showHelpNoMarker("Press to profile game engine performance");
     } else {
       ImGui::Text("Profiling... %.1f / %.0f s", (float)m_stats.elapsed_sec, m_stats.window_sec);
       ImGui::SameLine();
@@ -339,22 +272,83 @@ namespace Zen {
       ImGui::ProgressBar(profPct, ImVec2(-1, 0), nullptr);
     }
     if (m_particleSystem->aliveCount() == m_capacity) {
-      ImGui::TextColored(ImVec4(1.0f, 0, 0, 1.0f), "== Saturated ==");
+      ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0, 0, 1.0f));
+    } else {
+      ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0, 0, 0.0f));
     }
+    ImGui::Text("== Saturated ==");
+    ImGui::PopStyleColor();
     ImGui::End();
   }
 
-  void ParticleTestLayer::StartProfiling() {
-    const float keep_window    = m_stats.window_sec;
-    const std::string keep_gpu = m_stats.gpu_name.empty()
-                                     ? reinterpret_cast<const char *>(glGetString(GL_RENDERER))
-                                     : m_stats.gpu_name;
+  void ParticleTestLayer::startProfiling(DeltaTime deltaTime) {
+    const float dt       = deltaTime.seconds();
+    const float frame_ms = deltaTime.milliseconds();
+    m_stats.frames++;
+    m_stats.elapsed_sec += dt;
+    m_stats.sum_ms += frame_ms;
+    m_stats.min_ms = std::min(m_stats.min_ms, frame_ms);
+    m_stats.max_ms = std::max(m_stats.max_ms, frame_ms);
 
-    m_stats            = RunStats{};
-    m_stats.window_sec = keep_window;
-    m_stats.gpu_name   = keep_gpu;
-    m_stats.active     = true;
+    m_stats.last_draw_calls = (uint32_t)DrawStats::drawCalls;
+    m_stats.total_draw_calls += (uint32_t)DrawStats::drawCalls;
 
-    ZEN_LOG_INFO("Starting profiling for {} s...", (int)m_stats.window_sec);
+    const int alive_now = m_particleSystem->aliveCount();
+    m_stats.sum_alive += (alive_now >= 0 ? (uint64_t)alive_now : 0);
+    m_stats.peak_alive = std::max(m_stats.peak_alive, alive_now);
+
+    if (m_stats.elapsed_sec >= (double)m_stats.window_sec && m_stats.frames > 0) {
+      const double avg_ms = m_stats.sum_ms / (double)m_stats.frames;
+      const double avg_fps =
+          (m_stats.elapsed_sec > 0.0) ? ((double)m_stats.frames / m_stats.elapsed_sec) : 0.0;
+      const double min_ms = (m_stats.min_ms == FLT_MAX) ? 0.0 : (double)m_stats.min_ms;
+      const double max_ms = (double)m_stats.max_ms;
+
+      const double avg_alive         = (double)m_stats.sum_alive / (double)m_stats.frames;
+      const double lifetime_s        = (double)m_particleEmitter.props.lifeTime;
+      const double achieved_spawn_ps = (lifetime_s > 0.0) ? (avg_alive / lifetime_s) : 0.0;
+
+      const double dps = (m_stats.elapsed_sec > 0.0)
+                             ? ((double)m_stats.total_draw_calls / m_stats.elapsed_sec)
+                             : 0.0;
+      const double dpf =
+          (m_stats.frames > 0) ? ((double)m_stats.total_draw_calls / (double)m_stats.frames) : 0.0;
+
+      ZEN_LOG_INFO(" Duration (s): {}\n"
+                   " Average FPS: {:.1f}\n"
+                   " Frames (total): {}\n"
+                   " Frame time (avg): {:.2f} ms\n"
+                   " Frame time (min): {:.2f} ms\n"
+                   " Frame time (max): {:.2f} ms\n"
+                   " Alive particles (avg): {:.1f}\n"
+                   "Alive particles (peak): {}\n"
+                   " Achieved spawn (p/s): {:.1f}\n"
+                   " Lifetime (s): {:.1f}\n"
+                   " Target Spawn Rate (p/s): {}\n"
+                   " Draw Calls per second: {:.2f}\n"
+                   " Draw Calls per frame: {:.2f}\n"
+                   " Draw Calls last frame: {}\n"
+                   " Draw Calls total: {}\n"
+                   " GPU: {}",
+                   (int)m_stats.window_sec,
+                   avg_fps,
+                   m_stats.frames,
+                   avg_ms,
+                   min_ms,
+                   max_ms,
+                   avg_alive,
+                   m_stats.peak_alive,
+                   achieved_spawn_ps,
+                   m_particleEmitter.props.lifeTime,
+                   (int)m_particleEmitter.spawnRate,
+                   dps,
+                   dpf,
+                   m_stats.last_draw_calls,
+                   (uint64_t)m_stats.total_draw_calls,
+                   m_stats.gpu_name.c_str());
+
+      m_stats.active = false;
+    }
   }
+
 } // namespace Zen

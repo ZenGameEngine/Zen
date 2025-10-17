@@ -26,7 +26,7 @@ namespace Zen {
     Camera m_camera;
     CameraController m_cameraController;
     std::shared_ptr<Shader> m_shader;
-    int m_capacity = 1000000;
+    int m_capacity = 1000;
     std::unique_ptr<ParticleSystem> m_particleSystem;
     QuadBuilder m_quadBuilder;
 
@@ -62,7 +62,7 @@ namespace Zen {
       std::string gpu_name;
     } m_stats;
 
-    void StartProfiling();
+    void startProfiling(DeltaTime deltaTime);
   };
 
 } // namespace Zen
