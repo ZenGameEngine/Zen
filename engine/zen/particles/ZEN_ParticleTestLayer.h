@@ -40,11 +40,11 @@ namespace Zen {
     bool m_linkStartSize         = false;
     bool m_linkEndSize           = false;
     bool m_linkEmitterSize       = false;
-    bool m_linkEmitterToParticle = false;
+    bool m_linkEmitterToParticle = true;
 
     bool m_startup = true;
 
-    int m_spawnRateDummy = 60;
+    int m_spawnRateDummy;
 
     struct RunStats {
       float window_sec          = 60.0f;

@@ -47,4 +47,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-#endif __ZEN_PLATFORM_WINDOWS
+#endif //__ZEN_PLATFORM_WINDOWS

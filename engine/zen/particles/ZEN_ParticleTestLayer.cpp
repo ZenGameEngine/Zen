@@ -24,23 +24,24 @@ namespace Zen {
     m_quadBuilder.init(m_shader);
 
     m_particleEmitter.pos               = {0, 0};
-    m_particleEmitter.size              = {1, 1};
-    m_particleEmitter.colour            = {1.0f, 0.5f, 0, 1.0f};
-    m_particleEmitter.spawnRate         = 60;
-    m_particleEmitter.props.colourBegin = {1.0f, 0.5f, 0, 1.0f};
-    m_particleEmitter.props.colourEnd   = {1.0f, 0, 0, 1.0f};
-    m_particleEmitter.props.sizeBegin   = {1, 1};
+    m_particleEmitter.size              = {1.0f, 1.0f};
+    m_particleEmitter.colour            = {0, 1.0f, 1, 1.0f};
+    m_particleEmitter.spawnRate         = 120;
+    m_particleEmitter.props.colourBegin = {0, 1.0f, 1, 1.0f};
+    m_particleEmitter.props.colourEnd   = {0, 0.2f, 1, 1.0f};
+    m_particleEmitter.props.sizeBegin   = {1.0f, 1.0f};
     m_particleEmitter.props.sizeEnd     = {0, 0};
-    m_particleEmitter.props.lifeTime    = 1.0f;
-    m_particleEmitter.props.velocity    = {0, 0};
-    m_particleEmitter.vRand.coneDeg     = 45.0f;
-    m_particleEmitter.vRand.noiseSigma  = 1.0f;
+    m_particleEmitter.props.lifeTime    = 2.0f;
+    m_particleEmitter.props.velocity    = {1, 0};
+    m_particleEmitter.vRand.coneDeg     = 360.0f;
+    m_particleEmitter.vRand.noiseSigma  = 0;
     m_particleEmitter.vRand.speedMaxMul = 1.0f;
-    m_particleEmitter.vRand.speedMinMul = 0;
+    m_particleEmitter.vRand.speedMinMul = 1.0;
 
     if (m_stats.gpu_name.empty()) {
       m_stats.gpu_name = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
     }
+    m_spawnRateDummy = m_particleEmitter.spawnRate;
   }
 
   void ParticleTestLayer::onUpdate(DeltaTime deltaTime) {
@@ -216,9 +217,9 @@ namespace Zen {
 
         ImGui::Checkbox("Link Start Size", &m_linkEmitterToParticle);
         if (m_linkEmitterToParticle) {
-          m_particleEmitter.props.sizeBegin = m_particleEmitter.size;
+          m_particleEmitter.size = m_particleEmitter.props.sizeBegin;
         }
-        showHelpNoMarker("Links width and height of emitter andParticle begin size");
+        showHelpNoMarker("Links width and height of emitter to particle begin size");
 
         ImGui::TreePop();
       }

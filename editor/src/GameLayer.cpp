@@ -14,6 +14,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/random.hpp>
 #include <memory>
+#include <zen/gui/ZEN_Style.h>
+
 
 using namespace Zen;
 
@@ -40,12 +42,12 @@ void GameLayer::onAttach() {
   m_player.emitter.props.position    = m_player.pos;
   m_player.emitter.props.velocity    = {-5.0f, 0};
   m_player.emitter.props.lifeTime    = 0.6f;
-  m_player.emitter.props.sizeBegin   = {0.4f, 0.4f};
+  m_player.emitter.props.sizeBegin   = m_player.emitter.size * glm::vec2{0.5, 0.5};
   m_player.emitter.props.sizeEnd     = {0, 0};
-  m_player.emitter.props.colourBegin = {1.f, 0, 0, 1.0f};
-  m_player.emitter.props.colourEnd   = {0.8f, 0.7f, 0, 0};
-  m_player.emitter.vRand.coneDeg     = 30.0f;
-  m_player.emitter.vRand.speedMinMul = 0.5f;
+  m_player.emitter.props.colourBegin = m_player.colour;
+  m_player.emitter.props.colourEnd   = {0, 0.2f, 1, 1.0f};
+  m_player.emitter.vRand.coneDeg     = 45.0f;
+  m_player.emitter.vRand.speedMinMul = 1.0f;
   m_player.emitter.vRand.speedMaxMul = 2.0f;
   m_player.emitter.vRand.noiseSigma  = 1.0f;
 
@@ -410,17 +412,35 @@ void GameLayer::onGUIRender() {
                  1.0f,
                  0,
                  m_particleSystem->capacity());
+  showHelpMarker("Controls the velocity of the particles");
+  ImGui::SameLine();
   ImGui::DragFloat2("Trail Velocity", &m_player.emitter.props.velocity[0], 0.1f, -10.0f, 10.0f);
+  showHelpMarker("Controls the particles starting colour");
+  ImGui::SameLine();
   ImGui::ColorEdit4("Trail Colour Start", &m_player.emitter.props.colourBegin[0]);
+  showHelpMarker("Controls the particles final colour before disappearing");
+  ImGui::SameLine();
   ImGui::ColorEdit4("Trail Colour End", &m_player.emitter.props.colourEnd[0]);
-  ImGui::DragFloat("Particle Width Start", &m_player.emitter.props.sizeBegin.x, 0.1f, 0, 10.0f);
-  ImGui::DragFloat("Particle Height Start", &m_player.emitter.props.sizeBegin.y, 0.1f, 0, 10.0f);
-  ImGui::DragFloat("Particle Width End", &m_player.emitter.props.sizeEnd.x, 0.1f, 0, 10.0f);
-  ImGui::DragFloat("Particle Height End", &m_player.emitter.props.sizeEnd.y, 0.1f, 0, 10.0f);
+  showHelpMarker("Controls the particles starting width and height");
+  ImGui::SameLine();
+  ImGui::DragFloat2("Particle Size Start", &m_player.emitter.props.sizeBegin[0], 0.1f, 0, 10.0f);
+  showHelpMarker("Controls the particles final width and height before disappearing");
+  ImGui::SameLine();
+  ImGui::DragFloat2("Particle Size End", &m_player.emitter.props.sizeEnd[0], 0.1f, 0, 10.0f);
+  showHelpMarker("Controls how many seconds until a particle dies after being emitted");
+  ImGui::SameLine();
   ImGui::DragFloat("Trail Life", &m_player.emitter.props.lifeTime, 0.1f, 0.1f, 3.0f);
+  showHelpMarker("Controls the angle of the particle emission");
+  ImGui::SameLine();
   ImGui::DragFloat("Cone (deg)", &m_player.emitter.vRand.coneDeg, 0.1f, 0, 60.0f);
-  ImGui::DragFloat("Speed min x", &m_player.emitter.vRand.speedMinMul, 0.01f, 0, 2.0f);
+  showHelpMarker("Controls the minimum emission speed multiplier for the velocity randomizer");
+  ImGui::SameLine();
+  ImGui::DragFloat("Speed min x", &m_player.emitter.vRand.speedMinMul, 0.01f, 0, 3.0f);
+  showHelpMarker("Controls the maximum emission speed multiplier for the velocity randomizer");
+  ImGui::SameLine();
   ImGui::DragFloat("Speed max x", &m_player.emitter.vRand.speedMaxMul, 0.01f, 0, 3.0f);
+  showHelpMarker("Controls the noise applied on the velocity randomizer");
+  ImGui::SameLine();
   ImGui::DragFloat("Noise sigma", &m_player.emitter.vRand.noiseSigma, 0.01f, 0, 1.0f);
 
   ImGui::SeparatorText("Obstacles");
