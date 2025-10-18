@@ -43,7 +43,7 @@ void GameLayer::onAttach() {
   m_player.emitter.props.sizeBegin   = {0.4f, 0.4f};
   m_player.emitter.props.sizeEnd     = {0, 0};
   m_player.emitter.props.colourBegin = {1.f, 0, 0, 1.0f};
-  m_player.emitter.props.colourEnd   = {0.1f, 0.4f, 0.2f, 0};
+  m_player.emitter.props.colourEnd   = {0.8f, 0.7f, 0, 0};
   m_player.emitter.vRand.coneDeg     = 30.0f;
   m_player.emitter.vRand.speedMinMul = 0.5f;
   m_player.emitter.vRand.speedMaxMul = 2.0f;
