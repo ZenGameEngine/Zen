@@ -96,11 +96,13 @@ namespace Zen {
   }
 
   void Application::popLayer(Layer *layer) {
+    layer->onDetach();
     m_layerList.popLayer(layer);
     m_eventsDispatcher.unregisterListener(layer);
   }
 
   void Application::popOverlay(Layer *overlay) {
+    overlay->onDetach();
     m_layerList.popLayer(overlay);
     m_eventsDispatcher.unregisterListener(overlay);
   }
