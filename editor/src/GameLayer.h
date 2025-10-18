@@ -74,4 +74,6 @@ private:
   int m_nextObstacleIndex = 0;
 
   ObstacleType getRandomObstacleType();
+  
+  bool m_startup = true;
 };

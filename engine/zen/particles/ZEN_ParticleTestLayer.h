@@ -25,7 +25,7 @@ namespace Zen {
     Camera m_camera;
     CameraController m_cameraController;
     std::shared_ptr<Shader> m_shader;
-    int m_capacity = 10000;
+    int m_capacity = 1000;
     std::unique_ptr<ParticleSystem> m_particleSystem;
     QuadBuilder m_quadBuilder;
 
@@ -40,10 +40,28 @@ namespace Zen {
     bool m_linkStartSize         = false;
     bool m_linkEndSize           = false;
     bool m_linkEmitterSize       = false;
-    bool m_linkEmitterToParticle = false;
+    bool m_linkEmitterToParticle = true;
 
     bool m_startup = true;
 
-    int m_spawnRateDummy = 60;
+    int m_spawnRateDummy;
+
+    struct RunStats {
+      float window_sec          = 60.0f;
+      bool active               = false;
+      double elapsed_sec        = 0.0;
+      uint64_t frames           = 0;
+      double sum_ms             = 0.0;
+      float min_ms              = FLT_MAX;
+      float max_ms              = 0.0f;
+      uint64_t sum_alive        = 0;
+      int peak_alive            = 0;
+      uint32_t last_draw_calls  = 0;
+      uint64_t total_draw_calls = 0;
+      std::string gpu_name;
+    } m_stats;
+
+    void startProfiling(DeltaTime deltaTime);
   };
+
 } // namespace Zen

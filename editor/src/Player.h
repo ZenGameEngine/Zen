@@ -12,13 +12,9 @@ public:
   float jumpPower  = 18.0f;  // units/s
   float width      = 1.0f;
   float height     = 1.0f;
-  glm::vec4 colour = {1.0f, 0.0f, 0.0f, 1.0f};
+  glm::vec4 colour = {0.0f, 1.0f, 1.0f, 1.0f};
 
-  Zen::ParticleEmitter emitter{
-      {0, 0},
-      {1, 1},
-      {1, 1, 1, 1}
-  };
+  Zen::ParticleEmitter emitter{};
 
   bool onGround() const;
   void update(Zen::DeltaTime deltaTime, bool jumpPressed);
