@@ -301,7 +301,10 @@ void GameLayer::drawObstacles() {
 void GameLayer::drawGround() { m_quadBuilder.drawQuad(m_groundPos, m_groundSize, m_groundColour); }
 
 void GameLayer::drawUI() {
-  ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_Always);
+  ImGuiViewport *vp = ImGui::GetMainViewport();
+  const float PAD   = 10.0f;
+  const float GAP   = 8.0f;
+  ImGui::SetNextWindowPos(ImVec2(vp->WorkPos.x + PAD, vp->WorkPos.y + PAD), ImGuiCond_Always);
   ImGui::SetNextWindowBgAlpha(0.6f);
   ImGui::Begin("Score",
                nullptr,
@@ -328,10 +331,38 @@ void GameLayer::drawUI() {
 }
 
 void GameLayer::onGUIRender() {
-  ImGuiIO &io = ImGui::GetIO();
-  ImGui::SetNextWindowSize(ImVec2(400, 600), ImGuiCond_Once);
-  ImGui::SetNextWindowPos(ImVec2(800, 10), ImGuiCond_Once);
-  ImGui::Begin("Editor");
+  ImGuiIO &io       = ImGui::GetIO();
+  ImGuiViewport *vp = ImGui::GetMainViewport();
+  const float PAD   = 10.0f;
+  const float GAP   = 8.0f;
+
+  const ImGuiWindowFlags hud = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+                               ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings |
+                               ImGuiWindowFlags_NoDocking;
+
+  if (m_startup) {
+    ImGui::OpenPopup("Welcome to the Demo");
+    m_startup = false;
+  }
+
+  const ImVec2 center =
+      ImVec2(vp->WorkPos.x + vp->WorkSize.x * 0.5f, vp->WorkPos.y + vp->WorkSize.y * 0.5f);
+  ImGui::SetNextWindowViewport(vp->ID);
+  ImGui::SetNextWindowPos(center, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+  if (ImGui::BeginPopupModal("Welcome to the Demo", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+    ImGui::SetWindowFontScale(2.0f);
+    ImGui::Text("Camera controls - WASD, mouse scroll");
+    ImGui::Text("Player Controls - Space");
+    if (ImGui::Button("Yes", ImVec2(-1, 0)))
+      ImGui::CloseCurrentPopup();
+    ImGui::EndPopup();
+  }
+
+  ImGui::SetNextWindowViewport(vp->ID);
+  ImGui::SetNextWindowPos(ImVec2(vp->WorkPos.x + vp->WorkSize.x - PAD, vp->WorkPos.y + PAD),
+                          ImGuiCond_Always,
+                          ImVec2(1.0f, 0.0f));
+  ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
   ImGui::SeparatorText("Game State");
 
@@ -372,8 +403,13 @@ void GameLayer::onGUIRender() {
 
   ImGui::SeparatorText("Player Particles");
   ImGui::Checkbox("Emit Trail", &m_playerEmitTrail);
+  ImGui::SameLine();
   ImGui::Checkbox("Emit Jump Burst", &m_emitJumpBurst);
-  ImGui::DragInt("Trail Spawn Rate", &m_player.emitter.spawnRate, 1.0f, 0, m_particleSystem->capacity());
+  ImGui::DragInt("Trail Spawn Rate",
+                 &m_player.emitter.spawnRate,
+                 1.0f,
+                 0,
+                 m_particleSystem->capacity());
   ImGui::DragFloat2("Trail Velocity", &m_player.emitter.props.velocity[0], 0.1f, -10.0f, 10.0f);
   ImGui::ColorEdit4("Trail Colour Start", &m_player.emitter.props.colourBegin[0]);
   ImGui::ColorEdit4("Trail Colour End", &m_player.emitter.props.colourEnd[0]);
@@ -424,9 +460,11 @@ void GameLayer::onGUIRender() {
   if (ImGui::Button("Spawn Small Box")) {
     m_obstacles.push_back(Obstacle(ObstacleType::SmallBox, 12.0f));
   }
+  ImGui::SameLine();
   if (ImGui::Button("Spawn Tall Box")) {
     m_obstacles.push_back(Obstacle(ObstacleType::TallBox, 12.0f));
   }
+  ImGui::SameLine();
   if (ImGui::Button("Spawn Flying Box")) {
     m_obstacles.push_back(Obstacle(ObstacleType::FlyingBox, 12.0f));
   }

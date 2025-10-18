@@ -116,7 +116,7 @@ namespace Zen {
     ImGui::SetNextWindowPos(center, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
     if (ImGui::BeginPopupModal("Welcome to the Demo", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
       ImGui::SetWindowFontScale(2.0f);
-      ImGui::Text("Camera controls - WASD");
+      ImGui::Text("Camera controls - WASD, mouse scroll");
       ImGui::Text("Object controls - Arrow keys");
       if (ImGui::Button("Yes", ImVec2(-1, 0)))
         ImGui::CloseCurrentPopup();
