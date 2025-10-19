@@ -27,7 +27,7 @@ but features like the Vulkan backend, ECS integration, and editor tooling are st
 
 ## ✨ Current Features
 
-- Cross-platform (Windows / Linux) with modular build via CMake
+- Cross-platform (Windows / Linux)
 
 - Event-driven architecture: unified event representation and dispatch system
 
@@ -41,10 +41,8 @@ but features like the Vulkan backend, ECS integration, and editor tooling are st
 
 - Renderer abstraction layer decouples high-level drawing commands from backend implementations
 
-- Orthographic and Perspective camera systems with bounds and zoom control
+- Orthographic and Perspective camera
 
-- Batch rendering support for quads and particles
-
-- ImGui debug interface for runtime visualization and control
+- Batch rendering support for particles
 
 [**Documentation**](https://zengameengine.github.io/Zen/annotated.html)
