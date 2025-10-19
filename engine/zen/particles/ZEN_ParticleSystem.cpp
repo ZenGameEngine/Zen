@@ -6,16 +6,6 @@
 namespace Zen {
 
   ParticleSystem::ParticleSystem(size_t maxParticles) : m_max(maxParticles) {
-    // std::vector<glm::vec2> positions;
-    // std::vector<glm::vec2> velocities;
-    // std::vector<glm::vec2> sizeBegin;
-    // std::vector<glm::vec2> sizeEnd;
-    // std::vector<glm::vec4> colourBegin;
-    // std::vector<glm::vec4> colourEnd;
-    // std::vector<float> lifeRemaining;
-    // std::vector<float> lifeTime;
-    // std::vector<bool> active;
-
     m_particles.active.reserve(m_max);
     m_particles.active.assign(m_max, false);
 
@@ -85,16 +75,16 @@ namespace Zen {
     m_vbo->setData(m_cpuQuad.data(), static_cast<uint32_t>(m_cpuQuad.size() * sizeof(QuadVertex)));
   }
 
-  void ParticleSystem::emit(const ParticleProps &p) {
+  void ParticleSystem::emit(const ParticleProps &props) {
     m_particles.active[m_poolIndex]        = true;
-    m_particles.positions[m_poolIndex]     = p.position;
-    m_particles.velocities[m_poolIndex]    = p.velocity;
-    m_particles.lifeTime[m_poolIndex]      = p.lifeTime;
-    m_particles.lifeRemaining[m_poolIndex] = p.lifeTime;
-    m_particles.sizeBegin[m_poolIndex]     = p.sizeBegin;
-    m_particles.sizeEnd[m_poolIndex]       = p.sizeEnd;
-    m_particles.colourBegin[m_poolIndex]   = p.colourBegin;
-    m_particles.colourEnd[m_poolIndex]     = p.colourEnd;
+    m_particles.positions[m_poolIndex]     = props.position;
+    m_particles.velocities[m_poolIndex]    = props.velocity;
+    m_particles.lifeTime[m_poolIndex]      = props.lifeTime;
+    m_particles.lifeRemaining[m_poolIndex] = props.lifeTime;
+    m_particles.sizeBegin[m_poolIndex]     = props.sizeBegin;
+    m_particles.sizeEnd[m_poolIndex]       = props.sizeEnd;
+    m_particles.colourBegin[m_poolIndex]   = props.colourBegin;
+    m_particles.colourEnd[m_poolIndex]     = props.colourEnd;
 
     m_poolIndex = (m_poolIndex + 1) % m_particles.active.size();
   }
@@ -104,35 +94,35 @@ namespace Zen {
     m_alive          = 0;
 
     for (int i = 0; i < m_particles.active.size(); i++) {
-      if (!m_particles.active.at(i)) {
+      if (!m_particles.active[i]) {
         continue;
       }
 
-      m_particles.lifeRemaining.at(i) -= deltaTimef;
-      if (m_particles.lifeRemaining.at(i) <= 0.f) {
-        m_particles.active.at(i) = false;
+      m_particles.lifeRemaining[i] -= deltaTimef;
+      if (m_particles.lifeRemaining[i] <= 0.f) {
+        m_particles.active[i] = false;
         continue;
       }
 
-      m_particles.positions.at(i) += m_particles.velocities.at(i) * deltaTimef;
+      m_particles.positions[i] += m_particles.velocities[i] * deltaTimef;
 
-      float t        = 1.0f - (m_particles.lifeRemaining.at(i) / m_particles.lifeTime.at(i));
-      glm::vec2 size = glm::mix(m_particles.sizeBegin.at(i), m_particles.sizeEnd.at(i), t);
-      glm::vec4 c    = glm::mix(m_particles.colourBegin.at(i), m_particles.colourEnd.at(i), t);
+      float t        = 1.0f - (m_particles.lifeRemaining[i] / m_particles.lifeTime[i]);
+      glm::vec2 size = glm::mix(m_particles.sizeBegin[i], m_particles.sizeEnd[i], t);
+      glm::vec4 c    = glm::mix(m_particles.colourBegin[i], m_particles.colourEnd[i], t);
 
       glm::vec2 h(size * 0.5f);
       QuadVertex *v = &m_cpuQuad[m_alive * 4];
-      v[0]          = {m_particles.positions.at(i) + glm::vec2(-h.x, -h.y), c};
-      v[1]          = {m_particles.positions.at(i) + glm::vec2(+h.x, -h.y), c};
-      v[2]          = {m_particles.positions.at(i) + glm::vec2(+h.x, +h.y), c};
-      v[3]          = {m_particles.positions.at(i) + glm::vec2(-h.x, +h.y), c};
+      v[0]          = {m_particles.positions[i] + glm::vec2(-h.x, -h.y), c};
+      v[1]          = {m_particles.positions[i] + glm::vec2(+h.x, -h.y), c};
+      v[2]          = {m_particles.positions[i] + glm::vec2(+h.x, +h.y), c};
+      v[3]          = {m_particles.positions[i] + glm::vec2(-h.x, +h.y), c};
 
       ++m_alive;
     }
   }
 
   void ParticleSystem::upload() {
-    const uint32_t bytes = m_alive * 4 * sizeof(QuadVertex);
+    const uint32_t &bytes = m_alive * 4 * sizeof(QuadVertex);
     m_vbo->bind();
     m_vbo->setData(m_cpuQuad.data(), bytes);
     m_ibo->setCount(m_alive * 6); // key line
@@ -140,24 +130,26 @@ namespace Zen {
 
   void ParticleSystem::clear() {
     for (int i = 0; i < m_particles.active.size(); i++) {
-      m_particles.active.at(i) = false;
+      m_particles.active[i] = false;
     };
 
     m_alive = 0;
   }
 
   void ParticleSystem::updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime) {
-    float rate   = emitter.spawnRate;
-    float period = 1.0f / glm::max(rate, 0.001f);
+    const float &rate   = emitter.spawnRate;
+    const float &period = 1.0f / glm::max(rate, 0.001f);
 
+    static Zen::ParticleProps particleProps = emitter.props;
     emitter.emitAccumulator += deltaTime.seconds();
     while (emitter.emitAccumulator > period) {
-      Zen::ParticleProps p = emitter.props;
+      particleProps          = emitter.props;
+      particleProps.position = emitter.pos;
 
-      p.position  = emitter.pos;
-      glm::vec2 v = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
-      p.velocity  = v;
-      emit(p);
+      const glm::vec2 &velocity = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
+      particleProps.velocity    = velocity;
+
+      emit(particleProps);
       emitter.emitAccumulator -= period;
     }
   }
