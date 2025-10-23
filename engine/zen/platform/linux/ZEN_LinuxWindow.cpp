@@ -29,17 +29,17 @@ namespace Zen {
     m_windowProperties.width  = properties.width;
     m_windowProperties.height = properties.height;
 
-    ZEN_LOG_INFO("Creating new SDL Window: {}, W:{} H: {}",
-                 m_windowProperties.title,
-                 m_windowProperties.width,
-                 m_windowProperties.height);
+    ZEN_LOG_DEBUG("Creating new SDL Window: {}, W:{} H: {}",
+                  m_windowProperties.title,
+                  m_windowProperties.width,
+                  m_windowProperties.height);
 
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
       handleError(SDL_GetError());
       return !initSuccess;
     };
 
-    ZEN_LOG_INFO("[Zen/Platform/LinuxWindow] SDL Successfully Initialized!");
+    ZEN_LOG_DEBUG("[Zen/Platform/LinuxWindow] SDL Successfully Initialized!");
     constexpr SDL_WindowFlags flags = SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_FOCUS |
                                       SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_MOUSE_CAPTURE |
                                       SDL_WINDOW_RESIZABLE;
@@ -77,7 +77,7 @@ namespace Zen {
                   GLAD_VERSION_MINOR(version));
 
     setVSync(m_windowProperties.vsync);
-    ZEN_LOG_INFO("[Zen/Platform/LinuxWindow] Window successfully initialized!");
+    ZEN_LOG_DEBUG("[Zen/Platform/LinuxWindow] Window successfully initialized!");
 
     return initSuccess;
   };
@@ -139,20 +139,22 @@ namespace Zen {
     int newWidth  = event.windowResize.width;
     int newHeight = event.windowResize.height;
 
-    ZEN_LOG_TRACE("Window Width: {}", newWidth);
-    ZEN_LOG_TRACE("Window Height: {}", newHeight);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] Window Width: {}", newWidth);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] Window Height: {}", newHeight);
 
     m_windowProperties.width  = newWidth;
     m_windowProperties.height = newHeight;
 
-    ZEN_LOG_TRACE("New WinProp Width: {}", m_windowProperties.width);
-    ZEN_LOG_TRACE("New WinProp Height: {}", m_windowProperties.height);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] New WinProp Width: {}", m_windowProperties.width);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] New WinProp Height: {}", m_windowProperties.height);
 
     return false;
   };
 
   bool LinuxWindow::mouseClickEvent(const ZenEvent &event) {
-    ZEN_LOG_TRACE("Mouse click at X: {}, Y: {}", event.mouseButton.x, event.mouseButton.y);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] Mouse click at X: {}, Y: {}",
+                  event.mouseButton.x,
+                  event.mouseButton.y);
     return false;
   };
 
