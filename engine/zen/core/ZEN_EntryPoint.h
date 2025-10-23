@@ -48,14 +48,23 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/,
 
 int main(int argc, char *argv[]) {
   Zen::Log::init();
-  ZEN_LOG_INFO("Hello, Windows!");
+  ZEN_LOG_INFO("Hello, Windows!   :)");
 
-  Zen::Application *app = Zen::CreateApplication();
+  auto app = Zen::CreateApplication();
+  if (!app->init()) {
+    ZEN_LOG_CRITICAL("[Zen/Core/EntryPoint] Application failed to initialize :(");
+    delete app;
+    return EXIT_FAILURE;
+  };
+
+  app->registerLayers();
+
   app->run();
 
-  ZEN_LOG_INFO("Deleting app...");
+  ZEN_LOG_INFO("[Zen/Core/EntryPoint] Deleting app...");
   delete app;
-  return 0;
+
+  return EXIT_SUCCESS;
 }
 
 #endif //__ZEN_PLATFORM_WINDOWS

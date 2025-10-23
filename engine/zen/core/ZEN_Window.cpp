@@ -10,7 +10,7 @@ namespace Zen {
 #endif // __ZEN_PLATFORM_LINUX
 #ifdef __ZEN_PLATFORM_WINDOWS
     ZEN_LOG_INFO("[Zen/Core/Window] Creating a Windows window...");
-    return std::make_unique<WIN32Window>(properties);
+    return std::make_unique<WIN32Window>();
 #endif // __ZEN_PLATFORM_WINDOWS
     ZEN_LOG_ERROR("[Zen/Core/Window] The current OS is unsupported");
     return nullptr;
