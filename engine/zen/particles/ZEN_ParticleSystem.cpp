@@ -62,7 +62,9 @@ namespace Zen {
     m_ibo.reset(IndexBuffer::Create(indices.data(), static_cast<uint32_t>(indices.size())));
     m_vao->setIndexBuffer(m_ibo);
 
-    m_shader = std::make_shared<Shader>("data/particle.vert", "data/particle.frag");
+    m_shader = std::make_shared<Shader>();
+    m_shader->init("data/particle.vert", "data/particle.frag");
+    // TODO: [Zen/Core/ParticleSystem] Handle shader not loaded error
 
     const glm::vec2 deadPos(0.0f);
     const glm::vec4 deadCol(0.0f);
@@ -137,17 +139,14 @@ namespace Zen {
   }
 
   void ParticleSystem::updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime) {
-    const float &rate   = emitter.spawnRate;
-    const float &period = 1.0f / glm::max(rate, 0.001f);
+    const float period = 1.0f / glm::max((float)emitter.spawnRate, 0.001f);
 
-    static Zen::ParticleProps particleProps = emitter.props;
+    static Zen::ParticleProps particleProps;
     emitter.emitAccumulator += deltaTime.seconds();
     while (emitter.emitAccumulator > period) {
       particleProps          = emitter.props;
       particleProps.position = emitter.pos;
-
-      const glm::vec2 &velocity = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
-      particleProps.velocity    = velocity;
+      particleProps.velocity = sampleVelocityFromBase(emitter.props.velocity, emitter.vRand);
 
       emit(particleProps);
       emitter.emitAccumulator -= period;

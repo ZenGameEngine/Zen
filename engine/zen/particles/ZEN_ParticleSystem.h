@@ -45,19 +45,18 @@ namespace Zen {
 
   inline glm::vec2 sampleVelocityFromBase(glm::vec2 baseVelocity, const VelocityRandomizer &vRand) {
     static glm::vec2 direction;
-    const float &baseSpeed = glm::length(baseVelocity);
-    direction              = (baseSpeed > 0) ? baseVelocity / baseSpeed : glm::vec2{0, 1};
+    const float baseSpeed = glm::length(baseVelocity);
+    direction             = (baseSpeed > 0) ? baseVelocity / baseSpeed : glm::vec2{0, 1};
 
-    const float &theta = glm::radians(glm::linearRand(-vRand.coneDeg, vRand.coneDeg));
-    direction          = glm::rotate(direction, theta);
+    const float theta = glm::radians(glm::linearRand(-vRand.coneDeg, vRand.coneDeg));
+    direction         = glm::rotate(direction, theta);
 
-    const float &k     = glm::linearRand(vRand.speedMinMul, vRand.speedMaxMul);
-    const float &speed = baseSpeed * k;
+    const float k = glm::linearRand(vRand.speedMinMul, vRand.speedMaxMul);
 
-    const glm::vec2 &noise{glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma),
-                           glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma)};
+    const glm::vec2 noise{glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma),
+                          glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma)};
 
-    return direction * speed + noise;
+    return direction * (baseSpeed * k) + noise;
   }
 
   struct ParticleEmitter {

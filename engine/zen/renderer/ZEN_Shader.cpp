@@ -60,7 +60,7 @@ namespace {
 
     // We don't need the shader anymore.
     glDeleteShader(shaderId);
-    ZEN_LOG_ERROR("[Zen/Core/Shader] {}", errorData);
+    ZEN_LOG_ERROR("[Zen/Renderer/Shader] {}", errorData);
 
     delete[] errorData;
     return !isOk;
@@ -84,7 +84,7 @@ namespace {
       // Always detach shaders after a successful link.
       glDetachShader(programID, vertShaderID);
       glDetachShader(programID, fragShaderID);
-      ZEN_LOG_DEBUG("[Zen/Core/Shader] Shader Program #{}, linked successfully!", programID);
+      ZEN_LOG_DEBUG("[Zen/Renderer/Shader] Shader Program #{}, linked successfully!", programID);
       return isOk;
     };
 
@@ -103,7 +103,7 @@ namespace {
     glDeleteShader(fragShaderID);
 
     // We don't need the shader anymore.
-    ZEN_LOG_ERROR("[Zen/Core/Shader] {}", errorData);
+    ZEN_LOG_ERROR("[Zen/Renderer/Shader] {}", errorData);
     delete[] errorData;
 
     return !isOk;
@@ -111,11 +111,11 @@ namespace {
 }; // namespace
 
 namespace Zen {
-  Shader::Shader() { ZEN_LOG_INFO("[Zen/Core/Shader] Constructing Shader #{}", m_rendererID); };
+  Shader::Shader() { ZEN_LOG_INFO("[Zen/Renderer/Shader] Constructing Shader #{}", m_rendererID); };
 
   Shader::~Shader() {
     glDeleteProgram(m_rendererID);
-    ZEN_LOG_INFO("[Zen/Core/Shader] Shader #{} deconstructed", m_rendererID);
+    ZEN_LOG_INFO("[Zen/Renderer/Shader] Shader #{} deconstructed", m_rendererID);
   }
 
   bool Shader::init(const char *vertexPath, const char *fragmentPath) {
@@ -132,7 +132,7 @@ namespace Zen {
     uint32_t vertexShader;
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     if (!compileShader(vertexShader, vertShaderCode)) {
-      ZEN_LOG_ERROR("[Zen/Core/Shader] Failed to compile vertex shader");
+      ZEN_LOG_ERROR("[Zen/Renderer/Shader] Failed to compile vertex shader");
       return !isOk;
     };
 
@@ -140,7 +140,7 @@ namespace Zen {
     uint32_t fragmentShader;
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     if (!compileShader(fragmentShader, fragShaderCode)) {
-      ZEN_LOG_ERROR("[Zen/Core/Shader] Failed to compile fragment shader");
+      ZEN_LOG_ERROR("[Zen/Renderer/Shader] Failed to compile fragment shader");
       return !isOk;
     };
 
@@ -149,23 +149,23 @@ namespace Zen {
     // Get a program object.
     m_rendererID = glCreateProgram();
     if (!linkShaders(m_rendererID, vertexShader, fragmentShader)) {
-      ZEN_LOG_ERROR("[Zen/Core/Shader] Failed to link vertex & fragment shaders for Shader #{}",
+      ZEN_LOG_ERROR("[Zen/Renderer/Shader] Failed to link vertex & fragment shaders for Shader #{}",
                     m_rendererID);
       return !isOk;
     };
 
-    ZEN_LOG_INFO("[Zen/Core/Shader] Shader #{} constructed successfully!", m_rendererID);
+    ZEN_LOG_INFO("[Zen/Renderer/Shader] Shader #{} constructed successfully!", m_rendererID);
     return isOk;
   }
 
   void Shader::bind() const {
     glUseProgram(m_rendererID);
-    ZEN_LOG_TRACE("[Zen/Core/Shader] Shader #{} binded!", m_rendererID);
+    ZEN_LOG_TRACE("[Zen/Renderer/Shader] Shader #{} binded!", m_rendererID);
   }
 
   void Shader::unbind() const {
     glUseProgram(0);
-    ZEN_LOG_TRACE("[Zen/Core/Shader] Shader #{} unbinded!", m_rendererID);
+    ZEN_LOG_TRACE("[Zen/Renderer/Shader] Shader #{} unbinded!", m_rendererID);
   }
 
   void Shader::uploadUniformMat4(const std::string &name, const glm::mat4 &matrix) {
