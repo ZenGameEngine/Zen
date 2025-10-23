@@ -16,7 +16,6 @@
 #include <memory>
 #include <zen/gui/ZEN_Style.h>
 
-
 using namespace Zen;
 
 void GameLayer::onAttach() {
@@ -28,7 +27,10 @@ void GameLayer::onAttach() {
   m_cameraController.setWorldBounds(-10.0f, 10.0f, -5.625f, 5.625f);
   m_cameraController.enableWorldBounds(true);
 
-  m_shader         = std::make_shared<Shader>("data/particle.vert", "data/particle.frag");
+  m_shader = std::make_shared<Shader>();
+  m_shader->init("data/particle.vert", "data/particle.frag");
+  // TODO: [Zen Game Layer] Handle shader not loaded error
+
   m_particleSystem = std::make_unique<ParticleSystem>(5000);
   m_quadBuilder.init(m_shader);
 

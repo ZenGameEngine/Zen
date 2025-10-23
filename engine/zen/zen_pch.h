@@ -3,6 +3,7 @@
 // C++
 #include <algorithm>
 #include <cstdint>
+#include <cstring>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -15,9 +16,7 @@
 // OpenGL
 #ifndef __ZEN_OPENGL_H
   #define __ZEN_OPENGL_H
-
   #include <glad/gl.h>
-
 #endif // !__ZEN_OPENGL_H
 
 // SDL
@@ -32,6 +31,7 @@
 
 // GLM
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 // ZEN
 #include <zen/log/ZEN_Log.h>
