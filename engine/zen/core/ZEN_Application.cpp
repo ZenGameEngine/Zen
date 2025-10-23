@@ -1,4 +1,5 @@
 #include <include/imgui/imgui_impl_sdl3.h>
+#include <vector>
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Window.h>
 #include <zen/gui/ZEN_ImGuiLayer.h>
@@ -12,22 +13,35 @@ namespace Zen {
 
   Application::Application() {
     s_instance = this;
-
-    Log::init();
-    WindowProperties properties = {"Zen Window Test", 1280, 720, true, false};
-    m_eventsDispatcher.registerListener(this);
-    m_window = Window::create(properties);
-    m_eventsDispatcher.registerListener(m_window.get());
-
-    ZEN_LOG_DEBUG("new ImGui");
-    m_ImGui = new ImGuiLayer;
-    pushLayer(m_ImGui);
-
     // pushLayer(new ParticleTestLayer());
   };
 
   Application::~Application() {
 
+  };
+
+  bool Application::init() {
+    const bool initSuccess = true;
+
+    Log::init();
+
+    WindowProperties properties = {"Zen Window Test", 1280, 720, true, false};
+    m_eventsDispatcher.registerListener(this);
+    m_window = Window::create();
+    if (!m_window->init(properties)) {
+      ZEN_LOG_CRITICAL("[Zen/Core/Application] ZEN_Window failed to initialize properly");
+      m_isRunning = false;
+      return !initSuccess;
+    };
+
+    m_eventsDispatcher.registerListener(m_window.get());
+
+    m_ImGui = new ImGuiLayer;
+
+    pushLayer(m_ImGui);
+    ZEN_LOG_DEBUG("[Zen/Core/Application] Pushing a new ImGui layer");
+
+    return initSuccess;
   };
 
   bool Application::onEvent(const ZenEvent &event) {
@@ -78,6 +92,7 @@ namespace Zen {
       m_inputSystem.end();
       m_window->onUpdate();
     };
+
     ZEN_LOG_INFO("Closing Application...");
   };
 

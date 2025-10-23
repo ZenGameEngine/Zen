@@ -21,9 +21,14 @@ namespace Zen {
     Application();
     virtual ~Application();
 
+    bool init();
+
     void run();
     bool onEvent(const ZenEvent &event) override;
     void onUpdate(DeltaTime deltaTime);
+
+    // TODO: In relation to Zenith TODO, maybe something like this?
+    // virtual void registerLayers(Layer *layer) = 0;
 
     void pushLayer(Layer *layer);
     void pushOverlay(Layer *overlay);

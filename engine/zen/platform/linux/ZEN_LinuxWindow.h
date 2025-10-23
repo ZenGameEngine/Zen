@@ -14,18 +14,18 @@ namespace Zen {
 
   class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties);
+    LinuxWindow();
     virtual ~LinuxWindow();
+
+    bool init(const WindowProperties &properties) override;
 
     void onUpdate() override;
     uint32_t getWidth() override;
     uint32_t getHeight() override;
 
     void setVSync(bool enabled) override;
-    bool isVSyncEnabled() const override;
+    bool getVSync() const override;
     void toggleFullscreen() override;
-
-    void emitErrorMessage(const char *message) override;
 
     // TEMP
     WindowData &getWindowData();
@@ -42,8 +42,7 @@ namespace Zen {
     const GraphicsContext &context() const override;
 
   private:
-    virtual void init(const WindowProperties &properties);
-    virtual void shutdown();
+    void shutdown();
 
     // TEMP
     WindowData m_windowData;
