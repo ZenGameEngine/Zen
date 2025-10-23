@@ -19,6 +19,8 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   };
 
+  app->registerLayers();
+
   app->run();
 
   ZEN_LOG_INFO("[Zen/Core/EntryPoint] Deleting app...");
