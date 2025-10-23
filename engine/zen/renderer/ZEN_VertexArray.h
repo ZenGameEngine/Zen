@@ -1,7 +1,6 @@
 #pragma once
-#include <zen/zen_pch.h>
-
 #include <zen/renderer/ZEN_Buffer.h>
+#include <zen/zen_pch.h>
 
 namespace Zen {
   class VertexArray {
