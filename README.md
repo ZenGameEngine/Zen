@@ -48,3 +48,8 @@ but features like the Vulkan backend, ECS integration, and editor tooling are st
 - Batch rendering support for particles
 
 [**Documentation**](https://zengameengine.github.io/Zen/annotated.html)
+
+---
+![Repository views](https://komarev.com/ghpvc/?username=ZenGameEngine&label=Repository%20views&color=grey&style=flat-square)
+
+
