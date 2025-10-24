@@ -1,3 +1,4 @@
+#include <SDL3/SDL_video.h>
 #include <zen/events/ZEN_Event.h>
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
 
@@ -40,6 +41,10 @@ namespace Zen {
 
     // UNCOMMENT BELOW TO FORCE ERROR
     // SDL_WindowFlags flags;
+
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     m_windowData.window = SDL_CreateWindow(m_windowProperties.title.c_str(),
                                            m_windowProperties.width,
