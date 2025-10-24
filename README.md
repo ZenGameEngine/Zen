@@ -13,6 +13,8 @@
   
 > The game engine currently has a demo that shows a minimal endles runner game and a particle system editor.
 
+![1 million particles](https://github.com/kris-perezz/kris-perezz/blob/959c7cf20ce60dc45cd32dc8c5d31c6c2540905a/assets/Zen-1millionParticles.gif)
+  
 >  **Performance:** Sustains ~236 FPS with 100K particles and ~31 FPS with 1M particles on an RX 7700 XT
 
 ---  
@@ -46,3 +48,8 @@ but features like the Vulkan backend, ECS integration, and editor tooling are st
 - Batch rendering support for particles
 
 [**Documentation**](https://zengameengine.github.io/Zen/annotated.html)
+
+---
+![Repository views](https://komarev.com/ghpvc/?username=ZenGameEngine&label=Repository%20views&color=grey&style=flat-square)
+
+

@@ -33,12 +33,12 @@ if(UNIX AND NOT APPLE)
       ${ZEN_CAMERA_HEADER}
       ${ZEN_PARTICLES_HEADER})
 
-  set(ZEN_SRC 
-      ${ZEN_CORE_SRC} 
-      ${ZEN_TEXTURES_SRC} 
+  set(ZEN_SRC
+      ${ZEN_CORE_SRC}
+      ${ZEN_TEXTURES_SRC}
       ${ZEN_LOG_SRC}
-      ${ZEN_LINUX_SRC} 
-      ${ZEN_EVENTS_SRC} 
+      ${ZEN_LINUX_SRC}
+      ${ZEN_EVENTS_SRC}
       ${ZEN_LAYER_SRC}
       ${ZEN_OPENGL_SRC}
       ${ZEN_RENDERER_SRC}
@@ -52,38 +52,38 @@ if(UNIX AND NOT APPLE)
   target_compile_definitions(ZenEngine PUBLIC __ZEN_PLATFORM_LINUX)
 elseif(WIN32)
 
-    set(ZEN_HEADER
-        zen/zen.h
-        ${ZEN_BASE_HEADER}
-        ${ZEN_CORE_HEADER}
-        ${ZEN_TEXTURES_HEADER}
-        ${ZEN_LOG_HEADER}
-        ${ZEN_LINUX_HEADER}
-        ${ZEN_EVENTS_HEADER}
-        ${ZEN_LAYER_HEADER}
-        ${ZEN_OPENGL_HEADER}
-        ${ZEN_RENDERER_HEADER}
-        ${ZEN_IMGUI_HEADER}
-        ${ZEN_INPUTS_HEADER}
-        ${ZEN_CAMERA_HEADER}
-        ${ZEN_PARTICLES_HEADER})
+  set(ZEN_HEADER
+      zen/zen.h
+      ${ZEN_BASE_HEADER}
+      ${ZEN_CORE_HEADER}
+      ${ZEN_TEXTURES_HEADER}
+      ${ZEN_LOG_HEADER}
+      ${ZEN_LINUX_HEADER}
+      ${ZEN_EVENTS_HEADER}
+      ${ZEN_LAYER_HEADER}
+      ${ZEN_OPENGL_HEADER}
+      ${ZEN_RENDERER_HEADER}
+      ${ZEN_IMGUI_HEADER}
+      ${ZEN_INPUTS_HEADER}
+      ${ZEN_CAMERA_HEADER}
+      ${ZEN_PARTICLES_HEADER})
 
-    set(ZEN_SRC
-        ${ZEN_CORE_SRC}
-        ${ZEN_TEXTURES_SRC}
-        ${ZEN_LOG_SRC}
-        ${ZEN_LINUX_SRC}
-        ${ZEN_EVENTS_SRC}
-        ${ZEN_LAYER_SRC}
-        ${ZEN_OPENGL_SRC}
-        ${ZEN_RENDERER_SRC}
-        ${ZEN_IMGUI_SRC}
-        ${ZEN_INPUTS_SRC}
-        ${ZEN_CAMERA_SRC}
-        ${ZEN_PARTICLES_SRC})
+  set(ZEN_SRC
+      ${ZEN_CORE_SRC}
+      ${ZEN_TEXTURES_SRC}
+      ${ZEN_LOG_SRC}
+      ${ZEN_LINUX_SRC}
+      ${ZEN_EVENTS_SRC}
+      ${ZEN_LAYER_SRC}
+      ${ZEN_OPENGL_SRC}
+      ${ZEN_RENDERER_SRC}
+      ${ZEN_IMGUI_SRC}
+      ${ZEN_INPUTS_SRC}
+      ${ZEN_CAMERA_SRC}
+      ${ZEN_PARTICLES_SRC})
 
-    list(APPEND ZEN_SRC ${ZEN_HEADER})
-    add_library(ZenEngine STATIC ${ZEN_SRC})
+  list(APPEND ZEN_SRC ${ZEN_HEADER})
+  add_library(ZenEngine STATIC ${ZEN_SRC})
 
   target_compile_definitions(ZenEngine PUBLIC __ZEN_PLATFORM_WINDOWS)
 endif()
@@ -119,33 +119,40 @@ find_package(glm QUIET CONFIG)
 if(NOT TARGET glm)
   FetchContent_Declare(
     glm
-    GIT_REPOSITORY	https://github.com/g-truc/glm.git
-    GIT_TAG 	a532f5b1cf27d6a3c099437e6959cf7e398a0a67
-  )
+    GIT_REPOSITORY https://github.com/g-truc/glm.git
+    GIT_TAG a532f5b1cf27d6a3c099437e6959cf7e398a0a67)
 endif()
 
 FetchContent_MakeAvailable(glm)
 
-# spdlog    
+FetchContent_Declare(
+  glad
+  GIT_REPOSITORY https://github.com/Dav1dde/glad.git
+  GIT_TAG 73db193f853e2ee079bf3ca8a64aa2eaf6459043 # v2.0.8
+  GIT_PROGRESS TRUE
+  SOURCE_SUBDIR cmake)
+FetchContent_MakeAvailable(glad)
+glad_add_library(glad_gl_core_46 STATIC REPRODUCIBLE LOADER API gl:core=4.6)
 
-if (NOT TARGET spdlog)         
-    message(STATUS "spdlog not found, using FetchContent")
-    FetchContent_Declare(
-        spdlog
-        GIT_REPOSITORY https://github.com/gabime/spdlog.git
-        GIT_TAG        v1.16.0             
-        )           
-    FetchContent_MakeAvailable(spdlog)
+# spdlog
+
+if(NOT TARGET spdlog)
+  message(STATUS "spdlog not found, using FetchContent")
+  FetchContent_Declare(
+    spdlog
+    GIT_REPOSITORY https://github.com/gabime/spdlog.git
+    GIT_TAG v1.16.0)
+  FetchContent_MakeAvailable(spdlog)
 endif()
 
 # External libraries
 target_link_libraries(
   ZenEngine
-  glad
+  glad_gl_core_46
   glm
   stb_image
   SDL3::SDL3
   spdlog::spdlog
   ${OPENGL_LIBRARIES})
 
-  target_link_libraries(ZenEngine ${PLATFORM_LINK_LIBS})
+target_link_libraries(ZenEngine ${PLATFORM_LINK_LIBS})
