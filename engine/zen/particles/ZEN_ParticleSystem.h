@@ -24,11 +24,11 @@ namespace Zen {
   struct ParticleProps {
     glm::vec2 position{0};
     glm::vec2 velocity{0};
-    float lifeTime{1.0f};
     glm::vec2 sizeBegin{1.0f, 1.0f};
     glm::vec2 sizeEnd{0};
     glm::vec4 colourBegin{1.0f, 1.0f, 1.0f, 1.0f};
     glm::vec4 colourEnd{1.0f, 1.0f, 1.0f, 0};
+    float lifeTime{1.0f};
   };
 
   struct QuadVertex {
@@ -44,18 +44,19 @@ namespace Zen {
   };
 
   inline glm::vec2 sampleVelocityFromBase(glm::vec2 baseVelocity, const VelocityRandomizer &vRand) {
-    float baseSpeed     = glm::length(baseVelocity);
-    glm::vec2 direction = (baseSpeed > 0) ? baseVelocity / baseSpeed : glm::vec2{0, 1};
+    static glm::vec2 direction;
+    const float baseSpeed = glm::length(baseVelocity);
+    direction             = (baseSpeed > 0) ? baseVelocity / baseSpeed : glm::vec2{0, 1};
 
-    float theta = glm::radians(glm::linearRand(-vRand.coneDeg, vRand.coneDeg));
-    direction   = glm::rotate(direction, theta);
+    const float theta = glm::radians(glm::linearRand(-vRand.coneDeg, vRand.coneDeg));
+    direction         = glm::rotate(direction, theta);
 
-    float k     = glm::linearRand(vRand.speedMinMul, vRand.speedMaxMul);
-    float speed = baseSpeed * k;
+    const float k = glm::linearRand(vRand.speedMinMul, vRand.speedMaxMul);
 
-    glm::vec2 noise{glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma),
-                    glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma)};
-    return direction * speed + noise;
+    const glm::vec2 noise{glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma),
+                          glm::linearRand(-vRand.noiseSigma, vRand.noiseSigma)};
+
+    return direction * (baseSpeed * k) + noise;
   }
 
   struct ParticleEmitter {
@@ -83,32 +84,28 @@ namespace Zen {
     explicit ParticleSystem(size_t maxParticles = 1000);
 
     void emit(const ParticleProps &props);
-
     void update(DeltaTime deltaTime);
-
     void upload();
     void clear();
 
     const std::shared_ptr<VertexArray> &vao() const { return m_vao; }
     std::shared_ptr<Shader> &shader() { return m_shader; }
 
-    size_t capacity() const { return m_max; }
-
     void updateEmitter(ParticleEmitter &emitter, DeltaTime deltaTime);
     void updateEmitters(std::vector<ParticleEmitter> &emitters, DeltaTime deltaTime);
 
     int32_t aliveCount() const { return m_alive; }
+    size_t capacity() const { return m_max; }
 
   private:
+    Particles m_particles;
+
     size_t m_max{0};
     int32_t m_alive{0};
 
-    Particles m_particles;
+    size_t m_poolIndex{0};               // ring index
 
-    size_t m_poolIndex{0};             // ring index
-
-    std::vector<QuadVertex> m_cpuQuad; // size = m_max * 4
-
+    std::vector<QuadVertex> m_cpuQuad;   // size = m_max * 4
     std::shared_ptr<VertexArray> m_vao;
     std::shared_ptr<VertexBuffer> m_vbo; // dynamic, max*4 vertices
     std::shared_ptr<IndexBuffer> m_ibo;  // static, max*6 indices

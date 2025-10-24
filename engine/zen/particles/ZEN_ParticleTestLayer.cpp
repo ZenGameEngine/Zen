@@ -19,7 +19,10 @@ namespace Zen {
     m_camera.setOrthographic(m_worldMin.x, m_worldMax.x, m_worldMin.y, m_worldMax.y);
     m_cameraController.enableWorldBounds(true);
 
-    m_shader         = std::make_shared<Shader>("data/particle.vert", "data/particle.frag");
+    m_shader = std::make_shared<Shader>();
+    m_shader->init("data/particle.vert", "data/particle.frag");
+    // TODO: [Zen/ParticleTestLayer.cpp] Handle shader not loaded error;
+
     m_particleSystem = std::make_unique<ParticleSystem>(m_capacity);
     m_quadBuilder.init(m_shader);
 

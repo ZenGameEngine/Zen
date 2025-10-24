@@ -8,7 +8,7 @@
 namespace Zen {
   class Renderer {
   public:
-    static void beginScene(Camera &camera);
+    static void beginScene(const Camera &camera);
     static void endScene();
 
     static void submit(const std::shared_ptr<Shader> &shader,

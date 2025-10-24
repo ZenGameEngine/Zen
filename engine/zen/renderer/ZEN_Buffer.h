@@ -43,9 +43,11 @@ namespace Zen {
         return 4 * 4;
       case ShaderDataType::Bool:
         return 1;
+      case ShaderDataType::None:
+        return 0;
     }
 
-    ZEN_LOG_ERROR("Unknown ShaderDataType");
+    ZEN_LOG_ERROR("[Zen/Renderer/Buffer] Unknown ShaderDataType");
     return 0;
   }
 
@@ -86,9 +88,11 @@ namespace Zen {
           return 4;
         case ShaderDataType::Bool:
           return 1;
+        case ShaderDataType::None:
+          return 0;
       }
 
-      ZEN_LOG_ERROR("Unknown ShaderDataType");
+      ZEN_LOG_ERROR("[Zen/Renderer/Buffer] Unknown ShaderDataType");
       return 0;
     }
   };
@@ -132,10 +136,9 @@ namespace Zen {
     virtual void bind() const   = 0;
     virtual void unbind() const = 0;
 
+    virtual const BufferLayout &getLayout() const         = 0;
     virtual void setData(const void *data, uint32_t size) = 0;
-
-    virtual const BufferLayout &getLayout() const      = 0;
-    virtual void setLayout(const BufferLayout &layout) = 0;
+    virtual void setLayout(const BufferLayout &layout)    = 0;
 
     static VertexBuffer *Create(float *vertices, uint32_t size);
   };
@@ -146,8 +149,8 @@ namespace Zen {
 
     virtual void bind() const             = 0;
     virtual void unbind() const           = 0;
-    virtual void setCount(uint32_t count) = 0;
     virtual uint32_t getCount() const     = 0;
+    virtual void setCount(uint32_t count) = 0;
 
     static IndexBuffer *Create(uint32_t *indices, uint32_t count);
   };

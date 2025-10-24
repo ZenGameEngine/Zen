@@ -7,15 +7,15 @@ namespace Zen {
   VertexArray *VertexArray::Create() {
     switch (Renderer::getAPI()) {
       case RendererAPI::API::None:
-        ZEN_LOG_ERROR("Renderer API is not supported");
+        ZEN_LOG_ERROR("[Zen/Renderer/VertexArray] Renderer API is not supported");
         return nullptr;
 
       case RendererAPI::API::OpenGL:
-        ZEN_LOG_TRACE("Vertex buffer: Using OpenGL renderer API");
+        ZEN_LOG_TRACE("[Zen/Renderer/VertexArray] Vertex buffer: Using OpenGL renderer API");
         return new OpenGLVertexArray();
     }
 
-    ZEN_LOG_ERROR("Unknown renderer API");
+    ZEN_LOG_CRITICAL("[Zen/Renderer/VertexArray] Unknown RendererAPI");
   };
 
 }; // namespace Zen

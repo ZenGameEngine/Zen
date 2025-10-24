@@ -3,7 +3,7 @@
 namespace Zen {
   Renderer::SceneData *Renderer::m_sceneData = new Renderer::SceneData;
 
-  void Renderer::beginScene(Camera &camera) {
+  void Renderer::beginScene(const Camera &camera) {
     m_sceneData->ViewProjectionMatrix = camera.viewProjectionMatrix();
   }
 

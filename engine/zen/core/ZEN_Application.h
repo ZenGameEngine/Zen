@@ -21,10 +21,13 @@ namespace Zen {
     Application();
     virtual ~Application();
 
+    bool init();
+
     void run();
     bool onEvent(const ZenEvent &event) override;
     void onUpdate(DeltaTime deltaTime);
 
+    virtual void registerLayers() = 0;
     void pushLayer(Layer *layer);
     void pushOverlay(Layer *overlay);
     void popLayer(Layer *layer);

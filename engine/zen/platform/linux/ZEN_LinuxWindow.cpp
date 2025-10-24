@@ -1,11 +1,20 @@
+#include "zen/zen_pch.h"
+#include <SDL3/SDL_error.h>
 #include <SDL3/SDL_video.h>
 #include <zen/events/ZEN_Event.h>
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
 
+namespace {
+  void handleError(const char *errorMsg) {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Zen Error", errorMsg, nullptr);
+    ZEN_LOG_ERROR("[Zen/Platform/LinuxWindow] {}", errorMsg);
+  };
+} // namespace
+
 namespace Zen {
   static bool s_SDLInitialized = false;
 
-  LinuxWindow::LinuxWindow(const WindowProperties &properties) { init(properties); };
+  LinuxWindow::LinuxWindow() {};
 
   LinuxWindow::~LinuxWindow() { shutdown(); };
 
@@ -14,27 +23,24 @@ namespace Zen {
 
   WindowProperties &LinuxWindow::getProperties() { return m_windowProperties; };
 
-  void LinuxWindow::init(const WindowProperties &properties) {
+  bool LinuxWindow::init(const WindowProperties &properties) {
+    const bool initSuccess = true;
+
     m_windowProperties.title  = properties.title;
     m_windowProperties.width  = properties.width;
     m_windowProperties.height = properties.height;
 
-    ZEN_LOG_INFO("Creating new SDL Window: {}, W:{} H: {}",
-                 m_windowProperties.title,
-                 m_windowProperties.width,
-                 m_windowProperties.height);
-    if (!s_SDLInitialized) {
-      bool success = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
-      if (!success) {
-        const char *error = SDL_GetError();
-        emitErrorMessage(error);
-        ZEN_LOG_ERROR("SDL was not initialized properly: {}", error);
-      };
+    ZEN_LOG_DEBUG("Creating new SDL Window: {}, W:{} H: {}",
+                  m_windowProperties.title,
+                  m_windowProperties.width,
+                  m_windowProperties.height);
 
-      ZEN_LOG_DEBUG("SDL Successfully Initialized!");
-      s_SDLInitialized = true;
+    if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
+      handleError(SDL_GetError());
+      return !initSuccess;
     };
 
+    ZEN_LOG_DEBUG("[Zen/Platform/LinuxWindow] SDL Successfully Initialized!");
     constexpr SDL_WindowFlags flags = SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_FOCUS |
                                       SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_MOUSE_CAPTURE |
                                       SDL_WINDOW_RESIZABLE;
@@ -52,23 +58,34 @@ namespace Zen {
                                            flags);
     if (m_windowData.window == nullptr) {
       const char *error = SDL_GetError();
-      emitErrorMessage(error);
-      ZEN_LOG_ERROR("The SDL Window could not be initialized. {}", error);
+      handleError(SDL_GetError());
+      return !initSuccess;
     };
 
     m_windowData.context = GraphicsContext::Create(m_windowData.window);
     m_windowData.context->init();
     if (m_windowData.context == nullptr) {
-      const char *error = SDL_GetError();
-      emitErrorMessage(error);
-      ZEN_LOG_ERROR("The SDL OpenGL context could not be initialized: {}", error);
+      handleError(SDL_GetError());
+      return !initSuccess;
     };
 
-    gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
+    int version =
+        gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress); // Comment out this line and uncomment next
+                                                         // line to force error
+    // int version = 0;
+    if (version == 0) {
+      handleError("[Zen/Platform/LinuxWindow] glad failed to load OpenGL functions");
+      return !initSuccess;
+    };
+
+    ZEN_LOG_DEBUG("Loaded OpenGL {}.{} w/ glad",
+                  GLAD_VERSION_MAJOR(version),
+                  GLAD_VERSION_MINOR(version));
 
     setVSync(m_windowProperties.vsync);
+    ZEN_LOG_DEBUG("[Zen/Platform/LinuxWindow] Window successfully initialized!");
 
-    ZEN_LOG_DEBUG("Window Successfully Initialized!");
+    return initSuccess;
   };
 
   bool LinuxWindow::onEvent(const ZenEvent &event) {
@@ -91,9 +108,10 @@ namespace Zen {
   void LinuxWindow::shutdown() {
     m_windowData.context->shutdown();
     SDL_DestroyWindow(m_windowData.window);
-    ZEN_LOG_DEBUG("SDL Window destroyed");
+    ZEN_LOG_DEBUG("[Zen/Platform/LinuxWindow] SDL Window destroyed");
+
     SDL_Quit();
-    ZEN_LOG_DEBUG("SDL Quit");
+    ZEN_LOG_DEBUG("[Zen/Platform/LinuxWindow] SDL Quit");
   };
 
   void LinuxWindow::onUpdate() { m_windowData.context->swapBuffers(); };
@@ -105,15 +123,15 @@ namespace Zen {
   void LinuxWindow::setVSync(bool enabled) {
     if (enabled) {
       SDL_GL_SetSwapInterval(1);
-      ZEN_LOG_INFO("VSync On");
+      ZEN_LOG_INFO("[Zen/Platform/LinuxWindow] VSync On");
 
     } else {
       SDL_GL_SetSwapInterval(0);
-      ZEN_LOG_INFO("VSync Off");
+      ZEN_LOG_INFO("[Zen/Platform/LinuxWindow] VSync Off");
     };
   };
 
-  bool LinuxWindow::isVSyncEnabled() const { return m_windowProperties.vsync; };
+  bool LinuxWindow::getVSync() const { return m_windowProperties.vsync; };
 
   void LinuxWindow::toggleFullscreen() {
     m_windowProperties.fullscreen = !m_windowProperties.fullscreen;
@@ -121,29 +139,28 @@ namespace Zen {
   };
 
   // This should ONLY BE CALLED ON THE MAIN THREAD
-  void LinuxWindow::emitErrorMessage(const char *message) {
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Zen Error", message, nullptr);
-  };
 
   bool LinuxWindow::resizeEvent(const ZenEvent &event) {
 
     int newWidth  = event.windowResize.width;
     int newHeight = event.windowResize.height;
 
-    ZEN_LOG_TRACE("Window Width: {}", newWidth);
-    ZEN_LOG_TRACE("Window Height: {}", newHeight);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] Window Width: {}", newWidth);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] Window Height: {}", newHeight);
 
     m_windowProperties.width  = newWidth;
     m_windowProperties.height = newHeight;
 
-    ZEN_LOG_TRACE("New WinProp Width: {}", m_windowProperties.width);
-    ZEN_LOG_TRACE("New WinProp Height: {}", m_windowProperties.height);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] New WinProp Width: {}", m_windowProperties.width);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] New WinProp Height: {}", m_windowProperties.height);
 
     return false;
   };
 
   bool LinuxWindow::mouseClickEvent(const ZenEvent &event) {
-    ZEN_LOG_TRACE("Mouse click at X: {}, Y: {}", event.mouseButton.x, event.mouseButton.y);
+    ZEN_LOG_TRACE("[Zen/Platform/LinuxWindow] Mouse click at X: {}, Y: {}",
+                  event.mouseButton.x,
+                  event.mouseButton.y);
     return false;
   };
 

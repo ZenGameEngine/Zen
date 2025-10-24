@@ -5,14 +5,16 @@
 namespace Zen {
   class Shader {
   public:
-    Shader(const char *vertexPath, const char *fragmentPath);
+    Shader();
     ~Shader();
 
+    bool init(const char *vertexPath, const char *fragmentPath);
+
     void bind() const;
-    void unBind() const;
+    void unbind() const;
     void uploadUniformMat4(const std::string &name, const glm::mat4 &matrix);
 
   private:
-    uint32_t m_rendererID;
+    uint32_t m_rendererID{0};
   };
 } // namespace Zen

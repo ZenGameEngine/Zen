@@ -32,21 +32,18 @@ namespace Zen {
   class Window : public EventListener {
   public:
     virtual ~Window() {};
+    static std::unique_ptr<Window> create();
 
-    virtual void onUpdate()      = 0;
-    virtual uint32_t getWidth()  = 0;
-    virtual uint32_t getHeight() = 0;
+    virtual bool init(const WindowProperties &properties) = 0;
 
-    virtual void setVSync(bool enabled) = 0;
-    virtual bool isVSyncEnabled() const = 0;
     virtual void toggleFullscreen()     = 0;
-
-    virtual void emitErrorMessage(const char *message) = 0;
-
-    static std::unique_ptr<Window>
-    create(const Zen::WindowProperties &properties = WindowProperties());
+    virtual uint32_t getWidth()         = 0;
+    virtual uint32_t getHeight()        = 0;
+    virtual bool getVSync() const       = 0;
+    virtual void setVSync(bool enabled) = 0;
 
     virtual bool onEvent(const ZenEvent &event) = 0;
+    virtual void onUpdate()                     = 0;
 
     virtual void *nativeWindow() const             = 0; // SDL_Window* as void*
     virtual GraphicsContext &context()             = 0;
