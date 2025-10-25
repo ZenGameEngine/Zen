@@ -1,20 +1,15 @@
 #include "GameLayer.h"
 #include "ZEN_Event.h"
-#include "ZEN_Log.h"
-#include "ZEN_RenderCommand.h"
-#include "ZEN_Renderer.h"
-#include "ZEN_Shader.h"
+#include <zen/renderer/abstractions/ZEN_RenderCommand.h>
+#include <zen/renderer/abstractions/ZEN_Renderer.h>
+#include <zen/renderer/abstractions/ZEN_Shader.h>
+
 #include "camera/ZEN_CameraController.h"
 #include "editor/src/Obstacle.h"
 #include "editor/src/QuadBuilder.h"
-#include "imgui.h"
-#include "inputs/ZEN_KeyCodes.h"
-#include "time/ZEN_DeltaTime.h"
-#include <SDL3/SDL_scancode.h>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/random.hpp>
-#include <memory>
+#include <zen/gui/ZEN_ImGuiLayer.h>
 #include <zen/gui/ZEN_Style.h>
+#include <zen/utility/ZEN_Log.h>
 
 using namespace Zen;
 

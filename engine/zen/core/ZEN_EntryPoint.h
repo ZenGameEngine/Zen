@@ -3,7 +3,6 @@
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Platform.h>
-
 #include <zen/utility/ZEN_Macros.h>
 
 #ifdef __ZEN_PLATFORM_LINUX

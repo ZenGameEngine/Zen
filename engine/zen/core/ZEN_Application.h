@@ -8,11 +8,11 @@
 #include <zen/gui/ZEN_ImGuiLayer.h>
 #include <zen/inputs/ZEN_InputSystem.h>
 #include <zen/layer/ZEN_LayerList.h>
-#include <zen/renderer/ZEN_Buffer.h>
-#include <zen/renderer/ZEN_GraphicsContext.h>
-#include <zen/renderer/ZEN_Renderer.h>
-#include <zen/renderer/ZEN_Shader.h>
-#include <zen/renderer/ZEN_VertexArray.h>
+#include <zen/renderer/abstractions/ZEN_Buffer.h>
+#include <zen/renderer/abstractions/ZEN_GraphicsContext.h>
+#include <zen/renderer/abstractions/ZEN_Renderer.h>
+#include <zen/renderer/abstractions/ZEN_Shader.h>
+#include <zen/renderer/abstractions/ZEN_VertexArray.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {

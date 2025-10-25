@@ -3,15 +3,12 @@ project(ZenEngineLib)
 include(zen/CMakeLists.txt)
 include(zen/core/CMakeLists.txt)
 include(zen/textures/CMakeLists.txt)
-include(zen/platform/CMakeLists.txt)
-include(zen/log/CMakeLists.txt)
 include(zen/events/CMakeLists.txt)
 include(zen/layer/CMakeLists.txt)
 include(zen/renderer/CMakeLists.txt)
 include(zen/gui/CMakeLists.txt)
 include(zen/inputs/CMakeLists.txt)
 include(zen/camera/CMakeLists.txt)
-include(zen/particles/CMakeLists.txt)
 include(zen/utility/CMakeLists.txt)
 
 # -------------- FIND/FETCH CONTENT ------------------------ #
@@ -82,7 +79,8 @@ set(ZEN_SRC
     ${ZEN_IMGUI_SRC}
     ${ZEN_INPUTS_SRC}
     ${ZEN_CAMERA_SRC}
-    ${ZEN_PARTICLES_SRC})
+    ${ZEN_PARTICLES_SRC}
+    ${ZEN_UTILITY_SRC})
 
 # -------------- SYSTEM SPECIFIC HEADER/SRC FILES ------------------------ #
 if(UNIX AND NOT APPLE)
@@ -92,6 +90,8 @@ if(UNIX AND NOT APPLE)
   list(APPEND ZEN_SRC ${ZEN_HEADER})
   add_library(ZenEngine STATIC ${ZEN_SRC})
 elseif(WIN32)
+
+  # TODO: CHANGE ZEN_LINUX_* to WINDOWS SPECIFIC HEADER/SRC FILES
   list(APPEND ZEN_HEADER ${ZEN_LINUX_HEADER})
   list(APPEND ZEN_SRC ${ZEN_LINUX_SRC})
 

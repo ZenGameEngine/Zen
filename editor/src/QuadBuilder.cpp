@@ -1,8 +1,8 @@
 #include "QuadBuilder.h"
-#include <ZEN_Shader.h>
 #include <glm/gtc/constants.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <memory>
+#include <zen/renderer/abstractions/ZEN_Shader.h>
 
 using namespace Zen;
 

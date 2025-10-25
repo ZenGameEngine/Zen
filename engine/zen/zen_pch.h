@@ -41,4 +41,4 @@
 #endif // !__ZEN_BUILD_PROFILE_DEBUG
 
 // ZEN
-#include <zen/log/ZEN_Log.h>
+#include <zen/utility/ZEN_Log.h>
