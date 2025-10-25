@@ -142,7 +142,7 @@ target_include_directories(
 # -------------- LIBRARY LINKING ------------------------ #
 
 # Common Library Linking
-set(COMMON_LIB_DEPS ${OPENGL_LIBRARIE} glad_gl_core_46 glm SDL3::SDL3 stb_image
+set(COMMON_LIB_DEPS ${OPENGL_LIBRARIES} glad_gl_core_46 glm SDL3::SDL3 stb_image
                     spdlog::spdlog)
 target_link_libraries(ZenEngine ${COMMON_LIB_DEPS})
 target_link_libraries(ZenEngine ${PLATFORM_LIB_DEPS})
