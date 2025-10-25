@@ -1,30 +1,38 @@
 #pragma once
 
-#include <cstdlib>
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Platform.h>
+
+#include <zen/utility/ZEN_Macros.h>
 
 #ifdef __ZEN_PLATFORM_LINUX
 extern Zen::Application *Zen::CreateApplication();
 
 int main(int argc, char *argv[]) {
-  Zen::Log::init();
   ZEN_LOG_INFO("[Zen/Core/EntryPoint] Hello, Linux!   :)");
 
+  ZEN_START_PROFILE_SESSION("Zen Init", "gInitProfile.json");
   auto app = Zen::CreateApplication();
   if (!app->init()) {
     ZEN_LOG_CRITICAL("[Zen/Core/EntryPoint] Application failed to initialize :(");
     delete app;
     return EXIT_FAILURE;
   };
+  ZEN_END_PROFILE_SESSION();
 
+  ZEN_START_PROFILE_SESSION("Zen Register Layers", "gRegisterLayerProfile.json");
   app->registerLayers();
+  ZEN_END_PROFILE_SESSION();
 
+  ZEN_START_PROFILE_SESSION("Zen Run App", "gRunProfile.json");
   app->run();
+  ZEN_END_PROFILE_SESSION();
 
+  ZEN_START_PROFILE_SESSION("Zen Delete", "gDeleteProfile.json");
   ZEN_LOG_INFO("[Zen/Core/EntryPoint] Deleting app...");
   delete app;
+  ZEN_END_PROFILE_SESSION();
 
   return EXIT_SUCCESS;
 };

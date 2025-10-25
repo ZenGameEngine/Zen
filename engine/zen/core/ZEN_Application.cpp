@@ -7,6 +7,7 @@
 #include <zen/log/ZEN_Log.h>
 #include <zen/particles/ZEN_ParticleTestLayer.h>
 #include <zen/time/ZEN_EngineTime.h>
+#include <zen/utility/ZEN_Macros.h>
 
 namespace Zen {
   Application *Application::s_instance = nullptr;
@@ -21,25 +22,44 @@ namespace Zen {
   };
 
   bool Application::init() {
+    ZEN_PROFILE_FUNCTION();
+
     const bool initSuccess = true;
 
-    Log::init();
+    {
+      ZEN_PROFILE_SCOPE("Log Init");
+      Log::init();
+    }
 
     WindowProperties properties = {"Zen Window Test", 1280, 720, true, false};
-    m_eventsDispatcher.registerListener(this);
-    m_window = Window::create();
-    if (!m_window->init(properties)) {
-      ZEN_LOG_CRITICAL("[Zen/Core/Application] ZEN_Window failed to initialize properly");
-      m_isRunning = false;
-      return !initSuccess;
-    };
 
-    m_eventsDispatcher.registerListener(m_window.get());
+    {
+      ZEN_PROFILE_SCOPE("m_eventsDispatcher registerListener call");
+      m_eventsDispatcher.registerListener(this);
+    }
 
-    m_ImGui = new ImGuiLayer;
+    {
+      ZEN_PROFILE_SCOPE("Window Initialization");
 
-    pushLayer(m_ImGui);
-    ZEN_LOG_DEBUG("[Zen/Core/Application] Pushing a new ImGui layer");
+      m_window = Window::create();
+      if (!m_window->init(properties)) {
+        ZEN_LOG_CRITICAL("[Zen/Core/Application] ZEN_Window failed to initialize properly");
+        m_isRunning = false;
+        return !initSuccess;
+      }
+    }
+
+    {
+      ZEN_PROFILE_SCOPE("m_eventsDispatcher registerListener call");
+      m_eventsDispatcher.registerListener(m_window.get());
+    }
+
+    {
+      ZEN_PROFILE_SCOPE("New ImGuiLayer");
+      m_ImGui = new ImGuiLayer;
+      pushLayer(m_ImGui);
+      ZEN_LOG_DEBUG("[Zen/Core/Application] Pushing a new ImGui layer");
+    }
 
     return initSuccess;
   };
@@ -54,24 +74,27 @@ namespace Zen {
   }
 
   void Application::run() {
+    ZEN_PROFILE_FUNCTION();
     ZEN_LOG_INFO("Running Application...");
     while (m_isRunning) {
       float currentTime = EngineTime::getTime();
+      DeltaTime dt      = currentTime - m_previousTime;
 
-      DeltaTime dt   = currentTime - m_previousTime;
       m_previousTime = currentTime;
-
       m_inputSystem.begin();
+      {
+        ZEN_PROFILE_SCOPE("SDL Poll Input");
+        SDL_Event eventFromSDL;
+        while (SDL_PollEvent(&eventFromSDL)) {
+          ImGui_ImplSDL3_ProcessEvent(&eventFromSDL);
 
-      SDL_Event eventFromSDL;
-      while (SDL_PollEvent(&eventFromSDL)) {
-        ImGui_ImplSDL3_ProcessEvent(&eventFromSDL);
-
-        ZenEvent e = TranslateEvent(eventFromSDL);
-        if (e.header.type != EventType::None) {
-          m_eventBuffer.enqueue(e);
+          ZenEvent e = TranslateEvent(eventFromSDL);
+          if (e.header.type != EventType::None) {
+            m_eventBuffer.enqueue(e);
+          }
         }
       }
+
       m_ImGui->begin();
       while (!m_eventBuffer.isEmpty()) {
         m_eventsDispatcher.dispatch(m_eventBuffer.dequeue());
@@ -90,7 +113,11 @@ namespace Zen {
 
       m_ImGui->end();
       m_inputSystem.end();
-      m_window->onUpdate();
+
+      {
+        ZEN_PROFILE_SCOPE("Window onUpdate()");
+        m_window->onUpdate();
+      }
     };
 
     ZEN_LOG_INFO("Closing Application...");
