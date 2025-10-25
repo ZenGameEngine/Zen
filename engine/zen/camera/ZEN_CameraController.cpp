@@ -1,4 +1,3 @@
-#include "zen/log/ZEN_Log.h"
 #include <zen/camera/ZEN_CameraController.h>
 
 namespace Zen {

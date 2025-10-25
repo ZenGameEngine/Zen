@@ -2,6 +2,7 @@
 
 // C++
 #include <algorithm>
+#include <chrono>
 #include <cstdint>
 #include <cstring>
 #include <fstream>
@@ -11,6 +12,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <thread>
 #include <vector>
 
 // OpenGL
@@ -33,5 +35,10 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#ifdef __ZEN_BUILD_PROFILE_DEBUG
+  // nlohmann/json
+  #include <nlohmann/json.hpp>
+#endif // !__ZEN_BUILD_PROFILE_DEBUG
+
 // ZEN
-#include <zen/log/ZEN_Log.h>
+#include <zen/utility/ZEN_Log.h>

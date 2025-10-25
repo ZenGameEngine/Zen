@@ -10,11 +10,11 @@
 #include <zen/events/ZEN_Event.h>
 #include <zen/inputs/ZEN_Input.h>
 #include <zen/layer/ZEN_Layer.h>
-#include <zen/renderer/ZEN_Buffer.h>
-#include <zen/renderer/ZEN_RenderCommand.h>
-#include <zen/renderer/ZEN_Renderer.h>
-#include <zen/renderer/ZEN_Shader.h>
-#include <zen/renderer/ZEN_VertexArray.h>
+#include <zen/renderer/abstractions/ZEN_Buffer.h>
+#include <zen/renderer/abstractions/ZEN_RenderCommand.h>
+#include <zen/renderer/abstractions/ZEN_Renderer.h>
+#include <zen/renderer/abstractions/ZEN_Shader.h>
+#include <zen/renderer/abstractions/ZEN_VertexArray.h>
 
 using namespace Zen;
 
@@ -74,6 +74,6 @@ private:
   int m_nextObstacleIndex = 0;
 
   ObstacleType getRandomObstacleType();
-  
+
   bool m_startup = true;
 };
