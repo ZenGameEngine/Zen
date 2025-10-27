@@ -62,8 +62,14 @@ namespace Zen {
     m_ibo.reset(IndexBuffer::Create(indices.data(), static_cast<uint32_t>(indices.size())));
     m_vao->setIndexBuffer(m_ibo);
 
+    std::string basePath = SDL_GetBasePath();
+    std::string vert     = basePath + "data/particle.vert";
+    std::string frag     = basePath + "data/particle.frag";
+    ZEN_LOG_DEBUG("vert path: {}", vert.c_str());
+    ZEN_LOG_DEBUG("frag path: {}", frag.c_str());
+
     m_shader = std::make_shared<Shader>();
-    m_shader->init("data/particle.vert", "data/particle.frag");
+    m_shader->init(vert.c_str(), frag.c_str());
     // TODO: [Zen/Core/ParticleSystem] Handle shader not loaded error
 
     const glm::vec2 deadPos(0.0f);

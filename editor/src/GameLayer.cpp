@@ -1,5 +1,6 @@
 #include "GameLayer.h"
 #include "ZEN_Event.h"
+#include <SDL3/SDL_filesystem.h>
 #include <zen/renderer/abstractions/ZEN_RenderCommand.h>
 #include <zen/renderer/abstractions/ZEN_Renderer.h>
 #include <zen/renderer/abstractions/ZEN_Shader.h>
@@ -22,8 +23,14 @@ void GameLayer::onAttach() {
   m_cameraController.setWorldBounds(-10.0f, 10.0f, -5.625f, 5.625f);
   m_cameraController.enableWorldBounds(true);
 
+  std::string basePath = SDL_GetBasePath();
+  std::string vert     = basePath + "data/particle.vert";
+  std::string frag     = basePath + "data/particle.frag";
+  ZEN_LOG_DEBUG("vert path: {}", vert.c_str());
+  ZEN_LOG_DEBUG("frag path: {}", frag.c_str());
+
   m_shader = std::make_shared<Shader>();
-  m_shader->init("data/particle.vert", "data/particle.frag");
+  m_shader->init(vert.c_str(), frag.c_str());
   // TODO: [Zen Game Layer] Handle shader not loaded error
 
   m_particleSystem = std::make_unique<ParticleSystem>(5000);
