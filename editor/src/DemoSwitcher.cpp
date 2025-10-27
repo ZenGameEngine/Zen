@@ -1,8 +1,7 @@
 #include "DemoSwitcher.h"
 #include <zen/core/ZEN_Application.h>
 #include <zen/inputs/ZEN_KeyCodes.h>
-#include <zen/log/ZEN_Log.h>
-
+#include <zen/utility/ZEN_Macros.h>
 
 namespace Zen {
 
@@ -59,12 +58,12 @@ namespace Zen {
     ImGui::SetNextWindowBgAlpha(0.6f);
     ImGui::SetNextWindowSize(ImVec2(240.0f, 0.0f), ImGuiCond_Always);
     ImGui::Begin("Demo Switcher", nullptr, hud);
-    if(m_isShowingGame) {
+    if (m_isShowingGame) {
       ImGui::Text("Currently in: Game demo");
     } else {
       ImGui::Text("Currently in: Particle demo");
     }
-    if (ImGui::Button("Switch Demo (F1)",ImVec2(-1, 0))) {
+    if (ImGui::Button("Switch Demo (F1)", ImVec2(-1, 0))) {
       switchDemo();
     }
     ImGui::End();

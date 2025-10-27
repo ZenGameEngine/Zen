@@ -1,11 +1,9 @@
 #include <include/imgui/imgui_impl_sdl3.h>
-#include <vector>
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Window.h>
 #include <zen/gui/ZEN_ImGuiLayer.h>
 #include <zen/inputs/ZEN_Input.h>
-#include <zen/log/ZEN_Log.h>
-#include <zen/particles/ZEN_ParticleTestLayer.h>
+#include <zen/renderer/particles/ZEN_ParticleTestLayer.h>
 #include <zen/time/ZEN_EngineTime.h>
 #include <zen/utility/ZEN_Macros.h>
 

@@ -1,6 +1,6 @@
 #include <zen/core/ZEN_Platform.h>
 #include <zen/core/ZEN_Window.h>
-#include <zen/platform/linux/ZEN_LinuxWindow.h>
+#include <zen/core/linux/ZEN_LinuxWindow.h>
 
 namespace Zen {
   std::unique_ptr<Window> Window::create() {

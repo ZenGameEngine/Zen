@@ -6,8 +6,8 @@
 #include <zen/core/ZEN_Application.h>
 #include <zen/gui/ZEN_ImGuiLayer.h>
 #include <zen/gui/ZEN_Style.h>
-#include <zen/log/ZEN_Log.h>
 #include <zen/time/ZEN_DeltaTime.h>
+#include <zen/utility/ZEN_Macros.h>
 
 namespace Zen {
   void ImGuiLayer::onAttach() {

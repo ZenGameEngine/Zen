@@ -4,7 +4,7 @@
 #include <zen/events/ZEN_Event.h>
 #include <zen/inputs/ZEN_KeyCodes.h>
 #include <zen/layer/ZEN_Layer.h>
-#include <zen/particles/ZEN_ParticleTestLayer.h>
+#include <zen/renderer/particles/ZEN_ParticleTestLayer.h>
 
 namespace Zen {
 

@@ -1,15 +1,29 @@
-set(ZEN_RENDERER_HEADER zen/renderer/ZEN_Buffer.h 
-                        zen/renderer/ZEN_GraphicsContext.h
-                        zen/renderer/ZEN_RendererAPI.h 
-                        zen/renderer/ZEN_Renderer.h
-                        zen/renderer/ZEN_Shader.h 
-                        zen/renderer/ZEN_VertexArray.h
-                        zen/renderer/ZEN_RenderCommand.h)
+set(ZEN_RENDERER_HEADER
+    zen/renderer/abstractions/ZEN_Buffer.h
+    zen/renderer/abstractions/ZEN_GraphicsContext.h
+    zen/renderer/abstractions/ZEN_RendererAPI.h
+    zen/renderer/abstractions/ZEN_Renderer.h
+    zen/renderer/abstractions/ZEN_Shader.h
+    zen/renderer/abstractions/ZEN_RenderCommand.h
+    zen/renderer/abstractions/ZEN_VertexArray.h
+    zen/renderer/OpenGL/ZEN_OpenGLBuffer.h
+    zen/renderer/OpenGL/ZEN_OpenGLContext.h
+    zen/renderer/OpenGL/ZEN_OpenGLRendererAPI.h
+    zen/renderer/OpenGL/ZEN_OpenGLVertexArray.h
+    zen/renderer/particles/ZEN_ParticleSystem.h
+    zen/renderer/particles/ZEN_ParticleTestLayer.h)
 
-set(ZEN_RENDERER_SRC  zen/renderer/ZEN_Buffer.cpp 
-                      zen/renderer/ZEN_GraphicsContext.cpp
-                      zen/renderer/ZEN_RendererAPI.cpp 
-                      zen/renderer/ZEN_Renderer.cpp
-                      zen/renderer/ZEN_Shader.cpp 
-                      zen/renderer/ZEN_VertexArray.cpp
-                      zen/renderer/ZEN_RenderCommand.cpp)
+set(ZEN_RENDERER_SRC
+    zen/renderer/abstractions/ZEN_Buffer.cpp
+    zen/renderer/abstractions/ZEN_GraphicsContext.cpp
+    zen/renderer/abstractions/ZEN_RendererAPI.cpp
+    zen/renderer/abstractions/ZEN_Renderer.cpp
+    zen/renderer/abstractions/ZEN_Shader.cpp
+    zen/renderer/abstractions/ZEN_VertexArray.cpp
+    zen/renderer/abstractions/ZEN_RenderCommand.cpp
+    zen/renderer/OpenGL/ZEN_OpenGLBuffer.cpp
+    zen/renderer/OpenGL/ZEN_OpenGLContext.cpp
+    zen/renderer/OpenGL/ZEN_OpenGLRendererAPI.cpp
+    zen/renderer/OpenGL/ZEN_OpenGLVertexArray.cpp
+    zen/renderer/particles/ZEN_ParticleSystem.cpp
+    zen/renderer/particles/ZEN_ParticleTestLayer.cpp)
