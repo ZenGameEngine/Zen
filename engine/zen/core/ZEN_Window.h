@@ -2,6 +2,7 @@
 
 #include <zen/core/ZEN_Core.h>
 #include <zen/renderer/abstractions/ZEN_GraphicsContext.h>
+#include <zen/utility/ZEN_Macros.h>
 #include <zen/zen_pch.h>
 
 #ifndef __ZEN_GLAD_H

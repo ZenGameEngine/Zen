@@ -1,5 +1,6 @@
 #pragma once
 
+#include <zen/utility/ZEN_Macros.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {

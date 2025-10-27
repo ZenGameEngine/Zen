@@ -1,7 +1,7 @@
 #include "DemoSwitcher.h"
 #include <zen/core/ZEN_Application.h>
 #include <zen/inputs/ZEN_KeyCodes.h>
-#include <zen/utility/ZEN_Log.h>
+#include <zen/utility/ZEN_Macros.h>
 
 namespace Zen {
 

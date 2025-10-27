@@ -1,5 +1,6 @@
 #include "zen/zen_pch.h"
 #include <zen/renderer/OpenGL/ZEN_OpenGLRendererAPI.h>
+#include <zen/utility/ZEN_Macros.h>
 
 namespace Zen {
   void OpenGLRendererAPI::setClearColour(const glm::vec4 &colour) {

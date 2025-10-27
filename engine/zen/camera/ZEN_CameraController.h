@@ -4,6 +4,7 @@
 #include <zen/events/ZEN_Event.h>
 #include <zen/inputs/ZEN_Input.h>
 #include <zen/time/ZEN_DeltaTime.h>
+#include <zen/utility/ZEN_Macros.h>
 #include <zen/zen_pch.h>
 
 namespace Zen {

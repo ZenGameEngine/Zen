@@ -9,7 +9,7 @@
 #include "editor/src/QuadBuilder.h"
 #include <zen/gui/ZEN_ImGuiLayer.h>
 #include <zen/gui/ZEN_Style.h>
-#include <zen/utility/ZEN_Log.h>
+#include <zen/utility/ZEN_Macros.h>
 
 using namespace Zen;
 

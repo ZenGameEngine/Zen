@@ -2,6 +2,7 @@
 #include <glm/glm.hpp>
 #include <particles/ZEN_ParticleSystem.h>
 #include <zen/time/ZEN_DeltaTime.h>
+#include <zen/utility/ZEN_Macros.h>
 
 class Player {
 public:

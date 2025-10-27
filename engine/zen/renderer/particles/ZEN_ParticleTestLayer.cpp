@@ -9,6 +9,7 @@
 #include <zen/renderer/abstractions/ZEN_Renderer.h>
 #include <zen/renderer/particles/ZEN_ParticleSystem.h>
 #include <zen/renderer/particles/ZEN_ParticleTestLayer.h>
+#include <zen/utility/ZEN_Macros.h>
 
 namespace Zen {
   void ParticleTestLayer::onAttach() {

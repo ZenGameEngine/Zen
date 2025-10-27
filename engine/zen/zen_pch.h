@@ -39,6 +39,3 @@
   // nlohmann/json
   #include <nlohmann/json.hpp>
 #endif // !__ZEN_BUILD_PROFILE_DEBUG
-
-// ZEN
-#include <zen/utility/ZEN_Log.h>
