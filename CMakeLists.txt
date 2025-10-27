@@ -1,35 +1,31 @@
 # Project Setup
-cmake_minimum_required(VERSION 3.12..4.0.1)
+cmake_minimum_required(VERSION 3.12..4.1.2)
+
+set(ZEN_VERSION 0.3.0)
+set(ZEN_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+
 project(
   ZEN_CMAKE
-  VERSION 0.1.0
+  VERSION ${ZEN_VERSION}
   DESCRIPTION "A 2D game engine"
   LANGUAGES CXX)
 
-set(ZEN_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
 option(SDL_VENDORED "Use vendored libraries" OFF)
-
 if(SDL_VENDORED)
   add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 else()
   find_package(SDL3 REQUIRED)
 endif()
 
-if(WIN32)
-  # Windows build
+if(WIN32) # Windows
+  # System libraries that Windows needs for SDL/OpenGL Required by SDL on
+  # MSVC/MinGW
+  set(PLATFORM_LIB_DEPS gdi32 user32 opengl32 ws2_32)
   add_compile_definitions(__ZEN_PLATFORM_WINDOWS)
-
-  # System libraries that Windows needs for SDL/OpenGL
-  set(PLATFORM_LINK_LIBS gdi32 user32 opengl32 ws2_32 # required by SDL on
-                                                      # MSVC/MinGW
-  )
-elseif(UNIX AND NOT APPLE)
-
-  add_compile_definitions(__ZEN_PLATFORM_LINUX)
-
+elseif(UNIX AND NOT APPLE) # Linux
   # System libraries that Linux needs
-  set(PLATFORM_LINK_LIBS X11 GL dl pthread)
+  set(PLATFORM_LIB_DEPS X11 GL dl pthread)
+  add_compile_definitions(__ZEN_PLATFORM_LINUX)
 endif()
 
 # C++ Standard
