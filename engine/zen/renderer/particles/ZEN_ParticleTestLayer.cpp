@@ -1,5 +1,6 @@
 
 #include "zen/time/ZEN_DeltaTime.h"
+#include "zen/utility/ZEN_Log.h"
 #include <glm/gtc/random.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <include/imgui/imgui.h>
@@ -20,8 +21,14 @@ namespace Zen {
     m_camera.setOrthographic(m_worldMin.x, m_worldMax.x, m_worldMin.y, m_worldMax.y);
     m_cameraController.enableWorldBounds(true);
 
+    std::string basePath = SDL_GetBasePath();
+    std::string vert     = basePath + "data/particle.vert";
+    std::string frag     = basePath + "data/particle.frag";
+    ZEN_LOG_DEBUG("vert path: {}", vert.c_str());
+    ZEN_LOG_DEBUG("frag path: {}", frag.c_str());
+
     m_shader = std::make_shared<Shader>();
-    m_shader->init("data/particle.vert", "data/particle.frag");
+    m_shader->init(vert.c_str(), frag.c_str());
     // TODO: [Zen/ParticleTestLayer.cpp] Handle shader not loaded error;
 
     m_particleSystem = std::make_unique<ParticleSystem>(m_capacity);
