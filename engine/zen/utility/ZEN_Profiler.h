@@ -24,7 +24,6 @@ namespace Zen {
     };
 
     void startSession(const char *sessionName, const char *filePath = "sessionResults.json") {
-      ZEN_LOG_DEBUG("[Zen/Profiler] Starting session {}.", sessionName);
       if (m_isActive)
         endSession();
 
@@ -44,8 +43,6 @@ namespace Zen {
       m_outputStream << m_events;
       m_outputStream.close();
       m_results.clear();
-
-      ZEN_LOG_DEBUG("[Zen/Profiler] Ending session {}", m_sessionName);
     };
 
     void writeProfile(const ProfileResult &result) {
