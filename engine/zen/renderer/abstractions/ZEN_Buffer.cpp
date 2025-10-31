@@ -15,6 +15,7 @@ namespace Zen {
     }
 
     ZEN_LOG_ERROR("[Zen/Renderer/Buffer] Unknown RendererAPI");
+    return nullptr;
   };
 
   IndexBuffer *IndexBuffer::Create(uint32_t *indices, uint32_t count) {
@@ -29,5 +30,6 @@ namespace Zen {
     }
 
     ZEN_LOG_ERROR("[Zen/Renderer/Buffer] Unknown RendererAPI");
+    return nullptr;
   };
 }; // namespace Zen

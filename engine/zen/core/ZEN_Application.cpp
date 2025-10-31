@@ -6,6 +6,7 @@
 #include <zen/renderer/particles/ZEN_ParticleTestLayer.h>
 #include <zen/time/ZEN_EngineTime.h>
 #include <zen/utility/ZEN_Macros.h>
+#include <zen/utility/ZEN_Log.h>
 
 namespace Zen {
   Application *Application::s_instance = nullptr;

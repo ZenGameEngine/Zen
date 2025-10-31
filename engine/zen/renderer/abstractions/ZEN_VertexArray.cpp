@@ -16,6 +16,7 @@ namespace Zen {
     }
 
     ZEN_LOG_CRITICAL("[Zen/Renderer/VertexArray] Unknown RendererAPI");
+    return nullptr;
   };
 
 }; // namespace Zen

@@ -41,7 +41,7 @@ FetchContent_MakeAvailable(glad)
 glad_add_library(glad_gl_core_46 STATIC REPRODUCIBLE LOADER API gl:core=4.6)
 
 # spdlog
-find_package(spdlog REQUIRED)
+find_package(spdlog QUIET)
 if(NOT TARGET spdlog::spdlog)
   message(STATUS "[Zen/Engine/CMakeLists] spdlog not found, using FetchContent")
   FetchContent_Declare(
