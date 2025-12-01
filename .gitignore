@@ -33,3 +33,8 @@ out.perf
 out.folded
 perf.out
 perf.data
+gDeleteProfile.json 
+gInitProfile.json 
+gRegisterLayerProfile.json 
+gRunProfile.json
+ZenithFlameGraph.svg
